@@ -1,0 +1,7 @@
+-std=c99 
+-Wall 
+-Wextra
+-Werror
+-Ithirdparty/limine
+-Isrc
+-Isrc/gaia/arch/x86_64

@@ -1,0 +1,15 @@
+mainmenu "Gaia kernel configuration"
+
+choice
+	prompt "Architecture"
+	default ARM
+
+config ARM
+	bool
+	prompt "ARM"
+
+config MIPS
+	bool
+	prompt "MIPS"
+
+endchoice

@@ -1,0 +1,23 @@
+{
+    "psi-header.variables": [
+        [
+            "author",
+            "lg"
+        ],
+    ],
+    "psi-header.templates": [
+        {
+            "language": "*",
+            "template": [
+                "Copyright (c) <<year>>, <<author>>",
+                "",
+                "SPDX-License-Identifier: BSD-2-Clause",
+            ],
+            "changeLogHeaderLineCount": 2,
+        }
+    ],
+    "psi-header.changes-tracking.autoHeader": "autoSave",
+    "C/C++ Include Guard.Prefix": "_GAIA_",
+    "C/C++ Include Guard.Macro Type": "Filename",
+    "C/C++ Include Guard.Remove Extension": false,
+}

@@ -1,0 +1,4 @@
+build
+*.o
+.idea
+*.iso
