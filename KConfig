@@ -1,15 +1,34 @@
 mainmenu "Gaia kernel configuration"
 
+menu "Build options"
+choice
+	prompt "Toolchain"
+	default LLVM
+
+config LLVM
+	bool "LLVM"
+
+config GNU
+	bool "GNU"
+endchoice
+
+choice
+	prompt "Build type"
+	default DEBUG
+
+config DEBUG
+	bool "Debug"
+
+config RELEASE
+	bool "Release"
+endchoice
+
 choice
 	prompt "Architecture"
-	default ARM
+	default X86_64
 
-config ARM
-	bool
-	prompt "ARM"
-
-config MIPS
-	bool
-	prompt "MIPS"
-
+config X86_64
+	bool "X86_64"
 endchoice
+
+endmenu

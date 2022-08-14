@@ -1,9 +1,8 @@
 #!/usr/bin/bash
 
-cd ..
 rm -rf iso_root
 mkdir -p iso_root
-cp $1/kernel sysroot/* \
+cp $1/kernel.elf sysroot/* \
 	thirdparty/limine/limine.sys thirdparty/limine/limine-cd.bin thirdparty/limine/limine-cd-efi.bin iso_root/
 xorriso -as mkisofs -b limine-cd.bin \
 		-no-emul-boot -boot-load-size 4 -boot-info-table \

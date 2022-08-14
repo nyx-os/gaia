@@ -5,3 +5,4 @@
 -Ithirdparty/limine
 -Isrc
 -Isrc/gaia/arch/x86_64
+-Isrc/lib
