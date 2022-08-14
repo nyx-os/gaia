@@ -5,6 +5,15 @@
             "lg"
         ],
     ],
+    "psi-header.lang-config": [
+        {
+            "language": ".mk",
+            "begin": "",
+            "prefix": "# ",
+            "end": "",
+            "blankLinesAfter": 0
+        },
+    ],
     "psi-header.templates": [
         {
             "language": "*",
@@ -17,7 +26,8 @@
         }
     ],
     "psi-header.changes-tracking.autoHeader": "autoSave",
-    "C/C++ Include Guard.Prefix": "_GAIA_",
-    "C/C++ Include Guard.Macro Type": "Filename",
+    "C/C++ Include Guard.Prefix": "",
+    "C/C++ Include Guard.Macro Type": "Filepath",
     "C/C++ Include Guard.Remove Extension": false,
+    "C/C++ Include Guard.Path Depth": 2,
 }

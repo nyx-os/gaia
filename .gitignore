@@ -3,3 +3,5 @@ build
 .idea
 *.iso
 config.h
+.config.old
+.config
