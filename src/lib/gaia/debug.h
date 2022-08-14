@@ -11,6 +11,7 @@
 
 #ifndef LIB_GAIA_DEBUG_H
 #define LIB_GAIA_DEBUG_H
+
 #include <gaia/host.h>
 
 /*! Log severity level */
