@@ -60,8 +60,7 @@ char *strrev(char *s)
     return s;
 }
 
-char *
-strrchr(const char *s, int c)
+char *strrchr(const char *s, int c)
 {
     char *p = NULL;
     while (*s)
