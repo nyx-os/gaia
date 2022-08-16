@@ -10,12 +10,12 @@ KERNEL_C_SOURCES = 	 $(wildcard src/gaia/*.c) \
 				 	 $(wildcard src/lib/gaia/*.c) \
 				 	 $(wildcard src/lib/stdc-shim/*.c) \
 				
-KERNEL_ASM_SOURCES = $(wildcard src/gaia/arch/$(ARCH)/*.asm)
+KERNEL_ASM_SOURCES = $(wildcard src/gaia/arch/$(ARCH)/*.s)
 
 
 KERNEL_C_OBJS = $(patsubst %.c, $(BUILDDIR)/%.c.o, $(KERNEL_C_SOURCES))
 KERNEL_OBJS = $(KERNEL_C_OBJS) \
-			  $(patsubst %.asm, $(BUILDDIR)/%.asm.o, $(KERNEL_ASM_SOURCES))
+			  $(patsubst %.s, $(BUILDDIR)/%.s.o, $(KERNEL_ASM_SOURCES))
 
 all: $(ISO)
 
@@ -29,7 +29,7 @@ $(BUILDDIR)/%.c.o: %.c
 	@$(DIRECTORY_GUARD)
 	$(CC) $(KERNEL_CFLAGS) -c -o $@ $<
 
-$(BUILDDIR)/%.asm.o: %.asm
+$(BUILDDIR)/%.s.o: %.s
 	@$(DIRECTORY_GUARD)
 	$(AS) $(ASFLAGS) $< -o $@
 

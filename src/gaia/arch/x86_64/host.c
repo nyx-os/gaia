@@ -5,6 +5,7 @@
  */
 
 #include "gaia/host.h"
+#include "gdt.h"
 #include <gaia/base.h>
 #include <gaia/pmm.h>
 #include <limine.h>
@@ -104,5 +105,5 @@ const char *host_get_name(void)
 
 void host_initialize(void)
 {
-    gdt_load();
+    gdt_initialize();
 }

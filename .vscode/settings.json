@@ -13,6 +13,13 @@
             "end": "",
             "blankLinesAfter": 0
         },
+        {
+            "language": ".s",
+            "begin": "",
+            "prefix": "; ",
+            "end": "",
+            "blankLinesAfter": 0
+        },
     ],
     "psi-header.templates": [
         {
@@ -30,4 +37,7 @@
     "C/C++ Include Guard.Macro Type": "Filepath",
     "C/C++ Include Guard.Remove Extension": false,
     "C/C++ Include Guard.Path Depth": 2,
+    "cSpell.words": [
+        "Limine"
+    ],
 }
