@@ -51,4 +51,9 @@ size_t pmm_get_free_pages(void);
  */
 size_t pmm_get_allocated_pages(void);
 
+/** @brief Gets the total number of pages in the system.
+ *  @returns The total number of pages in the system.
+ */
+size_t pmm_get_total_page_count(void);
+
 #endif /* SRC_GAIA_PMM_H */

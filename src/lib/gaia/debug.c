@@ -125,3 +125,15 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
 
     host_debug_write_string("\n");
 }
+
+void _assert(bool condition, const char *condition_string, const char *file, int line)
+{
+    if (!condition)
+    {
+        _log(LOG_PANIC, file, "Assertion failed: %s, at %s:%d", condition_string, file, line);
+    }
+    else
+    {
+        __builtin_unreachable();
+    }
+}

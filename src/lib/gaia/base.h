@@ -19,4 +19,11 @@
 #define PACKED __attribute__((packed))
 #define DISCARD(x) (void)x
 
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+
+#define KIB(x) ((uint64_t)x << 10)
+#define MIB(x) ((uint64_t)x << 20)
+#define GIB(x) ((uint64_t)x << 30)
+
 #endif /* LIB_GAIA_BASE_H */

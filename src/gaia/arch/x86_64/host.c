@@ -6,6 +6,7 @@
 
 #include "gaia/host.h"
 #include "gdt.h"
+#include "paging.h"
 #include <gaia/base.h>
 #include <gaia/pmm.h>
 #include <limine.h>
@@ -105,5 +106,6 @@ const char *host_get_name(void)
 
 void host_initialize(void)
 {
+    paging_initialize();
     gdt_initialize();
 }

@@ -17,4 +17,5 @@ void gaia_main(Charon *charon)
     host_initialize();
 
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
+    log("Welcome to the machine!");
 }

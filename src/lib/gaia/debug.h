@@ -13,6 +13,7 @@
 #define LIB_GAIA_DEBUG_H
 
 #include <gaia/host.h>
+#include <stdbool.h>
 
 /*! Log severity level */
 typedef enum
@@ -33,6 +34,16 @@ typedef enum
  * @param fmt Printf-like format string.
  */
 void _log(LogLevel level, const char *file, const char *fmt, ...);
+
+/**
+ * @brief Asserts that a condition is true, panics if it is not.
+ *
+ * @param condition The boolean condition to assert.
+ * @param condition_string The condition, stringified.
+ * @param file File name.
+ * @param line Line number.
+ */
+void _assert(bool condition, const char *condition_string, const char *file, int line);
 
 /**
  * @def __FILENAME__
@@ -75,5 +86,11 @@ void _log(LogLevel level, const char *file, const char *fmt, ...);
  * @brief calls _log with LOG_PANIC level.
  */
 #define panic(...) _log(LOG_PANIC, __FILENAME__, __VA_ARGS__)
+
+/**
+ * @def assert(expr)
+ * @brief Panics if expr is false.
+ */
+#define assert(expr) (expr ? (void)0 : _assert(expr, #expr, __FILE__, __LINE__))
 
 #endif /* LIB_GAIA_DEBUG_H */

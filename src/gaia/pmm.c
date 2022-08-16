@@ -9,6 +9,7 @@
 #include "gaia/spinlock.h"
 #include <gaia/base.h>
 #include <gaia/pmm.h>
+#include <stdc-shim/string.h>
 
 typedef struct
 {
@@ -84,6 +85,13 @@ void *pmm_alloc()
     return result;
 }
 
+void *pmm_alloc_zero()
+{
+    void *result = pmm_alloc();
+    memset((void *)host_phys_to_virt((uintptr_t)result), 0, PAGE_SIZE);
+    return result;
+}
+
 void pmm_free(void *ptr)
 {
 
@@ -115,4 +123,9 @@ void pmm_dump(void)
         trace("%p-%p", host_virt_to_phys((uintptr_t)item), host_virt_to_phys((uintptr_t)item) + item->size);
         item = (FreelistItem *)host_phys_to_virt(item->next);
     }
+}
+
+size_t pmm_get_total_page_count(void)
+{
+    return total_page_count;
 }
