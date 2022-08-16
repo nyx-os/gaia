@@ -4,7 +4,17 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-void gaia_main()
+#include <gaia/base.h>
+#include <gaia/charon.h>
+#include <gaia/pmm.h>
+#include <stdbool.h>
+
+void gaia_main(Charon *charon)
 {
-//    arch_init();
+    pmm_init(*charon);
+    pmm_dump();
+
+    host_initialize();
+
+    log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
 }

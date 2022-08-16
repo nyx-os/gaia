@@ -4,19 +4,16 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <gaia/base.h>
+#include <gaia/charon.h>
 #include <limine.h>
-
-#include <limine.h>
+#include <stdc-shim/string.h>
 #include <stddef.h>
 #include <stdint.h>
 
 // The Limine requests can be placed anywhere, but it is important that
 // the compiler does not optimise them away, so, usually, they should
 // be made volatile or equivalent.
-
-static volatile struct limine_terminal_request terminal_request = {
-    .id = LIMINE_TERMINAL_REQUEST,
-    .revision = 0};
 
 static void done(void)
 {
@@ -26,20 +23,13 @@ static void done(void)
     }
 }
 
-// The following will be our kernel's entry point.
+Charon limine_to_charon();
+
+void gaia_main(Charon *charon);
+
 void _start(void)
 {
-    // Ensure we got a terminal
-    if (terminal_request.response == NULL || terminal_request.response->terminal_count < 1)
-    {
-        done();
-    }
-
-    // We should now be able to call the Limine terminal to print out
-    // a simple "Hello World" to screen.
-    struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    terminal_request.response->write(terminal, "Hello World", 11);
-
-    // We're done, just hang...
+    Charon charon = limine_to_charon();
+    gaia_main(&charon);
     done();
 }

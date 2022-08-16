@@ -18,6 +18,8 @@
 typedef enum
 {
     LOG_INFO,  /*!< Normal output (green) */
+    LOG_TRACE, /*!< Trace output (cyan) */
+    LOG_DEBUG, /*!< Debug output (blue) */
     LOG_WARN,  /*!< Warning (yellow) */
     LOG_ERROR, /*!< Error (red) */
     LOG_PANIC, /*!< Panic (red), hangs the system. */
@@ -33,27 +35,45 @@ typedef enum
 void _log(LogLevel level, const char *file, const char *fmt, ...);
 
 /**
- * @def log(fmt, ...)
+ * @def __FILENAME__
+ * @brief Macro that expands to the current file name.
+ */
+#define __FILENAME__ (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : __FILE__)
+
+/**
+ * @def log(...)
  * @brief calls _log with LOG_INFO level.
  */
-#define log(fmt, ...) _log(LOG_INFO, __FILE__, fmt, ##__VA_ARGS__)
+#define log(...) _log(LOG_INFO, __FILENAME__, __VA_ARGS__)
+
+/**
+ * @def trace(...)
+ * @brief calls _log with LOG_TRACE level.
+ */
+#define trace(...) _log(LOG_TRACE, __FILENAME__, __VA_ARGS__)
+
+/**
+ * @def debug(...)
+ * @brief calls _log with LOG_DEBUG level.
+ */
+#define debug(...) _log(LOG_DEBUG, __FILENAME__, __VA_ARGS__)
 
 /**
  * @def warn(fmt, ...)
  * @brief calls _log with LOG_WARN level.
  */
-#define warn(fmt, ...) _log(LOG_WARN, __FILE__, fmt, ##__VA_ARGS__)
+#define warn(...) _log(LOG_WARN, __FILENAME__, __VA_ARGS__)
 
 /**
- * @def error(fmt, ...)
+ * @def error(...)
  * @brief calls _log with LOG_ERROR level.
  */
-#define error(fmt, ...) _log(LOG_ERROR, __FILE__, fmt, ##__VA_ARGS__)
+#define error(...) _log(LOG_ERROR, __FILENAME__, __VA_ARGS__)
 
 /**
- * @def panic(fmt, ...)
+ * @def panic(...)
  * @brief calls _log with LOG_PANIC level.
  */
-#define panic(fmt, ...) _log(LOG_PANIC, __FILE__, fmt, ##__VA_ARGS__)
+#define panic(...) _log(LOG_PANIC, __FILENAME__, __VA_ARGS__)
 
 #endif /* LIB_GAIA_DEBUG_H */
