@@ -31,5 +31,3 @@ KERNEL_CFLAGS = $(BASE_CFLAGS) -target x86_64-unknown-elf -fno-stack-check \
         -mcmodel=kernel
 
 KERNEL_LINK_FLAGS = -Tsrc/gaia/arch/$(ARCH)/link.ld -nostdlib -melf_x86_64 -zmax-page-size=0x1000 -static
-
-DEPS += $(KERNEL_C_OBJS:.c.o=.c.d)

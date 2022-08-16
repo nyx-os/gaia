@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
 -include make/config.mk
--include $(DEPS)
 
 KERNEL_C_SOURCES = 	 $(wildcard src/gaia/*.c) \
 				 	 $(wildcard src/gaia/*/*.c) \
@@ -35,9 +34,12 @@ $(BUILDDIR)/%.asm.o: %.asm
 	$(AS) $(ASFLAGS) $< -o $@
 
 run: $(ISO)
-	qemu-system-$(ARCH) -m 2G -no-shutdown -no-reboot -debugcon stdio -enable-kvm -cdrom $^
+	qemu-system-$(ARCH) -m 4G -cpu host -M q35 -no-reboot -debugcon stdio -enable-kvm -cdrom $^
 
 clean:
 	-rm -rf $(BUILDDIR)
 
 .PHONY: all run clean
+
+DEPS += $(KERNEL_C_OBJS:.c.o=.c.d)
+-include $(DEPS)

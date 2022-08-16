@@ -5,7 +5,7 @@
 -include .config
 
 DIRECTORY_GUARD = mkdir -p $(@D)
-BASE_CFLAGS = -Isrc/gaia/arch/$(ARCH) -Isrc -Ithirdparty/limine -MMD
+BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -Isrc -Isrc/lib -Ithirdparty/limine -MMD
 ISO = nyx.iso
 BUILDDIR = build
 KERNEL = $(BUILDDIR)/kernel.elf
@@ -19,7 +19,7 @@ ifeq ($(CONFIG_X86_64), y)
 endif
 
 ifeq ($(CONFIG_DEBUG), y)
-	BASE_CFLAGS += -O0 -ggdb
+	BASE_CFLAGS += -O0 -ggdb -fsanitize=undefined
 endif
 
 ifeq ($(CONFIG_RELEASE), y)

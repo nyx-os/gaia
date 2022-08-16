@@ -1,4 +1,5 @@
--std=c99 
+-std=c99
+-pedantic
 -Wall 
 -Wextra
 -Werror
