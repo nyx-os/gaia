@@ -5,3 +5,4 @@ build
 config.h
 .config.old
 .config
+outdoc
