@@ -14,6 +14,14 @@
 
 static Pagemap kernel_pagemap = {0};
 
+static volatile struct limine_kernel_address_request kaddr_request = {
+    .id = LIMINE_KERNEL_ADDRESS_REQUEST,
+    .revision = 0};
+
+extern uintptr_t text_start_addr, text_end_addr;
+extern uintptr_t rodata_start_addr, rodata_end_addr;
+extern uintptr_t data_start_addr, data_end_addr;
+
 static uint64_t *get_next_level(uint64_t *table, size_t index, size_t flags, bool allocate)
 {
 
@@ -59,10 +67,35 @@ void paging_initialize()
         paging_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PTE_PRESENT | PTE_WRITABLE, true);
     }
 
-    // Map the 0-2GB of memory to the kernel space.
-    for (size_t i = 0; i < GIB(2); i += PAGE_SIZE)
+    // Map the kernel
+    uintptr_t text_start = ALIGN_DOWN(text_start_addr, PAGE_SIZE);
+    uintptr_t text_end = ALIGN_UP(text_end_addr, PAGE_SIZE);
+    uintptr_t rodata_start = ALIGN_DOWN(rodata_start_addr, PAGE_SIZE);
+    uintptr_t rodata_end = ALIGN_UP(rodata_end_addr, PAGE_SIZE);
+    uintptr_t data_start = ALIGN_DOWN(data_start_addr, PAGE_SIZE);
+    uintptr_t data_end = ALIGN_UP(data_end_addr, PAGE_SIZE);
+
+    struct limine_kernel_address_response *kaddr = kaddr_request.response;
+
+    // Text is readable and executable, writing is not allowed.
+    for (uintptr_t i = text_start; i < text_end; i += PAGE_SIZE)
     {
-        paging_map_page(&kernel_pagemap, i + MMAP_KERNEL_BASE, i, PTE_PRESENT | PTE_WRITABLE, true);
+        uintptr_t phys = i - kaddr->virtual_base + kaddr->physical_base;
+        paging_map_page(&kernel_pagemap, i, phys, PTE_PRESENT, true);
+    }
+
+    // Read-only data is readable and NOT executable, writing is not allowed.
+    for (uintptr_t i = rodata_start; i < rodata_end; i += PAGE_SIZE)
+    {
+        uintptr_t phys = i - kaddr->virtual_base + kaddr->physical_base;
+        paging_map_page(&kernel_pagemap, i, phys, PTE_PRESENT | PTE_NOT_EXECUTABLE, true);
+    }
+
+    // Data is readable and writable, but is NOT executable.
+    for (uintptr_t i = data_start; i < data_end; i += PAGE_SIZE)
+    {
+        uintptr_t phys = i - kaddr->virtual_base + kaddr->physical_base;
+        paging_map_page(&kernel_pagemap, i, phys, PTE_PRESENT | PTE_WRITABLE | PTE_NOT_EXECUTABLE, true);
     }
 }
 
