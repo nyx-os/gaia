@@ -129,3 +129,13 @@ size_t pmm_get_total_page_count(void)
 {
     return total_page_count;
 }
+
+size_t pmm_get_allocated_pages(void)
+{
+    return used_pages;
+}
+
+size_t pmm_get_free_pages()
+{
+    return free_pages;
+}
