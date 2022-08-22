@@ -6,6 +6,7 @@
 
 #include <gaia/base.h>
 #include <gaia/charon.h>
+#include <gaia/firmware/acpi.h>
 #include <gaia/pmm.h>
 #include <stdbool.h>
 
