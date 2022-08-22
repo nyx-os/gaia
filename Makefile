@@ -39,7 +39,10 @@ run: $(ISO)
 clean:
 	-rm -rf $(BUILDDIR)
 
-.PHONY: all run clean
+menuconfig:
+	./scripts/menuconfig
+
+.PHONY: all run clean menuconfig
 
 DEPS += $(KERNEL_C_OBJS:.c.o=.c.d)
 -include $(DEPS)

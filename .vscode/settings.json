@@ -39,6 +39,9 @@
     "C/C++ Include Guard.Path Depth": 2,
     "cSpell.words": [
         "Limine",
-        "Pagemap"
+        "Pagemap",
+        "Rsdp",
+        "rsdt",
+        "xsdt"
     ],
 }
