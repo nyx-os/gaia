@@ -61,7 +61,7 @@ void paging_initialize()
     // Map the first 4GB+ of memory to the higher half.
     for (size_t i = PAGE_SIZE; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += PAGE_SIZE)
     {
-        paging_map_page(&kernel_pagemap, i, i, PTE_PRESENT | PTE_WRITABLE);
+        paging_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PTE_PRESENT | PTE_WRITABLE);
     }
 }
 
