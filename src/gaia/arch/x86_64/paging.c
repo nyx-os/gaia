@@ -7,6 +7,7 @@
 #include "gaia/host.h"
 #include "gaia/spinlock.h"
 #include <gaia/pmm.h>
+#include <limine.h>
 #include <paging.h>
 
 #define PML_ENTRY(addr, offset) (size_t)(addr & ((uintptr_t)0x1ff << offset)) >> offset;
@@ -50,22 +51,22 @@ void paging_initialize()
 {
     kernel_pagemap.pml4 = pmm_alloc_zero();
     kernel_pagemap.lock._lock = 0;
-
     assert(kernel_pagemap.pml4 != NULL);
-
-    for (size_t i = 256; i < 512; i++)
-    {
-        assert(get_next_level(kernel_pagemap.pml4, i, PTE_PRESENT | PTE_WRITABLE | PTE_USER, true) != NULL);
-    }
 
     // Map the first 4GB+ of memory to the higher half.
     for (size_t i = PAGE_SIZE; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += PAGE_SIZE)
     {
-        paging_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PTE_PRESENT | PTE_WRITABLE);
+        paging_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PTE_PRESENT | PTE_WRITABLE, true);
+    }
+
+    // Map the 0-2GB of memory to the kernel space.
+    for (size_t i = 0; i < GIB(2); i += PAGE_SIZE)
+    {
+        paging_map_page(&kernel_pagemap, i + MMAP_KERNEL_BASE, i, PTE_PRESENT | PTE_WRITABLE, true);
     }
 }
 
-void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_t flags)
+void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_t flags, bool huge)
 {
     lock_acquire(&pagemap->lock);
 
@@ -78,7 +79,14 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     uint64_t *pml2 = get_next_level(pml3, level3, flags, true);
     uint64_t *pml1 = get_next_level(pml2, level2, flags, true);
 
-    pml1[level1] = paddr | flags;
+    if (huge)
+    {
+        pml2[level1] = paddr | flags | PTE_HUGE;
+    }
+    else
+    {
+        pml1[level1] = paddr | flags;
+    }
 
     lock_release(&pagemap->lock);
 }

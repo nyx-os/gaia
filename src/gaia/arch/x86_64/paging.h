@@ -19,10 +19,11 @@ typedef struct
     uint64_t *pml4;
 } Pagemap;
 
-#define PTE_PRESENT (1 << 0)
-#define PTE_WRITABLE (1 << 1)
-#define PTE_USER (1 << 2)
-#define PTE_NOT_EXECUTABLE (1 << 63)
+#define PTE_PRESENT (1ull << 0ull)
+#define PTE_WRITABLE (1ull << 1ull)
+#define PTE_USER (1ull << 2ull)
+#define PTE_NOT_EXECUTABLE (1ull << 63ull)
+#define PTE_HUGE (1ull << 7ull)
 
 #define PTE_ADDR_MASK ~(0xfff)
 #define PTE_GET_ADDR(VALUE) ((VALUE)&PTE_ADDR_MASK)
@@ -54,7 +55,7 @@ void paging_load_pagemap(Pagemap *pagemap);
  * @param paddr The physical address of the page to map.
  * @param flags The flags to set for the mapping (See the PTE_ macros).
  */
-void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_t flags);
+void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_t flags, bool huge);
 
 /**
  * @brief Unmaps a virtual address.
