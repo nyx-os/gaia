@@ -13,11 +13,11 @@
 #define ARCH_X86_64_PAGING_H
 #include <gaia/base.h>
 
-typedef struct
+struct Pagemap
 {
     Spinlock lock;
     uint64_t *pml4;
-} Pagemap;
+};
 
 #define PTE_PRESENT (1ull << 0ull)
 #define PTE_WRITABLE (1ull << 1ull)
@@ -54,6 +54,7 @@ void paging_load_pagemap(Pagemap *pagemap);
  * @param vaddr The virtual address to which the page should be mapped.
  * @param paddr The physical address of the page to map.
  * @param flags The flags to set for the mapping (See the PTE_ macros).
+ * @param huge Whether the page is huge (2mib) or not.
  */
 void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_t flags, bool huge);
 

@@ -11,6 +11,7 @@
 
 #ifndef LIB_GAIA_HOST_H
 #define LIB_GAIA_HOST_H
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -145,5 +146,40 @@ typedef struct InterruptStackframe InterruptStackframe;
  * @param handler The handler.
  */
 void host_set_interrupt_handler(uint8_t interrupt, void (*handler)(InterruptStackframe *));
+
+typedef struct Pagemap Pagemap;
+
+typedef enum
+{
+    PAGE_NONE = 0,
+    PAGE_WRITABLE = (1 << 0),
+    PAGE_NOT_EXECUTABLE = (1 << 1),
+    PAGE_HUGE = (1 << 2),
+} PageFlags;
+
+/**
+ * @brief Loads a pagemap.
+ *
+ * @param pagemap The pagemap to load.
+ */
+void host_load_pagemap(Pagemap *pagemap);
+
+/**
+ * @brief Maps a physical page to a virtual address.
+ *
+ * @param pagemap The pagemap in which the mapping should be made.
+ * @param vaddr The virtual address to which the page should be mapped.
+ * @param paddr The physical address of the page to map.
+ * @param flags The flags to set for the mapping (See the PageFlags type).
+ */
+void host_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, PageFlags flags);
+
+/**
+ * @brief Unmaps a virtual address.
+ *
+ * @param pagemap The pagemap in which the mapping should be made.
+ * @param vaddr The virtual address to which the page should be mapped.
+ */
+void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr);
 
 #endif /* GAIA_ARCH_HOST_H */

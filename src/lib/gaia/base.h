@@ -17,6 +17,7 @@
 #define ALIGN_DOWN(x, align) ((x) & ~((align)-1))
 #define DIV_CEIL(x, align) (((x) + (align)-1) / (align))
 #define PACKED __attribute__((packed))
+#define UNUSED __attribute__((unused))
 #define DISCARD(x) (void)x
 
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
