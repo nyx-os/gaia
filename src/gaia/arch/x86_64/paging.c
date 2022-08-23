@@ -21,11 +21,9 @@ static volatile struct limine_kernel_address_request kaddr_request = {
     .id = LIMINE_KERNEL_ADDRESS_REQUEST,
     .revision = 0};
 
-typedef char Symbol[];
-
-extern Symbol text_start_addr, text_end_addr;
-extern Symbol rodata_start_addr, rodata_end_addr;
-extern Symbol data_start_addr, data_end_addr;
+extern char text_start_addr[], text_end_addr[];
+extern char rodata_start_addr[], rodata_end_addr[];
+extern char data_start_addr[], data_end_addr[];
 
 static uint64_t *get_next_level(uint64_t *table, size_t index, size_t flags, bool allocate)
 {
