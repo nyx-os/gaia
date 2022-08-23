@@ -125,12 +125,14 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
 
     uint64_t *pml3 = get_next_level((void *)host_phys_to_virt((uintptr_t)pagemap->pml4), level4, flags, true);
 
+    // If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3.
     if (cpuid_supports_1gb_pages() && huge)
     {
         pml3[level3] = paddr | flags | PTE_HUGE;
         goto end;
     }
 
+    // If we're mapping 2M pages, we don't care about the rest of the mapping, only the pml2.
     uint64_t *pml2 = get_next_level(pml3, level3, flags, true);
 
     if (huge)
