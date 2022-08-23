@@ -38,6 +38,7 @@
     "C/C++ Include Guard.Remove Extension": false,
     "C/C++ Include Guard.Path Depth": 2,
     "cSpell.words": [
+        "Cpuid",
         "Limine",
         "Pagemap",
         "Rsdp",
