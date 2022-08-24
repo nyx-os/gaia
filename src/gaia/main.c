@@ -8,18 +8,31 @@
 #include <gaia/charon.h>
 #include <gaia/firmware/acpi.h>
 #include <gaia/pmm.h>
+#include <gaia/slab.h>
+#include <gaia/vec.h>
 #include <stdbool.h>
 
 void gaia_main(Charon *charon)
 {
     pmm_init(*charon);
+#ifdef DEBUG
     pmm_dump();
+#endif
     acpi_init(charon->rsdp);
-    acpi_dump_tables();
 
+#ifdef DEBUG
+    acpi_dump_tables();
+#endif
     host_initialize();
 
+    slab_init();
+
+#ifdef DEBUG
+    slab_dump();
+#endif
+
     log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
+    log("initial heap memory usage: %dkb", slab_used() / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");
 }
