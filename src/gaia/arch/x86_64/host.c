@@ -5,6 +5,7 @@
  */
 
 #include "gaia/host.h"
+#include "gaia/debug.h"
 #include "gdt.h"
 #include "paging.h"
 #include <gaia/base.h>
@@ -108,4 +109,40 @@ void host_initialize(void)
 {
     paging_initialize();
     gdt_initialize();
+}
+
+void *host_allocate_page(void)
+{
+    return pmm_alloc();
+}
+
+void host_free_page(void *ptr)
+{
+    pmm_free(ptr);
+}
+
+void host_load_pagemap(Pagemap *pagemap)
+{
+    paging_load_pagemap(pagemap);
+}
+
+void host_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, PageFlags flags)
+{
+    uint64_t flags_ = PTE_PRESENT;
+
+    if (flags & PAGE_WRITABLE)
+    {
+        flags_ |= PTE_WRITABLE;
+    }
+    if (flags & PAGE_NOT_EXECUTABLE)
+    {
+        flags_ |= PTE_NOT_EXECUTABLE;
+    }
+
+    paging_map_page(pagemap, vaddr, paddr, flags_, (flags & PAGE_HUGE));
+}
+
+void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr)
+{
+    paging_unmap_page(pagemap, vaddr);
 }

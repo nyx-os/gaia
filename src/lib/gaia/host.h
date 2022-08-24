@@ -182,4 +182,17 @@ void host_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, PageFlags
  */
 void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr);
 
+/**
+ * @brief Allocates a 4kib page
+ *
+ * @return A pointer to the page
+ */
+void *host_allocate_page();
+
+/**
+ * @brief Frees a 4kib page
+ *
+ * @param ptr The page to free
+ */
+void host_free_page(void *ptr);
 #endif /* GAIA_ARCH_HOST_H */

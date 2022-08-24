@@ -147,6 +147,7 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
 
 end:
 
+    // ? Do we need to flush here?
     invlpg((void *)vaddr);
 
     lock_release(&pagemap->lock);
@@ -183,30 +184,4 @@ void paging_load_pagemap(Pagemap *pagemap)
 Pagemap *paging_get_kernel_pagemap()
 {
     return &kernel_pagemap;
-}
-
-void host_load_pagemap(Pagemap *pagemap)
-{
-    paging_load_pagemap(pagemap);
-}
-
-void host_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, PageFlags flags)
-{
-    uint64_t flags_ = PTE_PRESENT;
-
-    if (flags & PAGE_WRITABLE)
-    {
-        flags_ |= PTE_WRITABLE;
-    }
-    if (flags & PAGE_NOT_EXECUTABLE)
-    {
-        flags_ |= PTE_NOT_EXECUTABLE;
-    }
-
-    paging_map_page(pagemap, vaddr, paddr, flags_, (flags & PAGE_HUGE));
-}
-
-void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr)
-{
-    paging_unmap_page(pagemap, vaddr);
 }
