@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include <gaia/firmware/lapic.h>
 #include <idt.h>
 
 extern uintptr_t __interrupt_vector[];
@@ -56,6 +57,7 @@ void idt_initialize()
 
 uintptr_t interrupts_handler(uintptr_t stack_pointer)
 {
-    log("e");
+    //   log("e");
+    lapic_eoi();
     return stack_pointer;
 }

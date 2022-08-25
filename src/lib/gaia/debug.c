@@ -124,6 +124,11 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
     va_end(args);
 
     host_debug_write_string("\n");
+
+    if (level == LOG_PANIC)
+    {
+        host_hang();
+    }
 }
 
 void _assert(bool condition, const char *condition_string, const char *file, int line)

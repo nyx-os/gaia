@@ -19,17 +19,17 @@ typedef struct PACKED
     uint32_t oem_revision;
     char creator_id[4];
     uint32_t creator_revision;
-} TableHeader;
+} AcpiTableHeader;
 
 typedef struct PACKED
 {
-    TableHeader header;
+    AcpiTableHeader header;
     uint32_t entry[];
 } Rsdt;
 
 typedef struct PACKED
 {
-    TableHeader header;
+    AcpiTableHeader header;
     uint64_t entry[];
 } Xsdt;
 

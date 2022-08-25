@@ -12,7 +12,7 @@
 
 typedef struct PACKED
 {
-    TableHeader header;
+    AcpiTableHeader header;
     uint32_t local_interrupt_controller;
     uint32_t flags;
     uint8_t entries[];
