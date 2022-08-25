@@ -13,7 +13,7 @@
 
 #include <gaia/base.h>
 
-#define SLAB_COUNT 6
+#define SLAB_COUNT 7
 
 void *slab_alloc(size_t size);
 void slab_free(void *ptr);

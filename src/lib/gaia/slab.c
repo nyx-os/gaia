@@ -28,7 +28,7 @@ static Slab slabs[SLAB_COUNT] = {0};
 
 static Slab *find_slab(size_t size)
 {
-    for (int i = 0; i < SLAB_COUNT; i++)
+    for (size_t i = 0; i < sizeof(slabs) / sizeof(*slabs); i++)
     {
         if (slabs[i].entry_size >= size)
         {
@@ -109,12 +109,16 @@ void slab_init(void)
     create_slab(&slabs[3], 256);
     create_slab(&slabs[4], 512);
     create_slab(&slabs[5], 1024);
+    create_slab(&slabs[6], 2048);
 }
 
 void *slab_alloc(size_t size)
 {
     Slab *slab = find_slab(size);
-    assert(slab);
+    if (!slab)
+    {
+        panic("Couldn't find slab for size %d", size);
+    }
     return allocate_from_slab(slab);
 }
 

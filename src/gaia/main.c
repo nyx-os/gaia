@@ -18,14 +18,14 @@ void gaia_main(Charon *charon)
 #ifdef DEBUG
     pmm_dump();
 #endif
+
+    slab_init();
     acpi_init(charon->rsdp);
 
 #ifdef DEBUG
     acpi_dump_tables();
 #endif
     host_initialize();
-
-    slab_init();
 
 #ifdef DEBUG
     slab_dump();

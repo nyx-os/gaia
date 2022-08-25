@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 #include <gaia/firmware/acpi.h>
+#include <gaia/firmware/ioapic.h>
+#include <gaia/firmware/madt.h>
 #include <gaia/host.h>
 #include <stdc-shim/string.h>
 
@@ -27,6 +29,13 @@ void acpi_init(uintptr_t rsdp)
     {
         acpi_table_ptr = (TableHeader *)((uintptr_t)rsdp_ptr->rsdt);
         log("RSDT is at %p", (uintptr_t)acpi_table_ptr);
+    }
+
+    madt_init();
+
+    for (size_t i = 0; i < 16; i++) // set interrupt 32 to 48
+    {
+        ioapic_redirect_irq(0, i, i + 0x20);
     }
 }
 
