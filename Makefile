@@ -36,6 +36,9 @@ $(BUILDDIR)/%.s.o: %.s
 run: $(ISO)
 	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -cpu host -cdrom $^
 
+debug: $(ISO)
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -cdrom $^
+
 clean:
 	-rm -rf $(BUILDDIR)
 

@@ -7,6 +7,7 @@
 #include "gaia/host.h"
 #include "gaia/debug.h"
 #include "gdt.h"
+#include "idt.h"
 #include "paging.h"
 #include <gaia/base.h>
 #include <gaia/pmm.h>
@@ -109,6 +110,7 @@ void host_initialize(void)
 {
     paging_initialize();
     gdt_initialize();
+    idt_initialize();
 }
 
 void *host_allocate_page(void)

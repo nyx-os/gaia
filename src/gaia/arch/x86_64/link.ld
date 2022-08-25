@@ -35,9 +35,16 @@ SECTIONS
 
     rodata_start_addr = .;
 
+    PROVIDE(symbol_table = 1);
 
     .rodata : {
         *(.rodata .rodata.*)
+    } :rodata
+
+    .drivers : {
+        drivers_start = .;
+        KEEP(*(.drivers*))
+        drivers_end = .;
     } :rodata
 
     rodata_end_addr = .;

@@ -85,13 +85,13 @@ void host_out32(uint16_t port, uint32_t data);
  * @brief Enable interrupts.
  *
  */
-void enable_interrupts(void);
+void host_enable_interrupts(void);
 
 /**
  * @brief Disable interrupts.
  *
  */
-void disable_interrupts(void);
+void host_disable_interrupts(void);
 
 /**
  * @brief Convert a physical address to a virtual address.

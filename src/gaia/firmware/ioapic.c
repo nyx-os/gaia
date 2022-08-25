@@ -92,8 +92,9 @@ static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t g
     uint32_t io_redirect_table = (gsi - ioapic->interrupt_base) * 2 + 16;
 
     uint64_t redirect_u64 = *(uint64_t *)&redirect;
-    ioapic_write(ioapic, IOAPIC_REG_REDIRECT + io_redirect_table, (uint32_t)redirect_u64);
-    ioapic_write(ioapic, IOAPIC_REG_REDIRECT + io_redirect_table + 1, (uint32_t)(redirect_u64 >> 32));
+
+    ioapic_write(ioapic, io_redirect_table, (uint32_t)redirect_u64);
+    ioapic_write(ioapic, io_redirect_table + 1, (uint32_t)(redirect_u64 >> 32));
 }
 
 void ioapic_redirect_irq(uint32_t lapic_id, uint8_t irq, uint8_t vector)

@@ -11,7 +11,6 @@
 enum IoApicReg
 {
     IOAPIC_REG_VERSION = 0x01,
-    IOAPIC_REG_REDIRECT = 0x03,
 };
 
 #define IOAPIC_ACTIVE_HIGH_LOW (1 << 1)
