@@ -58,6 +58,12 @@ typedef struct PACKED
     uint32_t lint;
 } LapicNmi;
 
+enum LapicFlags
+{
+    LAPIC_ENABLED = 1 << 0,
+    LAPIC_ONLINE_BOOTABLE = 1 << 1,
+};
+
 void madt_init(void);
 
 typedef Vec(MadtIoApic) MadtIoApicVec;

@@ -14,7 +14,7 @@
 #include <gaia/base.h>
 
 #define CHARON_MODULE_MAX 16
-#define CHARON_MMAP_SIZE_MAX 64
+#define CHARON_MMAP_SIZE_MAX 128
 
 typedef enum
 {

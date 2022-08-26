@@ -16,6 +16,7 @@ void madt_init(void)
     assert(madt != NULL);
 
     size_t i = 0;
+    size_t cpu_count = 0;
     while (i < madt->header.length - sizeof(Madt))
     {
         MadtEntryHeader *header = (MadtEntryHeader *)(madt->entries + i);
@@ -23,8 +24,24 @@ void madt_init(void)
         switch (header->type)
         {
         case 0:
-            vec_push(&madt_lapics, *(MadtLapic *)(header));
+        {
+            MadtLapic lapic = *(MadtLapic *)(header);
+
+            if (lapic.flags & LAPIC_ENABLED)
+            {
+                //    vec_push(&madt_lapics, lapic);
+                cpu_count++;
+            }
+
+            else if (lapic.flags & LAPIC_ONLINE_BOOTABLE)
+            {
+                cpu_count++;
+            }
+
+            DISCARD(madt_lapics);
+
             break;
+        }
         case 1:
             vec_push(&madt_ioapics, *(MadtIoApic *)(madt->entries + i));
             break;
@@ -36,7 +53,7 @@ void madt_init(void)
         i += MAX(2, header->length);
     }
 
-    log("CPU has %d %s", madt_lapics.length, madt_lapics.length == 1 ? "core" : "cores");
+    log("CPU has %d %s", cpu_count, cpu_count == 1 ? "core" : "cores");
 }
 
 MadtIoApicVec madt_get_ioapics(void)

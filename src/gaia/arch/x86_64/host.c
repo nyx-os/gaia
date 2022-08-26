@@ -115,7 +115,7 @@ void host_initialize(void)
 
 void *host_allocate_page(void)
 {
-    return pmm_alloc();
+    return pmm_alloc_zero();
 }
 
 void host_free_page(void *ptr)

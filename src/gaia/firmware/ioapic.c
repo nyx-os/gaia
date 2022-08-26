@@ -24,23 +24,14 @@ static void ioapic_write(MadtIoApic *ioapic, uint32_t reg, uint32_t value)
 
 static size_t ioapic_get_max_redirect(MadtIoApic *ioapic)
 {
-    struct PACKED ioapic_version
-    {
-        uint8_t version;
-        uint8_t reserved;
-        uint8_t max_redirect;
-        uint8_t reserved2;
-    };
-
-    uint32_t val = ioapic_read(ioapic, 1);
-    struct ioapic_version version = *(struct ioapic_version *)&val;
-
-    return version.max_redirect;
+    return (ioapic_read(ioapic, 1) & 0xff0000) >> 16;
 }
 
 static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
 {
     MadtIoApicVec ioapics = madt_get_ioapics();
+
+    assert(ioapics.length > 0);
 
     for (size_t i = 0; i < ioapics.length; i++)
     {
@@ -53,6 +44,7 @@ static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
         }
     }
 
+    panic("Cannot find ioapic from gsi %d", gsi);
     return NULL;
 }
 
@@ -73,6 +65,8 @@ static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t g
     };
 
     MadtIoApic *ioapic = ioapic_from_gsi(gsi);
+
+    assert(ioapic != NULL);
 
     struct io_apic_redirect redirect = {0};
     redirect.vector = vector;
