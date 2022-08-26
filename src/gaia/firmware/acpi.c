@@ -35,10 +35,10 @@ void acpi_init(uintptr_t rsdp)
 
     madt_init();
 
-    for (size_t i = 0; i < 16; i++) // set interrupt 32 to 48
-    {
-        ioapic_redirect_irq(0, i, i + 0x20);
-    }
+    // Redirect keyboard, mouse and timer interrupts
+    ioapic_redirect_irq(0, 0, 32);
+    ioapic_redirect_irq(0, 1, 33);
+    ioapic_redirect_irq(0, 12, 44);
 
     hpet_initialize();
     lapic_initialize();

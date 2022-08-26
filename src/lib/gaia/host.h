@@ -143,9 +143,9 @@ typedef struct InterruptStackframe InterruptStackframe;
 /**
  * @brief Set interrupt handler for a specific interrupt.
  * @param interrupt The interrupt to set the handler for.
- * @param handler The handler.
+ * @param handler The handler (returns the stack pointer).
  */
-void host_set_interrupt_handler(uint8_t interrupt, void (*handler)(InterruptStackframe *));
+void host_set_interrupt_handler(uint8_t interrupt, uintptr_t (*handler)(InterruptStackframe *));
 
 typedef struct Pagemap Pagemap;
 

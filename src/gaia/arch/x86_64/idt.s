@@ -2,6 +2,7 @@
 ; 
 ; SPDX-License-Identifier: BSD-2-Clause
 bits 64
+
 %macro INTERRUPT_NAME 1
 dq __interrupt%1
 %endmacro

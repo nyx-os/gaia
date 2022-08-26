@@ -30,7 +30,7 @@ static uint64_t *get_next_level(uint64_t *table, size_t index, size_t flags, boo
     // If the entry is already present, just return it.
     if (PTE_IS_PRESENT(table[index]))
     {
-        return (uint64_t *)host_phys_to_virt(PTE_GET_ADDR(table[index]));
+        return (uint64_t *)host_phys_to_virt((uintptr_t)PTE_GET_ADDR(table[index]));
     }
 
     // If there's no entry in the page table and we don't want to allocate, we abort.
@@ -40,11 +40,13 @@ static uint64_t *get_next_level(uint64_t *table, size_t index, size_t flags, boo
     }
 
     // Otherwise, we allocate a new entry
-    uintptr_t new_table = (uintptr_t)pmm_alloc();
+    uintptr_t new_table = (uintptr_t)pmm_alloc_zero();
 
     assert(new_table != 0);
 
-    table[index] = new_table | flags;
+    (void)flags;
+
+    table[index] = new_table | PTE_USER | PTE_WRITABLE | PTE_PRESENT;
 
     return (uint64_t *)host_phys_to_virt(new_table);
 }
@@ -125,6 +127,8 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
 
     uint64_t *pml3 = get_next_level((void *)host_phys_to_virt((uintptr_t)pagemap->pml4), level4, flags, true);
 
+    assert(pml3);
+
     // If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3.
     if (cpuid_supports_1gb_pages() && huge)
     {
@@ -135,6 +139,8 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     // If we're mapping 2M pages, we don't care about the rest of the mapping, only the pml2.
     uint64_t *pml2 = get_next_level(pml3, level3, flags, true);
 
+    assert(pml2);
+
     if (huge)
     {
         pml2[level2] = paddr | flags | PTE_HUGE;
@@ -142,14 +148,11 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     }
 
     uint64_t *pml1 = get_next_level(pml2, level2, flags, true);
+    assert(pml1);
 
     pml1[level1] = paddr | flags;
 
 end:
-
-    // ? Do we need to flush here?
-    invlpg((void *)vaddr);
-
     lock_release(&pagemap->lock);
 }
 

@@ -81,7 +81,10 @@ static void *allocate_from_slab(Slab *slab)
     }
 
     void **old_head = slab->head;
-    slab->head = *(void **)slab->head;
+
+    if (*slab->head == 0)
+        slab->head = *slab->head;
+
     slab_used_mem += slab->entry_size;
     slab->used += slab->entry_size;
 

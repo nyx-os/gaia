@@ -63,6 +63,8 @@ static CharonMemoryMap limine_mmap_to_charon(struct limine_memmap_response *mmap
 
     ret.count = mmap->entry_count;
 
+    assert(ret.count <= CHARON_MMAP_SIZE_MAX);
+
     for (size_t i = 0; i < ret.count; i++)
     {
         ret.entries[i] = (CharonMemoryMapEntry){
