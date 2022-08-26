@@ -24,7 +24,18 @@ static void ioapic_write(MadtIoApic *ioapic, uint32_t reg, uint32_t value)
 
 static size_t ioapic_get_max_redirect(MadtIoApic *ioapic)
 {
-    return (ioapic_read(ioapic, 1) & 0xff0000) >> 16;
+    struct PACKED ioapic_version
+    {
+        uint8_t version;
+        uint8_t reserved;
+        uint8_t max_redirect;
+        uint8_t reserved2;
+    };
+
+    uint32_t val = ioapic_read(ioapic, 1);
+    struct ioapic_version version = *(struct ioapic_version *)&val;
+
+    return version.max_redirect;
 }
 
 static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
