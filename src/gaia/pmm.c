@@ -32,8 +32,6 @@ void pmm_init(Charon charon)
     {
         total_page_count += mmap.entries[i].size / PAGE_SIZE;
 
-        log("mmap entry %p-%p, type=%d", mmap.entries[i].base, mmap.entries[i].base + mmap.entries[i].size, mmap.entries[i].type);
-
         if (mmap.entries[i].type == MMAP_FREE)
         {
             free_pages += mmap.entries[i].size / PAGE_SIZE;

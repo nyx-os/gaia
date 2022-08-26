@@ -25,7 +25,7 @@ struct Pagemap
 #define PTE_NOT_EXECUTABLE (1ull << 63ull)
 #define PTE_HUGE (1ull << 7ull)
 
-#define PTE_ADDR_MASK 0x000ffffffffff000
+#define PTE_ADDR_MASK ~(0xfff)
 #define PTE_GET_ADDR(VALUE) ((VALUE)&PTE_ADDR_MASK)
 #define PTE_GET_FLAGS(VALUE) ((VALUE) & ~PTE_ADDR_MASK)
 
