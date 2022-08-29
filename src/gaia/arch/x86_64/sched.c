@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#include "gaia/elf.h"
-#include "gaia/host.h"
-#include "gaia/spinlock.h"
-#include "paging.h"
+#include <gaia/elf.h>
+#include <gaia/host.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
+#include <gaia/spinlock.h>
 #include <gaia/vec.h>
+#include <paging.h>
 #include <sched.h>
 
 /* TODO: make this arch-independent */

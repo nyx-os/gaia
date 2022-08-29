@@ -5,6 +5,7 @@
  */
 
 #include "gaia/host.h"
+#include "gaia/term.h"
 #include "sched.h"
 #include <gaia/base.h>
 #include <gaia/firmware/acpi.h>
@@ -37,6 +38,9 @@ void gaia_main(Charon *charon)
     log("initial heap memory usage: %dkb", slab_used() / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");
+
+    term_init(charon);
+    // term_write("hello");
 
     sched_init();
 

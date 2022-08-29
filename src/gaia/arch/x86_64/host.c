@@ -73,19 +73,8 @@ void host_enable_interrupts(void)
     __asm__ volatile("sti");
 }
 
-static volatile struct limine_terminal_request terminal_request = {
-    .id = LIMINE_TERMINAL_REQUEST,
-    .revision = 0};
-
 void host_debug_write_string(const char *str)
 {
-    if (terminal_request.response == NULL || terminal_request.response->terminal_count < 1)
-    {
-        return;
-    }
-
-    /*struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    terminal_request.response->write(terminal, str, strlen(str));*/
     while (*str)
     {
         host_out8(0xE9, *str);
