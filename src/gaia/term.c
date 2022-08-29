@@ -17,7 +17,8 @@ typedef struct
 {
     Framebuffer fb;
     uint32_t fg, bg;
-    size_t cursor_x, cursor_y, cursor_x_initial;
+    size_t start_x, start_y;
+    size_t cursor_x, cursor_y;
     uint32_t colors[8];
 } Term;
 
@@ -48,6 +49,85 @@ static inline void draw_rect(int x, int y, int w, int h, uint32_t color)
     }
 }
 
+static inline void draw_rect_h(int x, int y, int w, int h, uint32_t color_1, uint32_t color_2)
+{
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            uint32_t color_a = ((color_1 >>  0) & 0xFF) * ((w - 1) - j) + ((color_2 >>  0) & 0xFF) * j;
+            uint32_t color_b = ((color_1 >>  8) & 0xFF) * ((w - 1) - j) + ((color_2 >>  8) & 0xFF) * j;
+            uint32_t color_c = ((color_1 >> 16) & 0xFF) * ((w - 1) - j) + ((color_2 >> 16) & 0xFF) * j;
+            uint32_t color_d = ((color_1 >> 24) & 0xFF) * ((w - 1) - j) + ((color_2 >> 24) & 0xFF) * j;
+            
+            color_a /= (w - 1);
+            color_b /= (w - 1);
+            color_c /= (w - 1);
+            color_d /= (w - 1);
+            
+            putpixel(x + j, y + i, (color_a << 0) | (color_b << 8) | (color_c << 16) | (color_d << 24));
+        }
+    }
+}
+
+static inline void draw_rect_v(int x, int y, int w, int h, uint32_t color_1, uint32_t color_2)
+{
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            uint32_t color_a = ((color_1 >>  0) & 0xFF) * ((h - 1) - i) + ((color_2 >>  0) & 0xFF) * i;
+            uint32_t color_b = ((color_1 >>  8) & 0xFF) * ((h - 1) - i) + ((color_2 >>  8) & 0xFF) * i;
+            uint32_t color_c = ((color_1 >> 16) & 0xFF) * ((h - 1) - i) + ((color_2 >> 16) & 0xFF) * i;
+            uint32_t color_d = ((color_1 >> 24) & 0xFF) * ((h - 1) - i) + ((color_2 >> 24) & 0xFF) * i;
+            
+            color_a /= (h - 1);
+            color_b /= (h - 1);
+            color_c /= (h - 1);
+            color_d /= (h - 1);
+            
+            putpixel(x + j, y + i, (color_a << 0) | (color_b << 8) | (color_c << 16) | (color_d << 24));
+        }
+    }
+}
+
+static inline void draw_circle(int x, int y, int radius, uint32_t color_1, uint32_t color_2)
+{
+  for (int i = y - radius; i <= y + radius; i++)
+  {
+      for (int j = x - radius; j <= x + radius; j++)
+      {
+          int dist = (j - x) * (j - x) + (i - y) * (i - y);
+          int root = dist / 2;
+          
+          if (dist == 0)
+          {
+              root = 0;
+          }
+          else
+          {
+              if (root != 0) root = (root + dist / root) / 2;
+              if (root != 0) root = (root + dist / root) / 2;
+              if (root != 0) root = (root + dist / root) / 2;
+          }
+          
+          if (root > radius) continue;
+          
+          uint32_t color_a = ((color_1 >>  0) & 0xFF) * ((radius - 1) - root) + ((color_2 >>  0) & 0xFF) * root;
+          uint32_t color_b = ((color_1 >>  8) & 0xFF) * ((radius - 1) - root) + ((color_2 >>  8) & 0xFF) * root;
+          uint32_t color_c = ((color_1 >> 16) & 0xFF) * ((radius - 1) - root) + ((color_2 >> 16) & 0xFF) * root;
+          uint32_t color_d = ((color_1 >> 24) & 0xFF) * ((radius - 1) - root) + ((color_2 >> 24) & 0xFF) * root;
+          
+          color_a /= (radius - 1);
+          color_b /= (radius - 1);
+          color_c /= (radius - 1);
+          color_d /= (radius - 1);
+          
+          putpixel(j, i, (color_a << 0) | (color_b << 8) | (color_c << 16) | (color_d << 24));
+      }
+  }
+}
+
 static void plot_char(char c, int pos_x, int pos_y, uint32_t color)
 {
     uint8_t *glyph = get_glyph(c);
@@ -56,9 +136,9 @@ static void plot_char(char c, int pos_x, int pos_y, uint32_t color)
     {
         for (int x = 0; x < ISO_CHAR_WIDTH; x++)
         {
-            if (glyph[y] >> x & 1)
+            if ((glyph[y] >> x) & 1)
             {
-                putpixel(pos_x * ISO_CHAR_WIDTH + x, pos_y * ISO_CHAR_HEIGHT + y, color);
+                putpixel(pos_x + x, pos_y + y, color);
             }
         }
     }
@@ -70,72 +150,100 @@ static void write_char(char c)
     if (c == '\n')
     {
         term.cursor_y++;
-        term.cursor_x = term.cursor_x_initial;
+        term.cursor_x = 0;
         return;
     }
 
-    plot_char(c, term.cursor_x, term.cursor_y, term.fg);
-
+    plot_char(c, term.cursor_x * ISO_CHAR_WIDTH + term.start_x, term.cursor_y * ISO_CHAR_HEIGHT + term.start_y, term.fg);
     term.cursor_x++;
 }
 
 void term_init(Charon *charon)
 {
-    int margin = 40;
-    int border_width = 4;
-    int border_margin = 40 - border_width;
-
+    const int margin = 40;
+    
     term.fb.addr = (uint32_t *)charon->framebuffer.address;
     term.fb.width = charon->framebuffer.width;
     term.fb.height = charon->framebuffer.height;
     term.fb.pitch = charon->framebuffer.pitch;
-
-    int term_width = term.fb.width - margin * 2;
-    int term_height = term.fb.height - margin * 2;
-
-    for (size_t y = 0; y < term.fb.height; y++)
-    {
-        for (size_t x = 0; x < term.fb.width; x++)
-        {
-            putpixel(x, y, 0x008080);
-        }
-    }
-
-    // Top line
-    draw_rect(border_margin, border_margin, term.fb.width - border_margin * 2, border_width, 0xC0C0C0);
-
-    // Left line
-    draw_rect(border_margin, margin, border_width, term_height, 0xC0C0C0);
-
-    // Right line
-    draw_rect(term.fb.width - margin, margin, border_width, term_height, 0xC0C0C0);
-
-    // Bottom line
-    draw_rect(border_margin, term.fb.height - margin, term.fb.width - border_margin * 2, border_width, 0xC0C0C0);
-
-    draw_rect(margin, margin, term_width, term_height, 0x00000);
-
-    // Bar
-    draw_rect(margin, margin, term_width, 30, 0x010080);
-
-    // Bar's bottom line
-    draw_rect(border_margin, border_margin + 30 + 1, term.fb.width - border_margin * 2, border_width - 1, 0xC0C0C0);
-
-    // Bar's text
+    
+    int start_x = margin;
+    int start_y = margin;
+    
+    int width = term.fb.width - 2 * margin;
+    int height = term.fb.height - 2 * margin;
+    
+    // Clear the screen
+    draw_rect(0, 0, term.fb.width, term.fb.height, 0x00AAAA);
+    
+    // Shadow circles
+    draw_circle(start_x - 1, start_y - 1, 16, 0x007F7F, 0x00AAAA);
+    draw_circle(start_x + width, start_y - 1, 16, 0x007F7F, 0x00AAAA);
+    draw_circle(start_x - 1, start_y + height, 16, 0x007F7F, 0x00AAAA);
+    draw_circle(start_x + width, start_y + height, 16, 0x007F7F, 0x00AAAA);
+    
+    // Base window rectangle
+    draw_rect(start_x, start_y, width, height, 0xAAAAAA);
+    
+    // Base window highlight
+    draw_rect(start_x + 1, start_y + 1, width - 3, 1, 0xFFFFFF);
+    draw_rect(start_x + 1, start_y + 2, 1, height - 4, 0xFFFFFF);
+    
+    // Base window dark part
+    draw_rect(start_x + 1, start_y + (height - 2), width - 2, 1, 0x555555);
+    draw_rect(start_x + (width - 2), start_y + 1, 1, height - 2, 0x555555);
+    
+    // Base window darker part
+    draw_rect(start_x, start_y + (height - 1), width, 1, 0x000000);
+    draw_rect(start_x + (width - 1), start_y, 1, height, 0x000000);
+    
+    // Title bar
+    draw_rect(start_x + 4, start_y + 4, width - 8, 2 + ISO_CHAR_HEIGHT, 0x0000AA);
+    
+    // Title bar's text
     const char *s = "Gaia early console";
-    int x = (margin / ISO_CHAR_WIDTH) + 1;
+    int x = 0;
+    
     while (*s)
     {
-        plot_char(*s, x, (margin + 15) / ISO_CHAR_HEIGHT, 0xffffffff);
-        x++;
-        s++;
+        plot_char(*s, x * ISO_CHAR_WIDTH + start_x + 6, start_y + 5, 0xFFFFFF);
+        x++, s++;
     }
-
-    term.cursor_y = (margin + 30) / ISO_CHAR_HEIGHT + 1;
-    term.cursor_x = margin / ISO_CHAR_WIDTH + 1;
-    term.cursor_x_initial = margin / ISO_CHAR_WIDTH + 1;
-
-    term.fg = 0xffffffff;
+    
+    int textbox_x = start_x + 4;
+    int textbox_y = start_y + 8 + ISO_CHAR_HEIGHT;
+    
+    int textbox_width = width - 8;
+    int textbox_height = height - (12 + ISO_CHAR_HEIGHT);
+    
+    // Text box rectangle
+    draw_rect(textbox_x, textbox_y, textbox_width, textbox_height, 0xFFFFFF);
+    
+    // Text box dark part
+    draw_rect(textbox_x, textbox_y, textbox_width - 1, 1, 0x555555);
+    draw_rect(textbox_x, textbox_y + 1, 1, textbox_height - 2, 0x555555);
+    
+    // Text box darker part
+    draw_rect(textbox_x + 1, textbox_y + 1, textbox_width - 3, 1, 0x000000);
+    draw_rect(textbox_x + 1, textbox_y + 2, 1, textbox_height - 4, 0x000000);
+    
+    // Text box normal part
+    draw_rect(textbox_x + 1, textbox_y + (textbox_height - 2), textbox_width - 2, 1, 0xAAAAAA);
+    draw_rect(textbox_x + (textbox_width - 2), textbox_y + 1, 1, textbox_height - 2, 0xAAAAAA);
+    
+    // Super cute shadow
+    draw_rect_h(start_x + width, start_y, 16, height, 0x007F7F, 0x00AAAA);
+    draw_rect_h(start_x - 16, start_y, 16, height, 0x00AAAA, 0x007F7F);
+    draw_rect_v(start_x, start_y + height, width, 16, 0x007F7F, 0x00AAAA);
+    draw_rect_v(start_x, start_y - 16, width, 16, 0x00AAAA, 0x007F7F);
+    
+    term.cursor_x = 0;
+    term.cursor_y = 0;
+    
+    term.start_x = textbox_x + 4;
+    term.start_y = textbox_y + 4;
+    
+    term.fg = 0x000000;
 
     term_write("Hello world!\n");
     term_write("Hello world!\n");
