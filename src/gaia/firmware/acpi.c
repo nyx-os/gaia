@@ -35,10 +35,10 @@ void acpi_init(uintptr_t rsdp)
 
     madt_init();
 
-    // Redirect keyboard, mouse and timer interrupts
-    ioapic_redirect_irq(0, 0, 32);
-    ioapic_redirect_irq(0, 1, 33);
-    ioapic_redirect_irq(0, 12, 44);
+    for (int i = 0; i < 16; i++)
+    {
+        ioapic_redirect_irq(0, i, i + 32);
+    }
 
     hpet_initialize();
     lapic_initialize();

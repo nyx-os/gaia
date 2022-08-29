@@ -61,45 +61,52 @@ static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
 
 static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t gsi, uint16_t flags)
 {
-    struct PACKED io_apic_redirect
+    typedef union PACKED
     {
-        uint8_t vector;
-        uint8_t delivery_mode : 3;
-        uint8_t dest_mode : 1;
-        uint8_t delivery_status : 1;
-        uint8_t polarity : 1;
-        uint8_t remote_irr : 1;
-        uint8_t trigger : 1;
-        uint8_t mask : 1;
-        uint8_t reserved : 7;
-        uint8_t dest_id;
-    };
+        struct PACKED
+        {
+            uint8_t vector;
+            uint8_t delivery_mode : 3;
+            uint8_t dest_mode : 1;
+            uint8_t delivery_status : 1;
+            uint8_t polarity : 1;
+            uint8_t remote_irr : 1;
+            uint8_t trigger : 1;
+            uint8_t mask : 1;
+            uint8_t reserved : 7;
+            uint8_t dest_id;
+        } _redirect;
+
+        struct PACKED
+        {
+            uint32_t _low_byte;
+            uint32_t _high_byte;
+        } _raw;
+    } io_apic_redirect;
 
     MadtIoApic *ioapic = ioapic_from_gsi(gsi);
 
     assert(ioapic != NULL);
 
-    struct io_apic_redirect redirect = {0};
-    redirect.vector = vector;
+    io_apic_redirect redirect = {0};
+    redirect._redirect.vector = vector;
 
     if (flags & IOAPIC_ACTIVE_HIGH_LOW)
     {
-        redirect.polarity = 1;
+        redirect._redirect.polarity = 1;
     }
 
     if (flags & IOAPIC_TRIGGER_EDGE_LOW)
     {
-        redirect.trigger = 1;
+        redirect._redirect.trigger = 1;
     }
 
-    redirect.dest_id = lapic_id;
+    redirect._redirect.dest_id = lapic_id;
 
     uint32_t io_redirect_table = (gsi - ioapic->interrupt_base) * 2 + 16;
 
-    uint64_t redirect_u64 = *(uint64_t *)&redirect;
-
-    ioapic_write(ioapic, io_redirect_table, (uint32_t)redirect_u64);
-    ioapic_write(ioapic, io_redirect_table + 1, (uint32_t)(redirect_u64 >> 32));
+    ioapic_write(ioapic, io_redirect_table, (uint32_t)redirect._raw._low_byte);
+    ioapic_write(ioapic, io_redirect_table + 1, redirect._raw._high_byte);
 }
 
 void ioapic_redirect_irq(uint32_t lapic_id, uint8_t irq, uint8_t vector)

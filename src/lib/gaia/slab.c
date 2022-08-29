@@ -41,7 +41,7 @@ static Slab *find_slab(size_t size)
 
 static void create_slab(Slab *slab, size_t size)
 {
-    slab->lock._lock = 0;
+    slab->lock = 0;
 
     // Allocate the head of the slab
     slab->head = (void *)(host_phys_to_virt((uintptr_t)host_allocate_page()));

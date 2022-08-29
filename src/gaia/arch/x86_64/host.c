@@ -11,6 +11,7 @@
 #include "paging.h"
 #include <gaia/base.h>
 #include <gaia/pmm.h>
+#include <gaia/slab.h>
 #include <limine.h>
 #include <stdc-shim/string.h>
 
@@ -82,8 +83,9 @@ void host_debug_write_string(const char *str)
     {
         return;
     }
-    struct limine_terminal *terminal = terminal_request.response->terminals[0];
-    terminal_request.response->write(terminal, str, strlen(str));
+
+    /*struct limine_terminal *terminal = terminal_request.response->terminals[0];
+    terminal_request.response->write(terminal, str, strlen(str));*/
     while (*str)
     {
         host_out8(0xE9, *str);
@@ -147,6 +149,10 @@ void host_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, PageFlags
     if (flags & PAGE_NOT_EXECUTABLE)
     {
         flags_ |= PTE_NOT_EXECUTABLE;
+    }
+    if (flags & PAGE_USER)
+    {
+        flags_ |= PTE_USER;
     }
 
     paging_map_page(pagemap, vaddr, paddr, flags_, (flags & PAGE_HUGE));

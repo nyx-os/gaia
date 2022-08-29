@@ -155,6 +155,7 @@ typedef enum
     PAGE_WRITABLE = (1 << 0),
     PAGE_NOT_EXECUTABLE = (1 << 1),
     PAGE_HUGE = (1 << 2),
+    PAGE_USER = (1 << 3),
 } PageFlags;
 
 /**
@@ -195,4 +196,9 @@ void *host_allocate_page();
  * @param ptr The page to free
  */
 void host_free_page(void *ptr);
+
+void host_context_save(InterruptStackframe *target, InterruptStackframe *source);
+
+void host_context_switch(InterruptStackframe *target, InterruptStackframe *context);
+
 #endif /* GAIA_ARCH_HOST_H */

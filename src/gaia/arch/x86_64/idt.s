@@ -59,6 +59,7 @@ __interrupt%1:
 extern interrupts_handler
 
 __interrupt_common:
+
     cld
 
     pushaq

@@ -46,7 +46,7 @@ static uint64_t *get_next_level(uint64_t *table, size_t index, size_t flags, boo
 
     (void)flags;
 
-    table[index] = new_table | PTE_USER | PTE_WRITABLE | PTE_PRESENT;
+    table[index] = new_table | PTE_PRESENT | PTE_USER | PTE_WRITABLE;
 
     return (uint64_t *)host_phys_to_virt(new_table);
 }
@@ -62,7 +62,7 @@ static void invlpg(void *addr)
 void paging_initialize()
 {
     kernel_pagemap.pml4 = pmm_alloc_zero();
-    kernel_pagemap.lock._lock = 0;
+    kernel_pagemap.lock = 0;
     assert(kernel_pagemap.pml4 != NULL);
 
     size_t page_size = MIB(2);
@@ -75,12 +75,6 @@ void paging_initialize()
     else
     {
         log("CPU does not support 1G pages, continuing with 2M pages");
-    }
-
-    // Map the first 4GB+ of memory to the higher half.
-    for (size_t i = page_size; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += page_size)
-    {
-        host_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PAGE_HUGE | PAGE_WRITABLE);
     }
 
     // Map the kernel
@@ -112,6 +106,12 @@ void paging_initialize()
     {
         uintptr_t phys = i - kaddr->virtual_base + kaddr->physical_base;
         host_map_page(&kernel_pagemap, i, phys, PAGE_NOT_EXECUTABLE | PAGE_WRITABLE);
+    }
+
+    // Map the first 4GB+ of memory to the higher half.
+    for (size_t i = page_size; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += page_size)
+    {
+        host_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PAGE_HUGE | PAGE_WRITABLE);
     }
 }
 
@@ -180,8 +180,7 @@ void paging_load_pagemap(Pagemap *pagemap)
 {
     __asm__ volatile("mov %0, %%cr3"
                      :
-                     : "r"(pagemap->pml4)
-                     : "memory");
+                     : "a"(pagemap->pml4));
 }
 
 Pagemap *paging_get_kernel_pagemap()

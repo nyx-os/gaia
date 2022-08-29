@@ -22,3 +22,10 @@ gdt_load:
   push rax
   push rdi
   retfq
+
+
+global tss_reload
+tss_reload:
+  mov ax, 0x48
+  ltr ax
+  ret

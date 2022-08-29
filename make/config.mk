@@ -20,7 +20,7 @@ ifeq ($(CONFIG_X86_64), y)
 endif
 
 ifeq ($(CONFIG_DEBUG), y)
-	BASE_CFLAGS += -O0 -ggdb -fsanitize=undefined -DDEBUG
+	BASE_CFLAGS += -Og -ggdb -fsanitize=undefined -DDEBUG
 endif
 
 ifeq ($(CONFIG_RELEASE), y)

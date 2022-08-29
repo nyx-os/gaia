@@ -7,11 +7,7 @@
 #ifndef LIB_GAIA_SPINLOCK_H
 #define LIB_GAIA_SPINLOCK_H
 
-typedef struct
-{
-    int _lock;
-} Spinlock;
-
+typedef int Spinlock;
 
 void lock_acquire(Spinlock *lock);
 void lock_release(Spinlock *lock);

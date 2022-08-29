@@ -39,6 +39,12 @@ run: $(ISO)
 debug: $(ISO)
 	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -cdrom $^
 
+tcg: $(ISO)
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -cdrom $^
+
+gdb: $(ISO)
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -cdrom $^ -s -S
+
 clean:
 	-rm -rf $(BUILDDIR)
 

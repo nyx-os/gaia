@@ -35,7 +35,9 @@ void lapic_initialize(void)
     assert(get_lapic_address() == LAPIC_BASE);
 
     lapic_write(LAPIC_REG_SPURIOUS_VECTOR, lapic_read(LAPIC_REG_SPURIOUS_VECTOR) | LAPIC_SPURIOUS_ALL | LAPIC_SPURIOUS_ENABLE);
+
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
+
     lapic_write(LAPIC_REG_TIMER_INIT_COUNT, 0xffffffff);
 
     hpet_sleep(10);

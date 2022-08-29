@@ -3,7 +3,7 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include <cpuid.h>
+#include <gaia/arch/x86_64/cpuid.h>
 
 Cpuid cpuid(uint32_t leaf, uint32_t subleaf)
 {
