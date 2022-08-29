@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, lg
+ * Copyright (c) 2022, lg & segfaultdev
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
