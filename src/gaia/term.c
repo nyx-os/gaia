@@ -343,7 +343,7 @@ void term_init(Charon *charon)
     term.cursor_x = 0;
     term.cursor_y = 0;
 
-    term.start_x = textbox_x + 4;
+    term.start_x = textbox_x + 8;
     term.start_y = textbox_y + 4;
 
     term.fg = 0x000000;
