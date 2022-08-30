@@ -6,6 +6,8 @@
 #include <gaia/font.h>
 #include <gaia/term.h>
 
+/* NOTE: this code here is ugly and is only temporary, it gets overwritten by the userspace tty */
+
 typedef struct
 {
     uint32_t *addr;
