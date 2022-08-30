@@ -17,6 +17,7 @@
 
 void *slab_alloc(size_t size);
 void slab_free(void *ptr);
+void *slab_realloc(void *ptr, size_t size);
 void slab_init(void);
 size_t slab_used(void);
 void slab_dump(void);

@@ -132,6 +132,29 @@ void slab_free(void *ptr)
     free_from_slab(slab_header->slab, ptr);
 }
 
+void *slab_realloc(void *ptr, size_t size)
+{
+    if (!ptr)
+    {
+        return slab_alloc(size);
+    }
+
+    SlabHeader *slab_header = (SlabHeader *)((uintptr_t)ptr & ~0xfff);
+    Slab *slab = slab_header->slab;
+
+    if (size > slab->entry_size)
+    {
+        void *new_ptr = slab_alloc(size);
+        memcpy(new_ptr, ptr, slab->entry_size);
+        free_from_slab(slab, ptr);
+        return new_ptr;
+    }
+    else
+    {
+        return ptr;
+    }
+}
+
 size_t slab_used(void)
 {
     return slab_used_mem;
