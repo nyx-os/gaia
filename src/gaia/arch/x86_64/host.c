@@ -12,6 +12,7 @@
 #include <gaia/base.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
+#include <gaia/term.h>
 #include <limine.h>
 #include <stdc-shim/string.h>
 
@@ -75,6 +76,7 @@ void host_enable_interrupts(void)
 
 void host_debug_write_string(const char *str)
 {
+    term_write(str);
     while (*str)
     {
         host_out8(0xE9, *str);
