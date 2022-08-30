@@ -35,6 +35,8 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
     Task *ret = slab_alloc(sizeof(Task));
     ret->pagemap.lock = 0;
     ret->pagemap.pml4 = pmm_alloc_zero();
+
+    assert(ret->pagemap.pml4 != NULL);
     ret->pid = current_pid++;
     ret->frame = (InterruptStackframe){0};
 
@@ -56,7 +58,6 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
     ret->frame.ss = 0x3b;
     ret->frame.rflags = 0x202;
 
-    log("pushed task with pid %d", ret->pid);
     vec_push(&tasks, ret);
 
     lock_release(&lock);
@@ -64,36 +65,30 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
     return ret;
 }
 
-static bool restore_frame = false;
+static Task *prev_task = NULL;
 
 void sched_switch_to_next_task(InterruptStackframe *frame)
 {
-    //    lock_acquire(&lock);
+    lock_acquire(&lock);
 
-    /*if (restore_frame)
+    if (prev_task)
     {
-        tasks.data[current_task - 1]->frame = *frame;
-    }*/
-
-    if (!restore_frame)
-        restore_frame = true;
-
-    log("running task %d", current_task);
+        prev_task->frame = *frame;
+    }
 
     Task *task = tasks.data[current_task];
 
-    current_task++;
+    prev_task = task;
 
-    if (current_task >= tasks.length)
+    if (++current_task >= tasks.length)
     {
         current_task = 0;
     }
 
     *frame = task->frame;
-    __asm__ volatile("mov %0, %%cr3"
-                     :
-                     : "a"(task->pagemap.pml4));
-    //    lock_release(&lock);
+    paging_load_pagemap(&task->pagemap);
+
+    lock_release(&lock);
 }
 
 Task *sched_get_current_task(void)

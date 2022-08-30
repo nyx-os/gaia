@@ -36,8 +36,8 @@ void gaia_main(Charon *charon)
     slab_dump();
 #endif
 
-    log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
     log("initial heap memory usage: %dkb", slab_used() / 1024);
+    log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");
 
@@ -45,7 +45,6 @@ void gaia_main(Charon *charon)
 
     for (int i = 0; i < charon->modules.count; i++)
     {
-        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
         sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
     }
 

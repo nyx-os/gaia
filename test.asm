@@ -5,7 +5,10 @@ _start:
 	mov rax, 0
 	mov rdi, hello
 	int 0x42
-	jmp $
+	jmp _loop
+
+_loop:
+	jmp _loop
 
 section .data
 hello: db "hello", 0
