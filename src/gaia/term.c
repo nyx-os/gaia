@@ -259,7 +259,7 @@ static void write_char(char c)
     }
 }
 
-#define SHADOW_COLOR 0x008c8c
+#define SHADOW_COLOR 0x008C8C
 
 void term_init(Charon *charon)
 {
@@ -336,7 +336,7 @@ void term_init(Charon *charon)
 
     // Super cute shadow
     draw_rect_h(start_x + width, start_y, 16, height, SHADOW_COLOR, 0x00AAAA);
-    draw_rect_h(start_x - 16, start_y, 16, height, 0x00AAAA, 0x008C8C);
+    draw_rect_h(start_x - 16, start_y, 16, height, 0x00AAAA, SHADOW_COLOR);
     draw_rect_v(start_x, start_y + height, width, 16, SHADOW_COLOR, 0x00AAAA);
     draw_rect_v(start_x, start_y - 16, width, 16, 0x00AAAA, SHADOW_COLOR);
 
