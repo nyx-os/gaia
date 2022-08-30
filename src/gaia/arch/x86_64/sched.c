@@ -68,6 +68,7 @@ static bool restore_frame = false;
 void sched_switch_to_next_task(InterruptStackframe *frame)
 {
     lock_acquire(&lock);
+
     if (restore_frame)
     {
         tasks.data[current_task]->frame = *frame;

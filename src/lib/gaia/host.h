@@ -197,8 +197,20 @@ void *host_allocate_page();
  */
 void host_free_page(void *ptr);
 
+/**
+ * @brief Save the current context.
+ *
+ * @param target Where to save the context.
+ * @param source The context so save.
+ */
 void host_context_save(InterruptStackframe *target, InterruptStackframe *source);
 
+/**
+ * @brief Executes a context switch.
+ *
+ * @param target Where to switch the context.
+ * @param source The context to switch to.
+ */
 void host_context_switch(InterruptStackframe *target, InterruptStackframe *context);
 
 #endif /* GAIA_ARCH_HOST_H */
