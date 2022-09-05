@@ -1,8 +1,6 @@
-/*
- * Copyright (c) 2022, lg
- *
- * SPDX-License-Identifier: BSD-2-Clause
- */
+
+/* Copyright 2022 mintsuki and contributors. */
+/* From https://github.com/lyre-os/lyre/blob/trunk/kernel/mm/slab.c, modified for gaia */
 
 #include <gaia/base.h>
 #include <gaia/slab.h>
