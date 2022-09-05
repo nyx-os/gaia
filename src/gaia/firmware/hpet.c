@@ -46,6 +46,5 @@ void hpet_sleep(int ms)
     uint64_t target = hpet_read(HPET_MAIN_COUNTER_VALUE) + (ms * 1000000000000) / clock;
     while (hpet_read(HPET_MAIN_COUNTER_VALUE) < target)
     {
-        __asm__ volatile("pause");
     }
 }

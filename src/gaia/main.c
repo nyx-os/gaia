@@ -46,6 +46,12 @@ void gaia_main(Charon *charon)
     for (int i = 0; i < charon->modules.count; i++)
     {
         sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+
+        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+        sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
     }
 
     host_enable_interrupts();

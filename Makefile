@@ -19,7 +19,11 @@ KERNEL_OBJS = $(KERNEL_C_OBJS) \
 
 all: $(ISO)
 
-$(ISO): $(KERNEL)
+servers:
+	$(MAKE) -C thirdparty/olympus
+	cp thirdparty/olympus/build/*.elf sysroot
+
+$(ISO): $(KERNEL) servers
 	./scripts/make-image.sh $(BUILDDIR)
 
 $(KERNEL): $(KERNEL_OBJS)

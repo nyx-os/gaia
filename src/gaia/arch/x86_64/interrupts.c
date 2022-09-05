@@ -5,8 +5,8 @@
  */
 #include "gaia/host.h"
 #include "paging.h"
-#include "sched.h"
 #include <gaia/firmware/lapic.h>
+#include <gaia/sched.h>
 #include <gaia/syscall.h>
 #include <idt.h>
 
@@ -32,7 +32,7 @@ uintptr_t interrupts_handler(uint64_t rsp)
     {
     case 32:
     {
-        sched_switch_to_next_task(stack);
+        sched_tick(stack);
         break;
     }
 

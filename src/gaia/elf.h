@@ -7,6 +7,7 @@
 #ifndef SRC_GAIA_ELF_H
 #define SRC_GAIA_ELF_H
 #include <gaia/base.h>
+#include <gaia/sched.h>
 
 typedef struct PACKED
 {
@@ -42,6 +43,6 @@ typedef struct PACKED
 #define PT_INTERP 0x00000003
 #define PT_PHDR 0x00000006
 
-void elf_load(uint8_t *elf, uint64_t *entry, Pagemap *pagemap);
+void elf_load(uint8_t *elf, uint64_t *entry_point, Context *context);
 
 #endif /* SRC_GAIA_ELF_H */

@@ -38,17 +38,17 @@ void lapic_initialize(void)
 
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
 
-    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, 0xffffffff);
+    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, -1);
 
     hpet_sleep(10);
 
     lapic_write(LAPIC_REG_LVT_TIMER, LAPIC_TIMER_MASKED);
 
-    uint32_t ticks_in_10ms = 0xffffffff - lapic_read(LAPIC_REG_TIMER_CURRENT_COUNT);
+    uint32_t ticks_in_10ms = -1 - lapic_read(LAPIC_REG_TIMER_CURRENT_COUNT);
 
     lapic_write(LAPIC_REG_LVT_TIMER, LAPIC_TIMER_IRQ | LAPIC_TIMER_PERIODIC);
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
-    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, ticks_in_10ms);
+    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, ticks_in_10ms / 10);
 }
 
 void lapic_eoi(void)
