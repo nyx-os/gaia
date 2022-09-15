@@ -95,6 +95,8 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
 {
     switch (level)
     {
+    case LOG_NONE:
+        break;
     case LOG_INFO:
         stream_printf(host_debug_write_string, "\x1b[32m");
         break;
@@ -113,10 +115,13 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
         break;
     }
 
-    char file_name[100];
-    memcpy(file_name, file, strlen(file));
-    file_name[strlen(file) - 2] = 0;
-    stream_printf(host_debug_write_string, "%s:\x1b[0m ", file_name);
+    if (level != LOG_NONE)
+    {
+        char file_name[100];
+        memcpy(file_name, file, strlen(file));
+        file_name[strlen(file) - 2] = 0;
+        stream_printf(host_debug_write_string, "%s:\x1b[0m ", file_name);
+    }
 
     va_list args;
     va_start(args, fmt);

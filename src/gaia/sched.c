@@ -83,8 +83,6 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
 
     context_start(ret->context, pc, USER_STACK_TOP, true);
 
-    log("Created new elf task with pid %d and rip %p", ret->pid, ret->context->frame.rip);
-
     return ret;
 }
 

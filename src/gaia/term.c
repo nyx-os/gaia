@@ -351,7 +351,7 @@ void term_init(Charon *charon)
     term.colors[1] = 0x800000;
     term.colors[2] = 0x008000;
     term.colors[3] = 0x808000;
-    term.colors[4] = 0x000080;
+    term.colors[4] = 0x010081;
     term.colors[5] = 0x800080;
     term.colors[6] = 0x008080;
     term.colors[7] = 0xc0c0c0;

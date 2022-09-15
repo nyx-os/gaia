@@ -15,7 +15,7 @@ static Charon _charon;
 
 static void sys_log(SyscallFrame frame)
 {
-    log("%s", (char *)frame.first_arg);
+    _log(LOG_NONE, NULL, "\x1b[34m([%d])\x1b[0m %s", sched_get_current_task()->pid, (char *)frame.first_arg);
 }
 
 static void sys_alloc_port(SyscallFrame frame)
@@ -98,7 +98,7 @@ static void sys_exit(SyscallFrame frame)
 {
     sched_get_current_task()->state = STOPPED;
 
-    log("Task %d exited at rip %p", sched_get_current_task()->pid, frame.int_frame->rip);
+    log("Task %d exited", sched_get_current_task()->pid, frame.int_frame->rip);
     sched_tick(frame.int_frame);
 }
 

@@ -18,6 +18,7 @@
 /*! Log severity level */
 typedef enum
 {
+    LOG_NONE,  /*!< No special output */
     LOG_INFO,  /*!< Normal output (green) */
     LOG_TRACE, /*!< Trace output (cyan) */
     LOG_DEBUG, /*!< Debug output (blue) */

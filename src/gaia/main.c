@@ -37,10 +37,6 @@ void gaia_main(Charon *charon)
 #endif
     host_initialize();
 
-#ifdef DEBUG
-    slab_dump();
-#endif
-
     sched_init();
 
     syscall_init(*charon);
@@ -60,6 +56,10 @@ void gaia_main(Charon *charon)
     {
         panic("Cannot find bootstrap server");
     }
+
+#ifdef DEBUG
+    slab_dump();
+#endif
 
     log("initial heap memory usage: %dkb", slab_used() / 1024);
     log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
