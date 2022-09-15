@@ -38,9 +38,11 @@ uintptr_t interrupts_handler(uint64_t rsp)
 
     case 0x42:
     {
-        SyscallFrame frame = {stack->rdi, stack->rsi, stack->rdx, stack->rcx, stack->r8};
+        uintptr_t *ret = (uintptr_t *)((uint8_t *)stack + offsetof(InterruptStackframe, rax));
+        SyscallFrame frame = {stack->rdi, stack->rsi, stack->rdx, stack->rcx, stack->r8, ret, stack->rip, stack};
 
         syscall(stack->rax, frame);
+
         break;
     }
     }
@@ -48,6 +50,7 @@ uintptr_t interrupts_handler(uint64_t rsp)
     if (stack->intno != 0x42)
     {
         lapic_eoi();
+        // log("eoi for int %d", stack->intno);
     }
 
     return rsp;

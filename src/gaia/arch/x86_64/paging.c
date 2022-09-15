@@ -12,6 +12,7 @@
 #include <gaia/pmm.h>
 #include <limine.h>
 #include <paging.h>
+#include <stdc-shim/string.h>
 
 #define PML_ENTRY(addr, offset) (size_t)(addr & ((uintptr_t)0x1ff << offset)) >> offset;
 
@@ -186,4 +187,35 @@ void paging_load_pagemap(Pagemap *pagemap)
 Pagemap *paging_get_kernel_pagemap()
 {
     return &kernel_pagemap;
+}
+
+void paging_copy_pagemap(uint64_t *dest, uint64_t *src, size_t count, size_t level)
+{
+    for (size_t i = 0; i < count; i++)
+    {
+        uint64_t orig_entry = src[i];
+        if (PTE_IS_PRESENT(orig_entry))
+        {
+            uint64_t entry = dest[i];
+            // assert(!PTE_IS_PRESENT(entry));
+            memcpy(&entry, &orig_entry, sizeof(uint64_t));
+            uint64_t orig_next = host_phys_to_virt(entry & 0x0000fffffffff000);
+            uintptr_t next_phys_addr = (uint64_t)pmm_alloc_zero();
+            next_phys_addr &= 0x0000fffffffff000;
+            entry &= 0xffff000000000fff;
+            entry |= next_phys_addr;
+
+            void *next = (void *)(host_phys_to_virt(next_phys_addr));
+
+            if (level > 0)
+            {
+                memset(next, 0, 0x1000);
+                paging_copy_pagemap((uint64_t *)next, (uint64_t *)orig_next, 512, level - 1);
+            }
+            else
+            {
+                memcpy(next, (void *)orig_next, 0x1000);
+            }
+        }
+    }
 }

@@ -13,6 +13,7 @@ struct Context
 {
     InterruptStackframe frame;
     Pagemap pagemap;
+    uintptr_t stack_low_half, stack_high_half;
 };
 
 #endif /* ARCH_X86_64_CONTEXT_H */

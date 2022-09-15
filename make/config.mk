@@ -5,7 +5,7 @@
 -include .config
 
 DIRECTORY_GUARD = mkdir -p $(@D)
-BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -Isrc -Isrc/lib -Ithirdparty/limine -MMD -fno-builtin
+BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -Isrc -Isrc/lib -Ithirdparty/limine -MMD -fno-builtin -Wno-address-of-packed-member
 ISO = nyx.iso
 BUILDDIR = build
 KERNEL = $(BUILDDIR)/kernel.elf

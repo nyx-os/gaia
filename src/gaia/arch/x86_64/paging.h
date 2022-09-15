@@ -69,4 +69,6 @@ void paging_unmap_page(Pagemap *pagemap, uintptr_t vaddr);
 /** @brief Gets the main kernel pagemap. */
 Pagemap *paging_get_kernel_pagemap(void);
 
+void paging_copy_pagemap(uint64_t *dest, uint64_t *src, size_t page_count, size_t level);
+
 #endif /* ARCH_X86_64_PAGING_H */
