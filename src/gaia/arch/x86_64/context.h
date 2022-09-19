@@ -6,6 +6,7 @@
 
 #ifndef ARCH_X86_64_CONTEXT_H
 #define ARCH_X86_64_CONTEXT_H
+#include <gaia/vmm.h>
 #include <idt.h>
 #include <paging.h>
 
@@ -14,6 +15,7 @@ struct Context
     InterruptStackframe frame;
     Pagemap pagemap;
     uintptr_t stack_low_half, stack_high_half;
+    VmmMapSpace *space;
 };
 
 #endif /* ARCH_X86_64_CONTEXT_H */

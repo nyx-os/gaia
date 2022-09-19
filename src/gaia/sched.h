@@ -4,11 +4,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#ifndef ARCH_X86_64_SCHED_H
-#define ARCH_X86_64_SCHED_H
+#ifndef SRC_GAIA_SCHED_H
+#define SRC_GAIA_SCHED_H
 
 #include <gaia/host.h>
 #include <gaia/ports.h>
+#include <gaia/vmm.h>
 #include <idt.h>
 #include <paging.h>
 
@@ -37,6 +38,7 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
 void context_save(Context *context, InterruptStackframe *frame);
 void context_switch(Context *context, InterruptStackframe *frame);
 void context_copy(Context *dest, Context *src);
+VmmMapSpace *context_get_space(Context *context);
 
 void sched_tick(InterruptStackframe *frame);
 

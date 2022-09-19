@@ -3,12 +3,12 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include "gaia/host.h"
-#include "paging.h"
 #include <gaia/firmware/lapic.h>
 #include <gaia/sched.h>
 #include <gaia/syscall.h>
+#include <gaia/vmm.h>
 #include <idt.h>
+#include <paging.h>
 
 static uint64_t read_cr2()
 {
@@ -22,8 +22,17 @@ uintptr_t interrupts_handler(uint64_t rsp)
 {
     InterruptStackframe *stack = (InterruptStackframe *)rsp;
 
-    if (stack->intno < 32)
+    bool pf_ok = false;
+
+    if (stack->intno == 0xe)
     {
+        if (sched_get_current_task())
+            pf_ok = vmm_page_fault_handler(context_get_space(sched_get_current_task()->context), read_cr2());
+    }
+
+    if (!pf_ok && stack->intno < 32)
+    {
+
         panic("Exception 0x%x error code=0x%x RIP=%p RSP=%p CR2=%p", stack->intno, stack->err, stack->rip, stack->rsp, read_cr2());
         __builtin_unreachable();
     }

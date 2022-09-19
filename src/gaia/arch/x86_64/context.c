@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 #include "gaia/host.h"
+#include "gaia/vmm.h"
 #include "paging.h"
 #include <context.h>
 #include <gaia/pmm.h>
@@ -16,9 +17,14 @@ void context_init(Context **context, bool user)
 
     Context *ctx = *context;
 
+    ctx->space = slab_alloc(sizeof(VmmMapSpace));
     ctx->pagemap.pml4 = pmm_alloc_zero();
 
     assert(ctx->pagemap.pml4 != NULL);
+
+    vmm_space_init(ctx->space);
+
+    ctx->space->pagemap = &ctx->pagemap;
 
     ctx->frame.cs = user ? 0x43 : 0x28;
     ctx->frame.ss = user ? 0x3b : 0x30;
@@ -79,4 +85,9 @@ void context_copy(Context *dest, Context *src)
     paging_copy_pagemap((uint64_t *)(host_phys_to_virt((uintptr_t)dest->pagemap.pml4)), (uint64_t *)(host_phys_to_virt((uintptr_t)src->pagemap.pml4)), 256, 3);
 
     dest->frame.rax = 0;
+}
+
+VmmMapSpace *context_get_space(Context *ctx)
+{
+    return ctx->space;
 }
