@@ -103,3 +103,18 @@ void register_well_known_port(PortNamespace *ns, uint8_t index, PortBinding bind
         panic("Cannot register a receive right");
     }
 }
+
+void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t bytes_to_receive, PortMessageHeader *header)
+{
+    if (type == PORT_SEND)
+    {
+        port_send(ns, header);
+    }
+
+    else if (type == PORT_RECV)
+    {
+        PortMessageHeader *ret = port_receive(ns, port_to_receive);
+
+        memcpy(header, ret, bytes_to_receive);
+    }
+}

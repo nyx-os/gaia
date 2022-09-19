@@ -13,6 +13,9 @@
 #include <gaia/base.h>
 #include <gaia/vec.h>
 
+#define PORT_SEND (0)
+#define PORT_RECV (1)
+
 #define PORT_RIGHT_RECV (1 << 0)
 #define PORT_RIGHT_SEND (1 << 1)
 
@@ -73,8 +76,10 @@ typedef struct
     Vec(PortBinding) bindings;
     int current_name;
 
-    PortBinding well_known_ports[WELL_KNOWN_PORTS_MAX]; // Inherited through fork() syscall (send only rights)
+    PortBinding well_known_ports[WELL_KNOWN_PORTS_MAX]; // Inherited through vfork() syscall (send only rights)
 } PortNamespace;
+
+void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header);
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights);
 

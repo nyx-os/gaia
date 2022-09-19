@@ -102,6 +102,11 @@ static void sys_exit(SyscallFrame frame)
     sched_tick(frame.int_frame);
 }
 
+static void sys_msg(SyscallFrame frame)
+{
+    port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.third_arg);
+}
+
 static void (*syscall_table[])(SyscallFrame) = {
     sys_log,
     sys_alloc_port,
@@ -111,6 +116,7 @@ static void (*syscall_table[])(SyscallFrame) = {
     sys_register_port,
     sys_get_port,
     sys_exit,
+    sys_msg,
 };
 
 void syscall_init(Charon charon)
