@@ -59,7 +59,6 @@ uintptr_t interrupts_handler(uint64_t rsp)
     if (stack->intno != 0x42)
     {
         lapic_eoi();
-        // log("eoi for int %d", stack->intno);
     }
 
     return rsp;

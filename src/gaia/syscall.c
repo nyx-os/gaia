@@ -60,7 +60,8 @@ static void sys_spawn(SyscallFrame frame)
 
 static void sys_register_port(SyscallFrame frame)
 {
-    register_well_known_port(sched_get_current_task()->namespace, frame.first_arg, sched_get_current_task()->namespace->bindings.data[frame.second_arg]);
+    PortNamespace *ns = sched_get_current_task()->namespace;
+    register_well_known_port(ns, frame.first_arg, ns->bindings.data[frame.second_arg]);
 }
 
 static void sys_get_port(SyscallFrame frame)
@@ -78,7 +79,7 @@ static void sys_exit(SyscallFrame frame)
 
 static void sys_msg(SyscallFrame frame)
 {
-    port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.third_arg);
+    port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
 }
 
 static void (*syscall_table[])(SyscallFrame) = {

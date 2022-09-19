@@ -90,7 +90,6 @@ PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name)
 
 void register_well_known_port(PortNamespace *ns, uint8_t index, PortBinding binding)
 {
-
     ns->well_known_ports[index] = binding;
 
     if (binding.rights & PORT_RIGHT_RECV && binding.rights & PORT_RIGHT_SEND)
@@ -115,6 +114,7 @@ void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t 
     {
         PortMessageHeader *ret = port_receive(ns, port_to_receive);
 
-        memcpy(header, ret, bytes_to_receive);
+        if (ret != NULL)
+            memcpy(header, ret, bytes_to_receive);
     }
 }
