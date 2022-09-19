@@ -10,13 +10,13 @@
 #include <gaia/charon.h>
 #include <gaia/host.h>
 
-enum syscall_num
-{
-    SYSCALL_LOG = 0,
-    SYSCALL_ALLOC_PORT = 1,
-    SYSCALL_SEND = 2,
-    SYSCALL_RECV = 3,
-};
+#define GAIA_SYS_LOG 0
+#define GAIA_SYS_EXIT 1
+#define GAIA_SYS_MSG 2
+#define GAIA_SYS_ALLOC_PORT 3
+#define GAIA_SYS_GET_PORT 4
+#define GAIA_SYS_REGISTER_PORT 5
+#define GAIA_SYS_SPAWN 6
 
 typedef struct
 {

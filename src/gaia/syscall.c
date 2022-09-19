@@ -24,32 +24,6 @@ static void sys_alloc_port(SyscallFrame frame)
     *frame.return_value = name;
 }
 
-static void sys_send(SyscallFrame frame)
-{
-    PortNamespace *ns = sched_get_current_task()->namespace;
-    PortMessageHeader *message = (PortMessageHeader *)frame.first_arg;
-
-    port_send(ns, message);
-}
-
-static void sys_recv(SyscallFrame frame)
-{
-    PortNamespace *ns = sched_get_current_task()->namespace;
-    uint32_t port_name = frame.first_arg;
-    void *dest = (void *)frame.second_arg;
-    PortMessageHeader *src = port_receive(ns, port_name);
-
-    if (!src)
-    {
-        *frame.return_value = 0;
-        return;
-    }
-
-    memcpy(dest, src, frame.third_arg);
-
-    slab_free(src);
-}
-
 static void sys_spawn(SyscallFrame frame)
 {
     const char *name = (const char *)frame.first_arg;
@@ -108,15 +82,13 @@ static void sys_msg(SyscallFrame frame)
 }
 
 static void (*syscall_table[])(SyscallFrame) = {
-    sys_log,
-    sys_alloc_port,
-    sys_send,
-    sys_recv,
-    sys_spawn,
-    sys_register_port,
-    sys_get_port,
-    sys_exit,
-    sys_msg,
+    [GAIA_SYS_LOG] = sys_log,
+    [GAIA_SYS_ALLOC_PORT] = sys_alloc_port,
+    [GAIA_SYS_SPAWN] = sys_spawn,
+    [GAIA_SYS_REGISTER_PORT] = sys_register_port,
+    [GAIA_SYS_GET_PORT] = sys_get_port,
+    [GAIA_SYS_EXIT] = sys_exit,
+    [GAIA_SYS_MSG] = sys_msg,
 };
 
 void syscall_init(Charon charon)
