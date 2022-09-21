@@ -117,7 +117,7 @@ size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_
         if (ret != NULL)
         {
             memcpy(header, ret, bytes_to_receive);
-            return bytes_to_receive;
+            return ret->size;
         }
     }
 
