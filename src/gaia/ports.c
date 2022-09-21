@@ -103,7 +103,7 @@ void register_well_known_port(PortNamespace *ns, uint8_t index, PortBinding bind
     }
 }
 
-void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t bytes_to_receive, PortMessageHeader *header)
+size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t bytes_to_receive, PortMessageHeader *header)
 {
     if (type == PORT_SEND)
     {
@@ -115,6 +115,11 @@ void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t 
         PortMessageHeader *ret = port_receive(ns, port_to_receive);
 
         if (ret != NULL)
+        {
             memcpy(header, ret, bytes_to_receive);
+            return bytes_to_receive;
+        }
     }
+
+    return 0;
 }

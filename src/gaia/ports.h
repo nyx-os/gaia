@@ -79,7 +79,7 @@ typedef struct
     PortBinding well_known_ports[WELL_KNOWN_PORTS_MAX]; // Inherited through vfork() syscall (send only rights)
 } PortNamespace;
 
-void port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header);
+size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header);
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights);
 

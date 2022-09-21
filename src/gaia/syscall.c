@@ -79,7 +79,7 @@ static void sys_exit(SyscallFrame frame)
 
 static void sys_msg(SyscallFrame frame)
 {
-    port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
+    *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
 }
 
 static void (*syscall_table[])(SyscallFrame) = {
