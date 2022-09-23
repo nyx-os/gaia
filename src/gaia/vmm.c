@@ -67,28 +67,43 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
     VmmMapRange *range = space->ranges_head;
 
+    uintptr_t aligned_addr = ALIGN_DOWN(faulting_address, 4096);
+
     while (range)
     {
-        if (ALIGN_DOWN(faulting_address, 4096) >= range->address && range->allocated_size != range->size)
+        if (aligned_addr >= range->address && range->allocated_size != range->size)
         {
             found = true;
+
+            uintptr_t virt = range->address + range->allocated_size;
+
+            if (faulting_address > range->address)
+            {
+                virt = aligned_addr;
+            }
+
+            if (aligned_addr > range->address + range->size)
+            {
+                found = false;
+                break;
+            }
 
             if (!(range->flags & MMAP_PHYS))
             {
                 void *phys = pmm_alloc_zero();
-                host_map_page(space->pagemap, range->address + range->allocated_size, (uintptr_t)phys, range->prot);
+                host_map_page(space->pagemap, virt, (uintptr_t)phys, range->prot);
             }
 
             else if (range->flags & MMAP_PHYS)
             {
 
-                host_map_page(space->pagemap, range->address + range->allocated_size, (uintptr_t)range->phys, range->prot);
+                host_map_page(space->pagemap, virt, (uintptr_t)range->phys, range->prot);
             }
 
             range->allocated_size += 4096;
 
 #ifdef DEBUG
-            trace("Demand paged one page from %p", faulting_address);
+            trace("Demand paged one page at %p in range starting from %p", virt, range->address);
 #endif
 
             break;

@@ -46,16 +46,7 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
 
     if (alloc_stack)
     {
-        uint64_t *stack = pmm_alloc_zero();
-
-        context->stack_low_half = host_phys_to_virt((uintptr_t)stack);
-
-        host_map_page(&context->pagemap, stack_pointer - 0x1000, (uintptr_t)stack, PAGE_USER | PAGE_WRITABLE);
-
-        stack = pmm_alloc_zero();
-
-        host_map_page(&context->pagemap, stack_pointer, (uintptr_t)stack + 0x1000, PAGE_USER | PAGE_WRITABLE);
-        context->stack_high_half = host_phys_to_virt((uintptr_t)stack + 0x1000);
+        vmm_mmap(context->space, PROT_READ | PROT_WRITE, MMAP_FIXED, (void *)(stack_pointer - MIB(8)), NULL, MIB(8));
     }
 }
 
