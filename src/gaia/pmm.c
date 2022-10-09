@@ -30,7 +30,8 @@ void pmm_init(Charon charon)
 
     for (size_t i = 0; i < mmap.count; i++)
     {
-        total_page_count += mmap.entries[i].size / PAGE_SIZE;
+        if (mmap.entries[i].type != MMAP_RESERVED && mmap.entries[i].type != MMAP_FRAMEBUFFER)
+            total_page_count += (mmap.entries[i].size / PAGE_SIZE);
 
         if (mmap.entries[i].type == MMAP_FREE)
         {
@@ -69,6 +70,7 @@ void *pmm_alloc()
 
     if (!freelist_head)
     {
+        panic("OOM");
         lock_release(&pmm_lock);
         return NULL;
     }

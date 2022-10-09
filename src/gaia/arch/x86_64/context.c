@@ -11,12 +11,8 @@
 #include <gaia/sched.h>
 #include <gaia/slab.h>
 
-void context_init(Context **context, bool user)
+void context_init(Context *ctx, bool user)
 {
-    *context = slab_alloc(sizeof(Context));
-
-    Context *ctx = *context;
-
     ctx->space = slab_alloc(sizeof(VmmMapSpace));
     ctx->pagemap.pml4 = pmm_alloc_zero();
 
@@ -57,9 +53,8 @@ void context_save(Context *context, InterruptStackframe *frame)
 
 void context_switch(Context *context, InterruptStackframe *frame)
 {
-
-    paging_load_pagemap(&context->pagemap);
     *frame = context->frame;
+    paging_load_pagemap(&context->pagemap);
 }
 
 void context_copy(Context *dest, Context *src)
@@ -73,7 +68,7 @@ void context_copy(Context *dest, Context *src)
 
     dest->pagemap = src->pagemap;
 
-    paging_copy_pagemap((uint64_t *)(host_phys_to_virt((uintptr_t)dest->pagemap.pml4)), (uint64_t *)(host_phys_to_virt((uintptr_t)src->pagemap.pml4)), 256, 3);
+    //    paging_copy_pagemap((uint64_t *)(host_phys_to_virt((uintptr_t)dest->pagemap.pml4)), (uint64_t *)(host_phys_to_virt((uintptr_t)src->pagemap.pml4)), 256, 3);
 
     dest->frame.rax = 0;
 }

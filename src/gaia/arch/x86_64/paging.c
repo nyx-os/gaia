@@ -70,8 +70,16 @@ void paging_initialize()
 
     if (cpuid_supports_1gb_pages())
     {
-        log("CPU supports 1G pages");
-        page_size = GIB(1);
+        if (pmm_get_total_page_count() * 4096 < GIB(1))
+        {
+            log("CPU supports 1G pages but we have less than 1gb in the system.. continuing with 2mb pages");
+        }
+        else
+        {
+            log("CPU supports 1G pages");
+
+            page_size = GIB(1);
+        }
     }
     else
     {
@@ -131,7 +139,7 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     assert(pml3);
 
     // If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3.
-    if (cpuid_supports_1gb_pages() && huge)
+    if (cpuid_supports_1gb_pages() && huge && pmm_get_total_page_count() >= GIB(1))
     {
         pml3[level3] = paddr | flags | PTE_HUGE;
         goto end;
@@ -181,41 +189,11 @@ void paging_load_pagemap(Pagemap *pagemap)
 {
     __asm__ volatile("mov %0, %%cr3"
                      :
-                     : "a"(pagemap->pml4));
+                     : "r"(pagemap->pml4)
+                     : "memory");
 }
 
 Pagemap *paging_get_kernel_pagemap()
 {
     return &kernel_pagemap;
-}
-
-void paging_copy_pagemap(uint64_t *dest, uint64_t *src, size_t count, size_t level)
-{
-    for (size_t i = 0; i < count; i++)
-    {
-        uint64_t orig_entry = src[i];
-        if (PTE_IS_PRESENT(orig_entry))
-        {
-            uint64_t entry = dest[i];
-            // assert(!PTE_IS_PRESENT(entry));
-            memcpy(&entry, &orig_entry, sizeof(uint64_t));
-            uint64_t orig_next = host_phys_to_virt(entry & 0x0000fffffffff000);
-            uintptr_t next_phys_addr = (uint64_t)pmm_alloc_zero();
-            next_phys_addr &= 0x0000fffffffff000;
-            entry &= 0xffff000000000fff;
-            entry |= next_phys_addr;
-
-            void *next = (void *)(host_phys_to_virt(next_phys_addr));
-
-            if (level > 0)
-            {
-                memset(next, 0, 0x1000);
-                paging_copy_pagemap((uint64_t *)next, (uint64_t *)orig_next, 512, level - 1);
-            }
-            else
-            {
-                memcpy(next, (void *)orig_next, 0x1000);
-            }
-        }
-    }
 }

@@ -8,8 +8,8 @@ KERNEL_C_SOURCES = 	 $(wildcard src/gaia/*.c) \
 				 	 $(wildcard src/gaia/*/*.c) \
 				 	 $(wildcard src/gaia/arch/$(ARCH)/*.c) \
 				 	 $(wildcard src/lib/gaia/*.c) \
-				 	 $(wildcard src/lib/stdc-shim/*.c) \
-				
+				 	 $(wildcard src/lib/stdc-shim/*.c)
+
 KERNEL_ASM_SOURCES = $(wildcard src/gaia/arch/$(ARCH)/*.s)
 
 
@@ -38,10 +38,10 @@ $(BUILDDIR)/%.s.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
 
 run: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -cpu host -cdrom $^
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -no-reboot -no-shutdown -cpu host -cdrom $^
 
 debug: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -cdrom $^
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -no-reboot -no-shutdown -cdrom $^
 
 tcg: $(ISO)
 	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -cdrom $^

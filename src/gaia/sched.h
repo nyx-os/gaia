@@ -33,7 +33,7 @@ typedef struct
 
 #define USER_STACK_TOP 0x7fffffffe000
 
-void context_init(Context **context, bool user);
+void context_init(Context *context, bool user);
 void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_pointer, bool alloc_stack);
 void context_save(Context *context, InterruptStackframe *frame);
 void context_switch(Context *context, InterruptStackframe *frame);

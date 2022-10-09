@@ -53,6 +53,8 @@ Task *sched_create_new_task(bool user)
 
     Task *ret = slab_alloc(sizeof(Task));
 
+    ret->context = slab_alloc(sizeof(Context));
+
     ret->state = STOPPED;
     ret->pid = current_pid++;
     ret->namespace = slab_alloc(sizeof(PortNamespace));
@@ -63,7 +65,7 @@ Task *sched_create_new_task(bool user)
     vec_push(&ret->namespace->bindings, null_binding);
     ret->namespace->current_name = 1;
 
-    context_init(&ret->context, user);
+    context_init(ret->context, user);
 
     if (user)
     {
