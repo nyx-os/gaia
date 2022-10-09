@@ -10,6 +10,7 @@
 #include <gaia/sched.h>
 #include <gaia/slab.h>
 #include <gaia/syscall.h>
+#include <gaia/vmm.h>
 
 static Charon _charon;
 
@@ -24,22 +25,34 @@ static void sys_alloc_port(SyscallFrame frame)
     *frame.return_value = name;
 }
 
-static void sys_spawn(SyscallFrame frame)
+struct PACKED user_task
 {
-    const char *name = (const char *)frame.first_arg;
+    VmmMapSpace *space;
+    size_t pid;
+};
 
-    Task *task = NULL;
+struct PACKED mmap_params
+{
+    VmmMapSpace *space;
+    uint16_t prot;
+    uint16_t flags;
+    void *virt, *phys;
+    size_t size;
+};
 
-    for (int i = 0; i < _charon.modules.count; i++)
-    {
-        CharonModule module = _charon.modules.modules[i];
+static void sys_mmap(SyscallFrame frame)
+{
+    struct mmap_params *params = (struct mmap_params *)frame.first_arg;
 
-        if (strncmp(module.name, name, strlen(name)) == 0)
-        {
-            task = sched_create_new_task_from_elf((uint8_t *)module.address);
-            break;
-        }
-    }
+    if (params->space == NULL)
+        params->space = sched_get_current_task()->context->space;
+
+    *frame.return_value = (uint64_t)vmm_mmap(params->space, params->prot, params->flags, params->virt, params->phys, params->size);
+}
+
+static void sys_create_task(SyscallFrame frame)
+{
+    Task *task = sched_create_new_task(true);
 
     if (task)
     {
@@ -56,6 +69,19 @@ static void sys_spawn(SyscallFrame frame)
             }
         }
     }
+
+    struct user_task ret = {context_get_space(task->context), task->pid};
+
+    *(struct user_task *)frame.first_arg = ret;
+}
+
+static void sys_start_task(SyscallFrame frame)
+{
+    struct user_task *user_task = (struct user_task *)frame.first_arg;
+    Task *task = sched_lookup_task(user_task->pid);
+
+    context_start(task->context, frame.second_arg, frame.third_arg, frame.fourth_arg);
+    task->state = RUNNING;
 }
 
 static void sys_register_port(SyscallFrame frame)
@@ -85,11 +111,13 @@ static void sys_msg(SyscallFrame frame)
 static void (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_LOG] = sys_log,
     [GAIA_SYS_ALLOC_PORT] = sys_alloc_port,
-    [GAIA_SYS_SPAWN] = sys_spawn,
     [GAIA_SYS_REGISTER_PORT] = sys_register_port,
     [GAIA_SYS_GET_PORT] = sys_get_port,
     [GAIA_SYS_EXIT] = sys_exit,
     [GAIA_SYS_MSG] = sys_msg,
+    [GAIA_SYS_MMAP] = sys_mmap,
+    [GAIA_SYS_CREATE_TASK] = sys_create_task,
+    [GAIA_SYS_START_TASK] = sys_start_task,
 };
 
 void syscall_init(Charon charon)

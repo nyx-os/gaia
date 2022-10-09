@@ -25,7 +25,7 @@ typedef enum
     MMAP_FRAMEBUFFER
 } CharonMemoryMapEntryType;
 
-typedef struct
+typedef struct PACKED
 {
 
     uintptr_t base;
@@ -33,38 +33,40 @@ typedef struct
     CharonMemoryMapEntryType type;
 } CharonMemoryMapEntry;
 
-typedef struct
+typedef struct PACKED
 {
-    size_t count;
+    uint8_t count;
     CharonMemoryMapEntry entries[CHARON_MMAP_SIZE_MAX];
 } CharonMemoryMap;
 
-typedef struct
+typedef struct PACKED
 {
     bool present;
     uintptr_t address;
     uint32_t width, height, pitch, bpp;
 } CharonFramebuffer;
 
-typedef struct
+typedef struct PACKED
 {
-    size_t size;
+    uint32_t size;
     uintptr_t address;
-    const char *name;
+    const char name[16];
 } CharonModule;
 
-typedef struct
+typedef struct PACKED
 {
-    uint16_t count;
+    uint8_t count;
     CharonModule modules[CHARON_MODULE_MAX];
 } CharonModules;
 
-typedef struct
+typedef struct PACKED
 {
     uintptr_t rsdp;
     CharonFramebuffer framebuffer;
     CharonModules modules;
     CharonMemoryMap memory_map;
 } Charon;
+
+Charon *gaia_get_charon(void);
 
 #endif /* SRC_GAIA_CHARON_H */

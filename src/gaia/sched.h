@@ -51,6 +51,8 @@ void sched_switch_to_task(size_t pid);
 
 Task *sched_get_current_task(void);
 
+Task *sched_lookup_task(size_t pid);
+
 void sched_init(void);
 
 #endif /* ARCH_X86_64_SCHED_H */

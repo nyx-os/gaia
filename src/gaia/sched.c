@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "gaia/charon.h"
 #include "gaia/ports.h"
+#include "gaia/vmm.h"
 #include <context.h>
 #include <gaia/elf.h>
 #include <gaia/host.h>
@@ -51,7 +53,7 @@ Task *sched_create_new_task(bool user)
 
     Task *ret = slab_alloc(sizeof(Task));
 
-    ret->state = RUNNING;
+    ret->state = STOPPED;
     ret->pid = current_pid++;
     ret->namespace = slab_alloc(sizeof(PortNamespace));
 
@@ -83,6 +85,12 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
 
     context_start(ret->context, pc, USER_STACK_TOP, true);
 
+    void *addr = vmm_mmap(context_get_space(ret->context), PROT_READ, MMAP_ANONYMOUS | MMAP_PHYS, NULL, (void *)host_virt_to_phys((uintptr_t)gaia_get_charon()), ALIGN_UP(sizeof(Charon), 4096));
+
+    ret->context->frame.rdi = (uintptr_t)addr;
+
+    ret->state = RUNNING;
+
     return ret;
 }
 
@@ -94,6 +102,16 @@ void sched_switch_to_task(size_t pid)
     // prev_task = pid;
 
     // lock_release(&lock);
+}
+
+Task *sched_lookup_task(size_t pid)
+{
+    for (size_t i = 0; i < running_tasks.length; i++)
+    {
+        if (running_tasks.data[i]->pid == pid)
+            return running_tasks.data[i];
+    }
+    return NULL;
 }
 
 static Task *get_and_remove(size_t index)

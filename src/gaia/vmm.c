@@ -5,6 +5,7 @@
 void vmm_space_init(VmmMapSpace *space)
 {
     space->ranges_head = NULL;
+    space->bump = MMAP_BUMP_BASE;
 }
 
 void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, void *phys, size_t size)
@@ -39,12 +40,16 @@ void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, vo
     }
 
     VmmMapRange *new_range = slab_alloc(sizeof(VmmMapRange));
-    new_range->allocated_size = 0;
+
+    assert(new_range != NULL);
+    assert(space != NULL);
+
     new_range->address = (uintptr_t)ret;
-    new_range->phys = (uintptr_t)phys;
+    new_range->phys = (uintptr_t)ALIGN_DOWN((uintptr_t)phys, 4096);
     new_range->size = size;
     new_range->flags = flags;
     new_range->prot = actual_prot;
+    new_range->allocated_size = 0;
 
     new_range->next = space->ranges_head;
     space->ranges_head = new_range;
@@ -62,6 +67,7 @@ void vmm_munmap(VmmMapSpace *space, uintptr_t addr)
 bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 {
     bool found = false;
+
     if (space == NULL || faulting_address == 0)
         return false;
 
@@ -71,18 +77,18 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
     while (range)
     {
-        if (aligned_addr >= range->address && range->allocated_size != range->size)
+        if (aligned_addr >= range->address && aligned_addr <= range->address + range->size && range->allocated_size != range->size)
         {
             found = true;
 
             uintptr_t virt = range->address + range->allocated_size;
 
-            if (faulting_address > range->address)
+            if (aligned_addr > range->address)
             {
                 virt = aligned_addr;
             }
 
-            if (aligned_addr > range->address + range->size)
+            else if (aligned_addr > range->address + range->size)
             {
                 found = false;
                 break;
@@ -96,14 +102,13 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
             else if (range->flags & MMAP_PHYS)
             {
-
-                host_map_page(space->pagemap, virt, (uintptr_t)range->phys, range->prot);
+                host_map_page(space->pagemap, virt, (uintptr_t)range->phys + range->allocated_size, range->prot);
             }
 
             range->allocated_size += 4096;
 
 #ifdef DEBUG
-            trace("Demand paged one page at %p in range starting from %p", virt, range->address);
+            // trace("Demand paged one page at %p in range starting from %p", virt, range->address);
 #endif
 
             break;

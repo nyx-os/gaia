@@ -15,10 +15,18 @@
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
+#include <limine.h>
 #include <stdbool.h>
 
 #define BOOTSTRAP_SERVER_NAME "/bootstrap"
 #define BOOTSTRAP_SERVER_NAME_LENGTH 10
+
+static Charon *_charon;
+
+Charon *gaia_get_charon(void)
+{
+    return _charon;
+}
 
 void gaia_main(Charon *charon)
 {
@@ -30,6 +38,12 @@ void gaia_main(Charon *charon)
 #endif
 
     slab_init();
+
+    _charon = (void *)host_phys_to_virt((uintptr_t)pmm_alloc_zero());
+
+    memcpy(_charon, charon, sizeof(Charon));
+
+    _charon->framebuffer.address = host_virt_to_phys(_charon->framebuffer.address);
 
     acpi_init(charon->rsdp);
 #ifdef DEBUG

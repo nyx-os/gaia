@@ -6,6 +6,7 @@
 
 #include <gaia/charon.h>
 #include <limine.h>
+#include <stdc-shim/string.h>
 
 volatile static struct limine_rsdp_request rsdp_request = {
     .id = LIMINE_RSDP_REQUEST,
@@ -82,10 +83,9 @@ static CharonModules limine_modules_to_charon(struct limine_module_response *mod
     ret.count = modules->module_count;
     for (size_t i = 0; i < ret.count; i++)
     {
-        ret.modules[i] = (CharonModule){
-            .name = modules->modules[i]->path,
-            .address = (uintptr_t)modules->modules[i]->address,
-            .size = modules->modules[i]->size};
+        ret.modules[i].address = (uintptr_t)modules->modules[i]->address;
+        ret.modules[i].size = modules->modules[i]->size;
+        memcpy((void *)ret.modules[i].name, modules->modules[i]->path, strlen(modules->modules[i]->path));
     }
     return ret;
 }
