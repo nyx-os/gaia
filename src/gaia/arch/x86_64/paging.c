@@ -70,16 +70,9 @@ void paging_initialize()
 
     if (cpuid_supports_1gb_pages())
     {
-        if (pmm_get_total_page_count() * 4096 < GIB(1))
-        {
-            log("CPU supports 1G pages but we have less than 1gb in the system.. continuing with 2mb pages");
-        }
-        else
-        {
-            log("CPU supports 1G pages");
+        log("CPU supports 1G pages");
 
-            page_size = GIB(1);
-        }
+        page_size = GIB(1);
     }
     else
     {
@@ -118,7 +111,7 @@ void paging_initialize()
     }
 
     // Map the first 4GB+ of memory to the higher half.
-    for (size_t i = page_size; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += page_size)
+    for (size_t i = 0; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += page_size)
     {
         host_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PAGE_HUGE | PAGE_WRITABLE);
     }
@@ -136,10 +129,10 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
 
     uint64_t *pml3 = get_next_level((void *)host_phys_to_virt((uintptr_t)pagemap->pml4), level4, flags, true);
 
-    assert(pml3);
+    assert(pml3 != NULL);
 
     // If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3.
-    if (cpuid_supports_1gb_pages() && huge && pmm_get_total_page_count() >= GIB(1))
+    if (cpuid_supports_1gb_pages() && huge)
     {
         pml3[level3] = paddr | flags | PTE_HUGE;
         goto end;
@@ -148,7 +141,7 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     // If we're mapping 2M pages, we don't care about the rest of the mapping, only the pml2.
     uint64_t *pml2 = get_next_level(pml3, level3, flags, true);
 
-    assert(pml2);
+    assert(pml2 != NULL);
 
     if (huge)
     {
@@ -157,7 +150,7 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     }
 
     uint64_t *pml1 = get_next_level(pml2, level2, flags, true);
-    assert(pml1);
+    assert(pml1 != NULL);
 
     pml1[level1] = paddr | flags;
 
