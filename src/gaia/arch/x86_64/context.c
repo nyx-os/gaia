@@ -53,8 +53,8 @@ void context_save(Context *context, InterruptStackframe *frame)
 
 void context_switch(Context *context, InterruptStackframe *frame)
 {
-    *frame = context->frame;
     paging_load_pagemap(&context->pagemap);
+    *frame = context->frame;
 }
 
 void context_copy(Context *dest, Context *src)

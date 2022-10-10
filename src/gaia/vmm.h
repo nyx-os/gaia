@@ -46,6 +46,7 @@ typedef struct
 void vmm_space_init(VmmMapSpace *space);
 void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, void *phys, size_t size);
 void vmm_munmap(VmmMapSpace *space, uintptr_t addr);
+void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count);
 bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address);
 
 #endif

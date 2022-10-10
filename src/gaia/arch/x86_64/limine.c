@@ -83,7 +83,7 @@ static CharonModules limine_modules_to_charon(struct limine_module_response *mod
     ret.count = modules->module_count;
     for (size_t i = 0; i < ret.count; i++)
     {
-        ret.modules[i].address = (uintptr_t)modules->modules[i]->address;
+        ret.modules[i].address = host_virt_to_phys((uintptr_t)modules->modules[i]->address);
         ret.modules[i].size = modules->modules[i]->size;
         memcpy((void *)ret.modules[i].name, modules->modules[i]->path, strlen(modules->modules[i]->path));
     }

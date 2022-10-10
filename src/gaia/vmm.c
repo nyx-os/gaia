@@ -1,6 +1,8 @@
+#include "paging.h"
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
 #include <gaia/vmm.h>
+#include <stdc-shim/string.h>
 
 void vmm_space_init(VmmMapSpace *space)
 {
@@ -33,7 +35,7 @@ void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, vo
         ret = (void *)ALIGN_DOWN((uintptr_t)addr, 4096);
     }
 
-    if (flags & MMAP_ANONYMOUS)
+    else if (flags & MMAP_ANONYMOUS || flags & MMAP_PHYS)
     {
         ret = (void *)space->bump;
         space->bump += size;
@@ -46,7 +48,7 @@ void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, vo
 
     new_range->address = (uintptr_t)ret;
     new_range->phys = (uintptr_t)ALIGN_DOWN((uintptr_t)phys, 4096);
-    new_range->size = size;
+    new_range->size = ALIGN_UP((uintptr_t)size, 4096);
     new_range->flags = flags;
     new_range->prot = actual_prot;
     new_range->allocated_size = 0;
@@ -98,6 +100,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             {
                 void *phys = pmm_alloc_zero();
                 host_map_page(space->pagemap, virt, (uintptr_t)phys, range->prot);
+                range->phys = (uintptr_t)phys;
             }
 
             else if (range->flags & MMAP_PHYS)
@@ -118,4 +121,24 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
     }
 
     return found;
+}
+
+void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
+{
+    assert(count < 4096);
+
+    assert(vmm_page_fault_handler(space, address) == true);
+
+    VmmMapRange *range = space->ranges_head;
+
+    while (range != NULL)
+    {
+        if (address >= range->address && address <= range->address + range->size)
+            break;
+
+        range = range->next;
+    }
+
+    void *virt_addr = (void *)(host_phys_to_virt(range->phys) + address - range->address);
+    memcpy(virt_addr, data, count);
 }

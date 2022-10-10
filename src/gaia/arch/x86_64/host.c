@@ -94,6 +94,20 @@ uintptr_t host_virt_to_phys(uintptr_t virt)
     return virt - MMAP_IO_BASE;
 }
 
+volatile static struct limine_hhdm_request hhdm = {
+    .id = LIMINE_HHDM_REQUEST,
+    0};
+
+uintptr_t host_kern_to_phys(uintptr_t virt)
+{
+    return virt - hhdm.response->offset;
+}
+
+uintptr_t host_phys_to_kern(uintptr_t phys)
+{
+    return phys + hhdm.response->offset;
+}
+
 const char *host_get_name(void)
 {
     return "x86_64";

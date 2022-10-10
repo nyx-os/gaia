@@ -19,6 +19,7 @@
 #define GAIA_SYS_MMAP 6
 #define GAIA_SYS_CREATE_TASK 7
 #define GAIA_SYS_START_TASK 8
+#define GAIA_SYS_VM_WRITE 9
 
 typedef struct
 {

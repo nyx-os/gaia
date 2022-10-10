@@ -108,6 +108,11 @@ static void sys_msg(SyscallFrame frame)
     *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
 }
 
+static void sys_vm_write(SyscallFrame frame)
+{
+    vmm_write((void *)frame.first_arg, frame.second_arg, (void *)frame.third_arg, frame.fourth_arg);
+}
+
 static void (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_LOG] = sys_log,
     [GAIA_SYS_ALLOC_PORT] = sys_alloc_port,
@@ -118,6 +123,7 @@ static void (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_MMAP] = sys_mmap,
     [GAIA_SYS_CREATE_TASK] = sys_create_task,
     [GAIA_SYS_START_TASK] = sys_start_task,
+    [GAIA_SYS_VM_WRITE] = sys_vm_write,
 };
 
 void syscall_init(Charon charon)

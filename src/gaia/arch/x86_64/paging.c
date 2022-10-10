@@ -17,6 +17,7 @@
 #define PML_ENTRY(addr, offset) (size_t)(addr & ((uintptr_t)0x1ff << offset)) >> offset;
 
 static Pagemap kernel_pagemap = {0};
+static int cpu_1gb_pages = -1;
 
 static volatile struct limine_kernel_address_request kaddr_request = {
     .id = LIMINE_KERNEL_ADDRESS_REQUEST,
@@ -66,9 +67,11 @@ void paging_initialize()
     kernel_pagemap.lock = 0;
     assert(kernel_pagemap.pml4 != NULL);
 
+    cpu_1gb_pages = cpuid_supports_1gb_pages();
+
     size_t page_size = MIB(2);
 
-    if (cpuid_supports_1gb_pages())
+    if (cpu_1gb_pages)
     {
         log("CPU supports 1G pages");
 
@@ -132,7 +135,7 @@ void paging_map_page(Pagemap *pagemap, uintptr_t vaddr, uintptr_t paddr, uint64_
     assert(pml3 != NULL);
 
     // If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3.
-    if (cpuid_supports_1gb_pages() && huge)
+    if (cpu_1gb_pages && huge)
     {
         pml3[level3] = paddr | flags | PTE_HUGE;
         goto end;

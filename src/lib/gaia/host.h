@@ -123,7 +123,7 @@ uintptr_t host_virt_to_phys(uintptr_t virt);
  * @param virt The address to convert.
  * @return uintptr_t The physical address.
  */
-uintptr_t host_virt_to_kern(uintptr_t virt);
+uintptr_t host_kern_to_phys(uintptr_t virt);
 
 /**
  * @brief Initialize the host.

@@ -15,7 +15,6 @@
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
-#include <limine.h>
 #include <stdbool.h>
 
 #define BOOTSTRAP_SERVER_NAME "/bootstrap"
@@ -60,7 +59,7 @@ void gaia_main(Charon *charon)
     {
         if (strncmp(charon->modules.modules[i].name, BOOTSTRAP_SERVER_NAME, BOOTSTRAP_SERVER_NAME_LENGTH) == 0)
         {
-            sched_create_new_task_from_elf((uint8_t *)charon->modules.modules[i].address);
+            sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)));
             found = true;
             break;
         }
@@ -77,7 +76,6 @@ void gaia_main(Charon *charon)
 
     log("initial heap memory usage: %dkb", slab_used() / 1024);
     log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
-    log("total page count: %dmb", pmm_get_total_page_count() * PAGE_SIZE / 1024 / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");
 
