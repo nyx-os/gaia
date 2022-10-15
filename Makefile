@@ -17,14 +17,7 @@ KERNEL_C_OBJS = $(patsubst %.c, $(BUILDDIR)/%.c.o, $(KERNEL_C_SOURCES))
 KERNEL_OBJS = $(KERNEL_C_OBJS) \
 			  $(patsubst %.s, $(BUILDDIR)/%.s.o, $(KERNEL_ASM_SOURCES))
 
-all: $(ISO)
-
-servers:
-	$(MAKE) -C thirdparty/olympus
-	cp thirdparty/olympus/build/*.elf sysroot
-
-$(ISO): $(KERNEL) servers
-	./scripts/make-image.sh $(BUILDDIR)
+all: $(KERNEL)
 
 $(KERNEL): $(KERNEL_OBJS)
 	$(LD) -o $@ $^ $(KERNEL_LINK_FLAGS)
