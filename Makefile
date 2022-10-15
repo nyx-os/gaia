@@ -30,17 +30,17 @@ $(BUILDDIR)/%.s.o: %.s
 	@$(DIRECTORY_GUARD)
 	$(AS) $(ASFLAGS) $< -o $@
 
-run: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -no-reboot -no-shutdown -cpu host -cdrom $^
+run: 
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -no-reboot -no-shutdown -cpu host -cdrom $(ISO)
 
-debug: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -no-reboot -no-shutdown -cdrom $^
+debug:
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -d int -no-reboot -no-shutdown -cdrom $(ISO)
 
-tcg: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -cdrom $^
+tcg:
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -cdrom $(ISO)
 
-gdb: $(ISO)
-	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -cdrom $^ -s -S
+gdb:
+	qemu-system-$(ARCH) -m $(QEMU_MEMORY) -M q35 -no-reboot -debugcon stdio -enable-kvm -cdrom $(ISO) -s -S
 
 clean:
 	-rm -rf $(BUILDDIR)
