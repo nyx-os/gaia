@@ -18,17 +18,15 @@ KERNEL_OBJS = $(KERNEL_C_OBJS) \
 			  $(patsubst %.s, $(BUILDDIR)/%.s.o, $(KERNEL_ASM_SOURCES))
 
 .DEFAULT_GOAL: all
-
-
-ifeq (,$(wildcard ./.config))
 .PHONY: all
+ifeq (,$(wildcard ./.config))
 all:
 	@echo "Looks like Gaia is not configured."
 	@echo "Run 'make menuconfig' to configure it."
 	@exit 1
-endif
-
+else
 all: $(KERNEL)
+endif
 
 $(KERNEL): $(KERNEL_OBJS)
 	$(LD) -o $@ $^ $(KERNEL_LINK_FLAGS)
