@@ -17,6 +17,17 @@ KERNEL_C_OBJS = $(patsubst %.c, $(BUILDDIR)/%.c.o, $(KERNEL_C_SOURCES))
 KERNEL_OBJS = $(KERNEL_C_OBJS) \
 			  $(patsubst %.s, $(BUILDDIR)/%.s.o, $(KERNEL_ASM_SOURCES))
 
+.DEFAULT_GOAL: all
+
+
+ifeq (,$(wildcard ./.config))
+.PHONY: all
+all:
+	@echo "Looks like Gaia is not configured."
+	@echo "Run 'make menuconfig' to configure it."
+	@exit 1
+endif
+
 all: $(KERNEL)
 
 $(KERNEL): $(KERNEL_OBJS)
