@@ -5,9 +5,9 @@ static Vec(Port) ports;
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights)
 {
-    Port ret = {{0}};
+    Port new_port = {{0}};
 
-    vec_push(&ports, ret);
+    vec_push(&ports, new_port);
 
     // Add new port binding to namespace
     PortBinding binding = {ns->current_name++, rights, ports.length - 1};

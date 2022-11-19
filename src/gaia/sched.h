@@ -9,6 +9,7 @@
 
 #include <gaia/host.h>
 #include <gaia/ports.h>
+#include <gaia/rights.h>
 #include <gaia/vmm.h>
 #include <idt.h>
 #include <paging.h>
@@ -28,6 +29,7 @@ typedef struct
     size_t pid;
     uintptr_t stack_bottom;
     PortNamespace *namespace;
+    Rights rights;
     TaskState state;
 } Task;
 
@@ -38,13 +40,14 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
 void context_save(Context *context, InterruptStackframe *frame);
 void context_switch(Context *context, InterruptStackframe *frame);
 void context_copy(Context *dest, Context *src);
+
 VmmMapSpace *context_get_space(Context *context);
 
 void sched_tick(InterruptStackframe *frame);
 
 Task *sched_create_new_task(bool user);
 
-Task *sched_create_new_task_from_elf(uint8_t *data);
+Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights);
 void sched_save_state(InterruptStackframe *frame);
 
 void sched_switch_to_task(size_t pid);

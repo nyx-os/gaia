@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "gaia/rights.h"
 #include "stdc-shim/string.h"
 #include <gaia/base.h>
 #include <gaia/firmware/acpi.h>
@@ -59,7 +60,7 @@ void gaia_main(Charon *charon)
     {
         if (strncmp(charon->modules.modules[i].name, BOOTSTRAP_SERVER_NAME, BOOTSTRAP_SERVER_NAME_LENGTH) == 0)
         {
-            sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)));
+            sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)), RIGHT_DMA);
             found = true;
             break;
         }

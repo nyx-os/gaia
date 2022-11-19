@@ -26,7 +26,12 @@ void elf_load(uint8_t *elf, uint64_t *entry, Context *context)
             {
                 uintptr_t addr = (uintptr_t)pmm_alloc_zero();
 
-                vmm_mmap(context->space, PROT_READ | PROT_EXEC, MMAP_FIXED | MMAP_PHYS, (void *)program_header->p_vaddr, (void *)addr, PAGE_SIZE);
+                VmCreateArgs args = {.addr = addr, .flags = VM_MEM_PHYS, .size = PAGE_SIZE};
+
+                VmObject elf_obj = vm_create(args);
+                VmMapArgs map_args = {.object = &elf_obj, .flags = VM_MAP_FIXED | VM_MAP_PHYS, .vaddr = program_header->p_vaddr, .protection = PROT_READ | PROT_EXEC};
+                vm_map(context->space, map_args);
+
                 memcpy((void *)(host_phys_to_virt(addr) + misalign), (void *)(elf + program_header->p_offset), program_header->p_filesz);
                 memset((void *)(host_phys_to_virt(addr) + misalign + program_header->p_filesz), 0,
                        program_header->p_memsz - program_header->p_filesz);

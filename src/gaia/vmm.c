@@ -1,4 +1,3 @@
-#include "paging.h"
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
 #include <gaia/vmm.h>
@@ -6,57 +5,72 @@
 
 void vmm_space_init(VmmMapSpace *space)
 {
-    space->ranges_head = NULL;
     space->bump = MMAP_BUMP_BASE;
 }
 
-void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, void *phys, size_t size)
+VmObject vm_create(VmCreateArgs args)
 {
-    void *ret = NULL;
-    uint16_t actual_prot = PAGE_USER;
+    VmObject ret = {0};
 
-    if (prot & PROT_NONE)
+    ret.size = ALIGN_UP(args.size, 4096);
+
+    if (args.flags & VM_MEM_PHYS)
     {
-        actual_prot = PAGE_USER | PAGE_NONE;
+        ret.buf = (void *)ALIGN_DOWN((uintptr_t)args.addr, 4096);
+    }
+    else
+    {
+        ret.buf = NULL;
     }
 
-    if (!(prot & PROT_EXEC))
+    return ret;
+}
+
+int vm_map(VmmMapSpace *space, VmMapArgs args)
+{
+    uint16_t actual_prot = PAGE_USER;
+    VmMapping *mapping = slab_alloc(sizeof(VmMapping));
+    uintptr_t phys = 0;
+
+    if (!(args.protection & PROT_EXEC))
     {
         actual_prot |= PAGE_NOT_EXECUTABLE;
     }
 
-    if (prot & PROT_WRITE)
+    if (args.protection & PROT_WRITE)
     {
         actual_prot |= PAGE_WRITABLE;
     }
 
-    if (flags & MMAP_FIXED)
+    if (args.flags & VM_MAP_PHYS)
     {
-        ret = (void *)ALIGN_DOWN((uintptr_t)addr, 4096);
+        phys = (uintptr_t)args.object->buf;
     }
 
-    else if (flags & MMAP_ANONYMOUS || flags & MMAP_PHYS)
+    if (!(args.flags & VM_MAP_FIXED))
     {
-        ret = (void *)space->bump;
-        space->bump += size;
+        args.object->buf = (void *)space->bump;
+        space->bump += args.object->size;
     }
 
-    VmmMapRange *new_range = slab_alloc(sizeof(VmmMapRange));
+    if (args.flags & VM_MAP_FIXED && args.vaddr != 0)
+    {
+        args.object->buf = (void *)(ALIGN_DOWN(args.vaddr, 4096));
+    }
 
-    assert(new_range != NULL);
+    assert(mapping != NULL);
     assert(space != NULL);
 
-    new_range->address = (uintptr_t)ret;
-    new_range->phys = (uintptr_t)ALIGN_DOWN((uintptr_t)phys, 4096);
-    new_range->size = ALIGN_UP((uintptr_t)size, 4096);
-    new_range->flags = flags;
-    new_range->prot = actual_prot;
-    new_range->allocated_size = 0;
+    mapping->actual_protection = actual_prot;
+    mapping->object = *args.object;
+    mapping->phys = (uintptr_t)phys;
+    mapping->allocated_size = 0;
+    mapping->address = (uintptr_t)args.object->buf;
 
-    new_range->next = space->ranges_head;
-    space->ranges_head = new_range;
+    mapping->next = space->mappings;
+    space->mappings = mapping;
 
-    return ret;
+    return 0;
 }
 
 void vmm_munmap(VmmMapSpace *space, uintptr_t addr)
@@ -73,51 +87,51 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
     if (space == NULL || faulting_address == 0)
         return false;
 
-    VmmMapRange *range = space->ranges_head;
+    VmMapping *mapping = space->mappings;
 
     uintptr_t aligned_addr = ALIGN_DOWN(faulting_address, 4096);
 
-    while (range)
+    while (mapping)
     {
-        if (aligned_addr >= range->address && aligned_addr <= range->address + range->size && range->allocated_size != range->size)
+        if (aligned_addr >= mapping->address && aligned_addr <= mapping->address + mapping->object.size && mapping->allocated_size != mapping->object.size)
         {
             found = true;
 
-            uintptr_t virt = range->address + range->allocated_size;
+            uintptr_t virt = mapping->address + mapping->allocated_size;
 
-            if (aligned_addr > range->address)
+            if (aligned_addr > mapping->address)
             {
                 virt = aligned_addr;
             }
 
-            else if (aligned_addr > range->address + range->size)
+            else if (aligned_addr > mapping->address + mapping->object.size)
             {
                 found = false;
                 break;
             }
 
-            if (!(range->flags & MMAP_PHYS))
+            if (!mapping->phys)
             {
                 void *phys = pmm_alloc_zero();
-                host_map_page(space->pagemap, virt, (uintptr_t)phys, range->prot);
-                range->phys = (uintptr_t)phys;
+                host_map_page(space->pagemap, virt, (uintptr_t)phys, mapping->actual_protection);
+                mapping->phys = (uintptr_t)phys;
             }
 
-            else if (range->flags & MMAP_PHYS)
+            else
             {
-                host_map_page(space->pagemap, virt, (uintptr_t)range->phys + range->allocated_size, range->prot);
+                host_map_page(space->pagemap, virt, (uintptr_t)mapping->phys + mapping->allocated_size, mapping->actual_protection);
             }
 
-            range->allocated_size += 4096;
+            mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-            // trace("Demand paged one page at %p in range starting from %p", virt, range->address);
+            // trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
 #endif
 
             break;
         }
 
-        range = range->next;
+        mapping = mapping->next;
     }
 
     return found;
@@ -129,16 +143,16 @@ void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
 
     assert(vmm_page_fault_handler(space, address) == true);
 
-    VmmMapRange *range = space->ranges_head;
+    VmMapping *mapping = space->mappings;
 
-    while (range != NULL)
+    while (mapping != NULL)
     {
-        if (address >= range->address && address <= range->address + range->size)
+        if (address >= mapping->address && address <= mapping->address + mapping->object.size)
             break;
 
-        range = range->next;
+        mapping = mapping->next;
     }
 
-    void *virt_addr = (void *)(host_phys_to_virt(range->phys) + address - range->address);
+    void *virt_addr = (void *)(host_phys_to_virt(mapping->phys) + address - mapping->address);
     memcpy(virt_addr, data, count);
 }

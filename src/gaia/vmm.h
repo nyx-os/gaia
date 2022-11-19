@@ -13,13 +13,15 @@
 #define SRC_GAIA_VMM_H
 #include <gaia/base.h>
 
-#define MMAP_ANONYMOUS (1 << 0)
-#define MMAP_FIXED (1 << 1)
-#define MMAP_SHARED (1 << 2)
-#define MMAP_PRIVATE (1 << 3)
+#define VM_MAP_ANONYMOUS (1 << 0)
+#define VM_MAP_FIXED (1 << 1)
+#define VM_MAP_SHARED (1 << 2)
+#define VM_MAP_PRIVATE (1 << 3)
 
-/* NOTE: this is specific to gaia */
-#define MMAP_PHYS (1 << 4)
+#define VM_MEM_PHYS (1 << 0)
+
+/* NOTE: this is specific to gaia and requires a DMA right */
+#define VM_MAP_PHYS (1 << 4)
 
 #define PROT_NONE (1 << 0)
 #define PROT_READ (1 << 1)
@@ -28,25 +30,49 @@
 
 #define MMAP_BUMP_BASE 0x100000000
 
-typedef struct vmm_map_range
+typedef struct
 {
-    uintptr_t address, phys;
-    uint16_t prot, flags;
-    size_t size, allocated_size;
-    struct vmm_map_range *next;
-} VmmMapRange;
+    size_t size;
+    uintptr_t addr;
+    uint16_t flags;
+} VmCreateArgs;
+
+typedef struct
+{
+    void *buf;
+    size_t size;
+} VmObject;
+
+typedef struct
+{
+    VmObject *object;
+    uint16_t protection;
+    uintptr_t vaddr;
+    uint16_t flags;
+} VmMapArgs;
+
+typedef struct vm_mapping
+{
+    VmObject object;
+    size_t allocated_size;
+    uintptr_t phys, address;
+    uint16_t actual_protection;
+    struct vm_mapping *next;
+} VmMapping;
 
 typedef struct
 {
     uintptr_t bump;
-    VmmMapRange *ranges_head;
+    VmMapping *mappings;
     Pagemap *pagemap;
 } VmmMapSpace;
 
 void vmm_space_init(VmmMapSpace *space);
-void *vmm_mmap(VmmMapSpace *space, uint16_t prot, uint16_t flags, void *addr, void *phys, size_t size);
-void vmm_munmap(VmmMapSpace *space, uintptr_t addr);
 void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count);
 bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address);
+
+VmObject vm_create(VmCreateArgs args);
+int vm_map(VmmMapSpace *space, VmMapArgs args);
+void vmm_vm_unmap(VmmMapSpace *space, uintptr_t addr);
 
 #endif

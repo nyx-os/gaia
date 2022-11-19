@@ -42,7 +42,10 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
 
     if (alloc_stack)
     {
-        vmm_mmap(context->space, PROT_READ | PROT_WRITE, MMAP_FIXED, (void *)(stack_pointer - MIB(8)), NULL, MIB(8));
+        VmCreateArgs args = {.addr = 0, .size = MIB(8)};
+        VmObject stack = vm_create(args);
+        VmMapArgs map_args = {.object = &stack, .vaddr = stack_pointer - MIB(8), .flags = VM_MAP_FIXED, .protection = PROT_READ | PROT_WRITE};
+        vm_map(context->space, map_args);
     }
 }
 

@@ -6,6 +6,7 @@
 
 #include "gaia/charon.h"
 #include "gaia/ports.h"
+#include "gaia/rights.h"
 #include "gaia/vmm.h"
 #include <context.h>
 #include <gaia/elf.h>
@@ -59,6 +60,8 @@ Task *sched_create_new_task(bool user)
     ret->pid = current_pid++;
     ret->namespace = slab_alloc(sizeof(PortNamespace));
 
+    ret->rights = RIGHT_NULL;
+
     vec_init(&ret->namespace->bindings);
 
     PortBinding null_binding = {PORT_NULL, 0, 0};
@@ -77,9 +80,11 @@ Task *sched_create_new_task(bool user)
     return ret;
 }
 
-Task *sched_create_new_task_from_elf(uint8_t *data)
+Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights)
 {
     Task *ret = sched_create_new_task(true);
+
+    ret->rights = rights;
 
     uintptr_t pc;
 
@@ -87,9 +92,16 @@ Task *sched_create_new_task_from_elf(uint8_t *data)
 
     context_start(ret->context, pc, USER_STACK_TOP, true);
 
-    void *addr = vmm_mmap(context_get_space(ret->context), PROT_READ, MMAP_ANONYMOUS | MMAP_PHYS, NULL, (void *)host_virt_to_phys((uintptr_t)gaia_get_charon()), ALIGN_UP(sizeof(Charon), 4096));
+    VmCreateArgs args = {.addr = host_virt_to_phys((uintptr_t)gaia_get_charon()),
+                         .flags = VM_MEM_PHYS,
+                         .size = ALIGN_UP(sizeof(Charon), 4096)};
 
-    ret->context->frame.rdi = (uintptr_t)addr;
+    VmObject object = vm_create(args);
+    VmMapArgs map_args = {.object = &object, .flags = VM_MAP_ANONYMOUS | VM_MAP_PHYS, .protection = PROT_READ};
+
+    vm_map(context_get_space(ret->context), map_args);
+
+    ret->context->frame.rdi = (uintptr_t)object.buf;
 
     ret->state = RUNNING;
 

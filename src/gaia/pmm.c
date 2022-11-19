@@ -3,7 +3,6 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-
 #include "gaia/charon.h"
 #include "gaia/host.h"
 #include "gaia/spinlock.h"

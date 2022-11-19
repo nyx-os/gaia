@@ -16,10 +16,11 @@
 #define GAIA_SYS_ALLOC_PORT 3
 #define GAIA_SYS_GET_PORT 4
 #define GAIA_SYS_REGISTER_PORT 5
-#define GAIA_SYS_MMAP 6
+#define GAIA_SYS_VM_CREATE 6
 #define GAIA_SYS_CREATE_TASK 7
 #define GAIA_SYS_START_TASK 8
 #define GAIA_SYS_VM_WRITE 9
+#define GAIA_SYS_VM_MAP 10
 
 typedef struct
 {
