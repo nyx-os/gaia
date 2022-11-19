@@ -8,3 +8,4 @@ config.h
 outdoc
 *.elf
 .vscode
+limine.h
