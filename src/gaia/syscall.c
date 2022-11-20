@@ -3,11 +3,12 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include "gaia/rights.h"
 #include <context.h>
 #include <gaia/base.h>
+#include <gaia/error.h>
 #include <gaia/host.h>
 #include <gaia/ports.h>
+#include <gaia/rights.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
 #include <gaia/syscall.h>
@@ -17,8 +18,8 @@ static Charon _charon;
 
 static int sys_log(SyscallFrame frame)
 {
-    _log(LOG_NONE, NULL, "\x1b[34m([%d])\x1b[0m %s", sched_get_current_task()->pid, (char *)frame.first_arg);
-    return 0;
+    _log(LOG_NONE, NULL, "Debug [pid:%d] %s", sched_get_current_task()->pid, (char *)frame.first_arg);
+    return ERR_SUCCESS;
 }
 
 static int sys_alloc_port(SyscallFrame frame)
@@ -26,7 +27,7 @@ static int sys_alloc_port(SyscallFrame frame)
     uint32_t name = port_allocate(sched_get_current_task()->namespace, frame.first_arg);
     *frame.return_value = name;
 
-    return 0;
+    return ERR_SUCCESS;
 }
 
 struct PACKED user_task
@@ -48,13 +49,13 @@ static int sys_vm_create(SyscallFrame frame)
 
         if (!can_do_it)
         {
-            return -1;
+            return ERR_FORBIDDEN;
         }
     }
 
     *ret = vm_create(args);
 
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_vm_map(SyscallFrame frame)
@@ -70,7 +71,7 @@ static int sys_vm_map(SyscallFrame frame)
 
         if (!can_do_it)
         {
-            panic("! You can't do DMA why are you trying to map phys memory nerd");
+            return ERR_FORBIDDEN;
         }
     }
 
@@ -79,7 +80,7 @@ static int sys_vm_map(SyscallFrame frame)
 
     *frame.return_value = (uint64_t)vm_map(space, args);
 
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_create_task(SyscallFrame frame)
@@ -105,14 +106,14 @@ static int sys_create_task(SyscallFrame frame)
     }
     else
     {
-        return -1;
+        return ERR_FAILED;
     }
 
     struct user_task ret = {context_get_space(task->context), task->pid};
 
     *(struct user_task *)frame.first_arg = ret;
 
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_start_task(SyscallFrame frame)
@@ -120,22 +121,27 @@ static int sys_start_task(SyscallFrame frame)
     struct user_task *user_task = (struct user_task *)frame.first_arg;
     Task *task = sched_lookup_task(user_task->pid);
 
+    if (!task)
+    {
+        return ERR_INVALID_PARAMETERS;
+    }
+
     context_start(task->context, frame.second_arg, frame.third_arg, frame.fourth_arg);
     task->state = RUNNING;
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_register_port(SyscallFrame frame)
 {
     PortNamespace *ns = sched_get_current_task()->namespace;
     register_well_known_port(ns, frame.first_arg, ns->bindings.data[frame.second_arg]);
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_get_port(SyscallFrame frame)
 {
     *frame.return_value = sched_get_current_task()->namespace->well_known_ports[frame.first_arg].name;
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_exit(SyscallFrame frame)
@@ -144,19 +150,19 @@ static int sys_exit(SyscallFrame frame)
 
     log("Task %d exited", sched_get_current_task()->pid, frame.int_frame->rip);
     sched_tick(frame.int_frame);
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_msg(SyscallFrame frame)
 {
     *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int sys_vm_write(SyscallFrame frame)
 {
     vmm_write((void *)frame.first_arg, frame.second_arg, (void *)frame.third_arg, frame.fourth_arg);
-    return 0;
+    return ERR_SUCCESS;
 }
 
 static int (*syscall_table[])(SyscallFrame) = {

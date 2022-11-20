@@ -46,7 +46,6 @@ static void create_slab(Slab *slab, size_t size)
     slab->entry_size = size;
 
     // initialize the slab's header
-
     SlabHeader *slab_header = (SlabHeader *)slab->head;
 
     slab_header->slab = slab;
@@ -162,6 +161,6 @@ void slab_dump(void)
 {
     for (int i = 0; i < SLAB_COUNT; i++)
     {
-        trace("slab %d (block size: %d): %d bytes allocated", i, slabs[i].entry_size, slabs[i].used);
+        trace("slab %d (block size: %d): %d bytes allocated (%d objects)", i, slabs[i].entry_size, slabs[i].used, slabs[i].used / slabs[i].entry_size);
     }
 }

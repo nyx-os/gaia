@@ -9,6 +9,7 @@ BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -
 BUILDDIR = build
 KERNEL = $(BUILDDIR)/kernel.elf
 QEMU_MEMORY = 512m
+ISO := nyx.iso
 
 ifeq ($(CONFIG_LLVM), y)
 	TOOLCHAIN = llvm
