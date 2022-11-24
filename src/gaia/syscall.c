@@ -186,5 +186,5 @@ void syscall_init(Charon charon)
 
 void syscall(int num, SyscallFrame frame)
 {
-    syscall_table[num](frame);
+    *frame.errno = syscall_table[num](frame);
 }

@@ -29,7 +29,7 @@ typedef struct
     uintptr_t third_arg;
     uintptr_t fourth_arg;
     uintptr_t fifth_arg;
-    uintptr_t *return_value;
+    uintptr_t *return_value, *errno;
     uintptr_t intstruction_pointer;
     InterruptStackframe *int_frame;
 } SyscallFrame;

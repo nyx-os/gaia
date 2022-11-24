@@ -48,7 +48,9 @@ uintptr_t interrupts_handler(uint64_t rsp)
     case 0x42:
     {
         uintptr_t *ret = (uintptr_t *)((uint8_t *)stack + offsetof(InterruptStackframe, rax));
-        SyscallFrame frame = {stack->rdi, stack->rsi, stack->rdx, stack->rcx, stack->r8, ret, stack->rip, stack};
+        uintptr_t *errno = (uintptr_t *)((uint8_t *)stack + offsetof(InterruptStackframe, rbx));
+
+        SyscallFrame frame = {stack->rdi, stack->rsi, stack->rdx, stack->rcx, stack->r8, ret, errno, stack->rip, stack};
 
         syscall(stack->rax, frame);
 

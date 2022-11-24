@@ -40,6 +40,11 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
     context->frame.rip = entry_point;
     context->frame.rsp = stack_pointer;
 
+    if (stack_pointer < 0)
+    {
+        context->frame.rsp = USER_STACK_TOP;
+    }
+
     if (alloc_stack)
     {
         VmCreateArgs args = {.addr = 0, .size = MIB(8)};

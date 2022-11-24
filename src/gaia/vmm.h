@@ -15,13 +15,10 @@
 
 #define VM_MAP_ANONYMOUS (1 << 0)
 #define VM_MAP_FIXED (1 << 1)
-#define VM_MAP_SHARED (1 << 2)
-#define VM_MAP_PRIVATE (1 << 3)
-
-#define VM_MEM_PHYS (1 << 0)
 
 /* NOTE: this is specific to gaia and requires a DMA right */
-#define VM_MAP_PHYS (1 << 4)
+#define VM_MAP_PHYS (1 << 2)
+#define VM_MEM_PHYS (1 << 0)
 
 #define PROT_NONE (1 << 0)
 #define PROT_READ (1 << 1)

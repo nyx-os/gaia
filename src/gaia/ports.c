@@ -108,6 +108,7 @@ size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_
     if (type == PORT_SEND)
     {
         port_send(ns, header);
+        return header->size;
     }
 
     else if (type == PORT_RECV)
