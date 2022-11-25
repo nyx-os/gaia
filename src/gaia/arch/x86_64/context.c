@@ -50,7 +50,7 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
     {
         VmCreateArgs args = {.addr = 0, .size = MIB(8)};
         VmObject stack = vm_create(args);
-        VmMapArgs map_args = {.object = &stack, .vaddr = stack_pointer - MIB(8), .flags = VM_MAP_FIXED, .protection = VM_PROT_READ | VM_PROT_WRITE};
+        VmMapArgs map_args = {.object = &stack, .vaddr = context->frame.rsp - MIB(8), .flags = VM_MAP_FIXED, .protection = VM_PROT_READ | VM_PROT_WRITE};
         vm_map(context->space, map_args);
     }
 }

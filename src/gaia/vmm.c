@@ -32,6 +32,8 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
     VmMapping *mapping = slab_alloc(sizeof(VmMapping));
     uintptr_t phys = 0;
 
+trace("vm_map: vaddr=%p, size=%d, flags=%d, prot=%d", args.vaddr, args.object->size, args.flags, args.protection);
+
     if (!(args.protection & VM_PROT_EXEC))
     {
         actual_prot |= PAGE_NOT_EXECUTABLE;
@@ -126,7 +128,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-            // trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
+             trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
 #endif
 
             break;
