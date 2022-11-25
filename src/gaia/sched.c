@@ -93,11 +93,11 @@ Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights)
     context_start(ret->context, pc, USER_STACK_TOP, true);
 
     VmCreateArgs args = {.addr = host_virt_to_phys((uintptr_t)gaia_get_charon()),
-                         .flags = VM_MEM_PHYS,
+                         .flags = VM_MEM_DMA,
                          .size = ALIGN_UP(sizeof(Charon), 4096)};
 
     VmObject object = vm_create(args);
-    VmMapArgs map_args = {.object = &object, .flags = VM_MAP_ANONYMOUS | VM_MAP_PHYS, .protection = PROT_READ};
+    VmMapArgs map_args = {.object = &object, .flags = VM_MAP_ANONYMOUS | VM_MAP_PHYS, .protection = VM_PROT_READ};
 
     vm_map(context_get_space(ret->context), map_args);
 

@@ -13,21 +13,21 @@
 #define SRC_GAIA_VMM_H
 #include <gaia/base.h>
 
+#define VM_MEM_DMA (1 << 0)
+
+#define VM_PROT_NONE (1 << 0)
+#define VM_PROT_READ (1 << 1)
+#define VM_PROT_WRITE (1 << 2)
+#define VM_PROT_EXEC (1 << 3)
+
 #define VM_MAP_ANONYMOUS (1 << 0)
 #define VM_MAP_FIXED (1 << 1)
-
-/* NOTE: this is specific to gaia and requires a DMA right */
 #define VM_MAP_PHYS (1 << 2)
-#define VM_MEM_PHYS (1 << 0)
 
-#define PROT_NONE (1 << 0)
-#define PROT_READ (1 << 1)
-#define PROT_WRITE (1 << 2)
-#define PROT_EXEC (1 << 3)
 
 #define MMAP_BUMP_BASE 0x100000000
 
-typedef struct
+typedef struct PACKED
 {
     size_t size;
     uintptr_t addr;
@@ -40,7 +40,7 @@ typedef struct
     size_t size;
 } VmObject;
 
-typedef struct
+typedef struct PACKED
 {
     VmObject *object;
     uint16_t protection;

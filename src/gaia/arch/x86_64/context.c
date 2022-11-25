@@ -21,6 +21,7 @@ void context_init(Context *ctx, bool user)
     vmm_space_init(ctx->space);
 
     ctx->space->pagemap = &ctx->pagemap;
+    ctx->space->bump = MMAP_BUMP_BASE;
 
     ctx->frame.cs = user ? 0x43 : 0x28;
     ctx->frame.ss = user ? 0x3b : 0x30;
@@ -40,7 +41,7 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
     context->frame.rip = entry_point;
     context->frame.rsp = stack_pointer;
 
-    if (stack_pointer < 0)
+    if (!stack_pointer && alloc_stack)
     {
         context->frame.rsp = USER_STACK_TOP;
     }
@@ -49,7 +50,7 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
     {
         VmCreateArgs args = {.addr = 0, .size = MIB(8)};
         VmObject stack = vm_create(args);
-        VmMapArgs map_args = {.object = &stack, .vaddr = stack_pointer - MIB(8), .flags = VM_MAP_FIXED, .protection = PROT_READ | PROT_WRITE};
+        VmMapArgs map_args = {.object = &stack, .vaddr = stack_pointer - MIB(8), .flags = VM_MAP_FIXED, .protection = VM_PROT_READ | VM_PROT_WRITE};
         vm_map(context->space, map_args);
     }
 }

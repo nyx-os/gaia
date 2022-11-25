@@ -41,7 +41,7 @@ static int sys_vm_create(SyscallFrame frame)
     VmCreateArgs args = *(VmCreateArgs *)frame.first_arg;
     VmObject *ret = (VmObject *)frame.second_arg;
 
-    if (args.flags & VM_MEM_PHYS)
+    if (args.flags & VM_MEM_DMA)
     {
         bool can_do_it = false;
         if (sched_get_current_task()->rights & RIGHT_DMA)
@@ -75,8 +75,9 @@ static int sys_vm_map(SyscallFrame frame)
         }
     }
 
-    if (space == NULL)
+    if (space == NULL) {
         space = sched_get_current_task()->context->space;
+    }
 
     *frame.return_value = (uint64_t)vm_map(space, args);
 

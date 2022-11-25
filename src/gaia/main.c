@@ -43,6 +43,13 @@ void gaia_main(Charon *charon)
 
     memcpy(_charon, charon, sizeof(Charon));
 
+
+    for(size_t i = 0; i < _charon->modules.count; i++)
+    {
+        CharonModule module = _charon->modules.modules[i];
+        log("%s: %p", module.name, module.address);
+    }
+
     _charon->framebuffer.address = host_virt_to_phys(_charon->framebuffer.address);
 
     acpi_init(charon->rsdp);

@@ -14,7 +14,7 @@ VmObject vm_create(VmCreateArgs args)
 
     ret.size = ALIGN_UP(args.size, 4096);
 
-    if (args.flags & VM_MEM_PHYS)
+    if (args.flags & VM_MEM_DMA)
     {
         ret.buf = (void *)ALIGN_DOWN((uintptr_t)args.addr, 4096);
     }
@@ -32,12 +32,12 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
     VmMapping *mapping = slab_alloc(sizeof(VmMapping));
     uintptr_t phys = 0;
 
-    if (!(args.protection & PROT_EXEC))
+    if (!(args.protection & VM_PROT_EXEC))
     {
         actual_prot |= PAGE_NOT_EXECUTABLE;
     }
 
-    if (args.protection & PROT_WRITE)
+    if (args.protection & VM_PROT_WRITE)
     {
         actual_prot |= PAGE_WRITABLE;
     }
@@ -49,6 +49,7 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
 
     if (!(args.flags & VM_MAP_FIXED))
     {
+
         args.object->buf = (void *)space->bump;
         space->bump += args.object->size;
     }
