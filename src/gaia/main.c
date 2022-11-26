@@ -4,19 +4,19 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#include "gaia/rights.h"
-#include "stdc-shim/string.h"
 #include <gaia/base.h>
 #include <gaia/firmware/acpi.h>
 #include <gaia/firmware/lapic.h>
 #include <gaia/host.h>
 #include <gaia/pmm.h>
+#include <gaia/rights.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
 #include <stdbool.h>
+#include <stdc-shim/string.h>
 
 #define BOOTSTRAP_SERVER_NAME "/bootstrap"
 #define BOOTSTRAP_SERVER_NAME_LENGTH 10
@@ -43,8 +43,7 @@ void gaia_main(Charon *charon)
 
     memcpy(_charon, charon, sizeof(Charon));
 
-
-    for(size_t i = 0; i < _charon->modules.count; i++)
+    for (size_t i = 0; i < _charon->modules.count; i++)
     {
         CharonModule module = _charon->modules.modules[i];
         log("%s: %p", module.name, module.address);
