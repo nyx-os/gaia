@@ -8,7 +8,7 @@ KERNEL_C_SOURCES = 	 $(wildcard src/gaia/*.c) \
 				 	 $(wildcard src/gaia/*/*.c) \
 				 	 $(wildcard src/gaia/arch/$(ARCH)/*.c) \
 				 	 $(wildcard src/lib/gaia/*.c) \
-				 	 $(wildcard src/lib/stdc-shim/*.c)
+				 	 $(wildcard src/lib/stdc-shim/src/*.c)
 
 KERNEL_ASM_SOURCES = $(wildcard src/gaia/arch/$(ARCH)/*.s)
 

@@ -5,7 +5,7 @@
 -include .config
 
 DIRECTORY_GUARD = mkdir -p $(@D)
-BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -Isrc -Isrc/lib -MMD -fno-builtin -Wno-address-of-packed-member
+BASE_CFLAGS = -std=c99 -Wall -Wextra -Werror -pedantic -Isrc/gaia/arch/$(ARCH) -Isrc -Isrc/lib -MMD -fno-builtin -Wno-address-of-packed-member -Isrc/lib/stdc-shim/include
 BUILDDIR = build
 KERNEL = $(BUILDDIR)/kernel.elf
 QEMU_MEMORY = 512m

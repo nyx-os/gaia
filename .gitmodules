@@ -2,3 +2,6 @@
 	path = thirdparty/limine
 	url = https://github.com/limine-bootloader/limine
 	branch = v3.0-branch-binary
+[submodule "src/lib/stdc-shim"]
+	path = src/lib/stdc-shim
+	url = https://github.com/nyx-org/stdc-shim
