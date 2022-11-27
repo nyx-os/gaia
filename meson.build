@@ -6,6 +6,10 @@ kernel_deps = []
 
 c_args = ['-ffreestanding', '-nostdlib']
 
+if get_option('debug_trace') == true
+    c_args += ['-DDEBUG']
+endif
+
 subdir('src')
 
 arch_path = join_paths(meson.current_source_dir() , 'src/gaia/arch', target_machine.cpu_family())
