@@ -4,9 +4,9 @@ kernel_srcs = []
 kernel_inc_dirs = []
 kernel_deps = []
 
-subdir('src')
-
 c_args = ['-ffreestanding', '-nostdlib']
+
+subdir('src')
 
 arch_path = join_paths(meson.current_source_dir() , 'src/gaia/arch', target_machine.cpu_family())
 
