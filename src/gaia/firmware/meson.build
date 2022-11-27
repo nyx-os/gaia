@@ -1,0 +1,1 @@
+kernel_srcs += files('acpi.c', 'hpet.c', 'ioapic.c', 'lapic.c', 'madt.c')
