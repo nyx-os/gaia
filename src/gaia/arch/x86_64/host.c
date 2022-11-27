@@ -10,10 +10,10 @@
 #include "idt.h"
 #include "paging.h"
 #include <gaia/base.h>
+#include <gaia/limine.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
 #include <gaia/term.h>
-#include <limine.h>
 #include <stdc-shim/string.h>
 
 void host_out8(uint16_t port, uint8_t value)

@@ -6,7 +6,7 @@
 
 #include <gaia/base.h>
 #include <gaia/charon.h>
-#include <limine.h>
+#include <gaia/limine.h>
 #include <stdc-shim/string.h>
 #include <stddef.h>
 #include <stdint.h>

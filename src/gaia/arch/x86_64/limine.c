@@ -5,7 +5,7 @@
  */
 
 #include <gaia/charon.h>
-#include <limine.h>
+#include <gaia/limine.h>
 #include <stdc-shim/string.h>
 
 volatile static struct limine_rsdp_request rsdp_request = {

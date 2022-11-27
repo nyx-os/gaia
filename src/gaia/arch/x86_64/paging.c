@@ -9,8 +9,8 @@
 #include "gaia/host.h"
 #include "gaia/spinlock.h"
 #include <cpuid.h>
+#include <gaia/limine.h>
 #include <gaia/pmm.h>
-#include <limine.h>
 #include <paging.h>
 #include <stdc-shim/string.h>
 
