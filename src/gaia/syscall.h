@@ -21,6 +21,7 @@
 #define GAIA_SYS_START_TASK 8
 #define GAIA_SYS_VM_WRITE 9
 #define GAIA_SYS_VM_MAP 10
+#define GAIA_SYS_VM_REGISTER 11
 
 typedef struct
 {
@@ -30,7 +31,7 @@ typedef struct
     uintptr_t fourth_arg;
     uintptr_t fifth_arg;
     uintptr_t *return_value, *errno;
-    uintptr_t intstruction_pointer;
+    uintptr_t instruction_pointer;
     InterruptStackframe *int_frame;
 } SyscallFrame;
 

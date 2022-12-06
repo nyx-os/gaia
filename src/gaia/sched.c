@@ -39,7 +39,7 @@ void sched_init(void)
     lock = (Spinlock){0};
     vec_init(&running_tasks);
 
-    idle_task = sched_create_new_task(false);
+    idle_task = sched_create_new_task(false, RIGHT_NULL);
     void *stack = pmm_alloc_zero();
 
     context_start(idle_task->context, (uintptr_t)idle, (uintptr_t)stack + MMAP_IO_BASE, false);
@@ -48,11 +48,13 @@ void sched_init(void)
     restore_frame = false;
 }
 
-Task *sched_create_new_task(bool user)
+Task *sched_create_new_task(bool user, Rights rights)
 {
     lock_acquire(&lock);
 
     Task *ret = slab_alloc(sizeof(Task));
+
+    ret->rights = rights;
 
     ret->context = slab_alloc(sizeof(Context));
 
@@ -60,7 +62,7 @@ Task *sched_create_new_task(bool user)
     ret->pid = current_pid++;
     ret->namespace = slab_alloc(sizeof(PortNamespace));
 
-    ret->rights = RIGHT_NULL;
+    ret->rights = rights;
 
     vec_init(&ret->namespace->bindings);
 
@@ -82,9 +84,7 @@ Task *sched_create_new_task(bool user)
 
 Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights)
 {
-    Task *ret = sched_create_new_task(true);
-
-    ret->rights = rights;
+    Task *ret = sched_create_new_task(true, rights);
 
     uintptr_t pc;
 
@@ -93,13 +93,11 @@ Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights)
     context_start(ret->context, pc, USER_STACK_TOP, true);
 
     VmCreateArgs args = {.addr = host_virt_to_phys((uintptr_t)gaia_get_charon()),
-                         .flags = VM_MEM_DMA,
+                         .flags = 0,
                          .size = ALIGN_UP(sizeof(Charon), 4096)};
 
     VmObject object = vm_create(args);
-    VmMapArgs map_args = {.object = &object, .flags = VM_MAP_ANONYMOUS | VM_MAP_PHYS, .protection = VM_PROT_READ};
-
-    vm_map(context_get_space(ret->context), map_args);
+    vm_map_phys(context_get_space(ret->context), &object, args.addr, 0, VM_PROT_READ, VM_MAP_ANONYMOUS | VM_MAP_DMA);
 
     ret->context->frame.rdi = (uintptr_t)object.buf;
 

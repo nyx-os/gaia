@@ -43,12 +43,6 @@ void gaia_main(Charon *charon)
 
     memcpy(_charon, charon, sizeof(Charon));
 
-    for (size_t i = 0; i < _charon->modules.count; i++)
-    {
-        CharonModule module = _charon->modules.modules[i];
-        log("%s: %p", module.name, module.address);
-    }
-
     _charon->framebuffer.address = host_virt_to_phys(_charon->framebuffer.address);
 
     acpi_init(charon->rsdp);
@@ -66,7 +60,7 @@ void gaia_main(Charon *charon)
     {
         if (strncmp(charon->modules.modules[i].name, BOOTSTRAP_SERVER_NAME, BOOTSTRAP_SERVER_NAME_LENGTH) == 0)
         {
-            sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)), RIGHT_DMA);
+            sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)), RIGHT_DMA | RIGHT_REGISTER_DMA);
             found = true;
             break;
         }

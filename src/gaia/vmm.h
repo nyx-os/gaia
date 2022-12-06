@@ -22,8 +22,9 @@
 
 #define VM_MAP_ANONYMOUS (1 << 0)
 #define VM_MAP_FIXED (1 << 1)
-#define VM_MAP_PHYS (1 << 2)
+#define VM_MAP_DMA (1 << 2)
 
+#define VM_REGION_UNIQUE (1 << 0)
 
 #define MMAP_BUMP_BASE 0x100000000
 
@@ -57,11 +58,20 @@ typedef struct vm_mapping
     struct vm_mapping *next;
 } VmMapping;
 
+typedef struct vm_mappable_region
+{
+    uintptr_t address;
+    size_t size;
+    bool unique;
+    struct vm_mappable_region *next;
+} VmMappableRegion;
+
 typedef struct
 {
     uintptr_t bump;
     VmMapping *mappings;
     Pagemap *pagemap;
+    VmMappableRegion *mappable_regions;
 } VmmMapSpace;
 
 void vmm_space_init(VmmMapSpace *space);
@@ -70,6 +80,9 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address);
 
 VmObject vm_create(VmCreateArgs args);
 int vm_map(VmmMapSpace *space, VmMapArgs args);
+int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t vaddr, uint16_t protection, uint16_t flags);
 void vmm_vm_unmap(VmmMapSpace *space, uintptr_t addr);
+void vm_new_mappable_region(VmmMapSpace *space, uintptr_t address, size_t size, uint16_t flags);
+bool vm_check_mappable_region(VmmMapSpace *space, uintptr_t address, size_t size);
 
 #endif

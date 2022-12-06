@@ -1,3 +1,6 @@
+#include "gaia/charon.h"
+#include "gaia/debug.h"
+#include <gaia/error.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
 #include <gaia/vmm.h>
@@ -16,7 +19,7 @@ VmObject vm_create(VmCreateArgs args)
 
     if (args.flags & VM_MEM_DMA)
     {
-        ret.buf = (void *)ALIGN_DOWN((uintptr_t)args.addr, 4096);
+        ret.buf = (void *)(ALIGN_DOWN(args.addr, 4096));
     }
     else
     {
@@ -24,6 +27,66 @@ VmObject vm_create(VmCreateArgs args)
     }
 
     return ret;
+}
+
+static bool is_unique_region_in_use(VmmMapSpace *space, uintptr_t address)
+{
+    VmMappableRegion *region = space->mappable_regions;
+
+    while (region)
+    {
+        if (region->unique)
+        {
+            if (address >= region->address && address < region->address + region->size)
+            {
+                return true;
+            }
+        }
+        region = region->next;
+    }
+
+    return false;
+}
+
+int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t vaddr, uint16_t protection, uint16_t flags)
+{
+    uint16_t actual_prot = PAGE_USER;
+    VmMapping *mapping = slab_alloc(sizeof(VmMapping));
+
+    if (!(protection & VM_PROT_EXEC))
+    {
+        actual_prot |= PAGE_NOT_EXECUTABLE;
+    }
+
+    if (protection & VM_PROT_WRITE)
+    {
+        actual_prot |= PAGE_WRITABLE;
+    }
+
+    if (!(flags & VM_MAP_FIXED))
+    {
+        object->buf = (void *)space->bump;
+        space->bump += object->size;
+    }
+
+    if (flags & VM_MAP_FIXED && vaddr != 0)
+    {
+        object->buf = (void *)(ALIGN_DOWN(vaddr, 4096));
+    }
+
+    assert(mapping != NULL);
+    assert(space != NULL);
+
+    mapping->actual_protection = actual_prot;
+    mapping->object = *object;
+    mapping->phys = (uintptr_t)phys;
+    mapping->allocated_size = 0;
+    mapping->address = (uintptr_t)object->buf;
+
+    mapping->next = space->mappings;
+    space->mappings = mapping;
+
+    return 0;
 }
 
 int vm_map(VmmMapSpace *space, VmMapArgs args)
@@ -42,14 +105,35 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
         actual_prot |= PAGE_WRITABLE;
     }
 
-    if (args.flags & VM_MAP_PHYS)
+    if (args.flags & VM_MAP_DMA)
     {
         phys = (uintptr_t)args.object->buf;
+
+        if (is_unique_region_in_use(space, phys))
+        {
+            return ERR_IN_USE;
+        }
+
+        bool found = false;
+        VmMappableRegion *region = space->mappable_regions;
+        while (region)
+        {
+            if (phys >= region->address && phys < region->address + region->size)
+            {
+                found = true;
+                break;
+            }
+            region = region->next;
+        }
+
+        if (!found)
+        {
+            return ERR_FORBIDDEN;
+        }
     }
 
     if (!(args.flags & VM_MAP_FIXED))
     {
-
         args.object->buf = (void *)space->bump;
         space->bump += args.object->size;
     }
@@ -71,7 +155,56 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
     mapping->next = space->mappings;
     space->mappings = mapping;
 
-    return 0;
+    return ERR_SUCCESS;
+}
+
+void vm_new_mappable_region(VmmMapSpace *space, uintptr_t address, size_t size, uint16_t flags)
+{
+    VmMappableRegion *region = slab_alloc(sizeof(VmMappableRegion));
+    region->address = address;
+    region->size = size;
+    region->unique = (flags & VM_REGION_UNIQUE);
+
+    region->next = space->mappable_regions;
+    space->mappable_regions = region;
+}
+
+bool vm_check_mappable_region(VmmMapSpace *space, uintptr_t address, size_t size)
+{
+    uintptr_t addr_end = address + size;
+    Charon *charon = gaia_get_charon();
+    CharonMemoryMap map = charon->memory_map;
+    CharonModules modules = charon->modules;
+
+    if (is_unique_region_in_use(space, address))
+    {
+        return false;
+    }
+
+    for (int i = 0; i < map.count; i++)
+    {
+        if (map.entries[i].type == MMAP_FREE || map.entries[i].type == MMAP_RECLAIMABLE)
+            continue;
+
+        if (map.entries[i].type == MMAP_FRAMEBUFFER || map.entries[i].type == MMAP_RESERVED)
+        {
+            // If address is in range of this region, return true
+            if (address >= map.entries[i].base && addr_end <= map.entries[i].base + map.entries[i].size)
+            {
+                return true;
+            }
+        }
+    }
+
+    for (int i = 0; i < modules.count; i++)
+    {
+        if (address >= modules.modules[i].address && addr_end <= modules.modules[i].address + modules.modules[i].size)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void vmm_munmap(VmmMapSpace *space, uintptr_t addr)
@@ -126,7 +259,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-             //trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
+            // trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
 #endif
 
             break;

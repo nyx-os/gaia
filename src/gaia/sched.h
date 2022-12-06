@@ -45,7 +45,7 @@ VmmMapSpace *context_get_space(Context *context);
 
 void sched_tick(InterruptStackframe *frame);
 
-Task *sched_create_new_task(bool user);
+Task *sched_create_new_task(bool user, Rights rights);
 
 Task *sched_create_new_task_from_elf(uint8_t *data, Rights rights);
 void sched_save_state(InterruptStackframe *frame);

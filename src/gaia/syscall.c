@@ -63,7 +63,7 @@ static int sys_vm_map(SyscallFrame frame)
     void *space = (void *)frame.first_arg;
     VmMapArgs args = *(VmMapArgs *)frame.second_arg;
 
-    if (args.flags & VM_MAP_PHYS)
+    if (args.flags & VM_MAP_DMA)
     {
         bool can_do_it = false;
         if (sched_get_current_task()->rights & RIGHT_DMA)
@@ -75,18 +75,31 @@ static int sys_vm_map(SyscallFrame frame)
         }
     }
 
-    if (space == NULL) {
+    if (space == NULL)
+    {
         space = sched_get_current_task()->context->space;
     }
 
-    *frame.return_value = (uint64_t)vm_map(space, args);
+    int err = ERR_SUCCESS;
+
+    if ((err = vm_map(space, args)) != ERR_SUCCESS)
+    {
+        return err;
+    }
 
     return ERR_SUCCESS;
 }
 
 static int sys_create_task(SyscallFrame frame)
 {
-    Task *task = sched_create_new_task(true);
+
+    if ((frame.second_arg & sched_get_current_task()->rights) != frame.second_arg)
+    {
+        log("e");
+        return ERR_FORBIDDEN;
+    }
+
+    Task *task = sched_create_new_task(true, frame.second_arg);
 
     if (task)
     {
@@ -149,7 +162,7 @@ static int sys_exit(SyscallFrame frame)
 {
     sched_get_current_task()->state = STOPPED;
 
-    log("Task %d exited", sched_get_current_task()->pid, frame.int_frame->rip);
+    log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
     sched_tick(frame.int_frame);
     return ERR_SUCCESS;
 }
@@ -166,6 +179,33 @@ static int sys_vm_write(SyscallFrame frame)
     return ERR_SUCCESS;
 }
 
+static int sys_vm_register(SyscallFrame frame)
+{
+    VmmMapSpace *space = (VmmMapSpace *)frame.first_arg;
+    uintptr_t address = frame.second_arg;
+    size_t size = frame.third_arg;
+    uint16_t flags = frame.fourth_arg;
+
+    if (!(sched_get_current_task()->rights & RIGHT_REGISTER_DMA))
+    {
+        return ERR_FORBIDDEN;
+    }
+
+    if (!space)
+    {
+        space = context_get_space(sched_get_current_task()->context);
+    }
+
+    if (!vm_check_mappable_region(space, address, size))
+    {
+        return ERR_INVALID_PARAMETERS;
+    }
+
+    vm_new_mappable_region(space, address, size, flags);
+
+    return ERR_SUCCESS;
+}
+
 static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_LOG] = sys_log,
     [GAIA_SYS_ALLOC_PORT] = sys_alloc_port,
@@ -178,6 +218,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_START_TASK] = sys_start_task,
     [GAIA_SYS_VM_WRITE] = sys_vm_write,
     [GAIA_SYS_VM_CREATE] = sys_vm_create,
+    [GAIA_SYS_VM_REGISTER] = sys_vm_register,
 };
 
 void syscall_init(Charon charon)
