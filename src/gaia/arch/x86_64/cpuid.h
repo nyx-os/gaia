@@ -19,6 +19,7 @@ typedef struct
 Cpuid cpuid(uint32_t leaf, uint32_t subleaf);
 
 #define CPUID_LEAF_EXTENDED_FEATURES 0x80000001
+#define CPUID_PROC_EXTENDED_STATE_ENUMERATION 13
 
 // Stored in ECX
 typedef enum

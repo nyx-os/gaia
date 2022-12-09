@@ -8,6 +8,7 @@
 #include "gaia/base.h"
 #include "gaia/host.h"
 #include "gaia/spinlock.h"
+#include <asm.h>
 #include <cpuid.h>
 #include <gaia/limine.h>
 #include <gaia/pmm.h>
@@ -183,10 +184,7 @@ void paging_unmap_page(Pagemap *pagemap, uintptr_t vaddr)
 
 void paging_load_pagemap(Pagemap *pagemap)
 {
-    __asm__ volatile("mov %0, %%cr3"
-                     :
-                     : "r"(pagemap->pml4)
-                     : "memory");
+    asm_write_cr3((uint64_t)pagemap->pml4);
 }
 
 Pagemap *paging_get_kernel_pagemap()

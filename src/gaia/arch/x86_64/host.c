@@ -9,6 +9,7 @@
 #include "gdt.h"
 #include "idt.h"
 #include "paging.h"
+#include "simd.h"
 #include <gaia/base.h>
 #include <gaia/limine.h>
 #include <gaia/pmm.h>
@@ -118,6 +119,7 @@ void host_initialize(void)
     paging_initialize();
     gdt_initialize();
     idt_initialize();
+    simd_initialize();
 }
 
 void *host_allocate_page(void)

@@ -10,11 +10,15 @@
 #include <gaia/pmm.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
+#include <simd.h>
 
 void context_init(Context *ctx, bool user)
 {
     ctx->space = slab_alloc(sizeof(VmmMapSpace));
     ctx->pagemap.pml4 = pmm_alloc_zero();
+    ctx->fpu_state = (void *)(host_phys_to_virt((uintptr_t)pmm_alloc_zero()));
+
+    simd_initialize_context(ctx->fpu_state);
 
     assert(ctx->pagemap.pml4 != NULL);
 
@@ -57,11 +61,13 @@ void context_start(Context *context, uintptr_t entry_point, uintptr_t stack_poin
 
 void context_save(Context *context, InterruptStackframe *frame)
 {
+    simd_save_state(context->fpu_state);
     context->frame = *frame;
 }
 
 void context_switch(Context *context, InterruptStackframe *frame)
 {
+    simd_restore_state(context->fpu_state);
     paging_load_pagemap(&context->pagemap);
     *frame = context->frame;
 }

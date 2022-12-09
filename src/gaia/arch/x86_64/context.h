@@ -16,6 +16,7 @@ struct Context
     Pagemap pagemap;
     uintptr_t stack_low_half, stack_high_half;
     VmmMapSpace *space;
+    void *fpu_state;
 };
 
 #endif /* ARCH_X86_64_CONTEXT_H */

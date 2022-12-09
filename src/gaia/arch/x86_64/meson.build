@@ -8,6 +8,7 @@ kernel_srcs += files('context.c',
   'interrupts.c',
   'paging.c',
   'limine.c',
+  'simd.c',
   'idt.asm',
   'gdt.asm')
 
