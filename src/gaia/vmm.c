@@ -1,5 +1,6 @@
 #include "gaia/charon.h"
 #include "gaia/debug.h"
+#include "gaia/host.h"
 #include <gaia/error.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
@@ -9,6 +10,7 @@
 void vmm_space_init(VmmMapSpace *space)
 {
     space->bump = MMAP_BUMP_BASE;
+    space->mappings = NULL;
 }
 
 VmObject vm_create(VmCreateArgs args)
@@ -223,22 +225,20 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
     VmMapping *mapping = space->mappings;
 
-    uintptr_t aligned_addr = ALIGN_DOWN(faulting_address, 4096);
-
     while (mapping)
     {
-        if (aligned_addr >= mapping->address && aligned_addr <= mapping->address + mapping->object.size && mapping->allocated_size != mapping->object.size)
+        if (faulting_address >= mapping->address && faulting_address <= mapping->address + mapping->object.size && mapping->allocated_size != mapping->object.size)
         {
             found = true;
 
             uintptr_t virt = mapping->address + mapping->allocated_size;
 
-            if (aligned_addr > mapping->address)
+            if (faulting_address > mapping->address)
             {
-                virt = aligned_addr;
+                virt = faulting_address;
             }
 
-            else if (aligned_addr > mapping->address + mapping->object.size)
+            else if (faulting_address > mapping->address + mapping->object.size)
             {
                 found = false;
                 break;
@@ -259,7 +259,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-            // trace("Demand paged one page at %p in range starting from %p (aligned_addr=%p)", virt, mapping->address, aligned_addr);
+            // trace("Demand paged one page at %p in range starting from %p (faulting_address=%p, phys=%p)", virt, mapping->address, faulting_address, (faulting_address - mapping->address) + mapping->phys);
 #endif
 
             break;
@@ -273,9 +273,10 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
 void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
 {
-    assert(count < 4096);
-
-    assert(vmm_page_fault_handler(space, address) == true);
+    for (size_t i = 0; i < ALIGN_UP(count, 4096) / 4096; i++)
+    {
+        assert(vmm_page_fault_handler(space, address + (i * 4096)) == true);
+    }
 
     VmMapping *mapping = space->mappings;
 
@@ -287,6 +288,26 @@ void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
         mapping = mapping->next;
     }
 
-    void *virt_addr = (void *)(host_phys_to_virt(mapping->phys) + address - mapping->address);
-    memcpy(virt_addr, data, count);
+    void *virt_addr = (void *)(host_phys_to_virt(mapping->phys) + (address - mapping->address));
+
+    if (count % 8 == 0)
+    {
+        uint64_t *d = virt_addr;
+        const uint64_t *s = data;
+
+        for (size_t i = 0; i < count / 8; i++)
+        {
+            d[i] = s[i];
+        }
+    }
+    else
+    {
+        uint8_t *d = virt_addr;
+        const uint8_t *s = data;
+
+        for (size_t i = 0; i < count; i++)
+        {
+            d[i] = s[i];
+        }
+    }
 }

@@ -22,19 +22,12 @@ void elf_load(uint8_t *elf, uint64_t *entry, Context *context)
             size_t misalign = program_header->p_vaddr & (PAGE_SIZE - 1);
             size_t page_count = DIV_CEIL(misalign + program_header->p_memsz, PAGE_SIZE);
 
-            for (size_t i = 0; i < page_count; i++)
-            {
-                uintptr_t addr = (uintptr_t)pmm_alloc_zero();
+            VmCreateArgs args = {.addr = 0, .size = page_count * PAGE_SIZE, .flags = 0};
+            VmObject obj = vm_create(args);
 
-                VmCreateArgs args = {.addr = addr, .flags = VM_MEM_DMA, .size = PAGE_SIZE};
-
-                VmObject elf_obj = vm_create(args);
-                vm_map_phys(context->space, &elf_obj, addr, program_header->p_vaddr, VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXEC, VM_MAP_FIXED | VM_MAP_DMA);
-
-                memcpy((void *)(host_phys_to_virt(addr) + misalign), (void *)(elf + program_header->p_offset), program_header->p_filesz);
-                memset((void *)(host_phys_to_virt(addr) + misalign + program_header->p_filesz), 0,
-                       program_header->p_memsz - program_header->p_filesz);
-            }
+            VmMapArgs map_args = {.object = &obj, .protection = VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXEC, .vaddr = program_header->p_vaddr, .flags = VM_MAP_FIXED};
+            vm_map(context->space, map_args);
+            vmm_write(context->space, program_header->p_vaddr, (void *)(elf + program_header->p_offset), program_header->p_filesz);
         }
 
         program_header = (Elf64ProgramHeader *)((uint8_t *)program_header + header->e_phentsize);

@@ -27,7 +27,9 @@ uintptr_t interrupts_handler(uint64_t rsp)
     if (stack->intno == 0xe)
     {
         if (sched_get_current_task())
+        {
             pf_ok = vmm_page_fault_handler(context_get_space(sched_get_current_task()->context), read_cr2());
+        }
     }
 
     if (!pf_ok && stack->intno < 32)
