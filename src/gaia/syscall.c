@@ -30,6 +30,12 @@ static int sys_alloc_port(SyscallFrame frame)
     return ERR_SUCCESS;
 }
 
+static int sys_free_port(SyscallFrame frame)
+{
+    port_free(sched_get_current_task()->namespace, frame.first_arg);
+    return ERR_SUCCESS;
+}
+
 struct PACKED user_task
 {
     VmmMapSpace *space;
@@ -219,6 +225,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_VM_WRITE] = sys_vm_write,
     [GAIA_SYS_VM_CREATE] = sys_vm_create,
     [GAIA_SYS_VM_REGISTER] = sys_vm_register,
+    [GAIA_SYS_FREE_PORT] = sys_free_port,
 };
 
 void syscall_init(Charon charon)

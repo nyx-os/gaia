@@ -22,6 +22,7 @@
 #define GAIA_SYS_VM_WRITE 9
 #define GAIA_SYS_VM_MAP 10
 #define GAIA_SYS_VM_REGISTER 11
+#define GAIA_SYS_FREE_PORT 12
 
 typedef struct
 {

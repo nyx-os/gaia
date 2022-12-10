@@ -23,6 +23,7 @@
 
 #define PORT_MSG_TYPE_DEFAULT (1 << 0)
 #define PORT_MSG_TYPE_RIGHT (1 << 1)
+#define PORT_MSG_TYPE_RIGHT_ONCE (1 << 2)
 
 #define PORT_DEAD (~0)
 #define PORT_NULL (0)
@@ -69,6 +70,7 @@ typedef struct
     uint8_t rights; // Port rights
 
     uint32_t port; // To which port it refers to (NOTE: This is NOT seen by the user)
+    bool send_once;
 } PortBinding;
 
 typedef struct
@@ -82,6 +84,8 @@ typedef struct
 size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header);
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights);
+
+void port_free(PortNamespace *ns, uint32_t name);
 
 void port_send(PortNamespace *ns, PortMessageHeader *message);
 

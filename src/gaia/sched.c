@@ -66,7 +66,7 @@ Task *sched_create_new_task(bool user, Rights rights)
 
     vec_init(&ret->namespace->bindings);
 
-    PortBinding null_binding = {PORT_NULL, 0, 0};
+    PortBinding null_binding = {PORT_NULL, 0, 0, false};
     vec_push(&ret->namespace->bindings, null_binding);
     ret->namespace->current_name = 1;
 
