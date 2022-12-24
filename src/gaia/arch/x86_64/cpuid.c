@@ -9,14 +9,14 @@ Cpuid cpuid(uint32_t leaf, uint32_t subleaf)
 {
     Cpuid ret = {0};
 
-    uint32_t cpuid_max;
+    uint32_t cpuid_max = 0;
 
     __asm__ volatile("cpuid"
                      : "=a"(cpuid_max)
                      : "a"(leaf & 0x80000000)
                      : "ebx", "ecx", "edx");
 
-    assert(leaf < cpuid_max);
+    assert(leaf <= cpuid_max);
 
     __asm__ volatile("cpuid"
                      : "=a"(ret.eax), "=b"(ret.ebx), "=c"(ret.ecx), "=d"(ret.edx)

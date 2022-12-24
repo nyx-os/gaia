@@ -151,6 +151,12 @@ static int sys_start_task(SyscallFrame frame)
     return ERR_SUCCESS;
 }
 
+static int sys_yield(SyscallFrame frame)
+{
+    sched_tick(frame.int_frame);
+    return ERR_SUCCESS;
+}
+
 static int sys_register_port(SyscallFrame frame)
 {
     PortNamespace *ns = sched_get_current_task()->namespace;
@@ -226,6 +232,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_VM_CREATE] = sys_vm_create,
     [GAIA_SYS_VM_REGISTER] = sys_vm_register,
     [GAIA_SYS_FREE_PORT] = sys_free_port,
+    [GAIA_SYS_YIELD] = sys_yield,
 };
 
 void syscall_init(Charon charon)

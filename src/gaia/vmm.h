@@ -55,6 +55,7 @@ typedef struct vm_mapping
     size_t allocated_size;
     uintptr_t phys, address;
     uint16_t actual_protection;
+    bool is_dma;
     struct vm_mapping *next;
 } VmMapping;
 
@@ -66,12 +67,19 @@ typedef struct vm_mappable_region
     struct vm_mappable_region *next;
 } VmMappableRegion;
 
+typedef struct vm_phys_binding
+{
+    uintptr_t phys, virt;
+    struct vm_phys_binding *next;
+} VmPhysBinding;
+
 typedef struct
 {
     uintptr_t bump;
     VmMapping *mappings;
     Pagemap *pagemap;
     VmMappableRegion *mappable_regions;
+    VmPhysBinding *phys_bindings;
 } VmmMapSpace;
 
 void vmm_space_init(VmmMapSpace *space);

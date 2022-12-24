@@ -19,7 +19,7 @@
 #define PORT_RIGHT_RECV (1 << 0)
 #define PORT_RIGHT_SEND (1 << 1)
 
-#define PORT_QUEUE_MAX 16
+#define PORT_QUEUE_MAX 32
 
 #define PORT_MSG_TYPE_DEFAULT (1 << 0)
 #define PORT_MSG_TYPE_RIGHT (1 << 1)
@@ -36,28 +36,28 @@ typedef struct PACKED
     uint32_t size;
     uint32_t dest;
     uint32_t port_right;
-    uint8_t port_type;
 } PortMessageHeader;
 
 typedef struct
 {
-    uint32_t port;
+    void *port;
 } PortMessageKernelData;
 
 typedef struct PACKED
 {
-    PortMessageHeader header;
+    PortMessageHeader *header;
     PortMessageKernelData kernel_data;
 } PortMessage;
 
 typedef struct
 {
-    int head, tail, length;
-    PortMessage *messages[PORT_QUEUE_MAX];
+    uint16_t head, tail, length;
+    PortMessage messages[PORT_QUEUE_MAX];
 } PortQueue;
 
 typedef struct
 {
+    uint16_t ref_count;
     PortQueue queue;
 } Port;
 
@@ -69,7 +69,7 @@ typedef struct
     uint32_t name;  // Its name
     uint8_t rights; // Port rights
 
-    uint32_t port; // To which port it refers to (NOTE: This is NOT seen by the user)
+    void *port; // To which port it refers to (NOTE: This is NOT seen by the user)
     bool send_once;
 } PortBinding;
 

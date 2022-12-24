@@ -3,8 +3,8 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include "gaia/host.h"
 #include <gaia/firmware/hpet.h>
+#include <gaia/host.h>
 
 static uint64_t hpet_base = 0;
 static uint64_t clock = 0;
@@ -23,7 +23,10 @@ void hpet_initialize(void)
 {
     Hpet *hpet = (Hpet *)acpi_get_table("HPET");
 
-    assert(hpet != NULL);
+    if (!hpet)
+    {
+        panic("HPET not found, get a new PC");
+    }
 
     hpet_base = host_phys_to_virt(hpet->address);
 

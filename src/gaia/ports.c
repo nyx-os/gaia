@@ -1,16 +1,30 @@
 #include <gaia/ports.h>
 #include <gaia/slab.h>
 
-static Vec(Port) ports;
+typedef struct port_list_item
+{
+    Port data;
+    struct port_list_item *prev, *next;
+} PortListItem;
+
+static PortListItem *port_list_head = NULL;
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights)
 {
-    Port new_port = {{0}};
+    Port new_port = {1, {0}};
 
-    vec_push(&ports, new_port);
+    PortListItem *new_item = slab_alloc(sizeof(PortListItem));
+
+    new_item->data = new_port;
+    new_item->next = port_list_head;
+
+    if (port_list_head)
+        port_list_head->prev = new_item;
+
+    port_list_head = new_item;
 
     // Add new port binding to namespace
-    PortBinding binding = {ns->current_name++, rights, ports.length - 1, false};
+    PortBinding binding = {ns->current_name++, rights, new_item, false};
 
     vec_push(&ns->bindings, binding);
 
@@ -23,10 +37,26 @@ void port_free(PortNamespace *ns, uint32_t name)
     {
         if (ns->bindings.data[i].name == name)
         {
+            PortListItem *port_item = ns->bindings.data[i].port;
+
             for (size_t j = i; j < ns->bindings.length; ++j)
                 ns->bindings.data[j] = ns->bindings.data[j + 1];
 
             ns->bindings.length--;
+
+            if (port_item->data.ref_count > 0)
+                port_item->data.ref_count--;
+
+            if (!port_item->data.ref_count)
+            {
+                for (int i = 0; i < port_item->data.queue.length; i++)
+                {
+                    slab_free(port_item->data.queue.messages[i].header);
+                }
+
+                slab_free(port_item);
+            }
+
             break;
         }
     }
@@ -36,18 +66,26 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
 {
     Port *port = NULL;
 
-    if (message->dest < 0 || message->dest >= ns->bindings.length)
+    if (message->dest < 0)
     {
         panic("Name %d not found in namespace", message->dest);
     }
 
-    PortBinding binding = ns->bindings.data[message->dest];
+    PortBinding binding = {0};
 
-    port = &ports.data[binding.port];
+    for (size_t i = 0; i < ns->bindings.length; i++)
+    {
+        if (ns->bindings.data[i].name == message->dest)
+        {
+            binding = ns->bindings.data[i];
+        }
+    }
+
+    port = &((PortListItem *)(binding.port))->data;
 
     if (!port)
     {
-        panic("Name %d not found in namespace", message->dest);
+        panic("Name %d not found in namespace (port is null)", message->dest);
     }
 
     if (!(binding.rights & PORT_RIGHT_SEND))
@@ -55,25 +93,20 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
         panic("Holder of port rights %d does not have send rights", message->dest);
     }
 
-    port->queue.messages[port->queue.head] = slab_alloc(message->size);
-    memcpy(port->queue.messages[port->queue.head], message, message->size);
+    port->queue.messages[port->queue.head].header = slab_alloc(message->size);
+    port->queue.length++;
+
+    memcpy(port->queue.messages[port->queue.head].header, message, message->size);
 
     if (message->type == PORT_MSG_TYPE_RIGHT)
     {
-        port->queue.messages[port->queue.head]->kernel_data.port = ns->bindings.data[message->port_right].port;
+        port->queue.messages[port->queue.head].kernel_data.port = ns->bindings.data[message->port_right].port;
     }
 
     if (message->type == PORT_MSG_TYPE_RIGHT_ONCE)
     {
-        port->queue.messages[port->queue.head]->kernel_data.port = ns->bindings.data[message->port_right].port;
+        port->queue.messages[port->queue.head].kernel_data.port = ns->bindings.data[message->port_right].port;
         ns->bindings.data[message->port_right].send_once = true;
-    }
-
-    if (binding.send_once)
-    {
-
-        // Find and remove the binding from the namespace
-        port_free(ns, message->dest);
     }
 
     port->queue.head = (port->queue.head + 1) & (PORT_QUEUE_MAX - 1);
@@ -82,53 +115,73 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
 PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name)
 {
     Port *port = NULL;
-    PortBinding binding = ns->bindings.data[name];
+    PortBinding binding = {0};
 
-    port = &ports.data[binding.port];
+    for (size_t i = 0; i < ns->bindings.length; i++)
+    {
+        if (ns->bindings.data[i].name == name)
+        {
+            binding = ns->bindings.data[i];
+        }
+    }
+
+    port = &((PortListItem *)(binding.port))->data;
 
     if (!port)
     {
-        panic("Name %d not found in namespace", name);
+        panic("Name %d not found in namespace (recv)", name);
     }
 
     if (!(binding.rights & PORT_RIGHT_RECV))
     {
-        panic("Holder of port rights %d does not have receive rights", name);
+        panic("Holder of port rights %d (kernel port = %d) does not have receive rights", name, binding.port);
     }
 
-    PortMessage *ret = port->queue.messages[port->queue.tail];
+    PortMessage ret = port->queue.messages[port->queue.tail];
 
-    if (!ret)
+    if (!ret.header)
     {
         return NULL;
     }
 
-    if (ret->header.type == PORT_MSG_TYPE_RIGHT)
+    if (ret.header->type == PORT_MSG_TYPE_RIGHT)
     {
         PortBinding binding = {0};
         binding.name = ns->current_name++;
-        binding.rights = ret->header.port_right;
-        binding.port = ret->kernel_data.port;
+        binding.rights = ret.header->port_right;
+        binding.port = ret.kernel_data.port;
+        ((PortListItem *)(ret.kernel_data.port))->data.ref_count++;
 
         vec_push(&ns->bindings, binding);
-        ret->header.port_right = binding.name;
+
+        ret.header->port_right = binding.name;
     }
 
-    else if (ret->header.type == PORT_MSG_TYPE_RIGHT_ONCE)
+    else if (ret.header->type == PORT_MSG_TYPE_RIGHT_ONCE)
     {
         PortBinding binding = {0};
         binding.name = ns->current_name++;
-        binding.rights = ret->header.port_right;
-        binding.port = ret->kernel_data.port;
+        binding.rights = ret.header->port_right;
+        binding.port = ret.kernel_data.port;
+
         binding.send_once = true;
 
         vec_push(&ns->bindings, binding);
-        ret->header.port_right = binding.name;
+
+        ret.header->port_right = binding.name;
     }
+
+    port->queue.length--;
 
     port->queue.tail = (port->queue.tail + 1) & (PORT_QUEUE_MAX - 1);
 
-    return &ret->header;
+    if (binding.send_once)
+    {
+        // Remove port
+        port_free(ns, binding.name);
+    }
+
+    return ret.header;
 }
 
 void register_well_known_port(PortNamespace *ns, uint8_t index, PortBinding binding)

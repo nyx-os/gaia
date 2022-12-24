@@ -59,6 +59,12 @@ void _assert(bool condition, const char *condition_string, const char *file, int
 #define log(...) _log(LOG_INFO, __FILENAME__, __VA_ARGS__)
 
 /**
+ * @def debug_print(...)
+ * @brief calls _log with LOG_NONE level.
+ */
+#define debug_print(...) _log(LOG_NONE, __FILENAME__, __VA_ARGS__)
+
+/**
  * @def trace(...)
  * @brief calls _log with LOG_TRACE level.
  */

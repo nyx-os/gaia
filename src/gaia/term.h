@@ -10,5 +10,6 @@
 
 void term_init(Charon *charon);
 void term_write(const char *str);
+void term_blue_screen(void);
 
 #endif /* SRC_GAIA_TERM_H */

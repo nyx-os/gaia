@@ -5,6 +5,7 @@
  */
 #include <gaia/font.h>
 #include <gaia/term.h>
+#include <stdc-shim/string.h>
 
 /* NOTE: this code here is ugly and is only temporary, it gets overwritten by the userspace tty */
 
@@ -364,4 +365,17 @@ void term_write(const char *str)
         write_char(*str);
         str++;
     }
+}
+
+void term_blue_screen(void)
+{
+    term.cursor_x = 0;
+    term.cursor_y = 0;
+
+    // Make screen blue
+    draw_rect(0, 0, term.fb.width, term.fb.height, 0x140BAA);
+
+    term.fg = term.colors[7];
+    term.start_x = 0;
+    term.start_y = 0;
 }

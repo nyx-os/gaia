@@ -51,9 +51,7 @@ void simd_initialize()
     if (cpuid_has_feature(cpu, CPUID_XSAVE))
     {
         log("CPU supports xsave");
-        uint64_t cr4 = asm_read_cr4();
-        cr4 |= CR4_XSAVE_ENABLE;
-        asm_write_cr4(cr4);
+        asm_write_cr4(asm_read_cr4() | CR4_XSAVE_ENABLE);
 
         uint64_t xcr0 = 0;
         xcr0 |= XCR0_XSAVE_SAVE_X87;

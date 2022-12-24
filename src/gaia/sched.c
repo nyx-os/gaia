@@ -60,6 +60,7 @@ Task *sched_create_new_task(bool user, Rights rights)
 
     ret->state = STOPPED;
     ret->pid = current_pid++;
+
     ret->namespace = slab_alloc(sizeof(PortNamespace));
 
     ret->rights = rights;

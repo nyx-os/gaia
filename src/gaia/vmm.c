@@ -1,5 +1,6 @@
 #include "gaia/charon.h"
 #include "gaia/debug.h"
+#include "gaia/firmware/acpi.h"
 #include "gaia/host.h"
 #include <gaia/error.h>
 #include <gaia/pmm.h>
@@ -11,6 +12,7 @@ void vmm_space_init(VmmMapSpace *space)
 {
     space->bump = MMAP_BUMP_BASE;
     space->mappings = NULL;
+    space->phys_bindings = NULL;
 }
 
 VmObject vm_create(VmCreateArgs args)
@@ -85,6 +87,16 @@ int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t 
     mapping->allocated_size = 0;
     mapping->address = (uintptr_t)object->buf;
 
+    if (phys)
+    {
+        VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
+        binding->phys = phys;
+        binding->virt = ALIGN_DOWN(mapping->address, 4096);
+        binding->next = space->phys_bindings;
+        space->phys_bindings = binding;
+        mapping->is_dma = true;
+    }
+
     mapping->next = space->mappings;
     space->mappings = mapping;
 
@@ -153,6 +165,16 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
     mapping->phys = (uintptr_t)phys;
     mapping->allocated_size = 0;
     mapping->address = (uintptr_t)args.object->buf;
+
+    if (phys)
+    {
+        VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
+        binding->phys = phys;
+        binding->virt = ALIGN_DOWN(mapping->address, 4096);
+        binding->next = space->phys_bindings;
+        space->phys_bindings = binding;
+        mapping->is_dma = true;
+    }
 
     mapping->next = space->mappings;
     space->mappings = mapping;
@@ -223,6 +245,9 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
     if (space == NULL || faulting_address == 0)
         return false;
 
+    if (space->mappings == NULL)
+        return false;
+
     VmMapping *mapping = space->mappings;
 
     while (mapping)
@@ -244,22 +269,27 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
                 break;
             }
 
-            if (!mapping->phys)
+            if (!mapping->is_dma)
             {
                 void *phys = pmm_alloc_zero();
-                host_map_page(space->pagemap, virt, (uintptr_t)phys, mapping->actual_protection);
-                mapping->phys = (uintptr_t)phys;
-            }
+                VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
 
+                binding->phys = (uintptr_t)phys;
+                binding->virt = virt;
+                binding->next = space->phys_bindings;
+                space->phys_bindings = binding;
+                mapping->phys = (uintptr_t)phys;
+                host_map_page(space->pagemap, virt, (uintptr_t)phys, mapping->actual_protection);
+            }
             else
             {
-                host_map_page(space->pagemap, virt, (uintptr_t)mapping->phys + mapping->allocated_size, mapping->actual_protection);
+                host_map_page(space->pagemap, virt, mapping->phys + mapping->allocated_size, mapping->actual_protection);
             }
 
             mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-            // trace("Demand paged one page at %p in range starting from %p (faulting_address=%p, phys=%p)", virt, mapping->address, faulting_address, (faulting_address - mapping->address) + mapping->phys);
+            // trace("Demand paged one page at %p in range starting from %p (faulting_address=%p, phys=%p)", virt, mapping->address, faulting_address, mapping->phys);
 #endif
 
             break;
@@ -271,43 +301,72 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
     return found;
 }
 
-void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
+static void chunk_write(void *dest, void *source, size_t count)
 {
-    for (size_t i = 0; i < ALIGN_UP(count, 4096) / 4096; i++)
-    {
-        assert(vmm_page_fault_handler(space, address + (i * 4096)) == true);
-    }
-
-    VmMapping *mapping = space->mappings;
-
-    while (mapping != NULL)
-    {
-        if (address >= mapping->address && address <= mapping->address + mapping->object.size)
-            break;
-
-        mapping = mapping->next;
-    }
-
-    void *virt_addr = (void *)(host_phys_to_virt(mapping->phys) + (address - mapping->address));
-
     if (count % 8 == 0)
     {
-        uint64_t *d = virt_addr;
-        const uint64_t *s = data;
+        uint64_t *d = dest;
+        const uint64_t *s = source;
 
         for (size_t i = 0; i < count / 8; i++)
         {
             d[i] = s[i];
         }
     }
+
     else
     {
-        uint8_t *d = virt_addr;
-        const uint8_t *s = data;
+        uint8_t *d = dest;
+        const uint8_t *s = source;
 
         for (size_t i = 0; i < count; i++)
         {
             d[i] = s[i];
         }
+    }
+}
+
+void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
+{
+    size_t page_count = ALIGN_UP(count, 4096) / 4096;
+    size_t bytes_remaining = count;
+    size_t bytes_wrote = 0;
+
+    for (size_t i = 0; i < page_count; i++)
+    {
+        uintptr_t aligned_address = ALIGN_DOWN(address + bytes_wrote, 4096);
+        size_t bytes_to_write = MIN(bytes_remaining, 4096);
+
+        assert(vmm_page_fault_handler(space, aligned_address) == true);
+
+        VmPhysBinding *binding = space->phys_bindings;
+
+        while (binding)
+        {
+            if (aligned_address >= binding->virt && aligned_address < binding->virt + PAGE_SIZE)
+            {
+                break;
+            }
+            binding = binding->next;
+        }
+        if (!binding)
+        {
+            panic("address %p is not allocated", aligned_address);
+        }
+
+        // If writing 4096 bytes will result in out of bounds, write only the bytes until the end of the page
+        size_t offset = (address + bytes_wrote) - binding->virt;
+
+        if (bytes_to_write == PAGE_SIZE && offset != 0)
+        {
+            bytes_to_write = PAGE_SIZE - offset;
+        }
+
+        void *virt_addr = (void *)host_phys_to_virt(binding->phys + (offset));
+
+        chunk_write(virt_addr, (uint8_t *)data + bytes_wrote, bytes_to_write);
+
+        bytes_remaining -= bytes_to_write;
+        bytes_wrote += bytes_to_write;
     }
 }

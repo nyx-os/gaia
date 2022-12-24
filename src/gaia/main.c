@@ -45,6 +45,11 @@ void gaia_main(Charon *charon)
 
     _charon->framebuffer.address = host_virt_to_phys(_charon->framebuffer.address);
 
+    for (int i = 0; i < _charon->modules.count; i++)
+    {
+        log("module %s: %p (size=%d)", _charon->modules.modules[i].name, _charon->modules.modules[i].address, _charon->modules.modules[i].size);
+    }
+
     acpi_init(charon->rsdp);
 #ifdef DEBUG
     acpi_dump_tables();
