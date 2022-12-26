@@ -44,6 +44,7 @@ static void create_slab(Slab *slab, size_t size)
 
     // Allocate the head of the slab
     slab->head = (void *)(host_phys_to_virt((uintptr_t)host_allocate_page()));
+
     slab->entry_size = size;
 
     // initialize the slab's header
@@ -80,8 +81,7 @@ static void *allocate_from_slab(Slab *slab)
 
     void **old_head = slab->head;
 
-    if (*slab->head == 0)
-        slab->head = *slab->head;
+    slab->head = *slab->head;
 
     slab_used_mem += slab->entry_size;
     slab->used += slab->entry_size;
