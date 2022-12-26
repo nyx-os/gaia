@@ -21,11 +21,13 @@ static void done(void)
 
 // TODO: Maybe move this to a header file?
 Charon limine_to_charon();
+
+static Charon charon = {0};
 void gaia_main(Charon *charon);
 
 void _start(void)
 {
-    Charon charon = limine_to_charon();
+    charon = limine_to_charon();
     gaia_main(&charon);
     done();
 }

@@ -36,7 +36,7 @@ void pmm_free(void *ptr);
 /** @brief Initializes the pmm.
  *  @param charon Boot information.
  */
-void pmm_init(Charon charon);
+void pmm_init(Charon *charon);
 
 /** @brief Prints out debugging information for the pmm. */
 void pmm_dump(void);

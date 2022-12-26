@@ -24,9 +24,9 @@ volatile static struct limine_module_request module_request = {
     .id = LIMINE_MODULE_REQUEST,
     .revision = 0};
 
-static CharonFramebuffer limine_fb_to_charon(struct limine_framebuffer *fb)
+static void limine_fb_to_charon(struct limine_framebuffer *fb, CharonFramebuffer *ret)
 {
-    return (CharonFramebuffer){
+    *ret = (CharonFramebuffer){
         .address = (uintptr_t)fb->address,
         .width = fb->width,
         .height = fb->height,
@@ -58,61 +58,50 @@ static CharonMemoryMapEntryType limine_mmap_type_to_charon(uint64_t type)
     }
 }
 
-static CharonMemoryMap limine_mmap_to_charon(struct limine_memmap_response *mmap)
+static void limine_mmap_to_charon(struct limine_memmap_response *mmap, CharonMemoryMap *ret)
 {
-    CharonMemoryMap ret;
+    ret->count = mmap->entry_count;
 
-    ret.count = mmap->entry_count;
-
-    assert(ret.count <= CHARON_MMAP_SIZE_MAX);
-
+    assert(ret->count <= CHARON_MMAP_SIZE_MAX);
     for (size_t i = 0; i < mmap->entry_count; i++)
     {
-        ret.entries[i] = (CharonMemoryMapEntry){
+        ret->entries[i] = (CharonMemoryMapEntry){
             .type = limine_mmap_type_to_charon(mmap->entries[i]->type),
             .base = mmap->entries[i]->base,
             .size = mmap->entries[i]->length};
     }
-
-    return ret;
 }
 
-static CharonModules limine_modules_to_charon(struct limine_module_response *modules)
+static void limine_modules_to_charon(struct limine_module_response *modules, CharonModules *ret)
 {
-    CharonModules ret;
-    ret.count = modules->module_count;
-    for (size_t i = 0; i < ret.count; i++)
+    ret->count = modules->module_count;
+    for (size_t i = 0; i < ret->count; i++)
     {
-        ret.modules[i].address = host_virt_to_phys((uintptr_t)modules->modules[i]->address);
-        ret.modules[i].size = modules->modules[i]->size;
-        memcpy((void *)ret.modules[i].name, modules->modules[i]->path, strlen(modules->modules[i]->path));
+        ret->modules[i].address = host_virt_to_phys((uintptr_t)modules->modules[i]->address);
+        ret->modules[i].size = modules->modules[i]->size;
+        host_accelerated_copy((void *)ret->modules[i].name, modules->modules[i]->path, strlen(modules->modules[i]->path));
     }
-    return ret;
 }
 
-Charon limine_to_charon()
+void limine_to_charon(Charon *ret)
 {
-    Charon ret = {0};
-
     if (rsdp_request.response)
     {
-        ret.rsdp = (uintptr_t)rsdp_request.response->address;
+        ret->rsdp = (uintptr_t)rsdp_request.response->address;
     }
 
     if (fb_request.response && fb_request.response->framebuffer_count != 0)
     {
-        ret.framebuffer = limine_fb_to_charon(fb_request.response->framebuffers[0]);
+        limine_fb_to_charon(fb_request.response->framebuffers[0], &ret->framebuffer);
     }
 
     if (memmap_request.response)
     {
-        ret.memory_map = limine_mmap_to_charon(memmap_request.response);
+        limine_mmap_to_charon(memmap_request.response, &ret->memory_map);
     }
 
     if (module_request.response)
     {
-        ret.modules = limine_modules_to_charon(module_request.response);
+        limine_modules_to_charon(module_request.response, &ret->modules);
     }
-
-    return ret;
 }

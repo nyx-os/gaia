@@ -21,7 +21,7 @@
 #define BOOTSTRAP_SERVER_NAME "/bootstrap"
 #define BOOTSTRAP_SERVER_NAME_LENGTH 10
 
-static Charon *_charon;
+static Charon *_charon = NULL;
 
 Charon *gaia_get_charon(void)
 {
@@ -32,7 +32,7 @@ void gaia_main(Charon *charon)
 {
     term_init(charon);
 
-    pmm_init(*charon);
+    pmm_init(charon);
 #ifdef DEBUG
     pmm_dump();
 #endif

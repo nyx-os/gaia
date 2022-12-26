@@ -23,9 +23,9 @@ static size_t used_pages = 0;
 
 static FreelistItem *freelist_head = NULL;
 
-void pmm_init(Charon charon)
+void pmm_init(Charon *charon)
 {
-    CharonMemoryMap mmap = charon.memory_map;
+    CharonMemoryMap mmap = charon->memory_map;
 
     for (size_t i = 0; i < mmap.count; i++)
     {
