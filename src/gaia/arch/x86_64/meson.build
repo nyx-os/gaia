@@ -28,7 +28,6 @@ c_args += [
         '-mno-avx2',
         '-mno-avx512f',
         '-mno-red-zone',
-        '-msoft-float',
         '-mcmodel=kernel']
 
 kernel_inc_dirs += include_directories('.')

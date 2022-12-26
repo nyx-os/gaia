@@ -139,13 +139,11 @@ static void do_backtrace(InterruptStackframe *frame)
         debug_print("Faulting opcode chain: %p (big endian)\n", *(uint64_t *)frame->rip);
     }
 
-    if (in_task)
+    if (in_task && frame->intno != 0xD)
     {
         debug_print("User mappings:");
 
         VmMapping *mapping = context_get_space(sched_get_current_task()->context)->mappings;
-
-        host_hang();
 
         while (mapping)
         {
@@ -156,7 +154,7 @@ static void do_backtrace(InterruptStackframe *frame)
         debug_print("\n");
     }
 
-    panic("If this wasn't intentional, please report an issue on https://github.com/nyx-org/nyx");
+    debug_print("If this wasn't intentional, please report an issue on https://github.com/nyx-org/nyx");
     host_disable_interrupts();
     host_hang();
 }

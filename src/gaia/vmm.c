@@ -260,7 +260,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
 
             if (faulting_address > mapping->address)
             {
-                virt = faulting_address;
+                virt = ALIGN_DOWN(faulting_address, 4096);
             }
 
             else if (faulting_address > mapping->address + mapping->object.size)
@@ -283,13 +283,13 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             }
             else
             {
-                host_map_page(space->pagemap, virt, mapping->phys + mapping->allocated_size, mapping->actual_protection);
+                host_map_page(space->pagemap, virt, mapping->phys + (virt - mapping->address), mapping->actual_protection);
             }
 
             mapping->allocated_size += 4096;
 
 #ifdef DEBUG
-            // trace("Demand paged one page at %p in range starting from %p (faulting_address=%p, phys=%p)", virt, mapping->address, faulting_address, mapping->phys);
+            // trace("Demand paged one page at %p in range starting from %p (faulting_address=%p, phys=%p)", virt, mapping->address, faulting_address, mapping->phys + (virt - mapping->address));
 #endif
 
             break;
@@ -301,38 +301,12 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
     return found;
 }
 
-static void chunk_write(void *dest, void *source, size_t count)
-{
-    if (count % 8 == 0)
-    {
-        uint64_t *d = dest;
-        const uint64_t *s = source;
-
-        for (size_t i = 0; i < count / 8; i++)
-        {
-            d[i] = s[i];
-        }
-    }
-
-    else
-    {
-        uint8_t *d = dest;
-        const uint8_t *s = source;
-
-        for (size_t i = 0; i < count; i++)
-        {
-            d[i] = s[i];
-        }
-    }
-}
-
 void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
 {
-    size_t page_count = ALIGN_UP(count, 4096) / 4096;
     size_t bytes_remaining = count;
     size_t bytes_wrote = 0;
 
-    for (size_t i = 0; i < page_count; i++)
+    while (bytes_remaining != 0)
     {
         uintptr_t aligned_address = ALIGN_DOWN(address + bytes_wrote, 4096);
         size_t bytes_to_write = MIN(bytes_remaining, 4096);

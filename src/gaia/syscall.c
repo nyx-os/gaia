@@ -145,6 +145,17 @@ static int sys_start_task(SyscallFrame frame)
     }
 
     context_start(task->context, frame.second_arg, frame.third_arg, frame.fourth_arg);
+
+    VmCreateArgs args = {.addr = host_virt_to_phys((uintptr_t)gaia_get_charon()),
+                         .flags = 0,
+                         .size = ALIGN_UP(sizeof(Charon), 4096)};
+
+    // FIXME: don't do this and instead make the bootstrap server give out the boot info
+    VmObject object = vm_create(args);
+    vm_map_phys(context_get_space(task->context), &object, args.addr, 0, VM_PROT_READ, VM_MAP_ANONYMOUS | VM_MAP_DMA);
+
+    task->context->frame.rdi = (uintptr_t)object.buf;
+
     task->state = RUNNING;
     return ERR_SUCCESS;
 }

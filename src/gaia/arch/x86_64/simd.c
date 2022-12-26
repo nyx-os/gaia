@@ -49,7 +49,7 @@ void simd_initialize()
 
     asm_write_cr4(asm_read_cr4() | CR4_SIMD_EXCEPTION_SUPPORT);
 
-    if (cpuid_has_feature(cpu, CPUID_XSAVE))
+    if ((cpu.ecx & CPUID_XSAVE) == CPUID_XSAVE)
     {
         log("CPU supports xsave");
         asm_write_cr4(asm_read_cr4() | CR4_XSAVE_ENABLE);
