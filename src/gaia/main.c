@@ -41,7 +41,7 @@ void gaia_main(Charon *charon)
 
     _charon = (void *)host_phys_to_virt((uintptr_t)pmm_alloc_zero());
 
-    memcpy(_charon, charon, sizeof(Charon));
+    host_accelerated_copy(_charon, charon, sizeof(Charon));
 
     _charon->framebuffer.address = host_virt_to_phys(_charon->framebuffer.address);
 

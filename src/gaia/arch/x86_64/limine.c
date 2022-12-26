@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
+#include "gaia/host.h"
 #include <gaia/charon.h>
 #include <gaia/limine.h>
 #include <stdc-shim/string.h>

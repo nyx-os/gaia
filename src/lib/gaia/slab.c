@@ -2,6 +2,7 @@
 /* Copyright 2022 mintsuki and contributors. */
 /* From https://github.com/lyre-os/lyre/blob/trunk/kernel/mm/slab.c, modified for gaia */
 
+#include "gaia/host.h"
 #include <gaia/base.h>
 #include <gaia/slab.h>
 #include <gaia/spinlock.h>
@@ -142,7 +143,7 @@ void *slab_realloc(void *ptr, size_t size)
     if (size > slab->entry_size)
     {
         void *new_ptr = slab_alloc(size);
-        memcpy(new_ptr, ptr, slab->entry_size);
+        host_accelerated_copy(new_ptr, ptr, slab->entry_size);
         free_from_slab(slab, ptr);
         return new_ptr;
     }

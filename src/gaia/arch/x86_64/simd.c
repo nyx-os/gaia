@@ -1,3 +1,4 @@
+#include "gaia/host.h"
 #include <asm.h>
 #include <cpuid.h>
 #include <gaia/pmm.h>
@@ -89,5 +90,5 @@ void simd_restore_state(void *state)
 
 void simd_initialize_context(void *state)
 {
-    memcpy(state, initial_context, simd_buffer_size);
+    host_accelerated_copy(state, initial_context, simd_buffer_size);
 }

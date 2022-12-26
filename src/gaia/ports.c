@@ -1,3 +1,4 @@
+#include "gaia/host.h"
 #include <gaia/ports.h>
 #include <gaia/slab.h>
 
@@ -96,7 +97,7 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
     port->queue.messages[port->queue.head].header = slab_alloc(message->size);
     port->queue.length++;
 
-    memcpy(port->queue.messages[port->queue.head].header, message, message->size);
+    host_accelerated_copy(port->queue.messages[port->queue.head].header, message, message->size);
 
     if (message->type == PORT_MSG_TYPE_RIGHT)
     {

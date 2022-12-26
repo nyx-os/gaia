@@ -98,10 +98,8 @@ static int sys_vm_map(SyscallFrame frame)
 
 static int sys_create_task(SyscallFrame frame)
 {
-
     if ((frame.second_arg & sched_get_current_task()->rights) != frame.second_arg)
     {
-        log("e");
         return ERR_FORBIDDEN;
     }
 
@@ -109,7 +107,7 @@ static int sys_create_task(SyscallFrame frame)
 
     if (task)
     {
-        memcpy(task->namespace->well_known_ports, sched_get_current_task()->namespace->well_known_ports, sizeof(PortBinding) * WELL_KNOWN_PORTS_MAX);
+        host_accelerated_copy(task->namespace->well_known_ports, sched_get_current_task()->namespace->well_known_ports, sizeof(PortBinding) * WELL_KNOWN_PORTS_MAX);
 
         for (int i = 0; i < WELL_KNOWN_PORTS_MAX; i++)
         {

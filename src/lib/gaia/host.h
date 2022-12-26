@@ -213,4 +213,9 @@ void host_context_save(InterruptStackframe *target, InterruptStackframe *source)
  */
 void host_context_switch(InterruptStackframe *target, InterruptStackframe *context);
 
+/**
+ * @brief Hardware-accelerated memory copy
+ *
+ */
+void host_accelerated_copy(void *dest, const void *source, size_t n);
 #endif /* GAIA_ARCH_HOST_H */

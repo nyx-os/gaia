@@ -117,8 +117,8 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
 
     if (level != LOG_NONE)
     {
-        char file_name[100];
-        memcpy(file_name, file, strlen(file));
+        char file_name[100] = {0};
+        host_accelerated_copy(file_name, file, strlen(file));
         file_name[strlen(file) - 2] = 0;
         stream_printf(host_debug_write_string, "%s:\x1b[0m ", file_name);
     }

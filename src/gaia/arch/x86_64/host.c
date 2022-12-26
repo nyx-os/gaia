@@ -169,3 +169,9 @@ void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr)
 {
     paging_unmap_page(pagemap, vaddr);
 }
+
+void host_accelerated_copy(void *dest, const void *source, size_t n)
+{
+    __asm__ volatile("rep movsb"
+                     : "+D"(dest), "+S"(source), "+c"(n)::"memory");
+}

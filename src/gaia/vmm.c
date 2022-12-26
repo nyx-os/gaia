@@ -357,14 +357,14 @@ void vmm_write(VmmMapSpace *space, uintptr_t address, void *data, size_t count)
         // If writing 4096 bytes will result in out of bounds, write only the bytes until the end of the page
         size_t offset = (address + bytes_wrote) - binding->virt;
 
-        if (bytes_to_write == PAGE_SIZE && offset != 0)
+        if (bytes_to_write + offset > PAGE_SIZE)
         {
             bytes_to_write = PAGE_SIZE - offset;
         }
 
         void *virt_addr = (void *)host_phys_to_virt(binding->phys + (offset));
 
-        chunk_write(virt_addr, (uint8_t *)data + bytes_wrote, bytes_to_write);
+        host_accelerated_copy(virt_addr, (uint8_t *)data + bytes_wrote, bytes_to_write);
 
         bytes_remaining -= bytes_to_write;
         bytes_wrote += bytes_to_write;
