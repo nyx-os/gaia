@@ -30,6 +30,12 @@ static int sys_alloc_port(SyscallFrame frame)
     return ERR_SUCCESS;
 }
 
+static int sys_getpid(SyscallFrame frame)
+{
+    *frame.return_value = sched_get_current_task()->pid;
+    return ERR_SUCCESS;
+}
+
 static int sys_free_port(SyscallFrame frame)
 {
     port_free(sched_get_current_task()->namespace, frame.first_arg);
@@ -265,6 +271,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_VM_REGISTER] = sys_vm_register,
     [GAIA_SYS_FREE_PORT] = sys_free_port,
     [GAIA_SYS_YIELD] = sys_yield,
+    [GAIA_SYS_GETPID] = sys_getpid,
 };
 
 void syscall_init(Charon charon)
