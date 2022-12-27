@@ -79,6 +79,7 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
         if (ns->bindings.data[i].name == message->dest)
         {
             binding = ns->bindings.data[i];
+            break;
         }
     }
 

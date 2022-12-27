@@ -183,7 +183,7 @@ static int sys_exit(SyscallFrame frame)
 {
     sched_get_current_task()->state = STOPPED;
 
-    log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
+    // log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
     sched_tick(frame.int_frame);
     return ERR_SUCCESS;
 }
@@ -191,6 +191,29 @@ static int sys_exit(SyscallFrame frame)
 static int sys_msg(SyscallFrame frame)
 {
     *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
+
+    if (frame.first_arg == PORT_RECV)
+    {
+        PortMessageHeader *header = (PortMessageHeader *)frame.fourth_arg;
+
+        for (size_t i = 0; i < header->shmd_count; i++)
+        {
+            VmObject obj;
+            PortSharedMemoryDescriptor shmd = header->shmds[i];
+
+            VmCreateArgs args = {.addr = shmd.address, .size = shmd.size};
+            obj = vm_create(args);
+
+            VmMapArgs map_args = {.object = &obj,
+                                  .flags = VM_MAP_ANONYMOUS,
+                                  .protection = VM_PROT_READ | VM_PROT_WRITE,
+                                  .vaddr = 0};
+
+            vm_map(context_get_space(sched_get_current_task()->context), map_args);
+
+            header->shmds[i].address = (uintptr_t)obj.buf;
+        }
+    }
     return ERR_SUCCESS;
 }
 

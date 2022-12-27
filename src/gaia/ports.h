@@ -32,10 +32,18 @@
 
 typedef struct PACKED
 {
+    uintptr_t address;
+    uint16_t size;
+} PortSharedMemoryDescriptor;
+
+typedef struct PACKED
+{
     uint8_t type;
     uint32_t size;
     uint32_t dest;
     uint32_t port_right;
+    uint8_t shmd_count;
+    PortSharedMemoryDescriptor shmds[16];
 } PortMessageHeader;
 
 typedef struct
