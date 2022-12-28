@@ -25,6 +25,7 @@
 #define GAIA_SYS_FREE_PORT 12
 #define GAIA_SYS_YIELD 13
 #define GAIA_SYS_GETPID 14
+#define GAIA_SYS_GET_TASK 15
 
 typedef struct
 {

@@ -216,11 +216,13 @@ static int sys_msg(SyscallFrame frame)
 
                 void *addr = NULL;
 
-                size_t initial_size = shmd.size;
+                if (((shmd.address) - ALIGN_DOWN(shmd.address, 4096)) + shmd.size > 4096)
+                {
+                    shmd.size = ALIGN_UP(((shmd.address) - ALIGN_DOWN(shmd.address, 4096)) + shmd.size, 4096);
+                }
 
                 for (size_t j = 0; j < ALIGN_UP(shmd.size, 4096) / 4096; j++)
                 {
-
                     VmPhysBinding *binding = recv_space->phys_bindings;
 
                     while (binding)
@@ -253,11 +255,6 @@ static int sys_msg(SyscallFrame frame)
                     obj = vm_create(args);
 
                     vm_map_phys(current_space, &obj, binding->phys, 0, VM_PROT_READ | VM_PROT_WRITE, VM_MAP_ANONYMOUS | VM_MAP_DMA);
-
-                    if (((shmd.address) - binding->virt) + initial_size > 4096)
-                    {
-                        shmd.size += 4096;
-                    }
 
                     if (!addr)
                         addr = (void *)((uintptr_t)obj.buf + ((shmd.address + j * 4096) - binding->virt));
@@ -304,6 +301,16 @@ static int sys_vm_register(SyscallFrame frame)
     return ERR_SUCCESS;
 }
 
+static int sys_get_task(SyscallFrame frame)
+{
+    struct user_task *user_task = (struct user_task *)frame.first_arg;
+    struct user_task task = {.space = context_get_space(sched_get_current_task()->context), .pid = sched_get_current_task()->pid};
+
+    *user_task = task;
+    *frame.return_value = 0;
+    return 0;
+}
+
 static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_LOG] = sys_log,
     [GAIA_SYS_ALLOC_PORT] = sys_alloc_port,
@@ -320,6 +327,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_FREE_PORT] = sys_free_port,
     [GAIA_SYS_YIELD] = sys_yield,
     [GAIA_SYS_GETPID] = sys_getpid,
+    [GAIA_SYS_GET_TASK] = sys_get_task,
 };
 
 void syscall_init(Charon charon)
