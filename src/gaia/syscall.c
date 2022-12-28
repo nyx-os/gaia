@@ -196,30 +196,78 @@ static int sys_exit(SyscallFrame frame)
 
 static int sys_msg(SyscallFrame frame)
 {
-    *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg);
 
-    if (frame.first_arg == PORT_RECV)
+    VmmMapSpace *space = context_get_space(sched_get_current_task()->context);
+    *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg, &space);
+
+    if (frame.first_arg == PORT_RECV && frame.return_value != 0 && space != context_get_space(sched_get_current_task()->context))
     {
         PortMessageHeader *header = (PortMessageHeader *)frame.fourth_arg;
 
-        for (size_t i = 0; i < header->shmd_count; i++)
+        if (header->shmd_count > 0)
         {
-            VmObject obj;
-            PortSharedMemoryDescriptor shmd = header->shmds[i];
+            VmmMapSpace *current_space = context_get_space(sched_get_current_task()->context);
+            VmmMapSpace *recv_space = space;
 
-            VmCreateArgs args = {.addr = shmd.address, .size = shmd.size};
-            obj = vm_create(args);
+            for (size_t i = 0; i < header->shmd_count; i++)
+            {
+                VmObject obj;
+                PortSharedMemoryDescriptor shmd = header->shmds[i];
 
-            VmMapArgs map_args = {.object = &obj,
-                                  .flags = VM_MAP_ANONYMOUS,
-                                  .protection = VM_PROT_READ | VM_PROT_WRITE,
-                                  .vaddr = 0};
+                void *addr = NULL;
 
-            vm_map(context_get_space(sched_get_current_task()->context), map_args);
+                size_t initial_size = shmd.size;
 
-            header->shmds[i].address = (uintptr_t)obj.buf;
+                for (size_t j = 0; j < ALIGN_UP(shmd.size, 4096) / 4096; j++)
+                {
+
+                    VmPhysBinding *binding = recv_space->phys_bindings;
+
+                    while (binding)
+                    {
+                        if (shmd.address + j * 4096 >= binding->virt && shmd.address + j * 4096 < binding->virt + 4096)
+                        {
+                            break;
+                        }
+                        binding = binding->next;
+                    }
+
+                    if (!binding)
+                    {
+                        vmm_page_fault_handler(recv_space, shmd.address + j * 4096);
+                        binding = recv_space->phys_bindings;
+
+                        while (binding)
+                        {
+                            if (shmd.address + j * 4096 >= binding->virt && shmd.address + j * 4096 < binding->virt + 4096)
+                            {
+                                break;
+                            }
+                            binding = binding->next;
+                        }
+                    }
+
+                    assert(binding);
+
+                    VmCreateArgs args = {.addr = 0, .size = 4096, .flags = VM_MEM_DMA};
+                    obj = vm_create(args);
+
+                    vm_map_phys(current_space, &obj, binding->phys, 0, VM_PROT_READ | VM_PROT_WRITE, VM_MAP_ANONYMOUS | VM_MAP_DMA);
+
+                    if (((shmd.address) - binding->virt) + initial_size > 4096)
+                    {
+                        shmd.size += 4096;
+                    }
+
+                    if (!addr)
+                        addr = (void *)((uintptr_t)obj.buf + ((shmd.address + j * 4096) - binding->virt));
+                }
+
+                header->shmds[i].address = (uintptr_t)addr;
+            }
         }
     }
+
     return ERR_SUCCESS;
 }
 

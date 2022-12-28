@@ -1,4 +1,5 @@
 #include "gaia/host.h"
+#include "gaia/vmm.h"
 #include <gaia/ports.h>
 #include <gaia/slab.h>
 
@@ -63,7 +64,7 @@ void port_free(PortNamespace *ns, uint32_t name)
     }
 }
 
-void port_send(PortNamespace *ns, PortMessageHeader *message)
+void port_send(PortNamespace *ns, PortMessageHeader *message, VmmMapSpace **space)
 {
     Port *port = NULL;
 
@@ -98,23 +99,49 @@ void port_send(PortNamespace *ns, PortMessageHeader *message)
     port->queue.messages[port->queue.head].header = slab_alloc(message->size);
     port->queue.length++;
 
+    if (message->shmd_count > 0)
+    {
+        port->queue.messages[port->queue.head].kernel_data.space = *space;
+    }
+
     host_accelerated_copy(port->queue.messages[port->queue.head].header, message, message->size);
 
     if (message->type == PORT_MSG_TYPE_RIGHT)
     {
-        port->queue.messages[port->queue.head].kernel_data.port = ns->bindings.data[message->port_right].port;
+
+        PortBinding port_right_binding = {0};
+        for (size_t i = 0; i < ns->bindings.length; i++)
+        {
+            if (ns->bindings.data[i].name == message->port_right)
+            {
+                port_right_binding = ns->bindings.data[i];
+                break;
+            }
+        }
+
+        port->queue.messages[port->queue.head].kernel_data.port = port_right_binding.port;
     }
 
     if (message->type == PORT_MSG_TYPE_RIGHT_ONCE)
     {
-        port->queue.messages[port->queue.head].kernel_data.port = ns->bindings.data[message->port_right].port;
-        ns->bindings.data[message->port_right].send_once = true;
+        PortBinding *port_right_binding = NULL;
+        for (size_t i = 0; i < ns->bindings.length; i++)
+        {
+            if (ns->bindings.data[i].name == message->port_right)
+            {
+                port_right_binding = &ns->bindings.data[i];
+                break;
+            }
+        }
+
+        port->queue.messages[port->queue.head].kernel_data.port = port_right_binding->port;
+        port_right_binding->send_once = true;
     }
 
     port->queue.head = (port->queue.head + 1) & (PORT_QUEUE_MAX - 1);
 }
 
-PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name)
+PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name, VmmMapSpace **space)
 {
     Port *port = NULL;
     PortBinding binding = {0};
@@ -146,11 +173,16 @@ PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name)
         return NULL;
     }
 
+    if (ret.header->shmd_count > 0)
+    {
+        *space = ret.kernel_data.space;
+    }
+
     if (ret.header->type == PORT_MSG_TYPE_RIGHT)
     {
         PortBinding binding = {0};
         binding.name = ns->current_name++;
-        binding.rights = ret.header->port_right;
+        binding.rights = PORT_RIGHT_SEND;
         binding.port = ret.kernel_data.port;
         ((PortListItem *)(ret.kernel_data.port))->data.ref_count++;
 
@@ -163,7 +195,8 @@ PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name)
     {
         PortBinding binding = {0};
         binding.name = ns->current_name++;
-        binding.rights = ret.header->port_right;
+        binding.rights = PORT_RIGHT_SEND;
+
         binding.port = ret.kernel_data.port;
 
         binding.send_once = true;
@@ -206,17 +239,17 @@ void register_well_known_port(PortNamespace *ns, uint8_t index, PortBinding bind
     }
 }
 
-size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t bytes_to_receive, PortMessageHeader *header)
+size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_t bytes_to_receive, PortMessageHeader *header, VmmMapSpace **space)
 {
     if (type == PORT_SEND)
     {
-        port_send(ns, header);
+        port_send(ns, header, space);
         return header->size;
     }
 
     else if (type == PORT_RECV)
     {
-        PortMessageHeader *ret = port_receive(ns, port_to_receive);
+        PortMessageHeader *ret = port_receive(ns, port_to_receive, space);
 
         if (ret != NULL)
         {

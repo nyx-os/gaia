@@ -10,6 +10,7 @@
 
 #ifndef SRC_GAIA_PORTS_H
 #define SRC_GAIA_PORTS_H
+#include "gaia/vmm.h"
 #include <gaia/base.h>
 #include <gaia/vec.h>
 
@@ -49,6 +50,7 @@ typedef struct PACKED
 typedef struct
 {
     void *port;
+    VmmMapSpace *space;
 } PortMessageKernelData;
 
 typedef struct PACKED
@@ -89,15 +91,15 @@ typedef struct
     PortBinding well_known_ports[WELL_KNOWN_PORTS_MAX]; // Inherited through spawn() syscall (send only rights)
 } PortNamespace;
 
-size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header);
+size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_recv, size_t bytes_to_recv, PortMessageHeader *header, VmmMapSpace **space);
 
 uint32_t port_allocate(PortNamespace *ns, uint8_t rights);
 
 void port_free(PortNamespace *ns, uint32_t name);
 
-void port_send(PortNamespace *ns, PortMessageHeader *message);
+void port_send(PortNamespace *ns, PortMessageHeader *message, VmmMapSpace **space);
 
-PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name);
+PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name, VmmMapSpace **space);
 
 void port_send_right(PortNamespace *src_ns, PortNamespace *dest_ns, uint32_t name);
 

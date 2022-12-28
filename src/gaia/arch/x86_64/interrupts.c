@@ -80,58 +80,7 @@ static void do_backtrace(InterruptStackframe *frame)
 
     if (frame->intno == 0xE)
     {
-        uintptr_t error_code = frame->err;
-
-        // Parse error code of page fault and print result in string format
-        const char *err_code_desc = NULL;
-
-        switch (error_code & 0xFFFFFF)
-        {
-        case 0x4:
-            err_code_desc = "Access rights violation";
-            break;
-
-        case 0x7:
-            err_code_desc = "Execution of forbidden address";
-            break;
-
-        case 0x1:
-            err_code_desc = "Data write";
-            break;
-
-        case 0x3:
-            err_code_desc = "Data read";
-            break;
-
-        case 0x5:
-            err_code_desc = "Unknown instruction";
-            break;
-
-        case 0x6:
-            err_code_desc = "Data segment overrun";
-            break;
-
-        case 0x8:
-            err_code_desc = "Bad TSS";
-            break;
-
-        case 0x9:
-            err_code_desc = "Instruction fetch";
-            break;
-
-        case 0xB:
-            err_code_desc = "Hardware device fault";
-            break;
-
-        case 0xC:
-            err_code_desc = "Alignment check";
-            break;
-
-        case 0xD:
-            err_code_desc = "Debug";
-            break;
-        }
-        debug_print("%s at address %p\n", err_code_desc, faulting_address);
+        debug_print("Page fault at address %p\n", faulting_address);
     }
 
     if (faulting_address != frame->rip && frame->intno != 0xE)
