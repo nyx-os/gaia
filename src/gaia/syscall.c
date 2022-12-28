@@ -336,6 +336,7 @@ static int (*syscall_table[])(SyscallFrame) = {
     [GAIA_SYS_YIELD] = sys_yield,
     [GAIA_SYS_GETPID] = sys_getpid,
     [GAIA_SYS_GET_TASK] = sys_get_task,
+    [GAIA_SYS_SET_FS_BASE] = sys_set_fs_base,
 };
 
 void syscall_init(Charon charon)
