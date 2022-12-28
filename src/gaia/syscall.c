@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
+#include <asm.h>
 #include <context.h>
 #include <gaia/base.h>
 #include <gaia/error.h>
@@ -191,6 +192,13 @@ static int sys_exit(SyscallFrame frame)
 
     // log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
     sched_tick(frame.int_frame);
+    return ERR_SUCCESS;
+}
+
+static int sys_set_fs_base(SyscallFrame frame)
+{
+    asm_wrmsr(0xc0000100, (uint64_t)frame.first_arg);
+    *frame.return_value = 0;
     return ERR_SUCCESS;
 }
 

@@ -128,4 +128,14 @@ enum cr0_bit
     CR0_PAGING_ENABLE = (1 << 31),
 };
 
+static inline void asm_wrmsr(uint64_t msr, uint64_t value)
+{
+
+    uint32_t low = value & 0xFFFFFFFF;
+    uint32_t high = value >> 32;
+    __asm__ volatile("wrmsr"
+                     :
+                     : "c"((uint64_t)msr), "a"(low), "d"(high));
+}
+
 #endif /* ARCH_X86_64_ASM_H */

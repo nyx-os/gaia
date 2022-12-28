@@ -26,6 +26,7 @@
 #define GAIA_SYS_YIELD 13
 #define GAIA_SYS_GETPID 14
 #define GAIA_SYS_GET_TASK 15
+#define GAIA_SYS_SET_FS_BASE 16
 
 typedef struct
 {
