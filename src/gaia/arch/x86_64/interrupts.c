@@ -60,7 +60,7 @@ static void do_backtrace(InterruptStackframe *frame)
         in_task = sched_get_current_task()->pid != (size_t)-1;
     }
 
-    debug_print("*** Fatal crash ***");
+    debug_print("*** Fatal crash ***\n");
 
     if (in_task)
     {
@@ -71,11 +71,11 @@ static void do_backtrace(InterruptStackframe *frame)
         debug_print("In kernel\n");
     }
 
-    debug_print("%s at PC=%p (error code = 0x%p)", exception_strings[frame->intno], frame->rip, frame->err);
-    debug_print("   RAX=%p RBX=%p RCX=%p RDX=%p", frame->rax, frame->rbx, frame->rcx, frame->rdx);
-    debug_print("   RSI=%p RDI=%p RBP=%p RSP=%p", frame->rsi, frame->rdi, frame->rbp, frame->rsp);
-    debug_print("   R8=%p  R9=%p  R10=%p R11=%p", frame->r8, frame->r9, frame->r10, frame->r11);
-    debug_print("   R12=%p R13=%p R14=%p R15=%p", frame->r12, frame->r13, frame->r14, frame->r15);
+    debug_print("%s at PC=%p (error code = 0x%p)\n", exception_strings[frame->intno], frame->rip, frame->err);
+    debug_print("   RAX=%p RBX=%p RCX=%p RDX=%p\n", frame->rax, frame->rbx, frame->rcx, frame->rdx);
+    debug_print("   RSI=%p RDI=%p RBP=%p RSP=%p\n", frame->rsi, frame->rdi, frame->rbp, frame->rsp);
+    debug_print("   R8=%p  R9=%p  R10=%p R11=%p\n", frame->r8, frame->r9, frame->r10, frame->r11);
+    debug_print("   R12=%p R13=%p R14=%p R15=%p\n", frame->r12, frame->r13, frame->r14, frame->r15);
     debug_print("   CR0=%p CR2=%p CR3=%p RIP=%p\n", asm_read_cr0(), faulting_address, asm_read_cr3(), frame->rip);
 
     if (frame->intno == 0xE)
@@ -90,20 +90,20 @@ static void do_backtrace(InterruptStackframe *frame)
 
     if (in_task && frame->intno != 0xD)
     {
-        debug_print("User mappings:");
+        debug_print("User mappings:\n");
 
         VmMapping *mapping = context_get_space(sched_get_current_task()->context)->mappings;
 
         while (mapping)
         {
-            debug_print("    %p (size=%p)", mapping->address, mapping->object.size);
+            debug_print("    %p (size=%p)\n", mapping->address, mapping->object.size);
             mapping = mapping->next;
         }
 
         debug_print("\n");
     }
 
-    debug_print("If this wasn't intentional, please report an issue on https://github.com/nyx-org/nyx");
+    debug_print("If this wasn't intentional, please report an issue on https://github.com/nyx-org/nyx\n");
     host_disable_interrupts();
     host_hang();
 }

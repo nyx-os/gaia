@@ -128,7 +128,8 @@ void _log(LogLevel level, const char *file, const char *fmt, ...)
     vstream_printf(host_debug_write_string, fmt, args);
     va_end(args);
 
-    host_debug_write_string("\n");
+    if (level != LOG_NONE)
+        host_debug_write_string("\n");
 
     if (level == LOG_PANIC)
     {

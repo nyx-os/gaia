@@ -28,6 +28,7 @@ uint32_t port_allocate(PortNamespace *ns, uint8_t rights)
     // Add new port binding to namespace
     PortBinding binding = {ns->current_name++, rights, new_item, false};
 
+    // log("Pushed binding with (alloc) %p", binding.port);
     vec_push(&ns->bindings, binding);
 
     return binding.name;
@@ -124,18 +125,20 @@ void port_send(PortNamespace *ns, PortMessageHeader *message, VmmMapSpace **spac
 
     if (message->type == PORT_MSG_TYPE_RIGHT_ONCE)
     {
-        PortBinding *port_right_binding = NULL;
+        PortBinding port_right_binding = {0};
+        size_t index = 0;
         for (size_t i = 0; i < ns->bindings.length; i++)
         {
             if (ns->bindings.data[i].name == message->port_right)
             {
-                port_right_binding = &ns->bindings.data[i];
+                port_right_binding = ns->bindings.data[i];
+                index = i;
                 break;
             }
         }
 
-        port->queue.messages[port->queue.head].kernel_data.port = port_right_binding->port;
-        port_right_binding->send_once = true;
+        port->queue.messages[port->queue.head].kernel_data.port = port_right_binding.port;
+        ns->bindings.data[index].send_once = true;
     }
 
     port->queue.head = (port->queue.head + 1) & (PORT_QUEUE_MAX - 1);
@@ -151,6 +154,7 @@ PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name, VmmMapSpace **
         if (ns->bindings.data[i].name == name)
         {
             binding = ns->bindings.data[i];
+            break;
         }
     }
 
@@ -194,6 +198,7 @@ PortMessageHeader *port_receive(PortNamespace *ns, uint32_t name, VmmMapSpace **
     else if (ret.header->type == PORT_MSG_TYPE_RIGHT_ONCE)
     {
         PortBinding binding = {0};
+
         binding.name = ns->current_name++;
         binding.rights = PORT_RIGHT_SEND;
 

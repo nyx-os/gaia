@@ -360,8 +360,12 @@ void term_init(Charon *charon)
 
 void term_write(const char *str)
 {
+    if (!str)
+        return;
+
     while (*str)
     {
+        // (void)write_char;
         write_char(*str);
         str++;
     }

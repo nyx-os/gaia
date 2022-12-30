@@ -77,6 +77,9 @@ void host_enable_interrupts(void)
 
 void host_debug_write_string(const char *str)
 {
+    if(!str)
+        return;
+        
     term_write(str);
     while (*str)
     {

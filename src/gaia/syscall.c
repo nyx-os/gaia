@@ -19,7 +19,13 @@ static Charon _charon;
 
 static int sys_log(SyscallFrame frame)
 {
+    char *s = (char *)frame.first_arg;
+
     _log(LOG_NONE, NULL, "Debug [pid:%d] %s", sched_get_current_task()->pid, (char *)frame.first_arg);
+
+    if (s[strlen(s) - 1] != '\n')
+        host_debug_write_string("\n");
+
     return ERR_SUCCESS;
 }
 
@@ -190,7 +196,7 @@ static int sys_exit(SyscallFrame frame)
 {
     sched_get_current_task()->state = STOPPED;
 
-    // log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
+    log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
     sched_tick(frame.int_frame);
     return ERR_SUCCESS;
 }
@@ -206,6 +212,9 @@ static int sys_msg(SyscallFrame frame)
 {
 
     VmmMapSpace *space = context_get_space(sched_get_current_task()->context);
+
+    //       if (frame.first_arg == PORT_SEND)
+    //   log("send pid: %d, type: %d", sched_get_current_task()->pid, ((PortMessageHeader *)frame.fourth_arg)->type);
     *frame.return_value = port_msg(sched_get_current_task()->namespace, (uint8_t)frame.first_arg, (uint32_t)frame.second_arg, frame.third_arg, (PortMessageHeader *)frame.fourth_arg, &space);
 
     if (frame.first_arg == PORT_RECV && frame.return_value != 0 && space != context_get_space(sched_get_current_task()->context))

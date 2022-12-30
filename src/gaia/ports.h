@@ -20,7 +20,7 @@
 #define PORT_RIGHT_RECV (1 << 0)
 #define PORT_RIGHT_SEND (1 << 1)
 
-#define PORT_QUEUE_MAX 32
+#define PORT_QUEUE_MAX 64
 
 #define PORT_MSG_TYPE_DEFAULT (1 << 0)
 #define PORT_MSG_TYPE_RIGHT (1 << 1)
@@ -31,13 +31,13 @@
 
 #define WELL_KNOWN_PORTS_MAX 4
 
-typedef struct PACKED
+typedef struct
 {
     uintptr_t address;
-    uint16_t size;
+    size_t size;
 } PortSharedMemoryDescriptor;
 
-typedef struct PACKED
+typedef struct
 {
     uint8_t type;
     uint32_t size;
@@ -53,7 +53,7 @@ typedef struct
     VmmMapSpace *space;
 } PortMessageKernelData;
 
-typedef struct PACKED
+typedef struct
 {
     PortMessageHeader *header;
     PortMessageKernelData kernel_data;
