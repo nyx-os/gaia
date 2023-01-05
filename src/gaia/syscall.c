@@ -13,7 +13,7 @@
 #include <gaia/sched.h>
 #include <gaia/slab.h>
 #include <gaia/syscall.h>
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 
 static Charon _charon;
 

@@ -6,7 +6,7 @@
 
 #ifndef ARCH_X86_64_CONTEXT_H
 #define ARCH_X86_64_CONTEXT_H
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 #include <idt.h>
 #include <paging.h>
 

@@ -1,7 +1,7 @@
 #include "gaia/host.h"
-#include "gaia/vmm.h"
 #include <gaia/ports.h>
 #include <gaia/slab.h>
+#include <gaia/vm/vmm.h>
 
 typedef struct port_list_item
 {
@@ -258,7 +258,7 @@ size_t port_msg(PortNamespace *ns, uint8_t type, uint32_t port_to_receive, size_
 
         if (ret != NULL)
         {
-            memcpy(header, ret, bytes_to_receive);
+            host_accelerated_copy(header, ret, bytes_to_receive);
             return ret->size;
         }
     }

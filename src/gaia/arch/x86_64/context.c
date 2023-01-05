@@ -4,12 +4,12 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 #include "gaia/host.h"
-#include "gaia/vmm.h"
 #include "paging.h"
 #include <context.h>
 #include <gaia/pmm.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
+#include <gaia/vm/vmm.h>
 #include <simd.h>
 
 void context_init(Context *ctx, bool user)
@@ -25,7 +25,6 @@ void context_init(Context *ctx, bool user)
     vmm_space_init(ctx->space);
 
     ctx->space->pagemap = &ctx->pagemap;
-    ctx->space->bump = MMAP_BUMP_BASE;
 
     ctx->frame.cs = user ? 0x43 : 0x28;
     ctx->frame.ss = user ? 0x3b : 0x30;

@@ -2,17 +2,18 @@
 #include "gaia/debug.h"
 #include "gaia/firmware/acpi.h"
 #include "gaia/host.h"
+#include "gaia/vm/vmem.h"
 #include <gaia/error.h>
 #include <gaia/pmm.h>
 #include <gaia/slab.h>
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 #include <stdc-shim/string.h>
 
 void vmm_space_init(VmmMapSpace *space)
 {
-    space->bump = MMAP_BUMP_BASE;
     space->mappings = NULL;
     space->phys_bindings = NULL;
+    vmem_init(&space->vmem, "task space", (void *)USER_BASE, USER_SIZE, 0x1000, NULL, NULL, NULL, 0, 0);
 }
 
 VmObject vm_create(VmCreateArgs args)
@@ -69,8 +70,7 @@ int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t 
 
     if (!(flags & VM_MAP_FIXED))
     {
-        object->buf = (void *)space->bump;
-        space->bump += object->size;
+        object->buf = vmem_alloc(&space->vmem, object->size, VM_INSTANTFIT);
     }
 
     if (flags & VM_MAP_FIXED && vaddr != 0)
@@ -148,8 +148,7 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
 
     if (!(args.flags & VM_MAP_FIXED))
     {
-        args.object->buf = (void *)space->bump;
-        space->bump += args.object->size;
+        args.object->buf = vmem_alloc(&space->vmem, args.object->size, VM_INSTANTFIT);
     }
 
     if (args.flags & VM_MAP_FIXED && args.vaddr != 0)

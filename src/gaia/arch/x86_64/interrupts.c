@@ -9,7 +9,7 @@
 #include <gaia/sched.h>
 #include <gaia/syscall.h>
 #include <gaia/term.h>
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 #include <idt.h>
 #include <paging.h>
 

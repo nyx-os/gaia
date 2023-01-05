@@ -63,13 +63,13 @@ static void *allocate_item(FreelistItem *item)
     }
 }
 
-void *pmm_alloc()
+void *pmm_alloc(void)
 {
     lock_acquire(&pmm_lock);
 
     if (!freelist_head)
     {
-        panic("OOM");
+        panic("Out of Memory");
         lock_release(&pmm_lock);
         return NULL;
     }
@@ -84,7 +84,7 @@ void *pmm_alloc()
     return result;
 }
 
-void *pmm_alloc_zero()
+void *pmm_alloc_zero(void)
 {
     void *result = pmm_alloc();
     memset((void *)host_phys_to_virt((uintptr_t)result), 0, PAGE_SIZE);
@@ -134,7 +134,7 @@ size_t pmm_get_allocated_pages(void)
     return used_pages;
 }
 
-size_t pmm_get_free_pages()
+size_t pmm_get_free_pages(void)
 {
     return free_pages;
 }

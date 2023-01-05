@@ -7,7 +7,7 @@
 #include "gaia/charon.h"
 #include "gaia/ports.h"
 #include "gaia/rights.h"
-#include "gaia/vmm.h"
+#include <gaia/vm/vmm.h>
 #include <context.h>
 #include <gaia/elf.h>
 #include <gaia/host.h>

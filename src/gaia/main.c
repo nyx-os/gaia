@@ -12,6 +12,7 @@
 #include <gaia/rights.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
+#include <gaia/vm/vmem.h>
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
@@ -30,6 +31,8 @@ Charon *gaia_get_charon(void)
 
 void gaia_main(Charon *charon)
 {
+    vmem_bootstrap();
+
     term_init(charon);
 
     pmm_init(charon);

@@ -10,7 +10,7 @@
 #include <gaia/host.h>
 #include <gaia/ports.h>
 #include <gaia/rights.h>
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 #include <idt.h>
 #include <paging.h>
 

@@ -10,9 +10,9 @@
 
 #ifndef SRC_GAIA_PORTS_H
 #define SRC_GAIA_PORTS_H
-#include "gaia/vmm.h"
 #include <gaia/base.h>
 #include <gaia/vec.h>
+#include <gaia/vm/vmm.h>
 
 #define PORT_SEND (0)
 #define PORT_RECV (1)

@@ -6,7 +6,7 @@
 #include <context.h>
 #include <gaia/elf.h>
 #include <gaia/pmm.h>
-#include <gaia/vmm.h>
+#include <gaia/vm/vmm.h>
 #include <stdc-shim/string.h>
 #include <stdint.h>
 

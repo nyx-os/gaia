@@ -12,6 +12,7 @@
 #ifndef SRC_GAIA_VMM_H
 #define SRC_GAIA_VMM_H
 #include <gaia/base.h>
+#include <gaia/vm/vmem.h>
 
 #define VM_MEM_DMA (1 << 0)
 
@@ -26,7 +27,8 @@
 
 #define VM_REGION_UNIQUE (1 << 0)
 
-#define MMAP_BUMP_BASE 0x100000000
+#define USER_BASE 0x1000
+#define USER_SIZE 0x100000000
 
 typedef struct PACKED
 {
@@ -75,11 +77,11 @@ typedef struct vm_phys_binding
 
 typedef struct
 {
-    uintptr_t bump;
     VmMapping *mappings;
     Pagemap *pagemap;
     VmMappableRegion *mappable_regions;
     VmPhysBinding *phys_bindings;
+    Vmem vmem;
 } VmmMapSpace;
 
 void vmm_space_init(VmmMapSpace *space);
