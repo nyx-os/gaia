@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
+#include "paging.h"
 #include <context.h>
 #include <gaia/elf.h>
 #include <gaia/pmm.h>

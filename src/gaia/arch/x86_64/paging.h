@@ -71,4 +71,6 @@ Pagemap *paging_get_kernel_pagemap(void);
 
 void paging_copy_pagemap(uint64_t *dest, uint64_t *src, size_t page_count, size_t level);
 
+uintptr_t paging_virt_to_phys(Pagemap *pagemap, uintptr_t address);
+
 #endif /* ARCH_X86_64_PAGING_H */

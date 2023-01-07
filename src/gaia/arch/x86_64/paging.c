@@ -66,6 +66,7 @@ void paging_initialize()
 {
     kernel_pagemap.pml4 = pmm_alloc_zero();
     kernel_pagemap.lock = 0;
+
     assert(kernel_pagemap.pml4 != NULL);
 
     cpu_1gb_pages = cpuid_supports_1gb_pages();
@@ -81,6 +82,11 @@ void paging_initialize()
     else
     {
         log("CPU does not support 1G pages, continuing with 2M pages");
+    }
+
+    for (size_t i = 256; i < 512; i++)
+    {
+        assert(get_next_level((void *)(host_phys_to_virt((uintptr_t)kernel_pagemap.pml4)), i, 0, true) != NULL);
     }
 
     // Map the kernel
@@ -117,8 +123,10 @@ void paging_initialize()
     // Map the first 4GB+ of memory to the higher half.
     for (size_t i = 0; i < MAX(GIB(4), pmm_get_total_page_count() * PAGE_SIZE); i += page_size)
     {
-        host_map_page(&kernel_pagemap, i + MMAP_IO_BASE, i, PAGE_HUGE | PAGE_WRITABLE);
+        host_map_page(&kernel_pagemap, host_phys_to_virt(i), i, PAGE_HUGE | PAGE_WRITABLE);
     }
+
+    paging_load_pagemap(&kernel_pagemap);
 }
 
 // goto bad but who cares
@@ -190,4 +198,27 @@ void paging_load_pagemap(Pagemap *pagemap)
 Pagemap *paging_get_kernel_pagemap()
 {
     return &kernel_pagemap;
+}
+
+uintptr_t paging_virt_to_phys(Pagemap *pagemap, uintptr_t vaddr)
+{
+    lock_acquire(&pagemap->lock);
+
+    size_t level4 = PML_ENTRY(vaddr, 39);
+    size_t level3 = PML_ENTRY(vaddr, 30);
+    size_t level2 = PML_ENTRY(vaddr, 21);
+    size_t level1 = PML_ENTRY(vaddr, 12);
+
+    uint64_t *pml3 = get_next_level((void *)host_phys_to_virt((uintptr_t)pagemap->pml4), level4, 0, false);
+    uint64_t *pml2 = get_next_level(pml3, level3, 0, false);
+    uint64_t *pml1 = get_next_level(pml2, level2, 0, false);
+
+    if (!(PTE_GET_FLAGS(pml1[level1]) & PTE_PRESENT))
+    {
+        lock_release(&pagemap->lock);
+        return 0;
+    }
+    lock_release(&pagemap->lock);
+
+    return PTE_GET_ADDR(*&pml1[level1]);
 }

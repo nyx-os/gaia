@@ -13,23 +13,23 @@
 
 bool xsdt = false;
 
-AcpiTableHeader *acpi_table_ptr;
+AcpiTableHeader *acpi_table_ptr = NULL;
 
 void acpi_init(uintptr_t rsdp)
 {
-    Rsdp *rsdp_ptr = (Rsdp *)rsdp;
+    Rsdp *rsdp_ptr = (Rsdp *)(rsdp);
 
     log("ACPI revision number: %d", rsdp_ptr->revision);
 
     if (rsdp_ptr->revision)
     {
-        acpi_table_ptr = (AcpiTableHeader *)(rsdp_ptr->xsdt);
+        acpi_table_ptr = (AcpiTableHeader *)(host_phys_to_virt(rsdp_ptr->xsdt));
         xsdt = true;
         log("XSDT is at %p", (uintptr_t)acpi_table_ptr);
     }
     else
     {
-        acpi_table_ptr = (AcpiTableHeader *)((uintptr_t)rsdp_ptr->rsdt);
+        acpi_table_ptr = (AcpiTableHeader *)(host_phys_to_virt((uintptr_t)rsdp_ptr->rsdt));
         log("RSDT is at %p", (uintptr_t)acpi_table_ptr);
     }
 

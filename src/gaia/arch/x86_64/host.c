@@ -13,9 +13,12 @@
 #include <gaia/base.h>
 #include <gaia/limine.h>
 #include <gaia/pmm.h>
-#include <gaia/slab.h>
+
 #include <gaia/term.h>
 #include <stdc-shim/string.h>
+
+#define MMAP_IO_BASE ((uintptr_t)0xffff800000000000)
+#define MMAP_KERNEL_BASE ((uintptr_t)0xffffffff80000000)
 
 void host_out8(uint16_t port, uint8_t value)
 {
@@ -77,9 +80,9 @@ void host_enable_interrupts(void)
 
 void host_debug_write_string(const char *str)
 {
-    if(!str)
+    if (!str)
         return;
-        
+
     term_write(str);
     while (*str)
     {
