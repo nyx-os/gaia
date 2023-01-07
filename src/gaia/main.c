@@ -12,15 +12,15 @@
 #include <gaia/rights.h>
 #include <gaia/sched.h>
 #include <gaia/slab.h>
-#include <gaia/vm/vmem.h>
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
+#include <gaia/vm/vm_kernel.h>
+#include <gaia/vm/vmem.h>
 #include <stdbool.h>
 #include <stdc-shim/string.h>
 
 #define BOOTSTRAP_SERVER_NAME "/bootstrap"
-#define BOOTSTRAP_SERVER_NAME_LENGTH 10
 
 static Charon *_charon = NULL;
 
@@ -31,7 +31,6 @@ Charon *gaia_get_charon(void)
 
 void gaia_main(Charon *charon)
 {
-    vmem_bootstrap();
 
     term_init(charon);
 
@@ -39,6 +38,11 @@ void gaia_main(Charon *charon)
 #ifdef DEBUG
     pmm_dump();
 #endif
+
+    host_initialize();
+
+    vmem_bootstrap();
+    vm_kernel_init();
 
     slab_init();
 
@@ -52,8 +56,6 @@ void gaia_main(Charon *charon)
 #ifdef DEBUG
     acpi_dump_tables();
 #endif
-    host_initialize();
-
     sched_init();
 
     syscall_init(*charon);
@@ -61,7 +63,7 @@ void gaia_main(Charon *charon)
     bool found = false;
     for (int i = 0; i < charon->modules.count; i++)
     {
-        if (strncmp(charon->modules.modules[i].name, BOOTSTRAP_SERVER_NAME, BOOTSTRAP_SERVER_NAME_LENGTH) == 0)
+        if (strncmp(charon->modules.modules[i].name, BOOTSTRAP_SERVER_NAME, strlen(BOOTSTRAP_SERVER_NAME)) == 0)
         {
             sched_create_new_task_from_elf((uint8_t *)(host_phys_to_virt(charon->modules.modules[i].address)), RIGHT_DMA | RIGHT_REGISTER_DMA);
             found = true;
@@ -78,7 +80,7 @@ void gaia_main(Charon *charon)
     slab_dump();
 #endif
 
-    log("initial heap memory usage: %dkb", slab_used() / 1024);
+    log("initial heap memory usage: %dkb", vm_kernel_stat().in_use / 1024);
     log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");

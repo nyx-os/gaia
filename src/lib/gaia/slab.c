@@ -6,6 +6,7 @@
 #include <gaia/base.h>
 #include <gaia/slab.h>
 #include <gaia/spinlock.h>
+#include <gaia/vm/vm_kernel.h>
 #include <stdc-shim/string.h>
 
 typedef struct
@@ -43,7 +44,7 @@ static void create_slab(Slab *slab, size_t size)
     slab->lock = 0;
 
     // Allocate the head of the slab
-    slab->head = (void *)(host_phys_to_virt((uintptr_t)host_allocate_page()));
+    slab->head = (void *)(vm_kernel_alloc(1, false));
 
     slab->entry_size = size;
 

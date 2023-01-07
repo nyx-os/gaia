@@ -1,1 +1,1 @@
-kernel_srcs += files('vmm.c', 'vmem.c')
+kernel_srcs += files('vmm.c', 'vmem.c', 'vm_kernel.c')

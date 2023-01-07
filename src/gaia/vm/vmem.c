@@ -7,6 +7,7 @@
  */
 
 #include "gaia/pmm.h"
+#include "gaia/vm/vm_kernel.h"
 #include <gaia/debug.h>
 #include <gaia/vm/vmem.h>
 #include <stdc-shim/string.h>
@@ -37,9 +38,8 @@ static Spinlock vmem_global_lock = 0;
 
 static void *vmem_alloc_pages(int n)
 {
-    (void)n;
 
-    return (void *)host_phys_to_virt((uintptr_t)pmm_alloc_zero());
+    return vm_kernel_alloc(n, true);
 }
 
 static void vmem_lock()
@@ -108,11 +108,11 @@ static int repopulate_segments(void)
 {
     struct
     {
-        VmemSegment segs[128];
+        VmemSegment segs[64];
     } * segblock;
     size_t i;
 
-    /* Add 128 new segments */
+    /* Add 64 new segments */
     segblock = vmem_alloc_pages(1);
 
     for (i = 0; i < ARR_SIZE(segblock->segs); i++)
