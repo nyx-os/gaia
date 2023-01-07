@@ -15,7 +15,7 @@ uint32_t port_allocate(PortNamespace *ns, uint8_t rights)
 {
     Port new_port = {1, {0}};
 
-    PortListItem *new_item = slab_alloc(sizeof(PortListItem));
+    PortListItem *new_item = malloc(sizeof(PortListItem));
 
     new_item->data = new_port;
     new_item->next = port_list_head;
@@ -54,10 +54,10 @@ void port_free(PortNamespace *ns, uint32_t name)
             {
                 for (int i = 0; i < port_item->data.queue.length; i++)
                 {
-                    slab_free(port_item->data.queue.messages[i].header);
+                    free(port_item->data.queue.messages[i].header);
                 }
 
-                slab_free(port_item);
+                free(port_item);
             }
 
             break;
@@ -97,7 +97,7 @@ void port_send(PortNamespace *ns, PortMessageHeader *message, VmmMapSpace **spac
         panic("Holder of port rights %d does not have send rights", message->dest);
     }
 
-    port->queue.messages[port->queue.head].header = slab_alloc(message->size);
+    port->queue.messages[port->queue.head].header = malloc(message->size);
     port->queue.length++;
 
     if (message->shmd_count > 0)

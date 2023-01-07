@@ -7,7 +7,6 @@
 #include "gaia/charon.h"
 #include "gaia/ports.h"
 #include "gaia/rights.h"
-#include <gaia/vm/vmm.h>
 #include <context.h>
 #include <gaia/elf.h>
 #include <gaia/host.h>
@@ -16,6 +15,7 @@
 #include <gaia/slab.h>
 #include <gaia/spinlock.h>
 #include <gaia/vec.h>
+#include <gaia/vm/vmm.h>
 #include <paging.h>
 
 typedef Vec(Task *) TaskVec;
@@ -52,16 +52,16 @@ Task *sched_create_new_task(bool user, Rights rights)
 {
     lock_acquire(&lock);
 
-    Task *ret = slab_alloc(sizeof(Task));
+    Task *ret = malloc(sizeof(Task));
 
     ret->rights = rights;
 
-    ret->context = slab_alloc(sizeof(Context));
+    ret->context = malloc(sizeof(Context));
 
     ret->state = STOPPED;
     ret->pid = current_pid++;
 
-    ret->namespace = slab_alloc(sizeof(PortNamespace));
+    ret->namespace = malloc(sizeof(PortNamespace));
 
     ret->rights = rights;
 

@@ -13,6 +13,6 @@ void vec_expand(void **data, size_t *length, size_t *capacity, int memsz)
     {
         *capacity = (*capacity == 0) ? 1 : (*capacity * 2);
 
-        *data = slab_realloc(*data, *capacity * memsz);
+        *data = realloc(*data, *capacity * memsz);
     }
 }

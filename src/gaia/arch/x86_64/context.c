@@ -14,7 +14,7 @@
 
 void context_init(Context *ctx, bool user)
 {
-    ctx->space = slab_alloc(sizeof(VmmMapSpace));
+    ctx->space = malloc(sizeof(VmmMapSpace));
     ctx->pagemap.pml4 = pmm_alloc_zero();
     ctx->fpu_state = (void *)(host_phys_to_virt((uintptr_t)pmm_alloc_zero()));
 

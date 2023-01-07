@@ -56,7 +56,7 @@ static bool is_unique_region_in_use(VmmMapSpace *space, uintptr_t address)
 int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t vaddr, uint16_t protection, uint16_t flags)
 {
     uint16_t actual_prot = PAGE_USER;
-    VmMapping *mapping = slab_alloc(sizeof(VmMapping));
+    VmMapping *mapping = malloc(sizeof(VmMapping));
 
     if (!(protection & VM_PROT_EXEC))
     {
@@ -89,7 +89,7 @@ int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t 
 
     if (phys)
     {
-        VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
+        VmPhysBinding *binding = malloc(sizeof(VmPhysBinding));
         binding->phys = phys;
         binding->virt = ALIGN_DOWN(mapping->address, 4096);
         binding->next = space->phys_bindings;
@@ -106,7 +106,7 @@ int vm_map_phys(VmmMapSpace *space, VmObject *object, uintptr_t phys, uintptr_t 
 int vm_map(VmmMapSpace *space, VmMapArgs args)
 {
     uint16_t actual_prot = PAGE_USER;
-    VmMapping *mapping = slab_alloc(sizeof(VmMapping));
+    VmMapping *mapping = malloc(sizeof(VmMapping));
     uintptr_t phys = 0;
 
     if (!(args.protection & VM_PROT_EXEC))
@@ -167,7 +167,7 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
 
     if (phys)
     {
-        VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
+        VmPhysBinding *binding = malloc(sizeof(VmPhysBinding));
         binding->phys = phys;
         binding->virt = ALIGN_DOWN(mapping->address, 4096);
         binding->next = space->phys_bindings;
@@ -183,7 +183,7 @@ int vm_map(VmmMapSpace *space, VmMapArgs args)
 
 void vm_new_mappable_region(VmmMapSpace *space, uintptr_t address, size_t size, uint16_t flags)
 {
-    VmMappableRegion *region = slab_alloc(sizeof(VmMappableRegion));
+    VmMappableRegion *region = malloc(sizeof(VmMappableRegion));
     region->address = address;
     region->size = size;
     region->unique = (flags & VM_REGION_UNIQUE);
@@ -271,7 +271,7 @@ bool vmm_page_fault_handler(VmmMapSpace *space, uintptr_t faulting_address)
             if (!mapping->is_dma)
             {
                 void *phys = pmm_alloc_zero();
-                VmPhysBinding *binding = slab_alloc(sizeof(VmPhysBinding));
+                VmPhysBinding *binding = malloc(sizeof(VmPhysBinding));
 
                 binding->phys = (uintptr_t)phys;
                 binding->virt = virt;
