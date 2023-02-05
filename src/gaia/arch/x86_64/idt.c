@@ -48,7 +48,7 @@ static void idt_reload(void)
 #define PIC1_DATA 0x21
 #define PIC2_DATA 0xA1
 
-void idt_initialize()
+void idt_initialize(void)
 {
     install_isrs();
     idt_reload();

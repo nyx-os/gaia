@@ -8,13 +8,14 @@
 #define LIB_GAIA_BASE_H
 #include <gaia/debug.h>
 #include <gaia/spinlock.h>
+#include <gaia/vm/kmem.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
-#define realloc slab_realloc
-#define malloc slab_alloc
-#define free slab_free
+#define realloc kmem_realloc
+#define malloc kmem_alloc
+#define free kmem_free
 
 #define ALIGN_UP(x, align) (((x) + (align)-1) & ~((align)-1))
 #define ALIGN_DOWN(x, align) ((x) & ~((align)-1))

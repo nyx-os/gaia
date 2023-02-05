@@ -42,12 +42,12 @@ static void *vmem_alloc_pages(int n)
     return vm_kernel_alloc(n, true);
 }
 
-static void vmem_lock()
+static void vmem_lock(void)
 {
     lock_acquire(&vmem_global_lock);
 }
 
-static void vmem_unlock()
+static void vmem_unlock(void)
 {
     lock_release(&vmem_global_lock);
 }
@@ -109,7 +109,7 @@ static int repopulate_segments(void)
     struct
     {
         VmemSegment segs[64];
-    } * segblock;
+    } *segblock;
     size_t i;
 
     /* Add 64 new segments */

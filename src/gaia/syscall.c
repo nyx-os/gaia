@@ -21,7 +21,8 @@ static int sys_log(SyscallFrame frame)
 {
     char *s = (char *)frame.first_arg;
 
-    _log(LOG_NONE, NULL, "Debug [pid:%d] %s", sched_get_current_task()->pid, (char *)frame.first_arg);
+    debug_print("[%d] %s", sched_get_current_task()->pid, s);
+    //_log(LOG_NONE, NULL, "Debug [pid:%d] %s", sched_get_current_task()->pid, (char *)frame.first_arg);
 
     if (s[strlen(s) - 1] != '\n')
         host_debug_write_string("\n");
@@ -196,7 +197,7 @@ static int sys_exit(SyscallFrame frame)
 {
     sched_get_current_task()->state = STOPPED;
 
-    log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
+    // log("Task %d exited with error code %d", sched_get_current_task()->pid, frame.first_arg);
     sched_tick(frame.int_frame);
     return ERR_SUCCESS;
 }

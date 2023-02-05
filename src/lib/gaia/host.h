@@ -188,7 +188,7 @@ void host_unmap_page(Pagemap *pagemap, uintptr_t vaddr);
  *
  * @return A pointer to the page
  */
-void *host_allocate_page();
+void *host_allocate_page(void);
 
 /**
  * @brief Frees a 4kib page

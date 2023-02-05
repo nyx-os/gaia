@@ -98,6 +98,6 @@ void _assert(bool condition, const char *condition_string, const char *file, int
  * @def assert(expr)
  * @brief Panics if expr is false.
  */
-#define assert(expr) (expr ? (void)0 : _assert(expr, #expr, __FILE__, __LINE__))
+#define assert(expr) ((expr) ? (void)0 : _assert(expr, #expr, __FILE__, __LINE__))
 
 #endif /* LIB_GAIA_DEBUG_H */

@@ -53,7 +53,7 @@ typedef enum
 
 bool cpuid_has_feature(Cpuid cpuid, uint32_t feature);
 
-static inline UNUSED bool cpuid_supports_1gb_pages()
+static inline UNUSED bool cpuid_supports_1gb_pages(void)
 {
     return cpuid_has_feature(cpuid(CPUID_LEAF_EXTENDED_FEATURES, 0), CPUID_EXFEATURE_PDPE1GB);
 }

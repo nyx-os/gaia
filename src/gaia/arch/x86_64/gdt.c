@@ -95,7 +95,7 @@ static TssDescriptor make_tss_entry(uintptr_t tss)
     };
 }
 
-void gdt_initialize()
+void gdt_initialize(void)
 {
 
     tss.rsp0 = (uint64_t)host_phys_to_virt((uintptr_t)pmm_alloc_zero()) + PAGE_SIZE;

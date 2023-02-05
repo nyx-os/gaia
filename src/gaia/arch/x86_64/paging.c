@@ -62,7 +62,7 @@ static void invlpg(void *addr)
                      : "memory");
 }
 
-void paging_initialize()
+void paging_initialize(void)
 {
     kernel_pagemap.pml4 = pmm_alloc_zero();
     kernel_pagemap.lock = 0;
@@ -195,7 +195,7 @@ void paging_load_pagemap(Pagemap *pagemap)
     asm_write_cr3((uint64_t)pagemap->pml4);
 }
 
-Pagemap *paging_get_kernel_pagemap()
+Pagemap *paging_get_kernel_pagemap(void)
 {
     return &kernel_pagemap;
 }

@@ -15,6 +15,7 @@
 #include <gaia/syscall.h>
 #include <gaia/term.h>
 #include <gaia/vec.h>
+#include <gaia/vm/kmem.h>
 #include <gaia/vm/vm_kernel.h>
 #include <gaia/vm/vmem.h>
 #include <stdbool.h>
@@ -31,10 +32,10 @@ Charon *gaia_get_charon(void)
 
 void gaia_main(Charon *charon)
 {
-
     term_init(charon);
 
     pmm_init(charon);
+
 #ifdef DEBUG
     pmm_dump();
 #endif
@@ -43,8 +44,7 @@ void gaia_main(Charon *charon)
 
     vmem_bootstrap();
     vm_kernel_init();
-
-    slab_init();
+    kmem_bootstrap();
 
     _charon = (void *)host_phys_to_virt((uintptr_t)pmm_alloc_zero());
 
@@ -76,12 +76,8 @@ void gaia_main(Charon *charon)
         panic("Cannot find bootstrap server");
     }
 
-#ifdef DEBUG
-    slab_dump();
-#endif
-
-    log("initial heap memory usage: %dkb", vm_kernel_stat().in_use / 1024);
-    log("initial kernel memory usage: %dkb", pmm_get_allocated_pages() * PAGE_SIZE / 1024);
+    log("-- Memory stats (kb) --");
+    log("vm_kernel: %d\t phys: %d", vm_kernel_stat().in_use / 1024, pmm_get_allocated_pages() * PAGE_SIZE / 1024);
     log("gaia (0.0.1-proof-of-concept) finished booting on %s", host_get_name());
     log("Welcome to the machine!");
 

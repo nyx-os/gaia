@@ -34,7 +34,7 @@ static void simd_fxrstor(void *buffer)
     asm_fxrstor(buffer);
 }
 
-void simd_initialize()
+void simd_initialize(void)
 {
     Cpuid cpu = cpuid(CPUID_EXFEATURE_FPU, 0);
     uint64_t cr0 = asm_read_cr0();

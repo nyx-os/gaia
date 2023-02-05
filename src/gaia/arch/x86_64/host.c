@@ -24,21 +24,22 @@ void host_out8(uint16_t port, uint8_t value)
 {
     __asm__ volatile("outb %0, %1"
                      :
-                     : "a"(value), "Nd"(port));
+                     : "a"(value), "d"(port)
+                     : "memory");
 }
 
 void host_out16(uint16_t port, uint16_t value)
 {
     __asm__ volatile("outw %0, %1"
                      :
-                     : "a"(value), "Nd"(port));
+                     : "a"(value), "d"(port));
 }
 
 void host_out32(uint16_t port, uint32_t value)
 {
     __asm__ volatile("outl %0, %1"
                      :
-                     : "a"(value), "Nd"(port));
+                     : "a"(value), "d"(port));
 }
 
 uint8_t host_in8(uint16_t port)
@@ -46,7 +47,7 @@ uint8_t host_in8(uint16_t port)
     uint8_t value;
     __asm__ volatile("inb %1, %0"
                      : "=a"(value)
-                     : "Nd"(port));
+                     : "d"(port));
     return value;
 }
 
@@ -55,7 +56,7 @@ uint16_t host_in16(uint16_t port)
     uint16_t value;
     __asm__ volatile("inw %1, %0"
                      : "=a"(value)
-                     : "Nd"(port));
+                     : "d"(port));
     return value;
 }
 
@@ -64,7 +65,7 @@ uint32_t host_in32(uint16_t port)
     uint32_t value;
     __asm__ volatile("inl %1, %0"
                      : "=a"(value)
-                     : "Nd"(port));
+                     : "d"(port));
     return value;
 }
 

@@ -15,6 +15,10 @@ void madt_init(void)
     Madt *madt = (Madt *)acpi_get_table("APIC");
     assert(madt != NULL);
 
+    vec_init(&madt_ioapics);
+    vec_init(&madt_lapics);
+    vec_init(&madt_isos);
+
     size_t i = 0;
     size_t cpu_count = 0;
     while (i < madt->header.length - sizeof(Madt))
@@ -29,7 +33,7 @@ void madt_init(void)
 
             if (lapic.flags & LAPIC_ENABLED)
             {
-                //    vec_push(&madt_lapics, lapic);
+                // vec_push(&madt_lapics, lapic);
                 cpu_count++;
             }
 
@@ -46,6 +50,7 @@ void madt_init(void)
             vec_push(&madt_ioapics, *(MadtIoApic *)(madt->entries + i));
             break;
         case 2:
+
             vec_push(&madt_isos, *(MadtISO *)(madt->entries + i));
             break;
         }

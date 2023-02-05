@@ -8,21 +8,22 @@
 #include <gaia/firmware/madt.h>
 
 // Use MMIO to interact with registers
-static uint32_t ioapic_read(MadtIoApic *ioapic, uint32_t reg)
+static uint32_t ioapic_read(MadtIoApic ioapic, uint32_t reg)
 {
-    uintptr_t base = host_phys_to_virt((uintptr_t)ioapic->address);
+    uintptr_t base = host_phys_to_virt((uintptr_t)ioapic.address);
+
     *(volatile uint32_t *)(base) = reg;
     return *(volatile uint32_t *)(base + 0x10);
 }
 
-static void ioapic_write(MadtIoApic *ioapic, uint32_t reg, uint32_t value)
+static void ioapic_write(MadtIoApic ioapic, uint32_t reg, uint32_t value)
 {
-    uintptr_t base = host_phys_to_virt((uintptr_t)ioapic->address);
+    uintptr_t base = host_phys_to_virt((uintptr_t)ioapic.address);
     *(volatile uint32_t *)(base) = reg;
     *(volatile uint32_t *)(base + 0x10) = value;
 }
 
-static size_t ioapic_get_max_redirect(MadtIoApic *ioapic)
+static size_t ioapic_get_max_redirect(MadtIoApic ioapic)
 {
     struct PACKED ioapic_version
     {
@@ -33,12 +34,13 @@ static size_t ioapic_get_max_redirect(MadtIoApic *ioapic)
     };
 
     uint32_t val = ioapic_read(ioapic, 1);
+
     struct ioapic_version version = *(struct ioapic_version *)&val;
 
     return version.max_redirect;
 }
 
-static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
+static MadtIoApic ioapic_from_gsi(uint32_t gsi)
 {
     MadtIoApicVec ioapics = madt_get_ioapics();
 
@@ -49,14 +51,14 @@ static MadtIoApic *ioapic_from_gsi(uint32_t gsi)
         MadtIoApic ioapic = ioapics.data[i];
 
         // if the GSI is within the range of the ioapic, return the ioapic
-        if (gsi >= ioapic.interrupt_base && gsi < ioapic.interrupt_base + ioapic_get_max_redirect(&ioapic))
+        if (gsi >= ioapic.interrupt_base && gsi < ioapic.interrupt_base + ioapic_get_max_redirect(ioapic))
         {
-            return &ioapics.data[i];
+            return ioapics.data[i];
         }
     }
 
     panic("Cannot find ioapic from gsi %d", gsi);
-    return NULL;
+    return (MadtIoApic){0};
 }
 
 static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t gsi, uint16_t flags)
@@ -84,9 +86,7 @@ static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t g
         } _raw;
     } io_apic_redirect;
 
-    MadtIoApic *ioapic = ioapic_from_gsi(gsi);
-
-    assert(ioapic != NULL);
+    MadtIoApic ioapic = ioapic_from_gsi(gsi);
 
     io_apic_redirect redirect = {0};
     redirect._redirect.vector = vector;
@@ -103,7 +103,7 @@ static void ioapic_set_gsi_redirect(uint32_t lapic_id, uint8_t vector, uint8_t g
 
     redirect._redirect.dest_id = lapic_id;
 
-    uint32_t io_redirect_table = (gsi - ioapic->interrupt_base) * 2 + 16;
+    uint32_t io_redirect_table = (gsi - ioapic.interrupt_base) * 2 + 16;
 
     ioapic_write(ioapic, io_redirect_table, (uint32_t)redirect._raw._low_byte);
     ioapic_write(ioapic, io_redirect_table + 1, redirect._raw._high_byte);

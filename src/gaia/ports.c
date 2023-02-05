@@ -54,10 +54,10 @@ void port_free(PortNamespace *ns, uint32_t name)
             {
                 for (int i = 0; i < port_item->data.queue.length; i++)
                 {
-                    free(port_item->data.queue.messages[i].header);
+                    free(port_item->data.queue.messages[i].header, port_item->data.queue.messages[i].header->size);
                 }
 
-                free(port_item);
+                free(port_item, sizeof(PortListItem));
             }
 
             break;
