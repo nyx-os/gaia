@@ -5,4 +5,4 @@ Gaia aims to be a portable and readable capability-based microkernel used by the
 
 ** Thirdparty components
 - rxi/vec: dynamic array implementation
-- nanoprintf: printf implementation used for =kmem_printf=
+- nanoprintf: printf implementation used for =kprintf=
