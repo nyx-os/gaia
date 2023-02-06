@@ -35,7 +35,7 @@ Supported licenses are:
 - =gpl2=: GPLv2
 - =gpl3=: GPLv3
 - =unlicense=: The Unlicense
-- =ignore=,=none=: Comment won't be replaced
+- =ignore=, =none=: Comment won't be replaced
 
 **** Tidying
 =scripts/dev.sh tidy= calls =clang-tidy= with the proper arguments.
