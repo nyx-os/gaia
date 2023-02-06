@@ -2,7 +2,6 @@
 #include <machdep/vm.h>
 #include <kern/vm/vm.h>
 #include <kern/vm/phys.h>
-#include <errno.h>
 #include <x86_64/limine.h>
 #include <x86_64/cpuid.h>
 #include <x86_64/asm.h>
