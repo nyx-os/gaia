@@ -3,6 +3,41 @@ Gaia aims to be a portable and readable capability-based microkernel used by the
 
 *NOTE*: this branch is not stable
 
+** Contributing
+Contributions are welcome. Be sure to follow the [[https://www.conventionalcommits.org/en/v1.0.0/][Conventional Commits]] guidelines.
+
+*** Code style guidelines
+This project uses the same guidelines as the Linux kernel with tab settings tweaked. (see the =.clang-format= file)
+
+*** Helper script
+You can use the =scripts/dev.sh= script to help with development.
+
+**** Code reformatting & License headers
+=scripts/dev.sh reformat= replaces comments with at the top of every file with the proper SPDX format. The script also calls =clang-format= on every file
+
+Example:
+
+#+BEGIN_SRC c
+/* @license:bsd2 */
+#ifndef ...
+#+END_SRC
+
+will expand to
+
+#+BEGIN_SRC c
+/* SPDX-License-Identifier: BSD-2-Clause */
+#ifndef ...
+#+END_SRC
+
+**** Tidying
+=scripts/dev.sh tidy= calls =clang-tidy= with the proper arguments.
+
+
+**** Compilation DB
+=scripts/dev.sh setup-env= Generates a =compile_commands.json= file to use with IDEs such as CLion.
+
+
+
 ** Thirdparty components
 - rxi/vec: dynamic array implementation
 - nanoprintf: printf implementation used for =kprintf=
