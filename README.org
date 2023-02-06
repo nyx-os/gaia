@@ -29,12 +29,20 @@ will expand to
 #ifndef ...
 #+END_SRC
 
+Supported licenses are:
+- =bsd2=: BSD clause
+- =mit=: MIT License
+- =gpl2=: GPLv2
+- =gpl3=: GPLv3
+- =unlicense=: The Unlicense
+- =ignore=,=none=: Comment won't be replaced
+
 **** Tidying
 =scripts/dev.sh tidy= calls =clang-tidy= with the proper arguments.
 
 
 **** Compilation DB
-=scripts/dev.sh setup-env= Generates a =compile_commands.json= file to use with IDEs such as CLion.
+=scripts/dev.sh setup-env= generates a =compile_commands.json= file to use with IDEs such as CLion.
 
 
 
