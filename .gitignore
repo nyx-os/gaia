@@ -10,3 +10,4 @@ outdoc
 .vscode
 builddir
 .cache
+compile_commands.json

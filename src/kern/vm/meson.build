@@ -1,0 +1,1 @@
+kernel_srcs += files('kmem.c', 'phys.c', 'vm.c')

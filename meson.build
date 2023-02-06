@@ -12,7 +12,7 @@ endif
 
 subdir('src')
 
-arch_path = join_paths(meson.current_source_dir() , 'src/gaia/arch', target_machine.cpu_family())
+arch_path = join_paths(meson.current_source_dir() , 'src/arch', target_machine.cpu_family())
 
 ld_file = files(arch_path + '/link.ld')[0]
 
