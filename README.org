@@ -1,0 +1,8 @@
+* Gaia - A capability-based microkernel
+Gaia aims to be a portable and readable capability-based microkernel used by the Nyx operating system.
+
+*NOTE*: this branch is not stable
+
+** Thirdparty components
+- rxi/vec: dynamic array implementation
+- nanoprintf: printf implementation used for =kmem_printf=
