@@ -1,4 +1,4 @@
-/* @license:bsd2 */
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_ARCH_X86_64_MACHDEP_INTR_H_
 #define SRC_ARCH_X86_64_MACHDEP_INTR_H_
 #include <libkern/base.h>
