@@ -1,1 +1,1 @@
-kernel_srcs += files('kmem.c', 'phys.c', 'vm.c')
+kernel_srcs += files('kmem.c', 'phys.c', 'vm.c', 'vm_kernel.c', 'vmem.c')

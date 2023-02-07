@@ -69,7 +69,11 @@ void intr_register(int vec, intr_handler_t handler)
     idt[vec] = idt_make_entry((uintptr_t)handler, INTGATE);
 }
 
-uint64_t interrupts_handler(uint64_t rip)
+void lapic_eoi(void);
+
+uint64_t interrupts_handler(uint64_t rsp)
 {
-    return rip;
+    log("got an interrupt");
+    lapic_eoi();
+    return rsp;
 }

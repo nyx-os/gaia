@@ -1,0 +1,1 @@
+kernel_srcs += files('acpi.c')

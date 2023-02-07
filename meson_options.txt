@@ -1,2 +1,2 @@
-option('kubsan', type : 'boolean', value : true)
+option('sanitizers', type : 'boolean', value : true)
 option('debug_trace', type : 'boolean', value : true)

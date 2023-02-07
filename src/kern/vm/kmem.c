@@ -2,6 +2,7 @@
 #include "kmem.h"
 #include <machdep/machdep.h>
 #include <libkern/base.h>
+#include <kern/vm/vm_kernel.h>
 
 #define kmem_printf log
 
@@ -81,19 +82,6 @@ static kmem_cache_t *caches[] = { APPLY_SLAB_SIZES(REF_CACHE) };
 static kmem_cache_t slab_cache;
 static kmem_cache_t bufctl_cache;
 
-void *vm_kernel_alloc(int pgnum, bool h)
-{
-    DISCARD(h);
-    DISCARD(pgnum);
-    return NULL;
-}
-
-void vm_kernel_free(void *ptr, int pgnum)
-{
-    DISCARD(ptr);
-    DISCARD(pgnum);
-}
-
 static size_t cache_slab_size(kmem_cache_t *cache)
 {
     if (cache->size <= KMEM_SMALL_SLAB_SIZE) {
@@ -150,8 +138,9 @@ static kmem_slab_t *kmem_small_slab_create(kmem_cache_t *cache)
         }
     }
 
-    SLIST_NEXT(buf, list) = NULL;
-
+    if (buf) {
+        SLIST_NEXT(buf, list) = NULL;
+    }
     return ret;
 }
 

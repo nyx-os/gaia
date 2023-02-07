@@ -25,7 +25,7 @@
 #define PTE_IS_USER(x) ((x)&PTE_USER)
 #define PTE_IS_NOT_EXECUTABLE(x) ((x)&PTE_NOT_EXECUTABLE)
 
-static pmap_t kernel_pmap;
+pmap_t kernel_pmap;
 static bool cpu_supports_1gb_pages = false;
 
 extern char text_start_addr[], text_end_addr[];

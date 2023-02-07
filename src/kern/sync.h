@@ -21,7 +21,7 @@ static inline void spinlock_lock(spinlock_t *lock)
     }
 }
 
-static inline void lock_release(spinlock_t *lock)
+static inline void spinlock_unlock(spinlock_t *lock)
 {
     __sync_bool_compare_and_swap(lock, 1, 0);
 }
