@@ -3,5 +3,6 @@
 #define SRC_ARCH_X86_64_MACHDEP_CPU_H_
 
 void cpu_halt(void);
+void cpu_enable_interrupts(void);
 
 #endif

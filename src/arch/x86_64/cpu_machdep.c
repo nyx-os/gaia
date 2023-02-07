@@ -8,3 +8,8 @@ void cpu_halt(void)
         cli();
     }
 }
+
+void cpu_enable_interrupts(void)
+{
+    sti();
+}

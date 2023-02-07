@@ -5,8 +5,8 @@
 
 void gaia_main(charon_t charon)
 {
-    machine_init();
     vm_init(charon);
+    machine_init();
 
-    log("used pages: %lx", phys_used_pages());
+    log("gaia version 0.0.1");
 }
