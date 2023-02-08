@@ -8,3 +8,6 @@
 [submodule "subprojects/stdc-shim"]
 	path = subprojects/stdc-shim
 	url = https://github.com/nyx-org/stdc-shim
+[submodule "doxygen-awesome-css"]
+	path = doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
