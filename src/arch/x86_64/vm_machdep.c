@@ -25,7 +25,6 @@
 #define PTE_IS_USER(x) ((x)&PTE_USER)
 #define PTE_IS_NOT_EXECUTABLE(x) ((x)&PTE_NOT_EXECUTABLE)
 
-pmap_t kernel_pmap;
 static bool cpu_supports_1gb_pages = false;
 
 extern char text_start_addr[], text_end_addr[];
@@ -84,7 +83,9 @@ void pmap_init(void)
         page_size = GIB(1);
     }
 
-    kernel_pmap = pmap_create();
+    pmap_t kernel_pmap = pmap_create();
+
+    vm_kmap.pmap = kernel_pmap;
 
     for (int i = 256; i < 512; i++) {
         assert(get_next_level((void *)P2V(kernel_pmap.pml4), i, true) != NULL);

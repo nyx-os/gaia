@@ -17,6 +17,4 @@ struct pmap {
     paddr_t pml4;
 };
 
-extern struct pmap kernel_pmap;
-
 #endif

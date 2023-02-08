@@ -3,6 +3,7 @@
 #define SRC_KERN_VM_VM_H_
 #include <machdep/vm.h>
 #include <kern/vm/phys.h>
+#include <kern/vm/vmem.h>
 
 typedef enum {
     VM_PROT_READ = 1,
@@ -46,5 +47,12 @@ void pmap_activate(pmap_t pmap);
 void pmap_invlpg(vaddr_t va);
 
 void vm_init(charon_t charon);
+
+typedef struct {
+    pmap_t pmap;
+    vmem_t vmem;
+} vm_map_t;
+
+extern vm_map_t vm_kmap;
 
 #endif

@@ -73,7 +73,7 @@ void lapic_eoi(void);
 
 uint64_t interrupts_handler(uint64_t rsp)
 {
-    log("got an interrupt");
+    log("Got an interrupt");
     lapic_eoi();
     return rsp;
 }
