@@ -2,6 +2,7 @@
 #include <libkern/debug.h>
 #include <kern/charon.h>
 #include <kern/vm/vm.h>
+#include <kern/vm/vm_kernel.h>
 #include <dev/acpi.h>
 
 void gaia_main(charon_t charon)

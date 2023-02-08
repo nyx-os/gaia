@@ -5,7 +5,7 @@
 void cpu_halt(void)
 {
     while (true) {
-        cli();
+        hlt();
     }
 }
 

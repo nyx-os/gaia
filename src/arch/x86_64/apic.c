@@ -178,20 +178,17 @@ void ioapic_redirect_irq(uint32_t lapic_id, uint8_t irq, uint8_t vector)
 
 static uint32_t lapic_read(uint32_t reg)
 {
-    return *(volatile uint32_t *)(P2V(lapic_base) + reg);
+    return VOLATILE_READ(uint32_t, P2V(lapic_base) + reg);
 }
 
 static void lapic_write(uint32_t reg, uint32_t value)
 {
-    *(volatile uint32_t *)(P2V(lapic_base) + reg) = value;
+    VOLATILE_WRITE(uint32_t, P2V(lapic_base) + reg, value);
 }
 
-// lol
 static uintptr_t get_lapic_address(void)
 {
-    uint32_t edx = 0, eax = 0;
-    asm volatile("rdmsr\n\t" : "=a"(eax), "=d"(edx) : "c"(0x1b) : "memory");
-    return (((uint64_t)edx << 32) | eax) & 0xffff00000;
+    return rdmsr(0x1b) & 0xfffff000;
 }
 
 void lapic_init(void)
@@ -204,14 +201,13 @@ void lapic_init(void)
 
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
 
-    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, 0xFFFFFFFF);
+    lapic_write(LAPIC_REG_TIMER_INIT_COUNT, -1);
 
     hpet_sleep(10);
 
     lapic_write(LAPIC_REG_LVT_TIMER, LAPIC_TIMER_MASKED);
 
-    uint32_t ticks_in_10ms =
-            0xFFFFFFFF - lapic_read(LAPIC_REG_TIMER_CURRENT_COUNT);
+    uint32_t ticks_in_10ms = -1 - lapic_read(LAPIC_REG_TIMER_CURRENT_COUNT);
 
     lapic_write(LAPIC_REG_LVT_TIMER, LAPIC_TIMER_IRQ | LAPIC_TIMER_PERIODIC);
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
