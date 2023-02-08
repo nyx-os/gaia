@@ -11,6 +11,9 @@
 #define CHARON_MODULE_MAX 16
 #define CHARON_MMAP_SIZE_MAX 128
 
+/**
+ * Memory map entry type
+ */
 enum charon_mmap_entry_type {
     MMAP_FREE,
     MMAP_RESERVED,
