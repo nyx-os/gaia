@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['charon_2eh_0',['charon.h',['../charon_8h.html',1,'']]],
-  ['charon_5fframebuffer_5ft_1',['charon_framebuffer_t',['../structcharon__framebuffer__t.html',1,'']]],
-  ['charon_5fmmap_5fentry_5ft_2',['charon_mmap_entry_t',['../structcharon__mmap__entry__t.html',1,'']]],
-  ['charon_5fmmap_5fentry_5ftype_3',['charon_mmap_entry_type',['../charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc',1,'charon.h']]],
-  ['charon_5fmmap_5ft_4',['charon_mmap_t',['../structcharon__mmap__t.html',1,'']]],
-  ['charon_5fmodule_5ft_5',['charon_module_t',['../structcharon__module__t.html',1,'']]],
-  ['charon_5fmodules_5ft_6',['charon_modules_t',['../structcharon__modules__t.html',1,'']]],
-  ['charon_5ft_7',['charon_t',['../structcharon__t.html',1,'']]],
-  ['cpuid_5ft_8',['cpuid_t',['../structcpuid__t.html',1,'']]]
+  ['address_0',['address',['../structcharon__framebuffer__t.html#ad2390365373d8b76890d2fed0dddc8c1',1,'charon_framebuffer_t::address()'],['../structcharon__module__t.html#a960e4bccf493ce065c0fba4febb5eeb9',1,'charon_module_t::address()'],['../structkmem__bufctl.html#a0c3abbe952d98db6a27c5477def4b812',1,'kmem_bufctl::address()']]],
+  ['align_1',['align',['../structkmem__cache.html#a17f01dc0357b1f6082984e8c2578829c',1,'kmem_cache']]],
+  ['alloc_2',['alloc',['../structvmem.html#ab76ba29a128d75cb8bf314b731dc8d7b',1,'vmem']]]
 ];

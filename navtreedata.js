@@ -27,13 +27,22 @@ var NAVTREE =
   [ "Gaia", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ]
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Enumerations", "globals_enum.html", null ]
+        [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -42,7 +51,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8h_source.html",
-"structlimine__file.html#a76f0d8f40ecbfb3fad45d035baf4cdc6"
+"structlimine__bootloader__info__request.html#a30c667dee4dbf7241303b9f304f804bd",
+"vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

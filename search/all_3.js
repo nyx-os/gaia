@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['kmem_5fbufctl_12',['kmem_bufctl',['../structkmem__bufctl.html',1,'']]],
-  ['kmem_5fcache_13',['kmem_cache',['../structkmem__cache.html',1,'']]],
-  ['kmem_5fslab_14',['kmem_slab',['../structkmem__slab.html',1,'']]]
+  ['data_17',['data',['../structkmem__slab.html#a978ac36a9fc1179d6e4bb80a4bd84786',1,'kmem_slab']]],
+  ['destructor_18',['destructor',['../structkmem__cache.html#a052560611ef2c82abf7e38baf3e13c2e',1,'kmem_cache']]]
 ];

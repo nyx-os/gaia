@@ -83,7 +83,6 @@ $(document).ready(function(){initNavTree('structkmem__bufctl.html',''); initResi
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structkmem__bufctl-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -91,21 +90,61 @@ $(document).ready(function(){initNavTree('structkmem__bufctl.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:ab94565652c955835af630deab5bcb29c"><td class="memItemLeft" align="right" valign="top"><a id="ab94565652c955835af630deab5bcb29c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SLIST_ENTRY</b> (<a class="el" href="structkmem__bufctl.html">kmem_bufctl</a>) list</td></tr>
-<tr class="separator:ab94565652c955835af630deab5bcb29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a0c3abbe952d98db6a27c5477def4b812"><td class="memItemLeft" align="right" valign="top"><a id="a0c3abbe952d98db6a27c5477def4b812"></a>
-uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><b>address</b></td></tr>
+<tr class="memitem:ad936b43612e02b45a9d840993096c427"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkmem__bufctl.html#ad936b43612e02b45a9d840993096c427">list</a></td></tr>
+<tr class="separator:ad936b43612e02b45a9d840993096c427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3abbe952d98db6a27c5477def4b812"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkmem__bufctl.html#a0c3abbe952d98db6a27c5477def4b812">address</a></td></tr>
 <tr class="separator:a0c3abbe952d98db6a27c5477def4b812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a224754b9c94827b0d955dbcfd276a1c5"><td class="memItemLeft" align="right" valign="top"><a id="a224754b9c94827b0d955dbcfd276a1c5"></a>
-struct <a class="el" href="structkmem__slab.html">kmem_slab</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>slab</b></td></tr>
+<tr class="memitem:a224754b9c94827b0d955dbcfd276a1c5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structkmem__slab.html">kmem_slab</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkmem__bufctl.html#a224754b9c94827b0d955dbcfd276a1c5">slab</a></td></tr>
 <tr class="separator:a224754b9c94827b0d955dbcfd276a1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0c3abbe952d98db6a27c5477def4b812"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3abbe952d98db6a27c5477def4b812">&#9670;&nbsp;</a></span>address</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uintptr_t kmem_bufctl::address</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Address of the bufctl </p>
+
+</div>
+</div>
+<a id="ad936b43612e02b45a9d840993096c427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad936b43612e02b45a9d840993096c427">&#9670;&nbsp;</a></span>list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kmem_bufctl::list</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>For small slabs, smaller than 1/8 of a page, this links into the freelist. For big slabs, this links into the kmem_cache::hashtable </p>
+
+</div>
+</div>
+<a id="a224754b9c94827b0d955dbcfd276a1c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a224754b9c94827b0d955dbcfd276a1c5">&#9670;&nbsp;</a></span>slab</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structkmem__slab.html">kmem_slab</a>* kmem_bufctl::slab</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Back pointer to slab </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/kern/vm/<a class="el" href="kmem_8h_source.html">kmem.h</a></li>
 </ul>

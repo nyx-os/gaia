@@ -87,64 +87,82 @@ $(document).ready(function(){initNavTree('charon_8h_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <a href="charon_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef SRC_KERN_CHARON_H_</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define SRC_KERN_CHARON_H_</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;libkern/base.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define CHARON_MODULE_MAX 16</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define CHARON_MMAP_SIZE_MAX 128</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">   17</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a> {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    MMAP_FREE,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    MMAP_RESERVED,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    MMAP_MODULE,</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    MMAP_RECLAIMABLE,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    MMAP_FRAMEBUFFER</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structcharon__mmap__entry__t.html">   25</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uintptr_t base;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">enum</span> <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a> type;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <a class="code" href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structcharon__mmap__t.html">   31</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    uint8_t count;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a> entries[CHARON_MMAP_SIZE_MAX];</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <a class="code" href="structcharon__mmap__t.html">charon_mmap_t</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structcharon__framebuffer__t.html">   36</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> present : 1;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    uintptr_t address;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    uint32_t width, height, pitch, bpp;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;} <a class="code" href="structcharon__framebuffer__t.html">charon_framebuffer_t</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structcharon__module__t.html">   42</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *name;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    uintptr_t address;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="structcharon__module__t.html">charon_module_t</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structcharon__modules__t.html">   48</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    uint16_t count;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structcharon__module__t.html">charon_module_t</a> modules[CHARON_MODULE_MAX];</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;} <a class="code" href="structcharon__modules__t.html">charon_modules_t</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SRC_KERN_CHARON_H_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SRC_KERN_CHARON_H_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;libkern/base.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define CHARON_MODULE_MAX 16</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define CHARON_MMAP_SIZE_MAX 128</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">   18</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cca2b2d9f05f39d9d956dbacc3c2b57afcb">   19</a></span>&#160;    <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cca2b2d9f05f39d9d956dbacc3c2b57afcb">MMAP_FREE</a>, </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccabf9f71f968bf058810f43b04f009d79e">   20</a></span>&#160;    <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccabf9f71f968bf058810f43b04f009d79e">MMAP_RESERVED</a>, </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccadf72a8e00de540d68bf0b904f48a6fde">   21</a></span>&#160;    <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccadf72a8e00de540d68bf0b904f48a6fde">MMAP_MODULE</a>, </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccae6048d600270b6ece6b1368ff8168a17">   22</a></span>&#160;    <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccae6048d600270b6ece6b1368ff8168a17">MMAP_RECLAIMABLE</a>, </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccac2cf4eedce4aee334d2554726794be68">MMAP_FRAMEBUFFER</a> </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccac2cf4eedce4aee334d2554726794be68">   24</a></span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structcharon__mmap__entry__t.html">   27</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structcharon__mmap__entry__t.html#a6fa93bae8393f625a2283a6c458e7f58">   28</a></span>&#160;    uintptr_t <a class="code" href="structcharon__mmap__entry__t.html#a6fa93bae8393f625a2283a6c458e7f58">base</a>; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structcharon__mmap__entry__t.html#a5262a5a4fc2a759944b8f1c548100703">   29</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcharon__mmap__entry__t.html#a5262a5a4fc2a759944b8f1c548100703">size</a>; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">enum</span> <a class="code" href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a> type; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <a class="code" href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structcharon__mmap__t.html">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structcharon__mmap__t.html#ac5fbaf6fe00d26d2765b8a9e94144fd5">   35</a></span>&#160;    uint8_t <a class="code" href="structcharon__mmap__t.html#ac5fbaf6fe00d26d2765b8a9e94144fd5">count</a>; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structcharon__mmap__t.html#ae9f7d35581f015824e023dd3b581fd34">   36</a></span>&#160;    <a class="code" href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a> entries[CHARON_MMAP_SIZE_MAX]; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <a class="code" href="structcharon__mmap__t.html">charon_mmap_t</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structcharon__framebuffer__t.html">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546">   41</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546">present</a> : 1; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structcharon__framebuffer__t.html#ad2390365373d8b76890d2fed0dddc8c1">   42</a></span>&#160;    uintptr_t <a class="code" href="structcharon__framebuffer__t.html#ad2390365373d8b76890d2fed0dddc8c1">address</a>; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    uint32_t width, height, pitch, bpp;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <a class="code" href="structcharon__framebuffer__t.html">charon_framebuffer_t</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structcharon__module__t.html">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structcharon__module__t.html#ae459bee142fbcc406e617b54bace4326">   48</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="structcharon__module__t.html#ae459bee142fbcc406e617b54bace4326">name</a>; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structcharon__module__t.html#a21a027a3175a6446a608760dc0e016eb">   49</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structcharon__module__t.html#a21a027a3175a6446a608760dc0e016eb">size</a>; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structcharon__module__t.html#a960e4bccf493ce065c0fba4febb5eeb9">   50</a></span>&#160;    uintptr_t <a class="code" href="structcharon__module__t.html#a960e4bccf493ce065c0fba4febb5eeb9">address</a>; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;} <a class="code" href="structcharon__module__t.html">charon_module_t</a>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structcharon__t.html">   53</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    uintptr_t rsdp;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="structcharon__framebuffer__t.html">charon_framebuffer_t</a> framebuffer;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structcharon__mmap__t.html">charon_mmap_t</a> memory_map;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="structcharon__modules__t.html">charon_modules_t</a> modules;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;} <a class="code" href="structcharon__t.html">charon_t</a>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553cc"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a></div><div class="ttdeci">charon_mmap_entry_type</div><div class="ttdef"><b>Definition:</b> charon.h:17</div></div>
-<div class="ttc" id="astructcharon__framebuffer__t_html"><div class="ttname"><a href="structcharon__framebuffer__t.html">charon_framebuffer_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:36</div></div>
-<div class="ttc" id="astructcharon__mmap__entry__t_html"><div class="ttname"><a href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:25</div></div>
-<div class="ttc" id="astructcharon__mmap__t_html"><div class="ttname"><a href="structcharon__mmap__t.html">charon_mmap_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:31</div></div>
-<div class="ttc" id="astructcharon__module__t_html"><div class="ttname"><a href="structcharon__module__t.html">charon_module_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:42</div></div>
-<div class="ttc" id="astructcharon__modules__t_html"><div class="ttname"><a href="structcharon__modules__t.html">charon_modules_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:48</div></div>
-<div class="ttc" id="astructcharon__t_html"><div class="ttname"><a href="structcharon__t.html">charon_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:53</div></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structcharon__modules__t.html">   53</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structcharon__modules__t.html#aeb5cd21db15dccadfe804ead8a820fb3">   54</a></span>&#160;    uint8_t <a class="code" href="structcharon__modules__t.html#aeb5cd21db15dccadfe804ead8a820fb3">count</a>; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structcharon__modules__t.html#a36180a170f28db14d5741db67061cceb">   55</a></span>&#160;    <a class="code" href="structcharon__module__t.html">charon_module_t</a> modules[CHARON_MODULE_MAX]; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;} <a class="code" href="structcharon__modules__t.html">charon_modules_t</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structcharon__t.html">   58</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structcharon__t.html#a6642073a338c4a61c07a58f79367a4ff">   59</a></span>&#160;    uintptr_t <a class="code" href="structcharon__t.html#a6642073a338c4a61c07a58f79367a4ff">rsdp</a>; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structcharon__t.html#ab52a75204620ac4f5ba8e1512babcbb6">   60</a></span>&#160;    <a class="code" href="structcharon__framebuffer__t.html">charon_framebuffer_t</a> <a class="code" href="structcharon__t.html#ab52a75204620ac4f5ba8e1512babcbb6">framebuffer</a>; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structcharon__t.html#a09dad0d014d4b1fe235120ed09c78d77">   61</a></span>&#160;    <a class="code" href="structcharon__mmap__t.html">charon_mmap_t</a> <a class="code" href="structcharon__t.html#a09dad0d014d4b1fe235120ed09c78d77">memory_map</a>; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structcharon__t.html#a26855bc98820a8d226ebdda0348df73e">   62</a></span>&#160;    <a class="code" href="structcharon__modules__t.html">charon_modules_t</a> <a class="code" href="structcharon__t.html#a26855bc98820a8d226ebdda0348df73e">modules</a>; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;} <a class="code" href="structcharon__t.html">charon_t</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553cc"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cc">charon_mmap_entry_type</a></div><div class="ttdeci">charon_mmap_entry_type</div><div class="ttdef"><b>Definition:</b> charon.h:18</div></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553cca2b2d9f05f39d9d956dbacc3c2b57afcb"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553cca2b2d9f05f39d9d956dbacc3c2b57afcb">MMAP_FREE</a></div><div class="ttdeci">@ MMAP_FREE</div><div class="ttdef"><b>Definition:</b> charon.h:19</div></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553ccabf9f71f968bf058810f43b04f009d79e"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccabf9f71f968bf058810f43b04f009d79e">MMAP_RESERVED</a></div><div class="ttdeci">@ MMAP_RESERVED</div><div class="ttdef"><b>Definition:</b> charon.h:20</div></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553ccac2cf4eedce4aee334d2554726794be68"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccac2cf4eedce4aee334d2554726794be68">MMAP_FRAMEBUFFER</a></div><div class="ttdeci">@ MMAP_FRAMEBUFFER</div><div class="ttdef"><b>Definition:</b> charon.h:23</div></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553ccadf72a8e00de540d68bf0b904f48a6fde"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccadf72a8e00de540d68bf0b904f48a6fde">MMAP_MODULE</a></div><div class="ttdeci">@ MMAP_MODULE</div><div class="ttdef"><b>Definition:</b> charon.h:21</div></div>
+<div class="ttc" id="acharon_8h_html_a082ca9fd0e838979e31dfd2295e553ccae6048d600270b6ece6b1368ff8168a17"><div class="ttname"><a href="charon_8h.html#a082ca9fd0e838979e31dfd2295e553ccae6048d600270b6ece6b1368ff8168a17">MMAP_RECLAIMABLE</a></div><div class="ttdeci">@ MMAP_RECLAIMABLE</div><div class="ttdef"><b>Definition:</b> charon.h:22</div></div>
+<div class="ttc" id="astructcharon__framebuffer__t_html"><div class="ttname"><a href="structcharon__framebuffer__t.html">charon_framebuffer_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:40</div></div>
+<div class="ttc" id="astructcharon__framebuffer__t_html_a23b213146e0681579809acdd6e359546"><div class="ttname"><a href="structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546">charon_framebuffer_t::present</a></div><div class="ttdeci">bool present</div><div class="ttdef"><b>Definition:</b> charon.h:41</div></div>
+<div class="ttc" id="astructcharon__framebuffer__t_html_ad2390365373d8b76890d2fed0dddc8c1"><div class="ttname"><a href="structcharon__framebuffer__t.html#ad2390365373d8b76890d2fed0dddc8c1">charon_framebuffer_t::address</a></div><div class="ttdeci">uintptr_t address</div><div class="ttdef"><b>Definition:</b> charon.h:42</div></div>
+<div class="ttc" id="astructcharon__mmap__entry__t_html"><div class="ttname"><a href="structcharon__mmap__entry__t.html">charon_mmap_entry_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:27</div></div>
+<div class="ttc" id="astructcharon__mmap__entry__t_html_a5262a5a4fc2a759944b8f1c548100703"><div class="ttname"><a href="structcharon__mmap__entry__t.html#a5262a5a4fc2a759944b8f1c548100703">charon_mmap_entry_t::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> charon.h:29</div></div>
+<div class="ttc" id="astructcharon__mmap__entry__t_html_a6fa93bae8393f625a2283a6c458e7f58"><div class="ttname"><a href="structcharon__mmap__entry__t.html#a6fa93bae8393f625a2283a6c458e7f58">charon_mmap_entry_t::base</a></div><div class="ttdeci">uintptr_t base</div><div class="ttdef"><b>Definition:</b> charon.h:28</div></div>
+<div class="ttc" id="astructcharon__mmap__t_html"><div class="ttname"><a href="structcharon__mmap__t.html">charon_mmap_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:34</div></div>
+<div class="ttc" id="astructcharon__mmap__t_html_ac5fbaf6fe00d26d2765b8a9e94144fd5"><div class="ttname"><a href="structcharon__mmap__t.html#ac5fbaf6fe00d26d2765b8a9e94144fd5">charon_mmap_t::count</a></div><div class="ttdeci">uint8_t count</div><div class="ttdef"><b>Definition:</b> charon.h:35</div></div>
+<div class="ttc" id="astructcharon__module__t_html"><div class="ttname"><a href="structcharon__module__t.html">charon_module_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:47</div></div>
+<div class="ttc" id="astructcharon__module__t_html_a21a027a3175a6446a608760dc0e016eb"><div class="ttname"><a href="structcharon__module__t.html#a21a027a3175a6446a608760dc0e016eb">charon_module_t::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definition:</b> charon.h:49</div></div>
+<div class="ttc" id="astructcharon__module__t_html_a960e4bccf493ce065c0fba4febb5eeb9"><div class="ttname"><a href="structcharon__module__t.html#a960e4bccf493ce065c0fba4febb5eeb9">charon_module_t::address</a></div><div class="ttdeci">uintptr_t address</div><div class="ttdef"><b>Definition:</b> charon.h:50</div></div>
+<div class="ttc" id="astructcharon__module__t_html_ae459bee142fbcc406e617b54bace4326"><div class="ttname"><a href="structcharon__module__t.html#ae459bee142fbcc406e617b54bace4326">charon_module_t::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> charon.h:48</div></div>
+<div class="ttc" id="astructcharon__modules__t_html"><div class="ttname"><a href="structcharon__modules__t.html">charon_modules_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:53</div></div>
+<div class="ttc" id="astructcharon__modules__t_html_aeb5cd21db15dccadfe804ead8a820fb3"><div class="ttname"><a href="structcharon__modules__t.html#aeb5cd21db15dccadfe804ead8a820fb3">charon_modules_t::count</a></div><div class="ttdeci">uint8_t count</div><div class="ttdef"><b>Definition:</b> charon.h:54</div></div>
+<div class="ttc" id="astructcharon__t_html"><div class="ttname"><a href="structcharon__t.html">charon_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:58</div></div>
+<div class="ttc" id="astructcharon__t_html_a09dad0d014d4b1fe235120ed09c78d77"><div class="ttname"><a href="structcharon__t.html#a09dad0d014d4b1fe235120ed09c78d77">charon_t::memory_map</a></div><div class="ttdeci">charon_mmap_t memory_map</div><div class="ttdef"><b>Definition:</b> charon.h:61</div></div>
+<div class="ttc" id="astructcharon__t_html_a26855bc98820a8d226ebdda0348df73e"><div class="ttname"><a href="structcharon__t.html#a26855bc98820a8d226ebdda0348df73e">charon_t::modules</a></div><div class="ttdeci">charon_modules_t modules</div><div class="ttdef"><b>Definition:</b> charon.h:62</div></div>
+<div class="ttc" id="astructcharon__t_html_a6642073a338c4a61c07a58f79367a4ff"><div class="ttname"><a href="structcharon__t.html#a6642073a338c4a61c07a58f79367a4ff">charon_t::rsdp</a></div><div class="ttdeci">uintptr_t rsdp</div><div class="ttdef"><b>Definition:</b> charon.h:59</div></div>
+<div class="ttc" id="astructcharon__t_html_ab52a75204620ac4f5ba8e1512babcbb6"><div class="ttname"><a href="structcharon__t.html#ab52a75204620ac4f5ba8e1512babcbb6">charon_t::framebuffer</a></div><div class="ttdeci">charon_framebuffer_t framebuffer</div><div class="ttdef"><b>Definition:</b> charon.h:60</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

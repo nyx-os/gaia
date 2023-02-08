@@ -86,29 +86,35 @@ $(document).ready(function(){initNavTree('vm__kernel_8h_source.html',''); initRe
 <div class="title">vm_kernel.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GAIA_VM_VM_KERNEL_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define GAIA_VM_VM_KERNEL_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;kern/vm/vmem.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_BASE (P2V(0) + GIB(4))</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_SIZE GIB(2)</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> vm_kernel_init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> *vm_kernel_alloc(<span class="keywordtype">int</span> npages, <span class="keywordtype">bool</span> bootstrap);</div>
+<a href="vm__kernel_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef GAIA_VM_VM_KERNEL_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define GAIA_VM_VM_KERNEL_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmem_8h.html">kern/vm/vmem.h</a>&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> vm_kernel_free(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">int</span> npages);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="structvmem__stat__t.html">vmem_stat_t</a> vm_kernel_stat(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructvmem__stat__t_html"><div class="ttname"><a href="structvmem__stat__t.html">vmem_stat_t</a></div><div class="ttdef"><b>Definition:</b> vmem.h:76</div></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_BASE (P2V(0) + GIB(4))</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_SIZE GIB(2)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a7c1df511272de44609057f3ea1b122c8">vm_kernel_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3">vm_kernel_alloc</a>(<span class="keywordtype">int</span> npages, <span class="keywordtype">bool</span> bootstrap);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f">vm_kernel_free</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">int</span> npages);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="structvmem__stat__t.html">vmem_stat_t</a> <a class="code" href="vm__kernel_8h.html#af41adddec5f338b3653db9af54fb9a17">vm_kernel_stat</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructvmem__stat__t_html"><div class="ttname"><a href="structvmem__stat__t.html">vmem_stat_t</a></div><div class="ttdef"><b>Definition:</b> vmem.h:78</div></div>
+<div class="ttc" id="avm__kernel_8h_html_a2c80c466ba58ff3dd228cb542742d1c3"><div class="ttname"><a href="vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3">vm_kernel_alloc</a></div><div class="ttdeci">void * vm_kernel_alloc(int npages, bool bootstrap)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:12</div></div>
+<div class="ttc" id="avm__kernel_8h_html_a67eb8397e5bf35b55dda6f5b9394832f"><div class="ttname"><a href="vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f">vm_kernel_free</a></div><div class="ttdeci">void vm_kernel_free(void *ptr, int npages)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:26</div></div>
+<div class="ttc" id="avm__kernel_8h_html_a7c1df511272de44609057f3ea1b122c8"><div class="ttname"><a href="vm__kernel_8h.html#a7c1df511272de44609057f3ea1b122c8">vm_kernel_init</a></div><div class="ttdeci">void vm_kernel_init(void)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:6</div></div>
+<div class="ttc" id="avm__kernel_8h_html_af41adddec5f338b3653db9af54fb9a17"><div class="ttname"><a href="vm__kernel_8h.html#af41adddec5f338b3653db9af54fb9a17">vm_kernel_stat</a></div><div class="ttdeci">vmem_stat_t vm_kernel_stat(void)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:33</div></div>
+<div class="ttc" id="avmem_8h_html"><div class="ttname"><a href="vmem_8h.html">vmem.h</a></div><div class="ttdoc">Implementation of the VMem resource allocator as described in https://www.usenix.org/legacy/event/use...</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_e39282403b26f202695773646ce59e2c.html">kern</a></li><li class="navelem"><a class="el" href="dir_60739b2e56d7ac2b25b4f840ed126fde.html">vm</a></li><li class="navelem"><b>vm_kernel.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_e39282403b26f202695773646ce59e2c.html">kern</a></li><li class="navelem"><a class="el" href="dir_60739b2e56d7ac2b25b4f840ed126fde.html">vm</a></li><li class="navelem"><a class="el" href="vm__kernel_8h.html">vm_kernel.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

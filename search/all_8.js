@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['vm_5fmap_5ft_70',['vm_map_t',['../structvm__map__t.html',1,'']]],
-  ['vm_5fpage_5ft_71',['vm_page_t',['../structvm__page__t.html',1,'']]],
-  ['vmem_72',['vmem',['../structvmem.html',1,'']]],
-  ['vmem_5fsegment_73',['vmem_segment',['../structvmem__segment.html',1,'']]],
-  ['vmem_5fstat_5ft_74',['vmem_stat_t',['../structvmem__stat__t.html',1,'']]]
+  ['imported_26',['imported',['../structvmem__segment.html#a1d0e9976d4b6adfbb8a3ae687900fb0c',1,'vmem_segment']]],
+  ['ioapics_5fentry_27',['ioapics_entry',['../structioapics__entry.html',1,'']]],
+  ['isos_5fentry_28',['isos_entry',['../structisos__entry.html',1,'']]]
 ];
