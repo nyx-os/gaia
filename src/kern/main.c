@@ -15,6 +15,10 @@ void gaia_main(charon_t charon)
     machine_init();
 
     log("gaia (0.0.1)");
+    log("Memory stats (pages): ");
+    log("vm_kernel: %ld, phys: %ld, total: %ld",
+        vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),
+        phys_total_pages());
 
     cpu_enable_interrupts();
 }
