@@ -30,6 +30,8 @@ var NAVTREEINDEX0 =
 "dir_e39282403b26f202695773646ce59e2c.html":[1,0,0,2],
 "dir_f3fc42be2466e8077f8be3c819d77cdb.html":[1,0,0,3,0],
 "files.html":[1,0],
+"globals.html":[1,1,0],
+"globals_enum.html":[1,1,1],
 "index.html":[],
 "intr_8h_source.html":[1,0,0,0,0,0,1],
 "kern_2vm_2vm_8h_source.html":[1,0,0,2,0,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "structlimine__entry__point__response.html#a767e95e2d7cd598d950a42042e821b4f":[0,0,24,0],
 "structlimine__file.html":[0,0,25],
 "structlimine__file.html#a16af2eb2688d5dbc3cf273fdb071bd29":[0,0,25,6],
-"structlimine__file.html#a557ab86b3cac99a59c9f5fc4de645df3":[0,0,25,5],
-"structlimine__file.html#a76f0d8f40ecbfb3fad45d035baf4cdc6":[0,0,25,7],
-"structlimine__file.html#a808aa0304880f6cb22da41a139a33ef2":[0,0,25,9]
+"structlimine__file.html#a557ab86b3cac99a59c9f5fc4de645df3":[0,0,25,5]
 };

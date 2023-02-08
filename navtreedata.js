@@ -30,7 +30,11 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Enumerations", "globals_enum.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
@@ -38,7 +42,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8h_source.html",
-"structlimine__file.html#a88f3e551b32e49b182f9e47b215fe20b"
+"structlimine__file.html#a76f0d8f40ecbfb3fad45d035baf4cdc6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
