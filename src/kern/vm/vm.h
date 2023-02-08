@@ -53,6 +53,9 @@ typedef struct {
     vmem_t vmem;
 } vm_map_t;
 
+typedef struct {
+} vm_page_t;
+
 extern vm_map_t vm_kmap;
 
 #endif

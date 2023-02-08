@@ -3,7 +3,7 @@
 #include <kern/vm/vmem.h>
 
 #define KERNEL_HEAP_BASE (P2V(0) + GIB(4))
-#define KERNEL_HEAP_SIZE GIB(4)
+#define KERNEL_HEAP_SIZE GIB(2)
 
 void vm_kernel_init(void);
 
