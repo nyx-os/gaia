@@ -34,12 +34,12 @@ static uint64_t clock = 0;
 
 static inline uint64_t hpet_read(uint64_t reg)
 {
-    return *(volatile uint64_t *)(base + reg);
+    return VOLATILE_READ(uint64_t, base + reg);
 }
 
 static inline void hpet_write(uint64_t reg, uint64_t val)
 {
-    *(volatile uint64_t *)(base + reg) = val;
+    VOLATILE_WRITE(uint64_t, base + reg, val);
 }
 
 void hpet_init(void)

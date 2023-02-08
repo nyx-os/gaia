@@ -62,15 +62,17 @@ static uint32_t ioapic_read(madt_ioapic_t ioapic, uint32_t reg)
 {
     uintptr_t base = P2V(ioapic.address);
 
-    *(volatile uint32_t *)(base) = reg;
-    return *(volatile uint32_t *)(base + 0x10);
+    VOLATILE_WRITE(uint32_t, base, reg);
+
+    return VOLATILE_READ(uint32_t, base + 0x10);
 }
 
 static void ioapic_write(madt_ioapic_t ioapic, uint32_t reg, uint32_t value)
 {
     uintptr_t base = P2V(ioapic.address);
-    *(volatile uint32_t *)(base) = reg;
-    *(volatile uint32_t *)(base + 0x10) = value;
+
+    VOLATILE_WRITE(uint32_t, base, reg);
+    VOLATILE_WRITE(uint32_t, base + 0x10, value);
 }
 
 static size_t ioapic_get_max_redirect(madt_ioapic_t ioapic)

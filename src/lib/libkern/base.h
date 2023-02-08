@@ -34,6 +34,9 @@
 #define MIB(x) ((uint64_t)x << 20)
 #define GIB(x) ((uint64_t)x << 30)
 
+#define VOLATILE_WRITE(type, addr, val) (*(volatile type *)(addr)) = val
+#define VOLATILE_READ(type, addr) (*(volatile type *)(addr))
+
 #define asm __asm__
 
 #define assert(...)                                        \
