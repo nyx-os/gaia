@@ -11,3 +11,4 @@ outdoc
 builddir
 .cache
 compile_commands.json
+doxygen-awesome-css
