@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['vmem_5falloc_5ft_300',['vmem_alloc_t',['../vmem_8h.html#ac5510796eb4847fd71c2712ae93684ab',1,'vmem.h']]],
-  ['vmem_5fsegment_5ft_301',['vmem_segment_t',['../vmem_8h.html#a9e9391bac1903746316834040937f0f2',1,'vmem.h']]],
-  ['vmem_5ft_302',['vmem_t',['../vmem_8h.html#abd4230d211a100ddeb267606a7cbd110',1,'vmem.h']]]
+  ['task_5ft_321',['task_t',['../sched_8h.html#ade04e552d18bad454515b6a32d31bb7b',1,'sched.h']]],
+  ['thread_5ft_322',['thread_t',['../sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f',1,'sched.h']]]
 ];

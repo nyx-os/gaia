@@ -5,10 +5,10 @@ var indexSectionsWithContent =
   2: "ckpsv",
   3: "klpstv",
   4: "abcdefhilmnpqrstv",
-  5: "v",
+  5: "tv",
   6: "c",
   7: "m",
-  8: "fv"
+  8: "ftv"
 };
 
 var indexSectionNames =

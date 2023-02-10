@@ -55,6 +55,8 @@ var annotated_dup =
     [ "PACKED", "structPACKED.html", "structPACKED" ],
     [ "phys_region", "structphys__region.html", "structphys__region" ],
     [ "pmap", "structpmap.html", "structpmap" ],
+    [ "task", "structtask.html", "structtask" ],
+    [ "thread", "structthread.html", "structthread" ],
     [ "tu_array_out_of_bounds_data", "structtu__array__out__of__bounds__data.html", "structtu__array__out__of__bounds__data" ],
     [ "tu_invalid_builtin_data", "structtu__invalid__builtin__data.html", "structtu__invalid__builtin__data" ],
     [ "tu_invalid_value_data", "structtu__invalid__value__data.html", "structtu__invalid__value__data" ],
@@ -68,7 +70,7 @@ var annotated_dup =
     [ "tu_type_mismatch_v1_data", "structtu__type__mismatch__v1__data.html", "structtu__type__mismatch__v1__data" ],
     [ "tu_unreachable_data", "structtu__unreachable__data.html", "structtu__unreachable__data" ],
     [ "vm_map_t", "structvm__map__t.html", "structvm__map__t" ],
-    [ "vm_page_t", "structvm__page__t.html", null ],
+    [ "vm_page_t", "structvm__page__t.html", "structvm__page__t" ],
     [ "vmem", "structvmem.html", "structvmem" ],
     [ "vmem_segment", "structvmem__segment.html", "structvmem__segment" ],
     [ "vmem_stat_t", "structvmem__stat__t.html", "structvmem__stat__t" ]
