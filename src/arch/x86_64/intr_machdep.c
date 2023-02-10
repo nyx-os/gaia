@@ -3,6 +3,8 @@
 #include <machdep/intr.h>
 #include <x86_64/asm.h>
 
+#include <kern/sched.h>
+
 #define INTGATE 0x8e
 #define TRAPGATE 0xef
 
@@ -73,7 +75,16 @@ void lapic_eoi(void);
 
 uint64_t interrupts_handler(uint64_t rsp)
 {
-    log("Got an interrupt");
+    intr_frame_t *frame = (intr_frame_t *)rsp;
+
+    if (frame->intno < 0x20) {
+        panic("exception: 0x%zx", frame->intno);
+    }
+
+    if (frame->intno == 0x20) {
+        sched_tick(frame);
+    }
+
     lapic_eoi();
     return rsp;
 }

@@ -4,6 +4,7 @@
 #include <kern/vm/vm.h>
 #include <kern/vm/vm_kernel.h>
 #include <dev/acpi.h>
+#include <kern/sched.h>
 
 void gaia_main(charon_t charon)
 {
@@ -19,4 +20,8 @@ void gaia_main(charon_t charon)
     log("vm_kernel: %ld, phys: %ld, total: %ld",
         vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),
         phys_total_pages());
+
+    sched_init();
+
+    cpu_enable_interrupts();
 }

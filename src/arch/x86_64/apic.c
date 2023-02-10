@@ -211,6 +211,8 @@ void lapic_init(void)
 
     lapic_write(LAPIC_REG_LVT_TIMER, LAPIC_TIMER_IRQ | LAPIC_TIMER_PERIODIC);
     lapic_write(LAPIC_REG_TIMER_DIVIDE_CONFIG, APIC_TIMER_DIVIDE_BY_16);
+
+    /* Tick every milisecond */
     lapic_write(LAPIC_REG_TIMER_INIT_COUNT, ticks_in_10ms / 10);
 }
 
