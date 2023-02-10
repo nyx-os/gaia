@@ -116,16 +116,15 @@ $(document).ready(function(){initNavTree('intr_8h_source.html',''); initResizabl
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint64_t rflags;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint64_t rsp;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint64_t ss;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} <a class="code" href="structPACKED.html">intr_frame_t</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define SYSCALL_INT 0x42</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">typedef</span> void (*intr_handler_t)(<a class="code" href="structPACKED.html">intr_frame_t</a> *frame);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> intr_register(<span class="keywordtype">int</span> vec, intr_handler_t handler);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <a class="code" href="structPACKED.html">intr_frame_t</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define SYSCALL_INT 0x42</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">typedef</span> void (*intr_handler_t)(<a class="code" href="structPACKED.html">intr_frame_t</a> *frame);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> intr_register(<span class="keywordtype">int</span> vec, intr_handler_t handler);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructPACKED_html"><div class="ttname"><a href="structPACKED.html">PACKED</a></div><div class="ttdef"><b>Definition:</b> gdt.c:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
