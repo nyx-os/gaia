@@ -57,10 +57,14 @@ static void idt_reload(void)
 #define PIC1_DATA 0x21
 #define PIC2_DATA 0xA1
 
+extern void timer_interrupt(void);
+
 void idt_init(void)
 {
     install_isrs();
     idt_reload();
+
+    intr_register(0x20, (intr_handler_t)(timer_interrupt));
 
     outb(PIC1_DATA, 0xff);
     outb(PIC2_DATA, 0xff);
@@ -73,16 +77,20 @@ void intr_register(int vec, intr_handler_t handler)
 
 void lapic_eoi(void);
 
+/* Faster dispatching this way */
+uint64_t intr_timer_handler(uint64_t rsp)
+{
+    sched_tick((intr_frame_t *)rsp);
+    lapic_eoi();
+    return rsp;
+}
+
 uint64_t interrupts_handler(uint64_t rsp)
 {
     intr_frame_t *frame = (intr_frame_t *)rsp;
 
     if (frame->intno < 0x20) {
         panic("exception: 0x%zx", frame->intno);
-    }
-
-    if (frame->intno == 0x20) {
-        sched_tick(frame);
     }
 
     lapic_eoi();

@@ -17,7 +17,7 @@
 /**
  * Time slice to use, in ticks
  */
-#define TIME_SLICE 10
+#define TIME_SLICE 5
 
 struct task;
 

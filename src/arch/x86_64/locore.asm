@@ -100,6 +100,32 @@ __interrupt_common:
 
     iretq
 
+extern intr_timer_handler
+
+global timer_interrupt
+
+timer_interrupt:
+    push 0
+    push 32
+    jmp __timer_interrupt
+
+__timer_interrupt:
+    cld
+
+    pushaq
+
+    mov rdi, rsp
+
+    call intr_timer_handler
+
+    mov rsp, rax
+
+    popaq
+
+    add rsp, 16 ; pop errcode and int number
+
+    iretq
+
 INTERRUPT_NOERR 0
 INTERRUPT_NOERR 1
 INTERRUPT_NOERR 2

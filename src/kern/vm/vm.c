@@ -1,7 +1,5 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #include <kern/vm/vm.h>
-#include <kern/vm/phys.h>
-#include <kern/vm/vmem.h>
 #include <kern/vm/vm_kernel.h>
 
 vm_map_t vm_kmap;
