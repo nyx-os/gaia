@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define SRC_KERN_SCHED_H_</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;machdep/intr.h&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;machdep/cpu.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;kern/vm/vm.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="kern_2vm_2vm_8h.html">kern/vm/vm.h</a>&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="sched_8h.html#ae17b0e0d44770e679be7612a45ca831a">   20</a></span>&#160;<span class="preprocessor">#define TIME_SLICE 5</span></div>
@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">   43</a></span>&#160;} <a class="code" href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structtask.html">   48</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtask.html">task</a> {</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">   49</a></span>&#160;    <a class="code" href="structvm__map__t.html">vm_map_t</a> <a class="code" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">map</a>; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">   49</a></span>&#160;    <a class="code" href="structvm__map.html">vm_map_t</a> <a class="code" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">map</a>; </div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">   50</a></span>&#160;    pid_t <a class="code" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">pid</a>; </div>
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">   51</a></span>&#160;    <a class="code" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">SLIST_HEAD</a>(, <a class="code" href="structthread.html">thread</a>) threads; </div>
 <div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">   52</a></span>&#160;} <a class="code" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a>;</div>
@@ -127,6 +127,7 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="structtask.html">task_t</a> *sched_new_task(pid_t pid);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="akern_2vm_2vm_8h_html"><div class="ttname"><a href="kern_2vm_2vm_8h.html">vm.h</a></div><div class="ttdoc">Virtual memory subsystem.</div></div>
 <div class="ttc" id="asched_8h_html_a0c1c578c8b75f2c2265804cf505c4b6f"><div class="ttname"><a href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a></div><div class="ttdeci">struct thread thread_t</div></div>
 <div class="ttc" id="asched_8h_html_ade04e552d18bad454515b6a32d31bb7b"><div class="ttname"><a href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a></div><div class="ttdeci">struct task task_t</div></div>
 <div class="ttc" id="astructPACKED_html"><div class="ttname"><a href="structPACKED.html">PACKED</a></div><div class="ttdef"><b>Definition:</b> gdt.c:5</div></div>
@@ -141,7 +142,7 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="ttc" id="astructthread_html_ac0b6b19ec2a862a58693cb3251ed9a32"><div class="ttname"><a href="structthread.html#ac0b6b19ec2a862a58693cb3251ed9a32">thread::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> sched.h:36</div></div>
 <div class="ttc" id="astructthread_html_ae0b7c099519a48dd7e798e13abf0d15d"><div class="ttname"><a href="structthread.html#ae0b7c099519a48dd7e798e13abf0d15d">thread::state</a></div><div class="ttdeci">enum thread_state state</div><div class="ttdef"><b>Definition:</b> sched.h:35</div></div>
 <div class="ttc" id="astructthread_html_ae953fe7e3848f48927aa0b1e015bdaec"><div class="ttname"><a href="structthread.html#ae953fe7e3848f48927aa0b1e015bdaec">thread::SLIST_ENTRY</a></div><div class="ttdeci">SLIST_ENTRY(thread) task_link</div></div>
-<div class="ttc" id="astructvm__map__t_html"><div class="ttname"><a href="structvm__map__t.html">vm_map_t</a></div><div class="ttdef"><b>Definition:</b> vm.h:51</div></div>
+<div class="ttc" id="astructvm__map_html"><div class="ttname"><a href="structvm__map.html">vm_map</a></div><div class="ttdef"><b>Definition:</b> vm.h:71</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

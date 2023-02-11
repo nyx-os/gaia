@@ -40,5 +40,6 @@ var searchData=
   ['limine_5fuuid_80',['limine_uuid',['../structlimine__uuid.html',1,'']]],
   ['limine_5fvideo_5fmode_81',['limine_video_mode',['../structlimine__video__mode.html',1,'']]],
   ['list_82',['list',['../structkmem__bufctl.html#ad936b43612e02b45a9d840993096c427',1,'kmem_bufctl']]],
-  ['list_5fentry_83',['LIST_ENTRY',['../structvmem__segment.html#a8336c5518d61cee9a9502b16dfb1883e',1,'vmem_segment']]]
+  ['list_5fentry_83',['LIST_ENTRY',['../structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c',1,'vm_map_entry::LIST_ENTRY()'],['../structvmem__segment.html#a8336c5518d61cee9a9502b16dfb1883e',1,'vmem_segment::LIST_ENTRY()']]],
+  ['list_5fhead_84',['LIST_HEAD',['../structvm__map.html#a014d3157235648041e190f5405429f26',1,'vm_map']]]
 ];
