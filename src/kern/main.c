@@ -5,9 +5,12 @@
 #include <kern/vm/vm_kernel.h>
 #include <dev/acpi.h>
 #include <kern/sched.h>
+#include <kern/term.h>
 
 void gaia_main(charon_t charon)
 {
+    term_init(&charon);
+
     vm_init(charon);
 
     if (charon.rsdp != 0)

@@ -212,6 +212,7 @@ void kmem_bootstrap(void)
 {
     kmem_cache_init(&slab_cache, "Slab cache",
                     sizeof(kmem_slab_t) + sizeof(void *), 0, NULL, NULL);
+
     kmem_cache_init(&bufctl_cache, "Bufctl cache", sizeof(kmem_bufctl_t), 0,
                     NULL, NULL);
 
