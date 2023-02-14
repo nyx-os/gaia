@@ -90,19 +90,23 @@ $(document).ready(function(){initNavTree('vm__kernel_8h_source.html',''); initRe
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef GAIA_VM_VM_KERNEL_H</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define GAIA_VM_VM_KERNEL_H</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmem_8h.html">kern/vm/vmem.h</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_BASE (P2V(0) + GIB(4))</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_SIZE GIB(2)</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a7c1df511272de44609057f3ea1b122c8">vm_kernel_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3">vm_kernel_alloc</a>(<span class="keywordtype">int</span> npages, <span class="keywordtype">bool</span> bootstrap);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f">vm_kernel_free</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">int</span> npages);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="structvmem__stat__t.html">vmem_stat_t</a> <a class="code" href="vm__kernel_8h.html#af41adddec5f338b3653db9af54fb9a17">vm_kernel_stat</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="phys_8h.html">kern/vm/phys.h</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_BASE \</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_total_pages() * PAGE_SIZE)))</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_SIZE GIB(2)</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a7c1df511272de44609057f3ea1b122c8">vm_kernel_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span> *<a class="code" href="vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3">vm_kernel_alloc</a>(<span class="keywordtype">int</span> npages, <span class="keywordtype">bool</span> bootstrap);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f">vm_kernel_free</a>(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">int</span> npages);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="structvmem__stat__t.html">vmem_stat_t</a> <a class="code" href="vm__kernel_8h.html#af41adddec5f338b3653db9af54fb9a17">vm_kernel_stat</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aphys_8h_html"><div class="ttname"><a href="phys_8h.html">phys.h</a></div><div class="ttdoc">Physical page management.</div></div>
 <div class="ttc" id="astructvmem__stat__t_html"><div class="ttname"><a href="structvmem__stat__t.html">vmem_stat_t</a></div><div class="ttdef"><b>Definition:</b> vmem.h:78</div></div>
 <div class="ttc" id="avm__kernel_8h_html_a2c80c466ba58ff3dd228cb542742d1c3"><div class="ttname"><a href="vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3">vm_kernel_alloc</a></div><div class="ttdeci">void * vm_kernel_alloc(int npages, bool bootstrap)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:12</div></div>
 <div class="ttc" id="avm__kernel_8h_html_a67eb8397e5bf35b55dda6f5b9394832f"><div class="ttname"><a href="vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f">vm_kernel_free</a></div><div class="ttdeci">void vm_kernel_free(void *ptr, int npages)</div><div class="ttdef"><b>Definition:</b> vm_kernel.c:26</div></div>

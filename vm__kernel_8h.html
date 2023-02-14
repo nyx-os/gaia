@@ -93,13 +93,14 @@ $(document).ready(function(){initNavTree('vm__kernel_8h.html',''); initResizable
 <p>Kernel virtual page allocator.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="vmem_8h_source.html">kern/vm/vmem.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="phys_8h_source.html">kern/vm/phys.h</a>&gt;</code><br />
 </div>
 <p><a href="vm__kernel_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a75b788f53a0d45523a0c9b1ab96c28a4"><td class="memItemLeft" align="right" valign="top"><a id="a75b788f53a0d45523a0c9b1ab96c28a4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>KERNEL_HEAP_BASE</b>&#160;&#160;&#160;(P2V(0) + GIB(4))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>KERNEL_HEAP_BASE</b>&#160;&#160;&#160;    ((uintptr_t)(P2V(0) + MAX(GIB(4), <a class="el" href="phys_8h.html#a22eb163d4e43a8725a4c5ad37841df8d">phys_total_pages</a>() * PAGE_SIZE)))</td></tr>
 <tr class="separator:a75b788f53a0d45523a0c9b1ab96c28a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af654f7f40cf60edfba570a6411640cd4"><td class="memItemLeft" align="right" valign="top"><a id="af654f7f40cf60edfba570a6411640cd4"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>KERNEL_HEAP_SIZE</b>&#160;&#160;&#160;GIB(2)</td></tr>
