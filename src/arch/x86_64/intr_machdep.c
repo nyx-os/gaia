@@ -90,7 +90,8 @@ uint64_t interrupts_handler(uint64_t rsp)
     intr_frame_t *frame = (intr_frame_t *)rsp;
 
     if (frame->intno < 0x20) {
-        panic("exception: 0x%zx", frame->intno);
+        panic("exception: 0x%zx, ip=0x%zx cr2=0x%zx", frame->intno, frame->rip,
+              read_cr2());
     }
 
     lapic_eoi();

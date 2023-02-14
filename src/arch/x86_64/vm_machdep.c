@@ -19,11 +19,11 @@
 #define PTE_GET_ADDR(VALUE) ((VALUE)&PTE_ADDR_MASK)
 #define PTE_GET_FLAGS(VALUE) ((VALUE) & ~PTE_ADDR_MASK)
 
-#define PTE_IS_PRESENT(x) ((x)&PTE_PRESENT)
-#define PTE_IS_WRITABLE(x) ((x)&PTE_WRITABLE)
-#define PTE_IS_HUGE(x) ((x)&PTE_HUGE)
-#define PTE_IS_USER(x) ((x)&PTE_USER)
-#define PTE_IS_NOT_EXECUTABLE(x) ((x)&PTE_NOT_EXECUTABLE)
+#define PTE_IS_PRESENT(x) (((x)&PTE_PRESENT) != 0)
+#define PTE_IS_WRITABLE(x) (((x)&PTE_WRITABLE) != 0)
+#define PTE_IS_HUGE(x) (((x)&PTE_HUGE) != 0)
+#define PTE_IS_USER(x) (((x)&PTE_USER) != 0)
+#define PTE_IS_NOT_EXECUTABLE(x) (((x)&PTE_NOT_EXECUTABLE) != 0)
 
 static bool cpu_supports_1gb_pages = false;
 

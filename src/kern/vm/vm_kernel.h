@@ -8,8 +8,11 @@
 #ifndef GAIA_VM_VM_KERNEL_H
 #define GAIA_VM_VM_KERNEL_H
 #include <kern/vm/vmem.h>
+#include <kern/vm/phys.h>
 
-#define KERNEL_HEAP_BASE (P2V(0) + GIB(4))
+#define KERNEL_HEAP_BASE \
+    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_total_pages() * PAGE_SIZE)))
+
 #define KERNEL_HEAP_SIZE GIB(2)
 
 /**
