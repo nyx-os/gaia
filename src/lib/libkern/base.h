@@ -27,6 +27,8 @@
 #define UNUSED __attribute__((unused))
 #define DISCARD(x) ((void)(x))
 
+#define asm __asm__
+
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 
@@ -36,8 +38,6 @@
 
 #define VOLATILE_WRITE(type, addr, val) (*(volatile type *)(addr)) = val
 #define VOLATILE_READ(type, addr) (*(volatile type *)(addr))
-
-#define asm __asm__
 
 #define assert(...)                                        \
     {                                                      \

@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #include "sched.h"
+#include <machdep/cpu.h>
 #include <kern/sync.h>
 
 static TAILQ_HEAD(, thread) runq;
@@ -52,9 +53,7 @@ task_t *sched_new_task(pid_t pid)
 
 void idle_thread_fn(void)
 {
-    while (true) {
-        asm volatile("hlt");
-    }
+    cpu_halt();
 }
 
 void sched_init(void)
