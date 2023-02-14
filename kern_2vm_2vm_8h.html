@@ -104,7 +104,13 @@ $(document).ready(function(){initNavTree('kern_2vm_2vm_8h.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__page__t.html">vm_page_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__page.html">vm_page</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__object__t.html">vm_object_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__aref__t.html">vm_aref_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__anon.html">vm_anon</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvm__map__entry.html">vm_map_entry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,11 +125,13 @@ typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>vattr_t</b
 <tr class="memitem:a5b2062c33919cf4c7d8425bc5dd695a2"><td class="memItemLeft" align="right" valign="top"><a id="a5b2062c33919cf4c7d8425bc5dd695a2"></a>
 typedef struct <a class="el" href="structpmap.html">pmap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_t</b></td></tr>
 <tr class="separator:a5b2062c33919cf4c7d8425bc5dd695a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86ca16e8e11788edfe410a868c9347fd"><td class="memItemLeft" align="right" valign="top"><a id="a86ca16e8e11788edfe410a868c9347fd"></a>
-typedef struct <a class="el" href="structvm__map__entry.html">vm_map_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map_entry_t</b></td></tr>
+<tr class="memitem:a02165f8015a3556c1a17343eea19779f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structvm__page.html">vm_page</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f">vm_page_t</a></td></tr>
+<tr class="separator:a02165f8015a3556c1a17343eea19779f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2be9aa361cb43a3f70f9fe51e7d5c911"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structvm__anon.html">vm_anon</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911">vm_anon_t</a></td></tr>
+<tr class="separator:a2be9aa361cb43a3f70f9fe51e7d5c911"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86ca16e8e11788edfe410a868c9347fd"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structvm__map__entry.html">vm_map_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd">vm_map_entry_t</a></td></tr>
 <tr class="separator:a86ca16e8e11788edfe410a868c9347fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad72ecf1e3caae510ad568cdd89b0f59b"><td class="memItemLeft" align="right" valign="top"><a id="ad72ecf1e3caae510ad568cdd89b0f59b"></a>
-typedef struct <a class="el" href="structvm__map.html">vm_map</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map_t</b></td></tr>
+<tr class="memitem:ad72ecf1e3caae510ad568cdd89b0f59b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structvm__map.html">vm_map</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a></td></tr>
 <tr class="separator:ad72ecf1e3caae510ad568cdd89b0f59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -165,17 +173,81 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_invlpg</b> (vadd
 <tr class="memitem:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memItemLeft" align="right" valign="top"><a id="a3a53b46cfd52cec4359fe3c91ed21052"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>vm_init</b> (<a class="el" href="structcharon__t.html">charon_t</a> charon)</td></tr>
 <tr class="separator:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e04d453f72d9768027e4f3e7acfe49"><td class="memItemLeft" align="right" valign="top"><a id="a72e04d453f72d9768027e4f3e7acfe49"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map_obj</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, <a class="el" href="structvm__object__t.html">vm_object_t</a> obj, vaddr_t *vaddrp, size_t size, size_t offset)</td></tr>
+<tr class="separator:a72e04d453f72d9768027e4f3e7acfe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a38bfd5d32eeba9b096d369e59b4f3a85"><td class="memItemLeft" align="right" valign="top"><a id="a38bfd5d32eeba9b096d369e59b4f3a85"></a>
-<a class="el" href="structvm__map.html">vm_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vm_kmap</b></td></tr>
+<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vm_kmap</b></td></tr>
 <tr class="separator:a38bfd5d32eeba9b096d369e59b4f3a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Virtual memory subsystem. </p>
-<p>The whole VM folder describes and implements the virtual memory subsystem used by Gaia. Most of the design decisions were inspired from NetBSD's excellent UVM. </p>
-</div></div><!-- contents -->
+<p>The whole VM folder describes and implements the virtual memory subsystem used by Gaia. Most of the design decisions were derived from NetBSD's excellent UVM. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a2be9aa361cb43a3f70f9fe51e7d5c911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2be9aa361cb43a3f70f9fe51e7d5c911">&#9670;&nbsp;</a></span>vm_anon_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structvm__anon.html">vm_anon</a> <a class="el" href="kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911">vm_anon_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Describes anonymous memory </p>
+
+</div>
+</div>
+<a id="a86ca16e8e11788edfe410a868c9347fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86ca16e8e11788edfe410a868c9347fd">&#9670;&nbsp;</a></span>vm_map_entry_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structvm__map__entry.html">vm_map_entry</a> <a class="el" href="kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd">vm_map_entry_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Describes a memory map entry </p>
+
+</div>
+</div>
+<a id="ad72ecf1e3caae510ad568cdd89b0f59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad72ecf1e3caae510ad568cdd89b0f59b">&#9670;&nbsp;</a></span>vm_map_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structvm__map.html">vm_map</a> <a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Describes a virtual memory map </p>
+
+</div>
+</div>
+<a id="a02165f8015a3556c1a17343eea19779f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02165f8015a3556c1a17343eea19779f">&#9670;&nbsp;</a></span>vm_page_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structvm__page.html">vm_page</a> <a class="el" href="kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f">vm_page_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Describes a physical page, vm_pages are allocated at boot </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

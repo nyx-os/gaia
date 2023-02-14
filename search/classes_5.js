@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['packed_224',['PACKED',['../structPACKED.html',1,'']]],
-  ['phys_5fregion_225',['phys_region',['../structphys__region.html',1,'']]],
-  ['pmap_226',['pmap',['../structpmap.html',1,'']]]
+  ['kmem_5fbufctl_207',['kmem_bufctl',['../structkmem__bufctl.html',1,'']]],
+  ['kmem_5fcache_208',['kmem_cache',['../structkmem__cache.html',1,'']]],
+  ['kmem_5fslab_209',['kmem_slab',['../structkmem__slab.html',1,'']]]
 ];

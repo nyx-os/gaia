@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ref_5fcount_110',['ref_count',['../structkmem__slab.html#a2f476236fef353aebeede08c4aa2531c',1,'kmem_slab']]],
-  ['rsdp_111',['rsdp',['../structcharon__t.html#a6642073a338c4a61c07a58f79367a4ff',1,'charon_t']]]
+  ['qcache_5fmax_117',['qcache_max',['../structvmem.html#abf52386a96fa22233ab063c9c0e68d50',1,'vmem']]],
+  ['quantum_118',['quantum',['../structvmem.html#aec5e968a54a776b5a10e9efb5671feb9',1,'vmem']]]
 ];

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['parent_310',['parent',['../structthread.html#a032bec8f552d4b8aae9a04c9595fe92f',1,'thread']]],
-  ['pid_311',['pid',['../structtask.html#ab56448ae42a75825ea923bd86648f3ae',1,'task']]],
-  ['pmap_312',['pmap',['../structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e',1,'vm_map']]],
-  ['present_313',['present',['../structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546',1,'charon_framebuffer_t']]]
+  ['obj_343',['obj',['../structvm__map__entry.html#a874218ec9d60ea244b844c69eae45229',1,'vm_map_entry']]],
+  ['offset_344',['offset',['../structvm__map__entry.html#a1420dd962720dab027a9d6e488bdb8bb',1,'vm_map_entry']]]
 ];

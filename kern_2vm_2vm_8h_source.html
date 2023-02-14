@@ -87,87 +87,140 @@ $(document).ready(function(){initNavTree('kern_2vm_2vm_8h_source.html',''); init
 </div><!--header-->
 <div class="contents">
 <a href="kern_2vm_2vm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef SRC_KERN_VM_VM_H_</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define SRC_KERN_VM_VM_H_</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;machdep/vm.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="phys_8h.html">kern/vm/phys.h</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmem_8h.html">kern/vm/vmem.h</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sync_8h.html">kern/sync.h</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    VM_PROT_READ = (1 &lt;&lt; 0),</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    VM_PROT_WRITE = (1 &lt;&lt; 1),</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    VM_PROT_EXECUTE = (1 &lt;&lt; 2),</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} vm_prot_t;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">typedef</span> uint8_t vattr_t;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    PMAP_NONE,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    PMAP_HUGE,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    PMAP_LARGE,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} pmap_flags_t;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structpmap.html">pmap</a> <a class="code" href="structpmap.html">pmap_t</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">struct </span><a class="code" href="structvm__map.html">vm_map</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> pmap_init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="structpmap.html">pmap_t</a> pmap_create(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> pmap_destroy(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * Create a mapping in physical map pmap for the physical address pa at the virtual address va with protection prot</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">int</span> pmap_enter(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>, vaddr_t va, paddr_t pa, vm_prot_t prot,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;               pmap_flags_t flags);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * Remove mapping.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> pmap_remove(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>, vaddr_t va);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * Activate a pmap</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> pmap_activate(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> * Invalidate page</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> pmap_invlpg(vaddr_t va);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> vm_init(<a class="code" href="structcharon__t.html">charon_t</a> charon);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structvm__page__t.html">   63</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> unused;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <a class="code" href="structvm__page__t.html">vm_page_t</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structvm__map__entry.html">   67</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__map__entry.html">vm_map_entry</a> {</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c">   68</a></span>&#160;    <a class="code" href="structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c">LIST_ENTRY</a>(<a class="code" href="structvm__map__entry.html">vm_map_entry</a>) map_link; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;} <a class="code" href="structvm__map__entry.html">vm_map_entry_t</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structvm__map.html">   71</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__map.html">vm_map</a> {</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">   72</a></span>&#160;    <a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">pmap</a>; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">   73</a></span>&#160;    <a class="code" href="structvmem.html">vmem_t</a> <a class="code" href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">vmem</a>; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structvm__map.html#a014d3157235648041e190f5405429f26">   74</a></span>&#160;    <a class="code" href="structvm__map.html#a014d3157235648041e190f5405429f26">LIST_HEAD</a>(, <a class="code" href="structvm__map__entry.html">vm_map_entry</a>) entries; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <a class="code" href="structvm__map.html">vm_map_t</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvm__map.html">vm_map_t</a> vm_kmap;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/* TODO: add support for pagers */</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef SRC_KERN_VM_VM_H_</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define SRC_KERN_VM_VM_H_</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;machdep/vm.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="phys_8h.html">kern/vm/phys.h</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmem_8h.html">kern/vm/vmem.h</a>&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sync_8h.html">kern/sync.h</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    VM_PROT_READ = (1 &lt;&lt; 0),</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    VM_PROT_WRITE = (1 &lt;&lt; 1),</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    VM_PROT_EXECUTE = (1 &lt;&lt; 2),</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;} vm_prot_t;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">typedef</span> uint8_t vattr_t;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    PMAP_NONE,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    PMAP_HUGE,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    PMAP_LARGE,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} pmap_flags_t;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structpmap.html">pmap</a> <a class="code" href="structpmap.html">pmap_t</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">struct </span><a class="code" href="structvm__map.html">vm_map</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> pmap_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="structpmap.html">pmap_t</a> pmap_create(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> pmap_destroy(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * Create a mapping in physical map pmap for the physical address pa at the virtual address va with protection prot</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> pmap_enter(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>, vaddr_t va, paddr_t pa, vm_prot_t prot,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;               pmap_flags_t flags);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> * Remove mapping.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> pmap_remove(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>, vaddr_t va);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"> * Activate a pmap</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> pmap_activate(<a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structpmap.html">pmap</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * Invalidate page</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> pmap_invlpg(vaddr_t va);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> vm_init(<a class="code" href="structcharon__t.html">charon_t</a> charon);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structvm__page.html">   69</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__page.html">vm_page</a> {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">bool</span> unused;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    LIST_ENTRY(<a class="code" href="structvm__page.html">vm_page</a>) list;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f">   72</a></span>&#160;} <a class="code" href="kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f">vm_page_t</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structvm__object__t.html">   79</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="structvm__object__t.html#adae7f33623465d5075f19de2ae6c2502">   80</a></span>&#160;    spinlock_t <a class="code" href="structvm__object__t.html#adae7f33623465d5075f19de2ae6c2502">lock</a>; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structvm__object__t.html#a58b3cf55063bac7c43e01ca0e56a4554">   81</a></span>&#160;    <a class="code" href="structvm__object__t.html#a58b3cf55063bac7c43e01ca0e56a4554">LIST_HEAD</a>(, <a class="code" href="structvm__page.html">vm_page</a>) pages; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structvm__object__t.html#ab0e89f933bf93b84cd4fa6636eb4d7a5">   82</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structvm__object__t.html#ab0e89f933bf93b84cd4fa6636eb4d7a5">npages</a>; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structvm__object__t.html#a77eb6316587d3c89c07162de78f82674">   83</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structvm__object__t.html#a77eb6316587d3c89c07162de78f82674">refs</a>; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;} <a class="code" href="structvm__object__t.html">vm_object_t</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structvm__aref__t.html">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structvm__aref__t.html#a4ed8eefe3ee0f7089fbdd09c613bfae9">   90</a></span>&#160;    <span class="keyword">struct </span>vm_amap *<a class="code" href="structvm__aref__t.html#a4ed8eefe3ee0f7089fbdd09c613bfae9">amap</a>; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structvm__aref__t.html#ad49a720dd8c95c78758a30ff4d2b95fd">   91</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structvm__aref__t.html#ad49a720dd8c95c78758a30ff4d2b95fd">slot_offset</a>; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <a class="code" href="structvm__aref__t.html">vm_aref_t</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="structvm__anon.html">   97</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__anon.html">vm_anon</a> {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    spinlock_t lock;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="structvm__anon.html#aff6a9196f2956ca632ed4c4b7a178531">   99</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structvm__anon.html#aff6a9196f2956ca632ed4c4b7a178531">ref</a>; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structvm__anon.html#a9cd0175f68010da184224ef0caae0746">  100</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structvm__anon.html#a9cd0175f68010da184224ef0caae0746">resident</a> : 1; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structvm__anon.html#a5e3ae3bb2eb522e30b98d24df90d7bbe">  103</a></span>&#160;        paddr_t <a class="code" href="structvm__anon.html#a5e3ae3bb2eb522e30b98d24df90d7bbe">physpage</a>; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structvm__anon.html#accb109610f2ed266a1dea680e1090c55">  104</a></span>&#160;        <span class="keywordtype">void</span> *<a class="code" href="structvm__anon.html#accb109610f2ed266a1dea680e1090c55">swap_data</a>; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    } u;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911">  106</a></span>&#160;} <a class="code" href="kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911">vm_anon_t</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structvm__map__entry.html">  111</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__map__entry.html">vm_map_entry</a> {</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c">  112</a></span>&#160;    <a class="code" href="structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c">LIST_ENTRY</a>(<a class="code" href="structvm__map__entry.html">vm_map_entry</a>) map_link; </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#a2665d189c2ec9899bc9cb496feecaf8e">  114</a></span>&#160;    vaddr_t <a class="code" href="structvm__map__entry.html#a2665d189c2ec9899bc9cb496feecaf8e">start</a>; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#a9a4bf523e0cd380e453c978116574142">  115</a></span>&#160;    vaddr_t <a class="code" href="structvm__map__entry.html#a9a4bf523e0cd380e453c978116574142">end</a>; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#a1420dd962720dab027a9d6e488bdb8bb">  116</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structvm__map__entry.html#a1420dd962720dab027a9d6e488bdb8bb">offset</a>; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structvm__map__entry.html#a874218ec9d60ea244b844c69eae45229">  118</a></span>&#160;    <a class="code" href="structvm__object__t.html">vm_object_t</a> *<a class="code" href="structvm__map__entry.html#a874218ec9d60ea244b844c69eae45229">obj</a>; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd">  119</a></span>&#160;} <a class="code" href="kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd">vm_map_entry_t</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structvm__map.html">  124</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvm__map.html">vm_map</a> {</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">  125</a></span>&#160;    <a class="code" href="structpmap.html">pmap_t</a> <a class="code" href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">pmap</a>; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">  126</a></span>&#160;    <a class="code" href="structvmem.html">vmem_t</a> <a class="code" href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">vmem</a>; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="structvm__map.html#a014d3157235648041e190f5405429f26">  127</a></span>&#160;    <a class="code" href="structvm__map.html#a014d3157235648041e190f5405429f26">LIST_HEAD</a>(, <a class="code" href="structvm__map__entry.html">vm_map_entry</a>) entries; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">  128</a></span>&#160;} <a class="code" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvm__map.html">vm_map_t</a> vm_kmap;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keywordtype">int</span> vm_map_obj(<a class="code" href="structvm__map.html">vm_map_t</a> *map, <a class="code" href="structvm__object__t.html">vm_object_t</a> obj, vaddr_t *vaddrp, <span class="keywordtype">size_t</span> size,</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;               <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="akern_2vm_2vm_8h_html_a02165f8015a3556c1a17343eea19779f"><div class="ttname"><a href="kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f">vm_page_t</a></div><div class="ttdeci">struct vm_page vm_page_t</div></div>
+<div class="ttc" id="akern_2vm_2vm_8h_html_a2be9aa361cb43a3f70f9fe51e7d5c911"><div class="ttname"><a href="kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911">vm_anon_t</a></div><div class="ttdeci">struct vm_anon vm_anon_t</div></div>
+<div class="ttc" id="akern_2vm_2vm_8h_html_a86ca16e8e11788edfe410a868c9347fd"><div class="ttname"><a href="kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd">vm_map_entry_t</a></div><div class="ttdeci">struct vm_map_entry vm_map_entry_t</div></div>
+<div class="ttc" id="akern_2vm_2vm_8h_html_ad72ecf1e3caae510ad568cdd89b0f59b"><div class="ttname"><a href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a></div><div class="ttdeci">struct vm_map vm_map_t</div></div>
 <div class="ttc" id="aphys_8h_html"><div class="ttname"><a href="phys_8h.html">phys.h</a></div><div class="ttdoc">Physical page management.</div></div>
 <div class="ttc" id="astructcharon__t_html"><div class="ttname"><a href="structcharon__t.html">charon_t</a></div><div class="ttdef"><b>Definition:</b> charon.h:58</div></div>
 <div class="ttc" id="astructpmap_html"><div class="ttname"><a href="structpmap.html">pmap</a></div><div class="ttdef"><b>Definition:</b> vm.h:16</div></div>
-<div class="ttc" id="astructvm__map__entry_html"><div class="ttname"><a href="structvm__map__entry.html">vm_map_entry</a></div><div class="ttdef"><b>Definition:</b> vm.h:67</div></div>
+<div class="ttc" id="astructvm__anon_html"><div class="ttname"><a href="structvm__anon.html">vm_anon</a></div><div class="ttdef"><b>Definition:</b> vm.h:97</div></div>
+<div class="ttc" id="astructvm__anon_html_a5e3ae3bb2eb522e30b98d24df90d7bbe"><div class="ttname"><a href="structvm__anon.html#a5e3ae3bb2eb522e30b98d24df90d7bbe">vm_anon::physpage</a></div><div class="ttdeci">paddr_t physpage</div><div class="ttdef"><b>Definition:</b> vm.h:103</div></div>
+<div class="ttc" id="astructvm__anon_html_a9cd0175f68010da184224ef0caae0746"><div class="ttname"><a href="structvm__anon.html#a9cd0175f68010da184224ef0caae0746">vm_anon::resident</a></div><div class="ttdeci">bool resident</div><div class="ttdef"><b>Definition:</b> vm.h:100</div></div>
+<div class="ttc" id="astructvm__anon_html_accb109610f2ed266a1dea680e1090c55"><div class="ttname"><a href="structvm__anon.html#accb109610f2ed266a1dea680e1090c55">vm_anon::swap_data</a></div><div class="ttdeci">void * swap_data</div><div class="ttdef"><b>Definition:</b> vm.h:104</div></div>
+<div class="ttc" id="astructvm__anon_html_aff6a9196f2956ca632ed4c4b7a178531"><div class="ttname"><a href="structvm__anon.html#aff6a9196f2956ca632ed4c4b7a178531">vm_anon::ref</a></div><div class="ttdeci">int ref</div><div class="ttdef"><b>Definition:</b> vm.h:99</div></div>
+<div class="ttc" id="astructvm__aref__t_html"><div class="ttname"><a href="structvm__aref__t.html">vm_aref_t</a></div><div class="ttdef"><b>Definition:</b> vm.h:89</div></div>
+<div class="ttc" id="astructvm__aref__t_html_a4ed8eefe3ee0f7089fbdd09c613bfae9"><div class="ttname"><a href="structvm__aref__t.html#a4ed8eefe3ee0f7089fbdd09c613bfae9">vm_aref_t::amap</a></div><div class="ttdeci">struct vm_amap * amap</div><div class="ttdef"><b>Definition:</b> vm.h:90</div></div>
+<div class="ttc" id="astructvm__aref__t_html_ad49a720dd8c95c78758a30ff4d2b95fd"><div class="ttname"><a href="structvm__aref__t.html#ad49a720dd8c95c78758a30ff4d2b95fd">vm_aref_t::slot_offset</a></div><div class="ttdeci">size_t slot_offset</div><div class="ttdef"><b>Definition:</b> vm.h:91</div></div>
+<div class="ttc" id="astructvm__map__entry_html"><div class="ttname"><a href="structvm__map__entry.html">vm_map_entry</a></div><div class="ttdef"><b>Definition:</b> vm.h:111</div></div>
+<div class="ttc" id="astructvm__map__entry_html_a1420dd962720dab027a9d6e488bdb8bb"><div class="ttname"><a href="structvm__map__entry.html#a1420dd962720dab027a9d6e488bdb8bb">vm_map_entry::offset</a></div><div class="ttdeci">size_t offset</div><div class="ttdef"><b>Definition:</b> vm.h:116</div></div>
+<div class="ttc" id="astructvm__map__entry_html_a2665d189c2ec9899bc9cb496feecaf8e"><div class="ttname"><a href="structvm__map__entry.html#a2665d189c2ec9899bc9cb496feecaf8e">vm_map_entry::start</a></div><div class="ttdeci">vaddr_t start</div><div class="ttdef"><b>Definition:</b> vm.h:114</div></div>
+<div class="ttc" id="astructvm__map__entry_html_a874218ec9d60ea244b844c69eae45229"><div class="ttname"><a href="structvm__map__entry.html#a874218ec9d60ea244b844c69eae45229">vm_map_entry::obj</a></div><div class="ttdeci">vm_object_t * obj</div><div class="ttdef"><b>Definition:</b> vm.h:118</div></div>
+<div class="ttc" id="astructvm__map__entry_html_a9a4bf523e0cd380e453c978116574142"><div class="ttname"><a href="structvm__map__entry.html#a9a4bf523e0cd380e453c978116574142">vm_map_entry::end</a></div><div class="ttdeci">vaddr_t end</div><div class="ttdef"><b>Definition:</b> vm.h:115</div></div>
 <div class="ttc" id="astructvm__map__entry_html_aeee5b03315cfa22c311e0505b5ca5d6c"><div class="ttname"><a href="structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c">vm_map_entry::LIST_ENTRY</a></div><div class="ttdeci">LIST_ENTRY(vm_map_entry) map_link</div></div>
-<div class="ttc" id="astructvm__map_html"><div class="ttname"><a href="structvm__map.html">vm_map</a></div><div class="ttdef"><b>Definition:</b> vm.h:71</div></div>
+<div class="ttc" id="astructvm__map_html"><div class="ttname"><a href="structvm__map.html">vm_map</a></div><div class="ttdef"><b>Definition:</b> vm.h:124</div></div>
 <div class="ttc" id="astructvm__map_html_a014d3157235648041e190f5405429f26"><div class="ttname"><a href="structvm__map.html#a014d3157235648041e190f5405429f26">vm_map::LIST_HEAD</a></div><div class="ttdeci">LIST_HEAD(, vm_map_entry) entries</div></div>
-<div class="ttc" id="astructvm__map_html_a6f266ab5bf265f146ef887defa1b3a30"><div class="ttname"><a href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">vm_map::vmem</a></div><div class="ttdeci">vmem_t vmem</div><div class="ttdef"><b>Definition:</b> vm.h:73</div></div>
-<div class="ttc" id="astructvm__map_html_a90d030e71c896342d5cf52ef3dc91a8e"><div class="ttname"><a href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">vm_map::pmap</a></div><div class="ttdeci">pmap_t pmap</div><div class="ttdef"><b>Definition:</b> vm.h:72</div></div>
-<div class="ttc" id="astructvm__page__t_html"><div class="ttname"><a href="structvm__page__t.html">vm_page_t</a></div><div class="ttdef"><b>Definition:</b> vm.h:63</div></div>
+<div class="ttc" id="astructvm__map_html_a6f266ab5bf265f146ef887defa1b3a30"><div class="ttname"><a href="structvm__map.html#a6f266ab5bf265f146ef887defa1b3a30">vm_map::vmem</a></div><div class="ttdeci">vmem_t vmem</div><div class="ttdef"><b>Definition:</b> vm.h:126</div></div>
+<div class="ttc" id="astructvm__map_html_a90d030e71c896342d5cf52ef3dc91a8e"><div class="ttname"><a href="structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e">vm_map::pmap</a></div><div class="ttdeci">pmap_t pmap</div><div class="ttdef"><b>Definition:</b> vm.h:125</div></div>
+<div class="ttc" id="astructvm__object__t_html"><div class="ttname"><a href="structvm__object__t.html">vm_object_t</a></div><div class="ttdef"><b>Definition:</b> vm.h:79</div></div>
+<div class="ttc" id="astructvm__object__t_html_a58b3cf55063bac7c43e01ca0e56a4554"><div class="ttname"><a href="structvm__object__t.html#a58b3cf55063bac7c43e01ca0e56a4554">vm_object_t::LIST_HEAD</a></div><div class="ttdeci">LIST_HEAD(, vm_page) pages</div></div>
+<div class="ttc" id="astructvm__object__t_html_a77eb6316587d3c89c07162de78f82674"><div class="ttname"><a href="structvm__object__t.html#a77eb6316587d3c89c07162de78f82674">vm_object_t::refs</a></div><div class="ttdeci">int refs</div><div class="ttdef"><b>Definition:</b> vm.h:83</div></div>
+<div class="ttc" id="astructvm__object__t_html_ab0e89f933bf93b84cd4fa6636eb4d7a5"><div class="ttname"><a href="structvm__object__t.html#ab0e89f933bf93b84cd4fa6636eb4d7a5">vm_object_t::npages</a></div><div class="ttdeci">size_t npages</div><div class="ttdef"><b>Definition:</b> vm.h:82</div></div>
+<div class="ttc" id="astructvm__object__t_html_adae7f33623465d5075f19de2ae6c2502"><div class="ttname"><a href="structvm__object__t.html#adae7f33623465d5075f19de2ae6c2502">vm_object_t::lock</a></div><div class="ttdeci">spinlock_t lock</div><div class="ttdef"><b>Definition:</b> vm.h:80</div></div>
+<div class="ttc" id="astructvm__page_html"><div class="ttname"><a href="structvm__page.html">vm_page</a></div><div class="ttdef"><b>Definition:</b> vm.h:69</div></div>
 <div class="ttc" id="astructvmem_html"><div class="ttname"><a href="structvmem.html">vmem</a></div><div class="ttdef"><b>Definition:</b> vmem.h:87</div></div>
 <div class="ttc" id="async_8h_html"><div class="ttname"><a href="sync_8h.html">sync.h</a></div><div class="ttdoc">Synchronization primitives.</div></div>
 <div class="ttc" id="avmem_8h_html"><div class="ttname"><a href="vmem_8h.html">vmem.h</a></div><div class="ttdoc">Implementation of the VMem resource allocator as described in https://www.usenix.org/legacy/event/use...</div></div>
