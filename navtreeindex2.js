@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structtu__invalid__builtin__data.html#ad395eb214bd8f7774634c6096eadc051":[0,0,61,0],
 "structtu__invalid__value__data.html":[0,0,62],
 "structtu__invalid__value__data.html#a6f5552386e52f2d146b5a80dd5732eb4":[0,0,62,1],
 "structtu__invalid__value__data.html#af96f7908cbb947eb422702bd4aad8f6d":[0,0,62,0],
