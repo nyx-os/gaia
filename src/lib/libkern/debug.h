@@ -55,9 +55,9 @@
 #endif
 
 #if LOG_VERBOSITY >= 2
-#define warn(...)                                   \
-    do {                                            \
-        DO_LOG_FN("WARN", ANSI_YELLOW, __VA_ARGS__) \
+#define warn(...)                                    \
+    do {                                             \
+        DO_LOG_FN("WARN ", ANSI_YELLOW, __VA_ARGS__) \
     } while (0)
 
 #else
@@ -65,9 +65,9 @@
 #endif
 
 #if LOG_VERBOSITY >= 3
-#define log(...)                                   \
-    do {                                           \
-        DO_LOG_FN("INFO", ANSI_GREEN, __VA_ARGS__) \
+#define log(...)                                    \
+    do {                                            \
+        DO_LOG_FN("INFO ", ANSI_GREEN, __VA_ARGS__) \
     } while (0)
 #else
 #define log(...)
