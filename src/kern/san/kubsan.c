@@ -71,6 +71,10 @@ extern "C" {
 static void tu_print_location(const char *message,
                               struct tu_source_location loc)
 {
+    /* In case log verbosity is 0 */
+    DISCARD(message);
+    DISCARD(loc);
+
     panic("tinyubsan: %s at file %s, line %d, column %d\n", message, loc.file,
           loc.line, loc.column);
 }

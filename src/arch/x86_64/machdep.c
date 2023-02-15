@@ -8,8 +8,6 @@ void machine_dbg_putc(int c, void *ctx)
 {
     DISCARD(ctx);
     outb(0xe9, c);
-    char s[] = { c, 0 };
-    term_write(s);
 }
 
 void gdt_init(void);
