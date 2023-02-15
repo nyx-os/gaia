@@ -57,4 +57,6 @@ void sched_tick(intr_frame_t *ctx);
 thread_t *sched_new_thread(const char *name, task_t *parent, intr_frame_t ctx);
 task_t *sched_new_task(pid_t pid);
 
+void sched_dump(void);
+
 #endif

@@ -2,6 +2,7 @@
 #include "sched.h"
 #include <machdep/cpu.h>
 #include <kern/sync.h>
+#include <sys/queue.h>
 
 static TAILQ_HEAD(, thread) runq;
 static spinlock_t sched_lock;
@@ -89,7 +90,7 @@ void sched_tick(intr_frame_t *ctx)
     }
 
     /* Slice ended, time to switch threads */
-    if (ticks > TIME_SLICE) {
+    if (ticks >= TIME_SLICE) {
         if (current_thread->state == RUNNING) {
             TAILQ_INSERT_TAIL(&runq, current_thread, sched_link);
         }
@@ -100,8 +101,19 @@ void sched_tick(intr_frame_t *ctx)
         ticks = 0;
     }
 
+    spinlock_unlock(&sched_lock);
+
     *ctx = current_thread->ctx;
     pmap_activate(current_thread->parent->map.pmap);
+}
 
-    spinlock_unlock(&sched_lock);
+void sched_dump(void)
+{
+    thread_t *thread;
+    log("Currently running threads: ");
+
+    TAILQ_FOREACH(thread, &runq, sched_link)
+    {
+        log("- \"%s\"", thread->name);
+    };
 }
