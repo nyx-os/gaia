@@ -1,4 +1,4 @@
-/*
+/* @license:ignore
  * Copyright (c) 2000 Apple Computer, Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
