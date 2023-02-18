@@ -6,6 +6,7 @@ var annotated_dup =
     [ "charon_module_t", "structcharon__module__t.html", "structcharon__module__t" ],
     [ "charon_modules_t", "structcharon__modules__t.html", "structcharon__modules__t" ],
     [ "charon_t", "structcharon__t.html", "structcharon__t" ],
+    [ "cpu_context_t", "structcpu__context__t.html", "structcpu__context__t" ],
     [ "cpuid_t", "structcpuid__t.html", "structcpuid__t" ],
     [ "escape_code_t", "structescape__code__t.html", "structescape__code__t" ],
     [ "framebuffer_t", "structframebuffer__t.html", "structframebuffer__t" ],

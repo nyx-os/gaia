@@ -13,6 +13,6 @@ var sched_8h =
     [ "sched_dump", "sched_8h.html#a02cfe68dc8f379c88d448172f997b09e", null ],
     [ "sched_init", "sched_8h.html#ac76f0bd4fbafc057a2f780869968e3ed", null ],
     [ "sched_new_task", "sched_8h.html#a239955e7a84323302a4b7fecd007952e", null ],
-    [ "sched_new_thread", "sched_8h.html#adffbf666492c17d848049e16e1ff478b", null ],
+    [ "sched_new_thread", "sched_8h.html#af392c3924cb8c71e7ee5cec383f8a37f", null ],
     [ "sched_tick", "sched_8h.html#a98f9efe781440f30f51cc0f412c7b2a5", null ]
 ];

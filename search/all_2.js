@@ -11,6 +11,7 @@ var searchData=
   ['charon_5ft_14',['charon_t',['../structcharon__t.html',1,'']]],
   ['constructor_15',['constructor',['../structkmem__cache.html#a98990c9833dd12b8f9e833d735a75bc0',1,'kmem_cache']]],
   ['count_16',['count',['../structcharon__mmap__t.html#ac5fbaf6fe00d26d2765b8a9e94144fd5',1,'charon_mmap_t::count()'],['../structcharon__modules__t.html#aeb5cd21db15dccadfe804ead8a820fb3',1,'charon_modules_t::count()']]],
-  ['cpuid_5ft_17',['cpuid_t',['../structcpuid__t.html',1,'']]],
-  ['ctx_18',['ctx',['../structthread.html#a6d7625a04a37d267b60df4d3d3e9a974',1,'thread']]]
+  ['cpu_5fcontext_5ft_17',['cpu_context_t',['../structcpu__context__t.html',1,'']]],
+  ['cpuid_5ft_18',['cpuid_t',['../structcpuid__t.html',1,'']]],
+  ['ctx_19',['ctx',['../structthread.html#a7b733d299f594c4182f0ac3e37fbf112',1,'thread']]]
 ];
