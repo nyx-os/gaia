@@ -25,7 +25,7 @@ static thread_t *get_next_thread(void)
     return ret;
 }
 
-thread_t *sched_new_thread(const char *name, task_t *parent, intr_frame_t ctx)
+thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx)
 {
     thread_t *new_thread = kmalloc(sizeof(thread_t));
 
@@ -66,11 +66,9 @@ void sched_init(void)
     ktask.map = vm_kmap;
     ktask.pid = 0;
 
-    intr_frame_t ctx = { .ss = 0x30,
-                         .cs = 0x28,
-                         .rflags = 0x202,
-                         .rip = (uintptr_t)idle_thread_fn,
-                         .rsp = P2V(phys_allocz()) + 4096 };
+    vaddr_t rsp = P2V(phys_allocz()) + PAGE_SIZE;
+
+    cpu_context_t ctx = cpu_new_context((vaddr_t)idle_thread_fn, rsp, false);
 
     idle_thread = sched_new_thread("idle thread", &ktask, ctx);
 
@@ -84,7 +82,7 @@ void sched_tick(intr_frame_t *ctx)
     ticks++;
 
     if (restore_frame) {
-        current_thread->ctx = *ctx;
+        cpu_save_context(ctx, &current_thread->ctx);
     } else {
         restore_frame = true;
     }
@@ -103,7 +101,7 @@ void sched_tick(intr_frame_t *ctx)
 
     spinlock_unlock(&sched_lock);
 
-    *ctx = current_thread->ctx;
+    cpu_switch_context(ctx, current_thread->ctx);
     pmap_activate(current_thread->parent->map.pmap);
 }
 

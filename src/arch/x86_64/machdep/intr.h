@@ -1,7 +1,8 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_ARCH_X86_64_MACHDEP_INTR_H_
 #define SRC_ARCH_X86_64_MACHDEP_INTR_H_
-#include <libkern/base.h>
+#include <stddef.h>
+#include <stdint.h>
 
 typedef struct PACKED {
     uint64_t r15;

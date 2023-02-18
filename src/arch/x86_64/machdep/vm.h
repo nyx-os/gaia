@@ -1,7 +1,8 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_ARCH_X86_64_MACHDEP_VM_H_
 #define SRC_ARCH_X86_64_MACHDEP_VM_H_
-#include <libkern/base.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #define PAGE_SIZE 4096
 #define HHDM_BASE 0xffff800000000000

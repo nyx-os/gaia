@@ -31,7 +31,7 @@ enum thread_state {
  * A single unit of execution, contains the CPU information like registers
  */
 typedef struct thread {
-    intr_frame_t ctx; /**< CPU context */
+    cpu_context_t ctx; /**< CPU context */
     enum thread_state state; /**< Current state of the thread */
     const char *name; /**< Name of the thread */
 
@@ -54,7 +54,7 @@ typedef struct task {
 void sched_init(void);
 void sched_tick(intr_frame_t *ctx);
 
-thread_t *sched_new_thread(const char *name, task_t *parent, intr_frame_t ctx);
+thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx);
 task_t *sched_new_task(pid_t pid);
 
 void sched_dump(void);
