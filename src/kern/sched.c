@@ -25,7 +25,8 @@ static thread_t *get_next_thread(void)
     return ret;
 }
 
-thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx)
+thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
+                           bool insert)
 {
     thread_t *new_thread = kmalloc(sizeof(thread_t));
 
@@ -35,7 +36,10 @@ thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx)
     new_thread->name = name;
 
     SLIST_INSERT_HEAD(&parent->threads, new_thread, task_link);
-    TAILQ_INSERT_HEAD(&runq, new_thread, sched_link);
+
+    if (insert) {
+        TAILQ_INSERT_HEAD(&runq, new_thread, sched_link);
+    }
 
     return new_thread;
 }
@@ -70,7 +74,7 @@ void sched_init(void)
 
     cpu_context_t ctx = cpu_new_context((vaddr_t)idle_thread_fn, rsp, false);
 
-    idle_thread = sched_new_thread("idle thread", &ktask, ctx);
+    idle_thread = sched_new_thread("idle thread", &ktask, ctx, false);
 
     current_thread = idle_thread;
 }
@@ -89,7 +93,7 @@ void sched_tick(intr_frame_t *ctx)
 
     /* Slice ended, time to switch threads */
     if (ticks >= TIME_SLICE) {
-        if (current_thread->state == RUNNING) {
+        if (current_thread->state == RUNNING && current_thread != idle_thread) {
             TAILQ_INSERT_TAIL(&runq, current_thread, sched_link);
         }
 

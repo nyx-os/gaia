@@ -54,7 +54,8 @@ typedef struct task {
 void sched_init(void);
 void sched_tick(intr_frame_t *ctx);
 
-thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx);
+thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
+                           bool insert);
 task_t *sched_new_task(pid_t pid);
 
 void sched_dump(void);
