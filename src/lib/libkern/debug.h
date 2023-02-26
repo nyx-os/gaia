@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_LIB_LIBKERN_DEBUG_H_
 #define SRC_LIB_LIBKERN_DEBUG_H_
-#include <libkern/base.h>
 
 /*
   0 - Don't show logs at all
@@ -35,19 +34,20 @@
     (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : \
                                         __FILE__)
 
-#define DO_LOG_FN(LEVEL, COLOR, ...)                                       \
-    kprintf(COLOR LEVEL ANSI_RESET " [ %s:%d ] ", __FILENAME__, __LINE__); \
-    kprintf(__VA_ARGS__);                                                  \
+#define DO_LOG_FN(LEVEL, COLOR, ...)                                          \
+    kprintf(COLOR LEVEL ANSI_RESET "\x1b[90m%s:%d " ANSI_RESET, __FILENAME__, \
+            __LINE__);                                                        \
+    kprintf(__VA_ARGS__);                                                     \
     kprintf("\n");
 
 #if LOG_VERBOSITY >= 1
 #define error(...)                                \
     do {                                          \
-        DO_LOG_FN("ERROR", ANSI_RED, __VA_ARGS__) \
+        DO_LOG_FN("error", ANSI_RED, __VA_ARGS__) \
     } while (0)
 #define panic(...)                                \
     do {                                          \
-        DO_LOG_FN("PANIC", ANSI_RED, __VA_ARGS__) \
+        DO_LOG_FN("panic", ANSI_RED, __VA_ARGS__) \
     } while (0)
 #else
 #define error(...)
@@ -57,7 +57,7 @@
 #if LOG_VERBOSITY >= 2
 #define warn(...)                                    \
     do {                                             \
-        DO_LOG_FN("WARN ", ANSI_YELLOW, __VA_ARGS__) \
+        DO_LOG_FN("warn ", ANSI_YELLOW, __VA_ARGS__) \
     } while (0)
 
 #else
@@ -67,7 +67,7 @@
 #if LOG_VERBOSITY >= 3
 #define log(...)                                    \
     do {                                            \
-        DO_LOG_FN("INFO ", ANSI_GREEN, __VA_ARGS__) \
+        DO_LOG_FN("info ", ANSI_GREEN, __VA_ARGS__) \
     } while (0)
 #else
 #define log(...)
