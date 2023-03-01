@@ -7,6 +7,10 @@
 #include <kern/sched.h>
 #include <kern/term.h>
 
+#ifndef __GAIA_GIT_VERSION__
+#define __GAIA_GIT_VERSION__ "unknown"
+#endif
+
 void gaia_main(charon_t charon)
 {
     term_init(&charon);
@@ -18,7 +22,7 @@ void gaia_main(charon_t charon)
 
     machine_init();
 
-    log("gaia (0.0.1)");
+    log("gaia (%s)", __GAIA_GIT_VERSION__);
     log("Memory stats (pages): ");
     log("vm_kernel: %ld, phys: %ld, total: %ld",
         vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),

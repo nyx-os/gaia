@@ -6,6 +6,7 @@ kernel_deps = []
 
 c_args = ['-ffreestanding', '-nostdlib']
 
+
 if get_option('debug_trace') == true
     c_args += ['-DDEBUG']
 endif
@@ -15,6 +16,24 @@ subdir('src')
 arch_path = join_paths(meson.current_source_dir() , 'src/arch', target_machine.cpu_family())
 
 ld_file = files(arch_path + '/link.ld')[0]
+
+git = find_program('git', disabler: true, required: false)
+
+if git.found()
+  r = run_command('git', 'rev-parse', '--short', 'HEAD', check: false)
+
+  git_rev = ''
+
+  if r.returncode() == 0
+    git_rev = r.stdout().strip()
+  else 
+    git_rev = 'unknown'
+  endif
+
+  c_args += ['-D__GAIA_GIT_VERSION__="@0@"'.format(git_rev)]
+endif
+
+
 
 stdc = subproject('stdc-shim')
 
