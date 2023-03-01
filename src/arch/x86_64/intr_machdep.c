@@ -85,13 +85,30 @@ uint64_t intr_timer_handler(uint64_t rsp)
     return rsp;
 }
 
+static void do_exception(intr_frame_t *frame)
+{
+    error("exception: 0x%zx, err=0x%zx", frame->intno, frame->err);
+    error("RAX=0x%zx RBX=0x%zx RCX=0x%zx RDX=0x%zx", frame->rax, frame->rbx,
+          frame->rcx, frame->rdx);
+    error("RSI=0x%zx RDI=0x%zx RBP=0x%zx RSP=0x%zx", frame->rsi, frame->rdi,
+          frame->rbp, frame->rsp);
+    error("R8=0x%zx  R9=0x%zx  R10=0x%zx R11=0x%zx", frame->r8, frame->r9,
+          frame->r10, frame->r11);
+    error("R12=0x%zx R13=0x%zx R14=0x%zx R15=0x%zx", frame->r12, frame->r13,
+          frame->r14, frame->r15);
+    error("CR0=0x%zx CR2=0x%zx CR3=0x%zx RIP=0x%zx", read_cr0(), read_cr2(),
+          read_cr3(), frame->rip);
+    panic("If this wasn't intentional, please report an issue on https://github.com/nyx-org/nyx");
+}
+
 uint64_t interrupts_handler(uint64_t rsp)
 {
     intr_frame_t *frame = (intr_frame_t *)rsp;
 
     if (frame->intno < 0x20) {
-        panic("exception: 0x%zx, ip=0x%zx cr2=0x%zx", frame->intno, frame->rip,
-              read_cr2());
+        do_exception(frame);
+        cli();
+        cpu_halt();
     }
 
     lapic_eoi();

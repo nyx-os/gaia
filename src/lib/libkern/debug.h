@@ -34,10 +34,10 @@
     (__builtin_strrchr(__FILE__, '/') ? __builtin_strrchr(__FILE__, '/') + 1 : \
                                         __FILE__)
 
-#define DO_LOG_FN(LEVEL, COLOR, ...)                                          \
-    kprintf(COLOR LEVEL ANSI_RESET "\x1b[90m%s:%d " ANSI_RESET, __FILENAME__, \
-            __LINE__);                                                        \
-    kprintf(__VA_ARGS__);                                                     \
+#define DO_LOG_FN(LEVEL, COLOR, ...)                                           \
+    kprintf(COLOR LEVEL ANSI_RESET " \x1b[90m%s:%d " ANSI_RESET, __FILENAME__, \
+            __LINE__);                                                         \
+    kprintf(__VA_ARGS__);                                                      \
     kprintf("\n");
 
 #if LOG_VERBOSITY >= 1
