@@ -28,7 +28,7 @@ void gaia_main(charon_t charon)
         vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),
         phys_total_pages());
 
-    term_write("hello, world");
+    term_write("Welcome to the machine");
     sched_init();
 
     cpu_enable_interrupts();
