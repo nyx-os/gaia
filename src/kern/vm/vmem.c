@@ -23,8 +23,6 @@
 #include <stdlib.h>
 #define vmem_printf printf
 #define ASSERT assert
-#define seg_alloc() malloc(sizeof(vmem_segment_t))
-#define seg_free(x) free(x)
 #define vmem_alloc_pages(x) malloc(x * 4096)
 #endif
 
@@ -75,6 +73,11 @@ static const char *seg_type_str[] = { "allocated", "free", "span" };
 void vmem_lock(void);
 void vmem_unlock(void);
 
+#else
+#define vmem_lock()
+#define vmem_unlock()
+#endif
+
 static vmem_segment_t *seg_alloc(void)
 {
     /* TODO: when bootstrapped, allocate boundary tags dynamically as described in the paper */
@@ -98,7 +101,6 @@ static void seg_free(vmem_segment_t *seg)
     vmem_unlock();
 }
 
-#endif
 static int repopulate_segments(void)
 {
     struct {
@@ -354,6 +356,11 @@ void *vmem_xalloc(vmem_t *vmp, size_t size, size_t align, size_t phase,
     while (true) {
         if (vmflag & VM_INSTANTFIT) /* VM_INSTANTFIT */
         {
+            /* If the size is not a power of two, use freelist[n+1] instead of freelist[n] */
+            if ((size & (size - 1)) != 0) {
+                first_list++;
+            }
+
             /* We just get the first segment from the list. This ensures constant-time allocation.
              * Note that we do not need to check the size of the segments because they are guaranteed to be big enough (see freelist_for_size)
              */
@@ -594,7 +601,6 @@ void vmem_bootstrap(void)
 {
     size_t i;
     for (i = 0; i < ARR_SIZE(static_segs); i++) {
-        LIST_INSERT_HEAD(&free_segs, &static_segs[i], seglist);
-        nfreesegs++;
+        seg_free(&static_segs[i]);
     }
 }
