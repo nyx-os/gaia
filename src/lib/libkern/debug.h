@@ -76,7 +76,7 @@
 #if LOG_VERBOSITY >= 4
 #define trace(...)                                 \
     do {                                           \
-        DO_LOG_FN("TRACE", ANSI_CYAN, __VA_ARGS__) \
+        DO_LOG_FN("trace", ANSI_CYAN, __VA_ARGS__) \
     } while (0)
 #else
 #define trace(...)
@@ -85,7 +85,7 @@
 #if LOG_VERBOSITY >= 5
 #define debug(...)                                 \
     do {                                           \
-        DO_LOG_FN("DEBUG", ANSI_BLUE, __VA_ARGS__) \
+        DO_LOG_FN("debug", ANSI_BLUE, __VA_ARGS__) \
     } while (0)
 #else
 #define debug(...)

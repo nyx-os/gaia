@@ -58,6 +58,7 @@ task_t *sched_new_task(pid_t pid)
 
 void idle_thread_fn(void)
 {
+    debug("Starting idle thread...");
     cpu_halt();
 }
 
