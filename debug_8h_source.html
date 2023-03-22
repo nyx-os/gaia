@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('debug_8h_source.html',''); initResizab
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#if LOG_VERBOSITY &gt;= 4</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define trace(...)                                 \</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">    do {                                           \</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">        DO_LOG_FN(&quot;TRACE&quot;</span>, ANSI_CYAN, __VA_ARGS__) \</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">        DO_LOG_FN(&quot;trace&quot;</span>, ANSI_CYAN, __VA_ARGS__) \</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    } while (0)</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define trace(...)</span></div>
@@ -173,7 +173,7 @@ $(document).ready(function(){initNavTree('debug_8h_source.html',''); initResizab
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#if LOG_VERBOSITY &gt;= 5</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define debug(...)                                 \</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">    do {                                           \</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">        DO_LOG_FN(&quot;DEBUG&quot;</span>, ANSI_BLUE, __VA_ARGS__) \</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">        DO_LOG_FN(&quot;debug&quot;</span>, ANSI_BLUE, __VA_ARGS__) \</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    } while (0)</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define debug(...)</span></div>
