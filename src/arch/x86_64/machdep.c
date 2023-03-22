@@ -10,6 +10,7 @@ void machine_dbg_putc(int c, void *ctx)
     outb(0xe9, c);
 }
 
+void gdt_init_tss(void);
 void gdt_init(void);
 void idt_init(void);
 
@@ -17,5 +18,10 @@ void machine_init(void)
 {
     gdt_init();
     idt_init();
+}
+
+void machine_init_devices(void)
+{
+    gdt_init_tss();
     apic_init();
 }

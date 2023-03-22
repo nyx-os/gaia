@@ -83,9 +83,13 @@ static tss_descriptor_t make_tss_entry(uintptr_t tss)
     };
 }
 
-void gdt_init(void)
+void gdt_init_tss(void)
 {
     tss.rsp0 = (uint64_t)P2V((uintptr_t)phys_allocz()) + PAGE_SIZE;
+}
+
+void gdt_init(void)
+{
     tss.iopb_offset = sizeof(tss_t);
     gdt.tss = make_tss_entry((uintptr_t)&tss);
 

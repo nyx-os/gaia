@@ -13,6 +13,8 @@
 
 void gaia_main(charon_t charon)
 {
+    machine_init();
+
     term_init(&charon);
 
     vm_init(charon);
@@ -20,7 +22,7 @@ void gaia_main(charon_t charon)
     if (charon.rsdp != 0)
         acpi_init(charon);
 
-    machine_init();
+    machine_init_devices();
 
     log("gaia (%s)", __GAIA_GIT_VERSION__);
     log("Memory stats (pages): ");

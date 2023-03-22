@@ -4,5 +4,6 @@
 
 void machine_dbg_putc(int c, void *ctx);
 void machine_init(void);
+void machine_init_devices(void);
 
 #endif
