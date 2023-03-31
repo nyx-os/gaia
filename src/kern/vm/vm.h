@@ -4,7 +4,7 @@
  * @brief Virtual memory subsystem
  *
  * The whole VM folder describes and implements the virtual memory subsystem used by Gaia.
- * Most of the design decisions were derived from NetBSD's excellent UVM.
+ * Most of the design decisions were derived from Windows NT and VAX/VMS
  */
 
 /* TODO: add support for pagers */
@@ -64,58 +64,19 @@ void pmap_invlpg(vaddr_t va);
 void vm_init(charon_t charon);
 
 /**
- * Describes a physical page, vm_pages are allocated at boot
+ * Describes a physical page, vm_pages are allocated at boot, akin to a PFN database entry in NT
  */
 typedef struct vm_page {
     bool unused;
-    LIST_ENTRY(vm_page) list;
 } vm_page_t;
 
 /**
- * Describes a pager-backed memory object: something that can be mapped and paged
- *
- * UVM's two-level mapping scheme means we can avoid chaining multiple objects together in order to achieve CoW optimizations.
- */
-typedef struct {
-    spinlock_t lock; /**< Object lock */
-    LIST_HEAD(, vm_page) pages; /**< List of pages */
-    size_t npages; /**< Number of pages */
-    int refs; /**< Reference count */
-} vm_object_t;
-
-/**
- * Reference to an amap
- */
-typedef struct {
-    struct vm_amap *amap; /**< The Amap */
-    size_t slot_offset; /**< The slot into the amap */
-} vm_aref_t;
-
-/**
- * Describes anonymous memory
- */
-typedef struct vm_anon {
-    spinlock_t lock;
-    int ref; /**< Number of amaps referencing it */
-    bool resident : 1; /**< Whether we are currently in memory */
-
-    union {
-        paddr_t physpage; /**< If resident, this points to the physical page */
-        void *swap_data; /**< Swap data */
-    } u;
-} vm_anon_t;
-
-/**
- * Describes a memory map entry
+ * Virtual memory map entry, akin to a virtual address descriptor in NT
  */
 typedef struct vm_map_entry {
-    LIST_ENTRY(vm_map_entry) map_link; /**< Links into vm_map_t::entries */
-
-    vaddr_t start; /**< Starting virtual address */
-    vaddr_t end; /**< End virtual address */
-    size_t offset; /**< Offset into the object */
-
-    vm_object_t *obj; /**< Backing object */
+    vm_prot_t prot;
+    vaddr_t start;
+    size_t size;
 } vm_map_entry_t;
 
 /**
@@ -124,12 +85,13 @@ typedef struct vm_map_entry {
 typedef struct vm_map {
     pmap_t pmap; /**< Physical map related to the map */
     vmem_t vmem; /**< Backing vmem arena */
+    /* TODO: use an AVL tree */
     LIST_HEAD(, vm_map_entry) entries; /**< Doubly linked-list of entries */
 } vm_map_t;
 
 extern vm_map_t vm_kmap;
 
-int vm_map_obj(vm_map_t *map, vm_object_t obj, vaddr_t *vaddrp, size_t size,
-               size_t offset);
+//int vm_map_obj(vm_map_t *map, vm_object_t obj, vaddr_t *vaddrp, size_t size,
+//              size_t offset);
 
 #endif

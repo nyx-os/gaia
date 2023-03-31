@@ -8,8 +8,15 @@ typedef struct phys_region {
 } phys_region_t;
 
 static SLIST_HEAD(freelist_head, phys_region) freelist_head;
-static size_t total_page_count = 0;
 static size_t used_pages = 0;
+static size_t total_free_pages = 0;
+static paddr_t highest_page = 0;
+
+static void fill_pfn_database(charon_t charon)
+{
+    for (size_t i = 0; i < charon.memory_map.count; i++) {
+    }
+}
 
 void phys_init(charon_t charon)
 {
@@ -18,16 +25,18 @@ void phys_init(charon_t charon)
     for (size_t i = 0; i < charon.memory_map.count; i++) {
         charon_mmap_entry_t entry = charon.memory_map.entries[i];
 
-        if (entry.type != MMAP_RESERVED)
-            total_page_count += (entry.size / PAGE_SIZE);
+        highest_page = MAX(highest_page, entry.base + entry.size);
 
         if (entry.type == MMAP_FREE) {
             phys_region_t *region = (phys_region_t *)P2V(entry.base);
             region->size = entry.size;
 
             SLIST_INSERT_HEAD(&freelist_head, region, entry);
+            total_free_pages += DIV_CEIL(entry.size, PAGE_SIZE);
         }
     }
+
+    fill_pfn_database(charon);
 }
 
 paddr_t phys_alloc(void)
@@ -68,12 +77,17 @@ paddr_t phys_allocz(void)
     return ret;
 }
 
+paddr_t phys_highest_page(void)
+{
+    return highest_page;
+}
+
 size_t phys_used_pages(void)
 {
     return used_pages;
 }
 
-size_t phys_total_pages(void)
+size_t phys_usable_pages(void)
 {
-    return total_page_count;
+    return total_free_pages;
 }

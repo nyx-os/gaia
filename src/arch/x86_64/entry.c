@@ -40,9 +40,10 @@ static enum charon_mmap_entry_type limine_mmap_type_to_charon(uint64_t type)
         return MMAP_MODULE;
     case LIMINE_MEMMAP_FRAMEBUFFER:
         return MMAP_FRAMEBUFFER;
-    default:
-        return MMAP_RESERVED;
     }
+
+    panic("Invalid limine memory map entry type: %ld", type);
+    return -1;
 }
 
 static void limine_mmap_to_charon(struct limine_memmap_response *mmap,

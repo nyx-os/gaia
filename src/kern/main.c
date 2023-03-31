@@ -28,7 +28,7 @@ void gaia_main(charon_t charon)
     log("Memory stats (pages): ");
     log("vm_kernel: %ld, phys: %ld, total: %ld",
         vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),
-        phys_total_pages());
+        phys_usable_pages());
 
     term_write("Welcome to the machine");
     sched_init();

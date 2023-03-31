@@ -123,7 +123,7 @@ void pmap_init(void)
     }
 
     /* Map the first 4GB+ of memory to the higher half. */
-    for (size_t i = 0; i < MAX(GIB(4), phys_total_pages() * PAGE_SIZE);
+    for (size_t i = 0; i < MAX(GIB(4), phys_usable_pages() * PAGE_SIZE);
          i += page_size) {
         pmap_enter(kernel_pmap, P2V(i), i,
                    VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXECUTE,

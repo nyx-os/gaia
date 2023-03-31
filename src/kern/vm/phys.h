@@ -38,8 +38,12 @@ void phys_free(paddr_t addr);
 size_t phys_used_pages(void);
 
 /**
- * @return Total physical pages
+ * @return Total usable physical pages
  */
-size_t phys_total_pages(void);
+size_t phys_usable_pages(void);
 
+/**
+ * @return Highest page in physical memory
+ */
+paddr_t phys_highest_page(void);
 #endif

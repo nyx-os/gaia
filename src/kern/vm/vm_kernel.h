@@ -11,7 +11,7 @@
 #include <kern/vm/phys.h>
 
 #define KERNEL_HEAP_BASE \
-    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_total_pages() * PAGE_SIZE)))
+    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_highest_page())))
 
 #define KERNEL_HEAP_SIZE GIB(2)
 
