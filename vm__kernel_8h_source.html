@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('vm__kernel_8h_source.html',''); initRe
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="phys_8h.html">kern/vm/phys.h</a>&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_BASE \</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_total_pages() * PAGE_SIZE)))</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">    ((uintptr_t)(P2V(0) + MAX(GIB(4), phys_highest_page())))</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define KERNEL_HEAP_SIZE GIB(2)</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>

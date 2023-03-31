@@ -1,8 +1,6 @@
 var structvm__map__entry =
 [
-    [ "LIST_ENTRY", "structvm__map__entry.html#aeee5b03315cfa22c311e0505b5ca5d6c", null ],
-    [ "end", "structvm__map__entry.html#a9a4bf523e0cd380e453c978116574142", null ],
-    [ "obj", "structvm__map__entry.html#a874218ec9d60ea244b844c69eae45229", null ],
-    [ "offset", "structvm__map__entry.html#a1420dd962720dab027a9d6e488bdb8bb", null ],
+    [ "prot", "structvm__map__entry.html#a78f8509af7acefe74a63c1462ae8fb9e", null ],
+    [ "size", "structvm__map__entry.html#a3ec5caa7d61f22fd3c584a7f99011a09", null ],
     [ "start", "structvm__map__entry.html#a2665d189c2ec9899bc9cb496feecaf8e", null ]
 ];

@@ -108,8 +108,10 @@ Functions</h2></td></tr>
 <tr class="separator:a28acba9f0ba4928897971518c57a1fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbfd8f3d2de9306450b4c0e4c5f85c58"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="phys_8h.html#abbfd8f3d2de9306450b4c0e4c5f85c58">phys_used_pages</a> (void)</td></tr>
 <tr class="separator:abbfd8f3d2de9306450b4c0e4c5f85c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22eb163d4e43a8725a4c5ad37841df8d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="phys_8h.html#a22eb163d4e43a8725a4c5ad37841df8d">phys_total_pages</a> (void)</td></tr>
-<tr class="separator:a22eb163d4e43a8725a4c5ad37841df8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad200b2fd3a89d94533716058a740823c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="phys_8h.html#ad200b2fd3a89d94533716058a740823c">phys_usable_pages</a> (void)</td></tr>
+<tr class="separator:ad200b2fd3a89d94533716058a740823c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7068ab98b02db2ff09241e020fb9c0f"><td class="memItemLeft" align="right" valign="top">paddr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="phys_8h.html#ae7068ab98b02db2ff09241e020fb9c0f">phys_highest_page</a> (void)</td></tr>
+<tr class="separator:ae7068ab98b02db2ff09241e020fb9c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Physical page management. </p>
@@ -176,6 +178,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ae7068ab98b02db2ff09241e020fb9c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7068ab98b02db2ff09241e020fb9c0f">&#9670;&nbsp;</a></span>phys_highest_page()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">paddr_t phys_highest_page </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Highest page in physical memory </dd></dl>
+
+</div>
+</div>
 <a id="a794cb2e93a89632a97d2402bb483b9ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a794cb2e93a89632a97d2402bb483b9ae">&#9670;&nbsp;</a></span>phys_init()</h2>
 
@@ -200,14 +221,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a22eb163d4e43a8725a4c5ad37841df8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22eb163d4e43a8725a4c5ad37841df8d">&#9670;&nbsp;</a></span>phys_total_pages()</h2>
+<a id="ad200b2fd3a89d94533716058a740823c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad200b2fd3a89d94533716058a740823c">&#9670;&nbsp;</a></span>phys_usable_pages()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t phys_total_pages </td>
+          <td class="memname">size_t phys_usable_pages </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -215,7 +236,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Total physical pages </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Total usable physical pages </dd></dl>
 
 </div>
 </div>

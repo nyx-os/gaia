@@ -1,14 +1,10 @@
 var kern_2vm_2vm_8h =
 [
     [ "vm_page", "structvm__page.html", "structvm__page" ],
-    [ "vm_object_t", "structvm__object__t.html", "structvm__object__t" ],
-    [ "vm_aref_t", "structvm__aref__t.html", "structvm__aref__t" ],
-    [ "vm_anon", "structvm__anon.html", "structvm__anon" ],
     [ "vm_map_entry", "structvm__map__entry.html", "structvm__map__entry" ],
     [ "vm_map", "structvm__map.html", "structvm__map" ],
     [ "pmap_t", "kern_2vm_2vm_8h.html#a5b2062c33919cf4c7d8425bc5dd695a2", null ],
     [ "vattr_t", "kern_2vm_2vm_8h.html#a9f0cb55c7c8157a702b6c063d3377f7d", null ],
-    [ "vm_anon_t", "kern_2vm_2vm_8h.html#a2be9aa361cb43a3f70f9fe51e7d5c911", null ],
     [ "vm_map_entry_t", "kern_2vm_2vm_8h.html#a86ca16e8e11788edfe410a868c9347fd", null ],
     [ "vm_map_t", "kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b", null ],
     [ "vm_page_t", "kern_2vm_2vm_8h.html#a02165f8015a3556c1a17343eea19779f", null ],
@@ -30,6 +26,5 @@ var kern_2vm_2vm_8h =
     [ "pmap_invlpg", "kern_2vm_2vm_8h.html#a2c5a1272f61ed84d51e2bb9b5ae6f48b", null ],
     [ "pmap_remove", "kern_2vm_2vm_8h.html#ae059439b02668675506a4ecf17247bc5", null ],
     [ "vm_init", "kern_2vm_2vm_8h.html#a3a53b46cfd52cec4359fe3c91ed21052", null ],
-    [ "vm_map_obj", "kern_2vm_2vm_8h.html#a72e04d453f72d9768027e4f3e7acfe49", null ],
     [ "vm_kmap", "kern_2vm_2vm_8h.html#a38bfd5d32eeba9b096d369e59b4f3a85", null ]
 ];
