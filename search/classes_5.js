@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['kmem_5fbufctl_194',['kmem_bufctl',['../structkmem__bufctl.html',1,'']]],
-  ['kmem_5fcache_195',['kmem_cache',['../structkmem__cache.html',1,'']]],
-  ['kmem_5fslab_196',['kmem_slab',['../structkmem__slab.html',1,'']]]
+  ['interval_214',['interval',['../structinterval.html',1,'']]],
+  ['ioapics_5fentry_215',['ioapics_entry',['../structioapics__entry.html',1,'']]],
+  ['isos_5fentry_216',['isos_entry',['../structisos__entry.html',1,'']]]
 ];

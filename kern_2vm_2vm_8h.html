@@ -113,9 +113,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a9f0cb55c7c8157a702b6c063d3377f7d"><td class="memItemLeft" align="right" valign="top"><a id="a9f0cb55c7c8157a702b6c063d3377f7d"></a>
-typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>vattr_t</b></td></tr>
-<tr class="separator:a9f0cb55c7c8157a702b6c063d3377f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b2062c33919cf4c7d8425bc5dd695a2"><td class="memItemLeft" align="right" valign="top"><a id="a5b2062c33919cf4c7d8425bc5dd695a2"></a>
 typedef struct <a class="el" href="structpmap.html">pmap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_t</b></td></tr>
 <tr class="separator:a5b2062c33919cf4c7d8425bc5dd695a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,9 +130,10 @@ Enumerations</h2></td></tr>
 , <b>VM_PROT_EXECUTE</b> = (1 &lt;&lt; 2)
  }</td></tr>
 <tr class="separator:aaeda3fd0642c8ba8fe385553b5c24787"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dfcc660d7fd7c6a44c7bda66b39e49b"><td class="memItemLeft" align="right" valign="top"><a id="a6dfcc660d7fd7c6a44c7bda66b39e49b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>pmap_flags_t</b> { <b>PMAP_NONE</b>
-, <b>PMAP_HUGE</b>
-, <b>PMAP_LARGE</b>
+<tr class="memitem:a6dfcc660d7fd7c6a44c7bda66b39e49b"><td class="memItemLeft" align="right" valign="top"><a id="a6dfcc660d7fd7c6a44c7bda66b39e49b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>pmap_flags_t</b> { <b>PMAP_NONE</b> = (1 &lt;&lt; 0)
+, <b>PMAP_HUGE</b> = (1 &lt;&lt; 1)
+, <b>PMAP_LARGE</b> = (1 &lt;&lt; 2)
+, <b>PMAP_USER</b> = (1 &lt;&lt; 3)
  }</td></tr>
 <tr class="separator:a6dfcc660d7fd7c6a44c7bda66b39e49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -144,9 +142,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5be4dbbccac5e7ae735c41519c78eb0b"><td class="memItemLeft" align="right" valign="top"><a id="a5be4dbbccac5e7ae735c41519c78eb0b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_init</b> (void)</td></tr>
 <tr class="separator:a5be4dbbccac5e7ae735c41519c78eb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4566bbcb37dd7c7bda736dba888af4"><td class="memItemLeft" align="right" valign="top"><a id="a8f4566bbcb37dd7c7bda736dba888af4"></a>
-<a class="el" href="structpmap.html">pmap_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_create</b> (void)</td></tr>
-<tr class="separator:a8f4566bbcb37dd7c7bda736dba888af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab85667da4b3a10623da3c501caa34863"><td class="memItemLeft" align="right" valign="top"><a id="ab85667da4b3a10623da3c501caa34863"></a>
+<a class="el" href="structpmap.html">pmap_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_create</b> (bool user)</td></tr>
+<tr class="separator:ab85667da4b3a10623da3c501caa34863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac144fe0769398dd6381d299947187b9b"><td class="memItemLeft" align="right" valign="top"><a id="ac144fe0769398dd6381d299947187b9b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_destroy</b> (<a class="el" href="structpmap.html">pmap_t</a> <a class="el" href="structpmap.html">pmap</a>)</td></tr>
 <tr class="separator:ac144fe0769398dd6381d299947187b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,6 +163,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_invlpg</b> (vadd
 <tr class="memitem:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memItemLeft" align="right" valign="top"><a id="a3a53b46cfd52cec4359fe3c91ed21052"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>vm_init</b> (<a class="el" href="structcharon__t.html">charon_t</a> charon)</td></tr>
 <tr class="separator:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0469a5916900c3fbeaa9c8a67c320b"><td class="memItemLeft" align="right" valign="top"><a id="a0b0469a5916900c3fbeaa9c8a67c320b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot, vaddr_t *out)</td></tr>
+<tr class="separator:a0b0469a5916900c3fbeaa9c8a67c320b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

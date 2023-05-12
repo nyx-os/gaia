@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;machdep/intr.h&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;machdep/cpu.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="kern_2vm_2vm_8h.html">kern/vm/vm.h</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;posix/fs/fd.h&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="sched_8h.html#ae17b0e0d44770e679be7612a45ca831a">   20</a></span>&#160;<span class="preprocessor">#define TIME_SLICE 5</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
@@ -118,27 +118,37 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">   49</a></span>&#160;    <a class="code" href="structvm__map.html">vm_map_t</a> <a class="code" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">map</a>; </div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">   50</a></span>&#160;    pid_t <a class="code" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">pid</a>; </div>
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">   51</a></span>&#160;    <a class="code" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">SLIST_HEAD</a>(, <a class="code" href="structthread.html">thread</a>) threads; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">   52</a></span>&#160;} <a class="code" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> sched_init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> sched_tick(<a class="code" href="structPACKED.html">intr_frame_t</a> *ctx);</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structtask.html#abbc24998d2ac1a497870890da48c4af8">   52</a></span>&#160;    <a class="code" href="structfd.html">fd_t</a> *<a class="code" href="structtask.html#abbc24998d2ac1a497870890da48c4af8">files</a>[64]; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    uint8_t current_fd; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structtask.html#a19445d73538772d1b8aa3c846cb5ecf9">   54</a></span>&#160;    <a class="code" href="structvnode.html">vnode_t</a> *<a class="code" href="structtask.html#a19445d73538772d1b8aa3c846cb5ecf9">cwd</a>; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">   55</a></span>&#160;} <a class="code" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<a class="code" href="structthread.html">thread_t</a> *sched_new_thread(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structtask.html">task_t</a> *parent, <a class="code" href="structcpu__context__t.html">cpu_context_t</a> ctx,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                           <span class="keywordtype">bool</span> insert);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<a class="code" href="structtask.html">task_t</a> *sched_new_task(pid_t pid);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> sched_dump(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> sched_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> sched_tick(<a class="code" href="structPACKED.html">intr_frame_t</a> *ctx);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="structthread.html">thread_t</a> *sched_new_thread(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structtask.html">task_t</a> *parent, <a class="code" href="structcpu__context__t.html">cpu_context_t</a> ctx,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                           <span class="keywordtype">bool</span> insert);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="structtask.html">task_t</a> *sched_new_task(pid_t pid, <span class="keywordtype">bool</span> user);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="structthread.html">thread_t</a> *sched_curr(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> sched_dump(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">void</span> sched_idle(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="akern_2vm_2vm_8h_html"><div class="ttname"><a href="kern_2vm_2vm_8h.html">vm.h</a></div><div class="ttdoc">Virtual memory subsystem.</div></div>
 <div class="ttc" id="asched_8h_html_a0c1c578c8b75f2c2265804cf505c4b6f"><div class="ttname"><a href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a></div><div class="ttdeci">struct thread thread_t</div></div>
 <div class="ttc" id="asched_8h_html_ade04e552d18bad454515b6a32d31bb7b"><div class="ttname"><a href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a></div><div class="ttdeci">struct task task_t</div></div>
 <div class="ttc" id="astructPACKED_html"><div class="ttname"><a href="structPACKED.html">PACKED</a></div><div class="ttdef"><b>Definition:</b> gdt.c:5</div></div>
-<div class="ttc" id="astructcpu__context__t_html"><div class="ttname"><a href="structcpu__context__t.html">cpu_context_t</a></div><div class="ttdef"><b>Definition:</b> cpu.h:8</div></div>
+<div class="ttc" id="astructcpu__context__t_html"><div class="ttname"><a href="structcpu__context__t.html">cpu_context_t</a></div><div class="ttdef"><b>Definition:</b> cpu.h:10</div></div>
+<div class="ttc" id="astructfd_html"><div class="ttname"><a href="structfd.html">fd</a></div><div class="ttdef"><b>Definition:</b> fd.h:13</div></div>
 <div class="ttc" id="astructtask_html"><div class="ttname"><a href="structtask.html">task</a></div><div class="ttdef"><b>Definition:</b> sched.h:48</div></div>
+<div class="ttc" id="astructtask_html_a19445d73538772d1b8aa3c846cb5ecf9"><div class="ttname"><a href="structtask.html#a19445d73538772d1b8aa3c846cb5ecf9">task::cwd</a></div><div class="ttdeci">vnode_t * cwd</div><div class="ttdef"><b>Definition:</b> sched.h:54</div></div>
 <div class="ttc" id="astructtask_html_a252805902db4855ad8a561e2dea95cf4"><div class="ttname"><a href="structtask.html#a252805902db4855ad8a561e2dea95cf4">task::map</a></div><div class="ttdeci">vm_map_t map</div><div class="ttdef"><b>Definition:</b> sched.h:49</div></div>
 <div class="ttc" id="astructtask_html_aa1ff6c19f3b31bfdfb8d1c7328873a2d"><div class="ttname"><a href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">task::SLIST_HEAD</a></div><div class="ttdeci">SLIST_HEAD(, thread) threads</div></div>
 <div class="ttc" id="astructtask_html_ab56448ae42a75825ea923bd86648f3ae"><div class="ttname"><a href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">task::pid</a></div><div class="ttdeci">pid_t pid</div><div class="ttdef"><b>Definition:</b> sched.h:50</div></div>
+<div class="ttc" id="astructtask_html_abbc24998d2ac1a497870890da48c4af8"><div class="ttname"><a href="structtask.html#abbc24998d2ac1a497870890da48c4af8">task::files</a></div><div class="ttdeci">fd_t * files[64]</div><div class="ttdef"><b>Definition:</b> sched.h:52</div></div>
 <div class="ttc" id="astructthread_html"><div class="ttname"><a href="structthread.html">thread</a></div><div class="ttdef"><b>Definition:</b> sched.h:33</div></div>
 <div class="ttc" id="astructthread_html_a032bec8f552d4b8aae9a04c9595fe92f"><div class="ttname"><a href="structthread.html#a032bec8f552d4b8aae9a04c9595fe92f">thread::parent</a></div><div class="ttdeci">struct task * parent</div><div class="ttdef"><b>Definition:</b> sched.h:38</div></div>
 <div class="ttc" id="astructthread_html_a487f8328548e3b246ab56243c7f42b14"><div class="ttname"><a href="structthread.html#a487f8328548e3b246ab56243c7f42b14">thread::TAILQ_ENTRY</a></div><div class="ttdeci">TAILQ_ENTRY(thread) sched_link</div></div>
@@ -146,7 +156,8 @@ $(document).ready(function(){initNavTree('sched_8h_source.html',''); initResizab
 <div class="ttc" id="astructthread_html_ac0b6b19ec2a862a58693cb3251ed9a32"><div class="ttname"><a href="structthread.html#ac0b6b19ec2a862a58693cb3251ed9a32">thread::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> sched.h:36</div></div>
 <div class="ttc" id="astructthread_html_ae0b7c099519a48dd7e798e13abf0d15d"><div class="ttname"><a href="structthread.html#ae0b7c099519a48dd7e798e13abf0d15d">thread::state</a></div><div class="ttdeci">enum thread_state state</div><div class="ttdef"><b>Definition:</b> sched.h:35</div></div>
 <div class="ttc" id="astructthread_html_ae953fe7e3848f48927aa0b1e015bdaec"><div class="ttname"><a href="structthread.html#ae953fe7e3848f48927aa0b1e015bdaec">thread::SLIST_ENTRY</a></div><div class="ttdeci">SLIST_ENTRY(thread) task_link</div></div>
-<div class="ttc" id="astructvm__map_html"><div class="ttname"><a href="structvm__map.html">vm_map</a></div><div class="ttdef"><b>Definition:</b> vm.h:85</div></div>
+<div class="ttc" id="astructvm__map_html"><div class="ttname"><a href="structvm__map.html">vm_map</a></div><div class="ttdef"><b>Definition:</b> vm.h:84</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

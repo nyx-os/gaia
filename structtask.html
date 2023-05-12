@@ -104,6 +104,13 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a252805902db4855ad8a561e2dea95cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab56448ae42a75825ea923bd86648f3ae"><td class="memItemLeft" align="right" valign="top">pid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">pid</a></td></tr>
 <tr class="separator:ab56448ae42a75825ea923bd86648f3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc24998d2ac1a497870890da48c4af8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfd.html">fd_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#abbc24998d2ac1a497870890da48c4af8">files</a> [64]</td></tr>
+<tr class="separator:abbc24998d2ac1a497870890da48c4af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bfb603b79d74e67e87d88b22ed18ac7"><td class="memItemLeft" align="right" valign="top"><a id="a6bfb603b79d74e67e87d88b22ed18ac7"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>current_fd</b></td></tr>
+<tr class="separator:a6bfb603b79d74e67e87d88b22ed18ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19445d73538772d1b8aa3c846cb5ecf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvnode.html">vnode_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a19445d73538772d1b8aa3c846cb5ecf9">cwd</a></td></tr>
+<tr class="separator:a19445d73538772d1b8aa3c846cb5ecf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A collection of resources, also called a process by other operating systems </p>
@@ -128,6 +135,36 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a19445d73538772d1b8aa3c846cb5ecf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19445d73538772d1b8aa3c846cb5ecf9">&#9670;&nbsp;</a></span>cwd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvnode.html">vnode_t</a>* task::cwd</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current fd Current working directory </p>
+
+</div>
+</div>
+<a id="abbc24998d2ac1a497870890da48c4af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc24998d2ac1a497870890da48c4af8">&#9670;&nbsp;</a></span>files</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfd.html">fd_t</a>* task::files[64]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>FD table </p>
+
+</div>
+</div>
 <a id="a252805902db4855ad8a561e2dea95cf4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a252805902db4855ad8a561e2dea95cf4">&#9670;&nbsp;</a></span>map</h2>
 
