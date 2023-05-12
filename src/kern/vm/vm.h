@@ -22,12 +22,11 @@ typedef enum {
     VM_PROT_EXECUTE = (1 << 2),
 } vm_prot_t;
 
-typedef uint8_t vattr_t;
-
 typedef enum {
-    PMAP_NONE,
-    PMAP_HUGE,
-    PMAP_LARGE,
+    PMAP_NONE = (1 << 0),
+    PMAP_HUGE = (1 << 1),
+    PMAP_LARGE = (1 << 2),
+    PMAP_USER = (1 << 3),
 } pmap_flags_t;
 
 typedef struct pmap pmap_t;
@@ -36,7 +35,7 @@ struct vm_map;
 
 void pmap_init(void);
 
-pmap_t pmap_create(void);
+pmap_t pmap_create(bool user);
 
 void pmap_destroy(pmap_t pmap);
 
@@ -91,7 +90,7 @@ typedef struct vm_map {
 
 extern vm_map_t vm_kmap;
 
-//int vm_map_obj(vm_map_t *map, vm_object_t obj, vaddr_t *vaddrp, size_t size,
-//              size_t offset);
+int vm_map(vm_map_t *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot,
+           vaddr_t *out);
 
 #endif

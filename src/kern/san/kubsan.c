@@ -75,7 +75,7 @@ static void tu_print_location(const char *message,
     DISCARD(message);
     DISCARD(loc);
 
-    panic("tinyubsan: %s at file %s, line %d, column %d\n", message, loc.file,
+    panic("tinyubsan: %s at file %s, line %d, column %d", message, loc.file,
           loc.line, loc.column);
 }
 

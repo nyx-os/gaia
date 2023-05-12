@@ -12,7 +12,7 @@
 #include <machdep/intr.h>
 #include <machdep/cpu.h>
 #include <kern/vm/vm.h>
-#include <sys/types.h>
+#include <posix/fs/fd.h>
 
 /**
  * Time slice to use, in ticks
@@ -49,6 +49,9 @@ typedef struct task {
     vm_map_t map; /**< Virtual address space for the process, shared across all threads */
     pid_t pid; /**< Process ID */
     SLIST_HEAD(, thread) threads; /**< Threads that are attached to the task */
+    fd_t *files[64]; /**< FD table */
+    uint8_t current_fd; /** Current fd */
+    vnode_t *cwd; /**< Current working directory */
 } task_t;
 
 void sched_init(void);
@@ -56,8 +59,12 @@ void sched_tick(intr_frame_t *ctx);
 
 thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
                            bool insert);
-task_t *sched_new_task(pid_t pid);
+task_t *sched_new_task(pid_t pid, bool user);
+
+thread_t *sched_curr(void);
 
 void sched_dump(void);
+
+void sched_idle(void);
 
 #endif

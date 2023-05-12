@@ -390,6 +390,9 @@ void *kmem_alloc(size_t size)
 {
     int index = cachenum(size);
 
+    if (!size)
+        return NULL;
+
     if (index == -1) {
         return vm_kernel_alloc(ALIGN_UP(size, PAGE_SIZE) / PAGE_SIZE, false);
     }

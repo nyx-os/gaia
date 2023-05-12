@@ -1,4 +1,5 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+#include "kern/syscall.h"
 #include <libkern/base.h>
 #include <machdep/intr.h>
 #include <x86_64/asm.h>
@@ -26,12 +27,13 @@ typedef struct PACKED {
 extern uintptr_t __interrupt_vector[];
 static idt_descriptor_t idt[256] = { 0 };
 
-static idt_descriptor_t idt_make_entry(uint64_t offset, uint8_t type)
+static idt_descriptor_t idt_make_entry(uint64_t offset, uint8_t type,
+                                       uint8_t ring)
 {
     return (idt_descriptor_t){ .offset_lo = offset & 0xFFFF,
                                .selector = 0x28,
                                .ist = 0,
-                               .type_attr = (uint8_t)(type),
+                               .type_attr = (uint8_t)(type | ring << 5),
                                .offset_mid = (offset >> 16) & 0xFFFF,
                                .offset_hi = (offset >> 32) & 0xFFFFFFFF,
                                .zero = 0 };
@@ -40,8 +42,10 @@ static idt_descriptor_t idt_make_entry(uint64_t offset, uint8_t type)
 static void install_isrs(void)
 {
     for (int i = 0; i < 256; i++) {
-        idt[i] = idt_make_entry(__interrupt_vector[i], INTGATE);
+        idt[i] = idt_make_entry(__interrupt_vector[i], INTGATE, 0);
     }
+
+    idt[0x80] = idt_make_entry(__interrupt_vector[0x80], INTGATE, 3);
 }
 
 static idt_pointer_t idtr = { 0 };
@@ -72,7 +76,7 @@ void idt_init(void)
 
 void intr_register(int vec, intr_handler_t handler)
 {
-    idt[vec] = idt_make_entry((uintptr_t)handler, INTGATE);
+    idt[vec] = idt_make_entry((uintptr_t)handler, INTGATE, 0);
 }
 
 void lapic_eoi(void);
@@ -111,6 +115,22 @@ uint64_t interrupts_handler(uint64_t rsp)
         cpu_halt();
     }
 
-    lapic_eoi();
+    if (frame->intno == 0x80) {
+        syscall_frame_t sys_frame = { 0 };
+
+        sys_frame.num = frame->rax;
+        sys_frame.param1 = frame->rdi;
+        sys_frame.param2 = frame->rsi;
+        sys_frame.param3 = frame->rdx;
+        sys_frame.param4 = frame->r10;
+        sys_frame.param5 = frame->r8;
+        sys_frame.frame = frame;
+        sys_frame.ret = &frame->rax;
+
+        syscall_handler(sys_frame);
+    } else {
+        lapic_eoi();
+    }
+
     return rsp;
 }

@@ -7,6 +7,7 @@ kernel_srcs += files(
 'gdt.c',
 'intr_machdep.c',
 'hpet.c',
+'simd.c',
 'apic.c',
 'locore.asm')
 

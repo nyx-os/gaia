@@ -1,4 +1,4 @@
-kernel_srcs += files('main.c', 'sched.c', 'term.c')
+kernel_srcs += files('main.c', 'sched.c', 'syscall.c')
 
 if get_option('sanitizers') == true
     subdir('san')
@@ -6,3 +6,4 @@ if get_option('sanitizers') == true
 endif
 
 subdir('vm')
+subdir('term')

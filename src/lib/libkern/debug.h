@@ -48,6 +48,7 @@
 #define panic(...)                                \
     do {                                          \
         DO_LOG_FN("panic", ANSI_RED, __VA_ARGS__) \
+        cpu_halt();                               \
     } while (0)
 #else
 #define error(...)

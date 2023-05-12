@@ -183,7 +183,13 @@ static void hashtab_insert(vmem_t *vmem, vmem_segment_t *seg)
 
 static vmem_seglist_t *freelist_for_size(vmem_t *vmem, size_t size)
 {
-    return &vmem->freelist[GET_LIST(size) - 1];
+    size_t list = GET_LIST(size) - 1;
+
+    if (list >= FREELISTS_N) {
+        panic("Invalid size %ld", size);
+    }
+
+    return &vmem->freelist[list];
 }
 
 static int vmem_contains(vmem_t *vmp, void *address, size_t size)

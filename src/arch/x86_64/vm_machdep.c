@@ -83,7 +83,7 @@ void pmap_init(void)
         page_size = GIB(1);
     }
 
-    pmap_t kernel_pmap = pmap_create();
+    pmap_t kernel_pmap = pmap_create(false);
 
     vm_kmap.pmap = kernel_pmap;
 
@@ -133,11 +133,20 @@ void pmap_init(void)
     pmap_activate(kernel_pmap);
 }
 
-pmap_t pmap_create(void)
+pmap_t pmap_create(bool user)
 {
     pmap_t ret;
 
     ret.pml4 = phys_allocz();
+
+    if (user) {
+        uint64_t *pml4 = (uintptr_t *)P2V(ret.pml4);
+        uint64_t *kern_pml4 = (uintptr_t *)P2V(vm_kmap.pmap.pml4);
+
+        for (int i = 256; i < 512; i++) {
+            pml4[i] = kern_pml4[i];
+        }
+    }
 
     return ret;
 }
@@ -156,11 +165,13 @@ int pmap_enter(pmap_t pmap, vaddr_t va, paddr_t pa, vm_prot_t prot,
     size_t level2 = PML_ENTRY(va, 21);
     size_t level1 = PML_ENTRY(va, 12);
 
+    uint16_t user = (flags & PMAP_USER) ? PTE_USER : 0;
+
     uint64_t *pml3 = get_next_level((void *)P2V(pmap.pml4), level4, true);
 
     /* If we're mapping 1G pages, we don't care about the rest of the mapping, only the pml3. */
     if (cpu_supports_1gb_pages && flags & PMAP_HUGE) {
-        pml3[level3] = pa | vm_prot_to_mmu(prot) | PTE_HUGE;
+        pml3[level3] = pa | vm_prot_to_mmu(prot) | PTE_HUGE | user;
         return 0;
     }
 
@@ -170,13 +181,13 @@ int pmap_enter(pmap_t pmap, vaddr_t va, paddr_t pa, vm_prot_t prot,
     assert(pml2 != NULL);
 
     if (flags & PMAP_LARGE) {
-        pml2[level2] = pa | vm_prot_to_mmu(prot) | PTE_HUGE;
+        pml2[level2] = pa | vm_prot_to_mmu(prot) | PTE_HUGE | user;
         return 0;
     }
 
     uint64_t *pml1 = get_next_level(pml2, level2, true);
 
-    pml1[level1] = pa | vm_prot_to_mmu(prot);
+    pml1[level1] = pa | vm_prot_to_mmu(prot) | user;
 
     return 0;
 }

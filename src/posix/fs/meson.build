@@ -1,0 +1,1 @@
+kernel_srcs += files('fd.c', 'tmpfs.c', 'tar.c', 'vfs.c')

@@ -5,6 +5,8 @@
 #include <machdep/vm.h>
 #include <stdbool.h>
 
+#define USER_STACK_TOP 0x7fffffffe000
+
 typedef struct {
     intr_frame_t regs;
     void *fpu_context;

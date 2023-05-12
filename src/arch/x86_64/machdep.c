@@ -2,7 +2,6 @@
 #include <machdep/machdep.h>
 #include <x86_64/asm.h>
 #include <x86_64/apic.h>
-#include <kern/term.h>
 
 void machine_dbg_putc(int c, void *ctx)
 {
@@ -13,6 +12,7 @@ void machine_dbg_putc(int c, void *ctx)
 void gdt_init_tss(void);
 void gdt_init(void);
 void idt_init(void);
+void simd_init(void);
 
 void machine_init(void)
 {
@@ -24,4 +24,5 @@ void machine_init_devices(void)
 {
     gdt_init_tss();
     apic_init();
+    simd_init();
 }

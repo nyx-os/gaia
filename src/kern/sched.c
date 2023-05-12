@@ -44,21 +44,31 @@ thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
     return new_thread;
 }
 
-task_t *sched_new_task(pid_t pid)
+task_t *sched_new_task(pid_t pid, bool user)
 {
     task_t *new_task = kmalloc(sizeof(task_t));
 
     SLIST_INIT(&new_task->threads);
 
     new_task->pid = pid;
-    new_task->map.pmap = pmap_create();
-    vmem_init(&new_task->map.vmem, "task vmem", NULL, 0, 0, 0, 0, 0, 0, 0);
+    new_task->current_fd = 3;
+
+    if (user) {
+        new_task->map.pmap = pmap_create(true);
+    } else {
+        new_task->map = vm_kmap;
+    }
+
+    vmem_init(&new_task->map.vmem, "task vmem", (void *)0x80000000000,
+              0x100000000, 0x1000, 0, 0, 0, 0, 0);
+
     return new_task;
 }
 
 void idle_thread_fn(void)
 {
     debug("Starting idle thread...");
+
     cpu_halt();
 }
 
@@ -66,17 +76,21 @@ void sched_init(void)
 {
     TAILQ_INIT(&runq);
 
-    task_t ktask = { 0 };
-    SLIST_INIT(&ktask.threads);
-    ktask.map = vm_kmap;
-    ktask.pid = 0;
+    task_t *ktask = sched_new_task(-1, false);
+
+    SLIST_INIT(&ktask->threads);
 
     vaddr_t rsp = P2V(phys_allocz()) + PAGE_SIZE;
 
     cpu_context_t ctx = cpu_new_context((vaddr_t)idle_thread_fn, rsp, false);
 
-    idle_thread = sched_new_thread("idle thread", &ktask, ctx, false);
+    idle_thread = sched_new_thread("idle thread", ktask, ctx, false);
 
+    current_thread = idle_thread;
+}
+
+void sched_idle(void)
+{
     current_thread = idle_thread;
 }
 
@@ -93,7 +107,7 @@ void sched_tick(intr_frame_t *ctx)
     }
 
     /* Slice ended, time to switch threads */
-    if (ticks >= TIME_SLICE) {
+    if (ticks >= TIME_SLICE || current_thread->state == STOPPED) {
         if (current_thread->state == RUNNING && current_thread != idle_thread) {
             TAILQ_INSERT_TAIL(&runq, current_thread, sched_link);
         }
@@ -119,4 +133,9 @@ void sched_dump(void)
     {
         log("- \"%s\"", thread->name);
     };
+}
+
+thread_t *sched_curr(void)
+{
+    return current_thread;
 }

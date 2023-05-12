@@ -1,0 +1,1 @@
+kernel_srcs += files('fb.c', 'flanterm.c', 'term.c')
