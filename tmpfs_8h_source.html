@@ -86,53 +86,59 @@ $(document).ready(function(){initNavTree('tmpfs_8h_source.html',''); initResizab
 <div class="title">tmpfs.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef POSIX_FS_TMPFS_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define POSIX_FS_TMPFS_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;posix/fs/vfs.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;sys/queue.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structtmp__dirent.html">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtmp__dirent.html">tmp_dirent</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    LIST_HEAD(, <a class="code" href="structtmp__dirent.html">tmp_dirent</a>) entries;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    LIST_ENTRY(<a class="code" href="structtmp__dirent.html">tmp_dirent</a>) link;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> name[256];</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *node;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;} <a class="code" href="structtmp__dirent.html">tmp_dirent_t</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structtmpnode.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="structvnode.html">vnode_t</a> *<a class="code" href="structvnode.html">vnode</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="structvattr__t.html">vattr_t</a> attr;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="comment">/* VDIR */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            LIST_HEAD(, <a class="code" href="structtmp__dirent.html">tmp_dirent</a>) entries;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *parent;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        } dir;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="comment">/* VREG */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordtype">void</span> *buffer;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        } reg;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">/* VLNK */</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordtype">char</span> *to_name;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *to;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        } link;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    } data;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef POSIX_FS_TMPFS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define POSIX_FS_TMPFS_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;posix/fs/vfs.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;sys/queue.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structtmp__dirent.html">    9</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtmp__dirent.html">tmp_dirent</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    LIST_HEAD(, <a class="code" href="structtmp__dirent.html">tmp_dirent</a>) entries;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    LIST_ENTRY(<a class="code" href="structtmp__dirent.html">tmp_dirent</a>) link;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> name[256];</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *node;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;} <a class="code" href="structtmp__dirent.html">tmp_dirent_t</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structtmpnode.html">   17</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="structvnode.html">vnode_t</a> *<a class="code" href="structvnode.html">vnode</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="structvattr__t.html">vattr_t</a> attr;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="comment">/* VDIR */</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            LIST_HEAD(, <a class="code" href="structtmp__dirent.html">tmp_dirent</a>) entries;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *parent;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        } dir;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="comment">/* VREG */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordtype">void</span> *buffer;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        } reg;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">/* VLNK */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordtype">char</span> *to_name;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keyword">struct </span><a class="code" href="structtmpnode.html">tmpnode</a> *to;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        } link;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <a class="code" href="structtmpnode.html">tmp_node_t</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> tmpfs_init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructtmp__dirent_html"><div class="ttname"><a href="structtmp__dirent.html">tmp_dirent</a></div><div class="ttdef"><b>Definition:</b> tmpfs.h:8</div></div>
-<div class="ttc" id="astructtmpnode_html"><div class="ttname"><a href="structtmpnode.html">tmpnode</a></div><div class="ttdef"><b>Definition:</b> tmpfs.h:16</div></div>
-<div class="ttc" id="astructvattr__t_html"><div class="ttname"><a href="structvattr__t.html">vattr_t</a></div><div class="ttdef"><b>Definition:</b> vfs.h:20</div></div>
-<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:47</div></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">/* VCHR */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            dev_t dev;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        } chr;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    } data;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <a class="code" href="structtmpnode.html">tmp_node_t</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> tmpfs_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructtmp__dirent_html"><div class="ttname"><a href="structtmp__dirent.html">tmp_dirent</a></div><div class="ttdef"><b>Definition:</b> tmpfs.h:9</div></div>
+<div class="ttc" id="astructtmpnode_html"><div class="ttname"><a href="structtmpnode.html">tmpnode</a></div><div class="ttdef"><b>Definition:</b> tmpfs.h:17</div></div>
+<div class="ttc" id="astructvattr__t_html"><div class="ttname"><a href="structvattr__t.html">vattr_t</a></div><div class="ttdef"><b>Definition:</b> vfs.h:23</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

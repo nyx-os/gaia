@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gaia: src/posix/types.h Source File</title>
+<title>Gaia: cdev Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('types_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structcdev.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -82,37 +82,41 @@ $(document).ready(function(){initNavTree('types_8h_source.html',''); initResizab
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structcdev-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">types.h</div>  </div>
+<div class="title">cdev Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef POSIX_TYPES_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define POSIX_TYPES_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define MINORBITS 20</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define MINORMASK ((1U &lt;&lt; MINORBITS) - 1)</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define MINOR(dev) ((unsigned int)((dev) &gt;&gt; MINORBITS))</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MAJOR(dev) ((unsigned int)((dev)&amp;MINORMASK))</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define MKDEV(ma, mi) (((ma) &lt;&lt; MINORBITS) | (mi))</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">long</span> time_t;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">long</span> blksize_t;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structtimespec.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structtimespec.html">timespec</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    time_t tv_sec;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">long</span> tv_nsec;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructtimespec_html"><div class="ttname"><a href="structtimespec.html">timespec</a></div><div class="ttdef"><b>Definition:</b> types.h:15</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae1e335a8c0cdd72d865b28800f874d44"><td class="memItemLeft" align="right" valign="top"><a id="ae1e335a8c0cdd72d865b28800f874d44"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_atty</b>: 1</td></tr>
+<tr class="separator:ae1e335a8c0cdd72d865b28800f874d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11b876ed15750c417db1f342b7c6c5b3"><td class="memItemLeft" align="right" valign="top"><a id="a11b876ed15750c417db1f342b7c6c5b3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>present</b>: 1</td></tr>
+<tr class="separator:a11b876ed15750c417db1f342b7c6c5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3be93a8f709f4f90fb9d1154c76d2c6d"><td class="memItemLeft" align="right" valign="top"><a id="a3be93a8f709f4f90fb9d1154c76d2c6d"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="separator:a3be93a8f709f4f90fb9d1154c76d2c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af410cbeb16509286d5ee9b2f171231a6"><td class="memItemLeft" align="right" valign="top"><a id="af410cbeb16509286d5ee9b2f171231a6"></a>
+int(*&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> )(dev_t dev, void *buf, size_t nbyte, size_t off)</td></tr>
+<tr class="separator:af410cbeb16509286d5ee9b2f171231a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a953576b9cffd13992ea102aedabe5ac4"><td class="memItemLeft" align="right" valign="top"><a id="a953576b9cffd13992ea102aedabe5ac4"></a>
+int(*&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> )(dev_t dev, void *buf, size_t nbyte, size_t off)</td></tr>
+<tr class="separator:a953576b9cffd13992ea102aedabe5ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/posix/fs/<a class="el" href="cdev_8h_source.html">cdev.h</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6887e9b46a560cfc03709f52ff768643.html">posix</a></li><li class="navelem"><b>types.h</b></li>
+    <li class="navelem"><a class="el" href="structcdev.html">cdev</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

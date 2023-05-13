@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "auxval_t", "structauxval__t.html", "structauxval__t" ],
+    [ "cdev", "structcdev.html", "structcdev" ],
     [ "charon_framebuffer_t", "structcharon__framebuffer__t.html", "structcharon__framebuffer__t" ],
     [ "charon_mmap_entry_t", "structcharon__mmap__entry__t.html", "structcharon__mmap__entry__t" ],
     [ "charon_mmap_t", "structcharon__mmap__t.html", "structcharon__mmap__t" ],
@@ -9,6 +10,7 @@ var annotated_dup =
     [ "charon_t", "structcharon__t.html", "structcharon__t" ],
     [ "cpu_context_t", "structcpu__context__t.html", "structcpu__context__t" ],
     [ "cpuid_t", "structcpuid__t.html", "structcpuid__t" ],
+    [ "devnode", "structdevnode.html", "structdevnode" ],
     [ "dirent", "structdirent.html", "structdirent" ],
     [ "fd", "structfd.html", "structfd" ],
     [ "fd_ops_t", "structfd__ops__t.html", "structfd__ops__t" ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gaia: src/posix/types.h Source File</title>
+<title>Gaia: src/posix/fs/devfs.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('types_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('devfs_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,36 +83,37 @@ $(document).ready(function(){initNavTree('types_8h_source.html',''); initResizab
 
 <div class="header">
   <div class="headertitle">
-<div class="title">types.h</div>  </div>
+<div class="title">devfs.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef POSIX_TYPES_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define POSIX_TYPES_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define MINORBITS 20</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define MINORMASK ((1U &lt;&lt; MINORBITS) - 1)</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef POSIX_FS_DEVFS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define POSIX_FS_DEVFS_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;sys/queue.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;posix/types.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define MINOR(dev) ((unsigned int)((dev) &gt;&gt; MINORBITS))</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MAJOR(dev) ((unsigned int)((dev)&amp;MINORMASK))</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define MKDEV(ma, mi) (((ma) &lt;&lt; MINORBITS) | (mi))</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">long</span> time_t;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">long</span> blksize_t;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">struct </span><a class="code" href="structvnode.html">vnode</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structdevnode.html">   10</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structdevnode.html">devnode</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    dev_t dev;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    LIST_ENTRY(<a class="code" href="structdevnode.html">devnode</a>) link;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} <a class="code" href="structdevnode.html">devnode_t</a>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structtimespec.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structtimespec.html">timespec</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    time_t tv_sec;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">long</span> tv_nsec;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> devfs_setup_vnode(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, dev_t dev);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> devfs_read(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, off_t off);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> devfs_write(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, off_t off);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructtimespec_html"><div class="ttname"><a href="structtimespec.html">timespec</a></div><div class="ttdef"><b>Definition:</b> types.h:15</div></div>
+<div class="ttc" id="astructdevnode_html"><div class="ttname"><a href="structdevnode.html">devnode</a></div><div class="ttdef"><b>Definition:</b> devfs.h:10</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6887e9b46a560cfc03709f52ff768643.html">posix</a></li><li class="navelem"><b>types.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6887e9b46a560cfc03709f52ff768643.html">posix</a></li><li class="navelem"><a class="el" href="dir_a14ebf2818436413f2818bfea62107e9.html">fs</a></li><li class="navelem"><b>devfs.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -86,33 +86,34 @@ $(document).ready(function(){initNavTree('fd_8h_source.html',''); initResizable(
 <div class="title">fd.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef POSIX_FS_FD_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define POSIX_FS_FD_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;posix/fs/vfs.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;posix/stat.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structfd__ops__t.html">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    int (*read)(<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> *file, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> bytes, off_t offset);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    int (*write)(<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> *file, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> bytes, off_t offset);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;} <a class="code" href="structfd__ops__t.html">fd_ops_t</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structfd.html">   13</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structfd.html">fd</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="structvnode.html">vnode_t</a> *<a class="code" href="structvnode.html">vnode</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">size_t</span> position;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="structfd__ops__t.html">fd_ops_t</a> ops;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <a class="code" href="structfd.html">fd_t</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define SEEK_SET 0</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define SEEK_CUR 1</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define SEEK_END 2</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructfd__ops__t_html"><div class="ttname"><a href="structfd__ops__t.html">fd_ops_t</a></div><div class="ttdef"><b>Definition:</b> fd.h:8</div></div>
-<div class="ttc" id="astructfd_html"><div class="ttname"><a href="structfd.html">fd</a></div><div class="ttdef"><b>Definition:</b> fd.h:13</div></div>
-<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:47</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef POSIX_FS_FD_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define POSIX_FS_FD_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;posix/fs/vfs.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;posix/stat.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structfd__ops__t.html">    9</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    int (*read)(<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> *file, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> bytes, off_t offset);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    int (*write)(<span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> *file, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> bytes, off_t offset);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;} <a class="code" href="structfd__ops__t.html">fd_ops_t</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structfd.html">   14</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structfd.html">fd</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structfd.html">fd</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="structvnode.html">vnode_t</a> *<a class="code" href="structvnode.html">vnode</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">size_t</span> position;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="structfd__ops__t.html">fd_ops_t</a> ops;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <a class="code" href="structfd.html">fd_t</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define SEEK_SET 0</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define SEEK_CUR 1</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define SEEK_END 2</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructfd__ops__t_html"><div class="ttname"><a href="structfd__ops__t.html">fd_ops_t</a></div><div class="ttdef"><b>Definition:</b> fd.h:9</div></div>
+<div class="ttc" id="astructfd_html"><div class="ttname"><a href="structfd.html">fd</a></div><div class="ttdef"><b>Definition:</b> fd.h:14</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

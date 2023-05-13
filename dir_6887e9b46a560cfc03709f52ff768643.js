@@ -6,5 +6,6 @@ var dir_6887e9b46a560cfc03709f52ff768643 =
     [ "fnctl.h", "fnctl_8h_source.html", null ],
     [ "posix.h", "posix_8h_source.html", null ],
     [ "stat.h", "stat_8h_source.html", null ],
+    [ "tty.h", "tty_8h_source.html", null ],
     [ "types.h", "types_8h_source.html", null ]
 ];
