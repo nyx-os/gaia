@@ -1,1 +1,1 @@
-kernel_srcs += files('debug.c',  'vec.c')
+kernel_srcs += files('debug.c',  'vec.c', 'string.c')

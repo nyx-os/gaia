@@ -109,10 +109,14 @@ uint64_t interrupts_handler(uint64_t rsp)
 {
     intr_frame_t *frame = (intr_frame_t *)rsp;
 
-    if (frame->intno < 0x20) {
+    if (frame->intno < 0x20 && frame->intno != 0xe) {
         do_exception(frame);
-        cli();
-        cpu_halt();
+    }
+
+    if (frame->intno == 0xe) {
+        if (vm_fault(&sched_curr()->parent->map, read_cr2()) < 0) {
+            do_exception(frame);
+        }
     }
 
     if (frame->intno == 0x80) {

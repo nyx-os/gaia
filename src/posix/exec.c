@@ -45,7 +45,8 @@ static uintptr_t load_elf(task_t *task, vnode_t *file, auxval_t *auxval,
             vaddr_t addr = base + phdr.p_vaddr;
 
             vm_map(&task->map, &addr, page_count * PAGE_SIZE,
-                   VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXECUTE, &addr);
+                   VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXECUTE,
+                   VM_MAP_NOLAZY, &addr);
 
             pmap_activate(task->map.pmap);
 
@@ -186,16 +187,21 @@ int sys_execve(task_t *proc, const char *path, char const *argv[],
 
     *(--stack) = nargs; /* argc */
 
-    vaddr_t addr = USER_STACK_TOP - 8 * PAGE_SIZE;
+    vaddr_t addr = USER_STACK_TOP - required_size;
 
-    vm_map(&proc->map, &addr, 8 * PAGE_SIZE, VM_PROT_READ | VM_PROT_WRITE,
-           &addr);
+    vm_map(&proc->map, &addr, ALIGN_UP(required_size, PAGE_SIZE),
+           VM_PROT_READ | VM_PROT_WRITE, VM_MAP_NOLAZY, &addr);
 
     pmap_activate(proc->map.pmap);
 
     memcpy((void *)(USER_STACK_TOP - required_size), stack, required_size);
 
     pmap_activate(vm_kmap.pmap);
+
+    addr = (USER_STACK_TOP - required_size) - USER_STACK_SIZE;
+
+    vm_map(&proc->map, &addr, USER_STACK_SIZE, VM_PROT_READ | VM_PROT_WRITE, 0,
+           &addr);
 
     if (ld_path[0]) {
         log("LD PATH: %s", ld_path);

@@ -30,7 +30,6 @@ static uintptr_t syscall_open(syscall_frame_t frame)
 
     uintptr_t ret =
             sys_open(sched_curr()->parent, (char *)frame.param1, frame.param2);
-    trace("open ret is %ld", ret);
     return ret;
 }
 
@@ -65,6 +64,9 @@ static uintptr_t syscall_seek(syscall_frame_t frame)
 
 static uintptr_t syscall_stat(syscall_frame_t frame)
 {
+    trace("stat(%ld, %s, %ld, %p)", frame.param1, (char *)frame.param2,
+          frame.param3, (void *)frame.param4);
+
     return sys_stat(sched_curr()->parent, frame.param1, (char *)frame.param2,
                     frame.param3, (void *)frame.param4);
 }
@@ -130,9 +132,9 @@ static uintptr_t syscall_mmap(syscall_frame_t frame)
 
     if (actual_flags & MAP_FIXED) {
         vm_map(&sched_curr()->parent->map, (void *)&req->hint, req->size, prot,
-               (void *)req->window);
+               0, (void *)req->window);
     } else if (actual_flags & MAP_ANONYMOUS) {
-        vm_map(&sched_curr()->parent->map, NULL, req->size, prot,
+        vm_map(&sched_curr()->parent->map, NULL, req->size, prot, 0,
                (void *)req->window);
     }
 

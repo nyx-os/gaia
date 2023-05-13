@@ -59,6 +59,8 @@ task_t *sched_new_task(pid_t pid, bool user)
         new_task->map = vm_kmap;
     }
 
+    LIST_INIT(&new_task->map.entries);
+
     vmem_init(&new_task->map.vmem, "task vmem", (void *)0x80000000000,
               0x100000000, 0x1000, 0, 0, 0, 0, 0);
 

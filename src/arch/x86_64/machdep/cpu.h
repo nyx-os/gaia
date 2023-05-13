@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #define USER_STACK_TOP 0x7fffffffe000
+#define USER_STACK_SIZE MIB(2)
 
 typedef struct {
     intr_frame_t regs;

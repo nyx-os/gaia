@@ -179,7 +179,7 @@ static int tmpfs_read(vnode_t *vn, void *buf, size_t nbyte, off_t off)
     if (nbyte == 0)
         return 0;
 
-    memcpy(buf, (uint8_t *)tn->data.reg.buffer + off, nbyte);
+    memcpy(buf, (char *)tn->data.reg.buffer + off, nbyte);
 
     return nbyte;
 }

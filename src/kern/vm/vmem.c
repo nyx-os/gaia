@@ -8,7 +8,7 @@
 
 #include <kern/vm/vm_kernel.h>
 #include <kern/vm/vmem.h>
-#include <stdc-shim/string.h>
+#include <libkern/string.h>
 #include <libkern/base.h>
 #include <kern/sync.h>
 

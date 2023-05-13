@@ -9,7 +9,7 @@
 #define _SRC_LIB_LIBKERN_VEC_H_
 
 #include <libkern/base.h>
-#include <stdc-shim/string.h>
+#include <libkern/string.h>
 
 #define VEC_VERSION "0.2.1"
 

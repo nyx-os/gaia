@@ -5,8 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <stdc-shim/string.h>
-#include <stdc-shim/stdlib.h>
+#include <libkern/string.h>
 #include <kern/vm/kmem.h>
 #include <libkern/nanoprintf.h>
 #include <libkern/debug.h>

@@ -35,10 +35,6 @@ endif
 
 
 
-stdc = subproject('stdc-shim')
-
-kernel_deps += stdc.get_variable('dep')
-
 executable('gaia.elf', 
 sources: kernel_srcs,
 include_directories: kernel_inc_dirs, 

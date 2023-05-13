@@ -76,6 +76,7 @@ typedef struct vm_map_entry {
     vm_prot_t prot;
     vaddr_t start;
     size_t size;
+    LIST_ENTRY(vm_map_entry) link;
 } vm_map_entry_t;
 
 /**
@@ -90,7 +91,15 @@ typedef struct vm_map {
 
 extern vm_map_t vm_kmap;
 
+typedef enum {
+    VM_MAP_NOLAZY = (1 << 0),
+} vm_flags_t;
+
 int vm_map(vm_map_t *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot,
-           vaddr_t *out);
+           vm_flags_t flags, vaddr_t *out);
+
+int vm_fault(vm_map_t *map, vaddr_t vaddr);
+
+size_t vm_write(vm_map_t *map, vaddr_t addr, void *buf, size_t size);
 
 #endif
