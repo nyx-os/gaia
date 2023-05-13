@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef POSIX_FS_FD_H
 #define POSIX_FS_FD_H
 #include <posix/fs/vfs.h>

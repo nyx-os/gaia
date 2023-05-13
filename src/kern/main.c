@@ -26,17 +26,15 @@ void gaia_main(charon_t charon)
 
     term_init(charon);
 
+    sched_init();
+
+    posix_init(charon);
+
     log("gaia (%s)", __GAIA_GIT_VERSION__);
     log("Memory stats (pages): ");
     log("vm_kernel: %ld, phys: %ld, total: %ld",
         vm_kernel_stat().in_use / PAGE_SIZE, phys_used_pages(),
         phys_usable_pages());
-
-    term_write("Welcome to the machine\n");
-
-    sched_init();
-
-    posix_init(charon);
 
     cpu_enable_interrupts();
 }

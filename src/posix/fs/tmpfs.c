@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
+#include "posix/fs/devfs.h"
 #include <posix/fs/tmpfs.h>
 #include <posix/fs/vfs.h>
 #include <posix/dirent.h>
@@ -6,6 +8,7 @@
 #include <sys/queue.h>
 
 extern vnode_ops_t tmpfs_ops;
+extern vnode_ops_t tmpfs_dev_ops;
 
 static int tmpfs_make_vnode(vnode_t **out, tmp_node_t *node)
 {
@@ -16,7 +19,12 @@ static int tmpfs_make_vnode(vnode_t **out, tmp_node_t *node)
         vnode_t *vn = kmalloc(sizeof(vnode_t));
         node->vnode = vn;
         vn->type = node->attr.type;
-        vn->ops = tmpfs_ops;
+        vn->ops = vn->type == VCHR ? tmpfs_dev_ops : tmpfs_ops;
+
+        if (vn->type == VCHR) {
+            devfs_setup_vnode(vn, node->data.chr.dev);
+        }
+
         vn->data = node;
         *out = vn;
         return 0;
@@ -27,7 +35,7 @@ static int tmpfs_lookup(vnode_t *vn, vnode_t **out, const char *name);
 
 static tmp_node_t *tmpfs_make_node(tmp_node_t *dir, vnode_type_t type,
                                    const char *name, const char *link,
-                                   vattr_t *attr)
+                                   dev_t dev, vattr_t *attr)
 {
     tmp_node_t *n = kmalloc(sizeof(tmp_node_t));
     tmp_dirent_t *dirent = kmalloc(sizeof(tmp_dirent_t));
@@ -52,8 +60,12 @@ static tmp_node_t *tmpfs_make_node(tmp_node_t *dir, vnode_type_t type,
         n->data.dir.parent = dir;
         break;
 
+    case VCHR:
+        n->data.chr.dev = dev;
+        break;
+
     case VLNK: {
-        vnode_t *vnode;
+        vnode_t *vnode = NULL;
         tmpfs_lookup(dir->vnode, &vnode, link);
 
         n->data.link.to = vnode ? vnode->data : NULL;
@@ -129,7 +141,7 @@ static int tmpfs_symlink(vnode_t *dir, vnode_t **out, const char *path,
 
     tmp_node_t *n;
 
-    n = tmpfs_make_node((tmp_node_t *)dir->data, VLNK, path, link, attr);
+    n = tmpfs_make_node((tmp_node_t *)dir->data, VLNK, path, link, 0, attr);
 
     return tmpfs_make_vnode(out, n);
 }
@@ -143,12 +155,12 @@ static int tmpfs_create(vnode_t *vn, vnode_t **out, const char *name,
 
     tmp_node_t *n;
 
-    n = tmpfs_make_node((tmp_node_t *)vn->data, VREG, name, NULL, attr);
+    n = tmpfs_make_node((tmp_node_t *)vn->data, VREG, name, NULL, 0, attr);
 
     return tmpfs_make_vnode(out, n);
 }
 
-static int tmpfs_read(vnode_t *vn, void *buf, size_t nbyte, size_t off)
+static int tmpfs_read(vnode_t *vn, void *buf, size_t nbyte, off_t off)
 {
     tmp_node_t *tn = (tmp_node_t *)vn->data;
 
@@ -161,7 +173,7 @@ static int tmpfs_read(vnode_t *vn, void *buf, size_t nbyte, size_t off)
     }
 
     if (off + nbyte > tn->attr.size) {
-        nbyte = (tn->attr.size <= off) ? 0 : tn->attr.size - off;
+        nbyte = (tn->attr.size <= (size_t)off) ? 0 : tn->attr.size - off;
     }
 
     if (nbyte == 0)
@@ -172,7 +184,7 @@ static int tmpfs_read(vnode_t *vn, void *buf, size_t nbyte, size_t off)
     return nbyte;
 }
 
-static int tmpfs_write(vnode_t *vn, void *buf, size_t nbyte, size_t off)
+static int tmpfs_write(vnode_t *vn, void *buf, size_t nbyte, off_t off)
 {
     tmp_node_t *tn = (tmp_node_t *)vn->data;
 
@@ -213,7 +225,7 @@ static int tmpfs_make_new_dir(vnode_t *vn, vnode_t **out, const char *name,
         return -ENOTDIR;
     }
 
-    n = tmpfs_make_node(vn->data, VDIR, name, NULL, vattr);
+    n = tmpfs_make_node(vn->data, VDIR, name, NULL, 0, vattr);
 
     if (!n) {
         panic("tmpfs_make_node returned NULL");
@@ -301,14 +313,20 @@ static int tmpfs_readdir(vnode_t *vn, void *buf, size_t max_size,
     return 0;
 }
 
-vnode_ops_t tmpfs_ops = { .create = tmpfs_create,
-                          .mkdir = tmpfs_mkdir,
-                          .read = tmpfs_read,
-                          .write = tmpfs_write,
-                          .getattr = tmpfs_getattr,
-                          .readdir = tmpfs_readdir,
-                          .symlink = tmpfs_symlink,
-                          .lookup = tmpfs_lookup };
+static int tmpfs_mknod(vnode_t *dvn, vnode_t **out, const char *pathname,
+                       dev_t dev)
+{
+    tmp_node_t *n = NULL;
+
+    assert(dvn->type == VDIR);
+
+    n = tmpfs_make_node((tmp_node_t *)dvn->data, VCHR, pathname, NULL, dev,
+                        NULL);
+
+    assert(n != NULL);
+
+    return tmpfs_make_vnode(out, n);
+}
 
 void tmpfs_init(void)
 {
@@ -316,7 +334,7 @@ void tmpfs_init(void)
     root_node->attr.type = VDIR;
     root_node->vnode = NULL;
 
-    vnode_t *n;
+    vnode_t *n = NULL;
 
     tmpfs_make_vnode(&root_vnode, root_node);
 
@@ -330,4 +348,20 @@ void tmpfs_init(void)
     tmpfs_make_new_dir(root_vnode, &n, ".", NULL);
 
     n->data = root_node;
+
+    tmpfs_make_vnode(&root_vnode, root_node);
 }
+
+vnode_ops_t tmpfs_ops = { .create = tmpfs_create,
+                          .mkdir = tmpfs_mkdir,
+                          .read = tmpfs_read,
+                          .write = tmpfs_write,
+                          .getattr = tmpfs_getattr,
+                          .readdir = tmpfs_readdir,
+                          .symlink = tmpfs_symlink,
+                          .mknod = tmpfs_mknod,
+                          .lookup = tmpfs_lookup };
+
+vnode_ops_t tmpfs_dev_ops = { .read = devfs_read,
+                              .write = devfs_write,
+                              .getattr = tmpfs_getattr };

@@ -1,4 +1,4 @@
-/* @license:bsd2 */
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_KERN_TERM_H
 #define SRC_KERN_TERM_H
 #include <kern/charon.h>

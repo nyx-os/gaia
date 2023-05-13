@@ -1,4 +1,4 @@
-/* @license:bsd2 */
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef SRC_KERN_SYSCALL_H
 #define SRC_KERN_SYSCALL_H
 #include <libkern/base.h>

@@ -1,6 +1,8 @@
 #include <posix/fs/tar.h>
 #include <posix/fs/tmpfs.h>
 #include <kern/charon.h>
+#include <posix/fs/devfs.h>
+#include <posix/tty.h>
 #include <posix/posix.h>
 
 void posix_init(charon_t charon)
@@ -22,12 +24,20 @@ void posix_init(charon_t charon)
 
     tar_write_on_tmpfs(ramdisk);
 
-    task_t *task = sched_new_task(69, true);
+    VOP_MKDIR(root_vnode, &root_devnode, "dev", NULL);
 
-    const char *argv[] = { "/usr/bin/bash", NULL };
-    const char *envp[] = { "HOME=/", NULL };
+    tty_init();
 
-    sys_execve(task, "/usr/bin/bash", argv, envp);
+    task_t *task = sched_new_task(1, true);
+
+    sys_open(task, "/dev/tty", O_RDWR);
+    sys_open(task, "/dev/tty", O_RDWR);
+    sys_open(task, "/dev/tty", O_RDWR);
+
+    const char *argv[] = { "/usr/bin/init", NULL };
+    const char *envp[] = { "SHELL=/usr/bin/bash", NULL };
+
+    sys_execve(task, "/usr/bin/init", argv, envp);
 
     return;
 }

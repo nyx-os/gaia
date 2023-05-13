@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef POSIX_FS_TMPFS_H
 #define POSIX_FS_TMPFS_H
 #include <posix/fs/vfs.h>
@@ -34,6 +35,11 @@ typedef struct tmpnode {
             char *to_name;
             struct tmpnode *to;
         } link;
+
+        /* VCHR */
+        struct {
+            dev_t dev;
+        } chr;
     } data;
 
 } tmp_node_t;

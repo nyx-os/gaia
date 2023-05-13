@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 #include <posix/fs/tar.h>
 #include <posix/fs/vfs.h>
 #include <posix/stat.h>

@@ -1,7 +1,9 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 #ifndef POSIX_FS_VFS_H
 #define POSIX_FS_VFS_H
 #include <posix/types.h>
 #include <stddef.h>
+#include <posix/fs/devfs.h>
 
 #define VFS_FIND_OR_ERROR (1 << 0)
 #define VFS_FIND_AND_CREATE (1 << 1)
@@ -12,6 +14,7 @@ typedef enum {
     VNON, /* No type */
     VREG, /* Regular file */
     VDIR, /* Directory */
+    VCHR, /* Character special device */
     VLNK, /* Symlink */
 } vnode_type_t;
 
@@ -31,10 +34,13 @@ typedef struct {
                   vattr_t *vattr);
     int (*getattr)(struct vnode *vn, vattr_t *out);
     int (*open)(struct vnode *vn, int mode);
-    int (*read)(struct vnode *vn, void *buf, size_t nbyte, size_t off);
-    int (*write)(struct vnode *vn, void *buf, size_t nbyte, size_t off);
+    int (*read)(struct vnode *vn, void *buf, size_t nbyte, off_t off);
+    int (*write)(struct vnode *vn, void *buf, size_t nbyte, off_t off);
     int (*mkdir)(struct vnode *vn, struct vnode **out, const char *name,
                  vattr_t *vattr);
+
+    int (*mknod)(struct vnode *vn, struct vnode **out, const char *name,
+                 dev_t dev);
 
     int (*readdir)(struct vnode *vn, void *buf, size_t max_size,
                    size_t *bytes_read);
@@ -47,7 +53,7 @@ typedef struct {
 typedef struct vnode {
     vnode_type_t type;
     void *data;
-    const char *abs_path;
+    devnode_t *devnode;
     vnode_ops_t ops;
 } vnode_t;
 
@@ -75,5 +81,6 @@ int vfs_mkdir(vnode_t *vn, vnode_t **out, const char *name, vattr_t *vattr);
 int vfs_create(vnode_t *vn, vnode_t **out, const char *name, vattr_t *vattr);
 
 extern vnode_t *root_vnode;
+extern vnode_t *root_devnode;
 
 #endif

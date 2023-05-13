@@ -51,7 +51,7 @@ task_t *sched_new_task(pid_t pid, bool user)
     SLIST_INIT(&new_task->threads);
 
     new_task->pid = pid;
-    new_task->current_fd = 3;
+    new_task->current_fd = 0;
 
     if (user) {
         new_task->map.pmap = pmap_create(true);

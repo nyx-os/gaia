@@ -1,4 +1,4 @@
-#include "fd.h"
+/* SPDX-License-Identifier: BSD-2-Clause */
 #include <posix/errno.h>
 #include <posix/posix.h>
 #include <posix/fnctl.h>
@@ -66,13 +66,6 @@ int sys_write(task_t *proc, int fd, void *buf, size_t bytes)
 {
     fd_t *file = NULL;
     int r;
-
-    if (fd < 3) {
-        char *str = (char *)buf;
-
-        term_write(str);
-        return bytes;
-    }
 
     file = proc->files[fd];
     if (!file) {

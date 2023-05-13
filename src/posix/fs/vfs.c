@@ -1,7 +1,9 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 #include <posix/fs/vfs.h>
 #include <libkern/base.h>
 
 vnode_t *root_vnode = NULL;
+vnode_t *root_devnode = NULL;
 
 // Took inspiration from https://github.com/NetaScale/SCAL-UX/blob/old-22-08-07/Kernel/posix/vfs.c#L79, licensed under the MPL-2.0 License
 /* Copyright 2022 NetaScale Systems Ltd.
