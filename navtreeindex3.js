@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"structtu__unreachable__data.html":[0,0,87],
 "structtu__unreachable__data.html#a22939dd827fd08c3d9f55e8710ee05b6":[0,0,87,0],
 "structvattr__t.html":[0,0,88],
 "structvattr__t.html#a04eb879a4e56af3dfd1f27c18c67193b":[0,0,88,3],
@@ -74,7 +73,7 @@ var NAVTREEINDEX3 =
 "tmpfs_8h_source.html":[1,0,0,4,0,4],
 "tty_8h_source.html":[1,0,0,4,6],
 "types_8h_source.html":[1,0,0,4,7],
-"vec_8h_source.html":[1,0,0,3,0,4],
+"vec_8h_source.html":[1,0,0,3,0,3],
 "vfs_8h_source.html":[1,0,0,4,0,5],
 "vm__kernel_8h.html":[1,0,0,2,1,3],
 "vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3":[1,0,0,2,1,3,2],

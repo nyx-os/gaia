@@ -131,7 +131,6 @@ var NAVTREEINDEX0 =
 "sched_8h.html#ae17b0e0d44770e679be7612a45ca831a":[1,0,0,2,3,2],
 "sched_8h_source.html":[1,0,0,2,3],
 "stat_8h_source.html":[1,0,0,4,5],
-"string_8h_source.html":[1,0,0,3,0,3],
 "structPACKED.html":[0,0,65],
 "structPACKED.html#a050f390867d96d9af3a3ed371c5ef73a":[0,0,65,15],
 "structPACKED.html#a07501b260ad0bbad69b470aa5fc37b6a":[0,0,65,22],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "structcharon__framebuffer__t.html":[0,0,2],
 "structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546":[0,0,2,4],
 "structcharon__framebuffer__t.html#a4a2a4b459efeeffacc1d10a838913abe":[0,0,2,5],
-"structcharon__framebuffer__t.html#aa4d45a0cfcc1a99733cc9584a7e331a6":[0,0,2,2]
+"structcharon__framebuffer__t.html#aa4d45a0cfcc1a99733cc9584a7e331a6":[0,0,2,2],
+"structcharon__framebuffer__t.html#aaaedb2c60ebc872cc67cbee115f5c5a2":[0,0,2,1]
 };
