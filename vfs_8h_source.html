@@ -135,35 +135,36 @@ $(document).ready(function(){initNavTree('vfs_8h_source.html',''); initResizable
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structvnode.html">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvnode.html">vnode</a> {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    vnode_type_t type;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> *data;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structvnode__ops__t.html">vnode_ops_t</a> ops;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;} <a class="code" href="structvnode.html">vnode_t</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#define VOP_LOOKUP(vn, out, name) vn-&gt;ops.lookup(vn, out, name)</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define VOP_CREATE(vn, out, name, vattr) vn-&gt;ops.create(vn, out, name, vattr)</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define VOP_LINK(vn, out, name, link, vattr) \</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">    vn-&gt;ops.symlink(vn, out, name, link, vattr)</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#define VOP_GETATTR(vn, out) vn-&gt;ops.getattr(vn, out)</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define VOP_OPEN(vn, mode) vn-&gt;ops.open(vn, mode)</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define VOP_READ(vn, buf, nbytes, off) vn-&gt;ops.read(vn, buf, nbytes, off)</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#define VOP_WRITE(vn, buf, nbytes, off) vn-&gt;ops.write(vn, buf, nbytes, off)</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define VOP_MKDIR(vn, out, name, vattr) vn-&gt;ops.mkdir(vn, out, name, vattr)</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define VOP_READDIR(vn, buf, max_size, bytes_read) \</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">    vn-&gt;ops.readdir(vn, buf, max_size, bytes_read)</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#define VOP_CLOSE(vn) vn-&gt;ops.close(vn)</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="structvnode.html">vnode_t</a> *vfs_open(<a class="code" href="structvnode.html">vnode_t</a> *parent, <span class="keywordtype">char</span> *path, <span class="keywordtype">int</span> flags);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> vfs_read(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">int</span> vfs_write(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> vfs_find_and(<a class="code" href="structvnode.html">vnode_t</a> *cwd, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                 <span class="keyword">const</span> <span class="keywordtype">char</span> *link, <span class="keywordtype">int</span> flags, <a class="code" href="structvattr__t.html">vattr_t</a> *attr);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> vfs_getdents(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> max_size, <span class="keywordtype">size_t</span> *bytes_read);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">int</span> vfs_mkdir(<a class="code" href="structvnode.html">vnode_t</a> *vn, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structvattr__t.html">vattr_t</a> *vattr);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> vfs_create(<a class="code" href="structvnode.html">vnode_t</a> *vn, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structvattr__t.html">vattr_t</a> *vattr);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvnode.html">vnode_t</a> *root_vnode;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *abs_path;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="structvnode__ops__t.html">vnode_ops_t</a> ops;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;} <a class="code" href="structvnode.html">vnode_t</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#define VOP_LOOKUP(vn, out, name) vn-&gt;ops.lookup(vn, out, name)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#define VOP_CREATE(vn, out, name, vattr) vn-&gt;ops.create(vn, out, name, vattr)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#define VOP_LINK(vn, out, name, link, vattr) \</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">    vn-&gt;ops.symlink(vn, out, name, link, vattr)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#define VOP_GETATTR(vn, out) vn-&gt;ops.getattr(vn, out)</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define VOP_OPEN(vn, mode) vn-&gt;ops.open(vn, mode)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#define VOP_READ(vn, buf, nbytes, off) vn-&gt;ops.read(vn, buf, nbytes, off)</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#define VOP_WRITE(vn, buf, nbytes, off) vn-&gt;ops.write(vn, buf, nbytes, off)</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#define VOP_MKDIR(vn, out, name, vattr) vn-&gt;ops.mkdir(vn, out, name, vattr)</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#define VOP_READDIR(vn, buf, max_size, bytes_read) \</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">    vn-&gt;ops.readdir(vn, buf, max_size, bytes_read)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define VOP_CLOSE(vn) vn-&gt;ops.close(vn)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="structvnode.html">vnode_t</a> *vfs_open(<a class="code" href="structvnode.html">vnode_t</a> *parent, <span class="keywordtype">char</span> *path, <span class="keywordtype">int</span> flags);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">int</span> vfs_read(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> vfs_write(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">int</span> vfs_find_and(<a class="code" href="structvnode.html">vnode_t</a> *cwd, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                 <span class="keyword">const</span> <span class="keywordtype">char</span> *link, <span class="keywordtype">int</span> flags, <a class="code" href="structvattr__t.html">vattr_t</a> *attr);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">int</span> vfs_getdents(<a class="code" href="structvnode.html">vnode_t</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> max_size, <span class="keywordtype">size_t</span> *bytes_read);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> vfs_mkdir(<a class="code" href="structvnode.html">vnode_t</a> *vn, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structvattr__t.html">vattr_t</a> *vattr);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> vfs_create(<a class="code" href="structvnode.html">vnode_t</a> *vn, <a class="code" href="structvnode.html">vnode_t</a> **out, <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <a class="code" href="structvattr__t.html">vattr_t</a> *vattr);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvnode.html">vnode_t</a> *root_vnode;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructvattr__t_html"><div class="ttname"><a href="structvattr__t.html">vattr_t</a></div><div class="ttdef"><b>Definition:</b> vfs.h:20</div></div>
 <div class="ttc" id="astructvnode__ops__t_html"><div class="ttname"><a href="structvnode__ops__t.html">vnode_ops_t</a></div><div class="ttdef"><b>Definition:</b> vfs.h:28</div></div>
 <div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:47</div></div>
