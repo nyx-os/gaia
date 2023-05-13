@@ -11,7 +11,8 @@ int sys_seek(task_t *proc, int fd, off_t offset, int whence);
 int sys_readdir(task_t *proc, int fd, void *buf, size_t max_size,
                 size_t *bytes_read);
 int sys_close(task_t *proc, int fd);
-int sys_stat(task_t *proc, int fd, const char *path, struct stat *out);
+int sys_stat(task_t *proc, int fd, const char *path, int flags,
+             struct stat *out);
 int sys_execve(task_t *proc, const char *path, char const *argv[],
                char const *envp[]);
 

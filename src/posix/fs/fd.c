@@ -46,13 +46,6 @@ int sys_read(task_t *proc, int fd, void *buf, size_t bytes)
     fd_t *file = NULL;
     int r;
 
-    if (fd < 3) {
-        char *str = (char *)buf;
-
-        term_write(str);
-        return bytes;
-    }
-
     file = proc->files[fd];
 
     if (!file) {
@@ -73,6 +66,13 @@ int sys_write(task_t *proc, int fd, void *buf, size_t bytes)
 {
     fd_t *file = NULL;
     int r;
+
+    if (fd < 3) {
+        char *str = (char *)buf;
+
+        term_write(str);
+        return bytes;
+    }
 
     file = proc->files[fd];
     if (!file) {
@@ -140,11 +140,14 @@ int sys_close(task_t *proc, int fd)
     return 0;
 }
 
-int sys_stat(task_t *proc, int fd, const char *path, struct stat *out)
+int sys_stat(task_t *proc, int fd, const char *path, int flags,
+             struct stat *out)
 {
     int r;
     vnode_t *vn;
     vattr_t attr;
+
+    (void)flags;
 
     if (fd == AT_FDCWD) {
         r = vfs_find_and(proc->cwd, &vn, path, NULL, VFS_FIND_OR_ERROR, NULL);

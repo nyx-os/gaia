@@ -9,28 +9,28 @@ void term_init(charon_t charon)
     struct {
         uint32_t default_fg;
         uint32_t default_bg;
-    } colorscheme = { 0xe6e1cf, 0x0f1419 };
+    } colorscheme = { 0xe6e1cf, 0x0A0E14 };
 
     uint32_t ansi_colors[] = {
-        0x00000000, // black
-        0xf34a4a, // red
-        0xbae67e, // green
-        0xffee99, // yellow
-        0x73d0ff, // blue
-        0xd4bfff, // magenta
-        0x83CEC6, // cyan
-        0xf2f2f2, // grey
+        0x01060E, // black
+        0xEA6C73, // red
+        0x91B362, // green
+        0xF9AF4F, // yellow
+        0x53BDFA, // blue
+        0xFAE994, // magenta
+        0x90E1C6, // cyan
+        0xC7C7C7, // grey
     };
 
     uint32_t ansi_bright_colors[] = {
-        0x737d87, // black
-        0xff3333, // red
-        0xc2d94c, // green
-        0xe7c547, // yellow
-        0x59c2ff, // blue
-        0xb77ee0, // magenta
-        0x5ccfe6, // cyan
-        0xffffff, // grey
+        0x686868, // black
+        0xF07178, // red
+        0xC2D94C, // green
+        0xFFB454, // yellow
+        0x59C2FF, // blue
+        0xFFEE99, // magenta
+        0x95E6CB, // cyan
+        0xFFFFFF, // grey
     };
 
     ctx = flanterm_fb_init(kmem_alloc, (uint32_t *)charon.framebuffer.address,

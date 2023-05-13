@@ -57,8 +57,9 @@ static tmp_node_t *tmpfs_make_node(tmp_node_t *dir, vnode_type_t type,
         tmpfs_lookup(dir->vnode, &vnode, link);
 
         n->data.link.to = vnode ? vnode->data : NULL;
-        n->data.link.to_name = kmalloc(strlen(link));
+        n->data.link.to_name = kmalloc(strlen(link) + 1);
         memcpy(n->data.link.to_name, link, strlen(link));
+
         break;
     }
 
@@ -110,7 +111,6 @@ static int tmpfs_lookup(vnode_t *vn, vnode_t **out, const char *name)
     if (ent->node->vnode->type == VLNK) {
         if (ent->node->data.link.to == NULL) {
             vnode_t *link_to;
-
             tmpfs_lookup(vn, &link_to, ent->node->data.link.to_name);
 
             ent->node->data.link.to = link_to->data;

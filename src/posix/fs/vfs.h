@@ -47,6 +47,7 @@ typedef struct {
 typedef struct vnode {
     vnode_type_t type;
     void *data;
+    const char *abs_path;
     vnode_ops_t ops;
 } vnode_t;
 

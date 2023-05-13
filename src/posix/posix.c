@@ -24,10 +24,10 @@ void posix_init(charon_t charon)
 
     task_t *task = sched_new_task(69, true);
 
-    const char *argv[] = { "/usr/bin/hello", "--version", NULL };
-    const char *envp[] = { NULL };
+    const char *argv[] = { "/usr/bin/bash", NULL };
+    const char *envp[] = { "HOME=/", NULL };
 
-    sys_execve(task, "/usr/bin/hello", argv, envp);
+    sys_execve(task, "/usr/bin/bash", argv, envp);
 
     return;
 }
