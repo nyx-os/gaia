@@ -136,6 +136,9 @@ Enumerations</h2></td></tr>
 , <b>PMAP_USER</b> = (1 &lt;&lt; 3)
  }</td></tr>
 <tr class="separator:a6dfcc660d7fd7c6a44c7bda66b39e49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e24af768ef5e7f47ebee0e2ab8271e"><td class="memItemLeft" align="right" valign="top"><a id="a49e24af768ef5e7f47ebee0e2ab8271e"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>vm_flags_t</b> { <b>VM_MAP_NOLAZY</b> = (1 &lt;&lt; 0)
+ }</td></tr>
+<tr class="separator:a49e24af768ef5e7f47ebee0e2ab8271e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -163,9 +166,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>pmap_invlpg</b> (vadd
 <tr class="memitem:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memItemLeft" align="right" valign="top"><a id="a3a53b46cfd52cec4359fe3c91ed21052"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>vm_init</b> (<a class="el" href="structcharon__t.html">charon_t</a> charon)</td></tr>
 <tr class="separator:a3a53b46cfd52cec4359fe3c91ed21052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b0469a5916900c3fbeaa9c8a67c320b"><td class="memItemLeft" align="right" valign="top"><a id="a0b0469a5916900c3fbeaa9c8a67c320b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot, vaddr_t *out)</td></tr>
-<tr class="separator:a0b0469a5916900c3fbeaa9c8a67c320b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a617fed9d4d66a1c04feba26645fd0007"><td class="memItemLeft" align="right" valign="top"><a id="a617fed9d4d66a1c04feba26645fd0007"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vm_map</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot, vm_flags_t flags, vaddr_t *out)</td></tr>
+<tr class="separator:a617fed9d4d66a1c04feba26645fd0007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f735017839f09fd767d02254c5aeafa"><td class="memItemLeft" align="right" valign="top"><a id="a5f735017839f09fd767d02254c5aeafa"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>vm_fault</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, vaddr_t vaddr)</td></tr>
+<tr class="separator:a5f735017839f09fd767d02254c5aeafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e4839c930df25d33990460f92ce095e"><td class="memItemLeft" align="right" valign="top"><a id="a9e4839c930df25d33990460f92ce095e"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>vm_write</b> (<a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a> *map, vaddr_t addr, void *buf, size_t size)</td></tr>
+<tr class="separator:a9e4839c930df25d33990460f92ce095e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

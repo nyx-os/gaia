@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"structcharon__framebuffer__t.html#aaaedb2c60ebc872cc67cbee115f5c5a2":[0,0,2,1],
+"structcharon__framebuffer__t.html#aabd76f7d20b2d305c52cf433f6ded66c":[0,0,2,3],
+"structcharon__framebuffer__t.html#ad2390365373d8b76890d2fed0dddc8c1":[0,0,2,0],
+"structcharon__mmap__entry__t.html":[0,0,3],
+"structcharon__mmap__entry__t.html#a5262a5a4fc2a759944b8f1c548100703":[0,0,3,1],
 "structcharon__mmap__entry__t.html#a6fa93bae8393f625a2283a6c458e7f58":[0,0,3,0],
 "structcharon__mmap__entry__t.html#ad35af9ce663149aead230e3f1e0295c9":[0,0,3,2],
 "structcharon__mmap__t.html":[0,0,4],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "structlimine__file.html#aae75086a50847d53d1f0ee264b3dee6b":[0,0,37,2],
 "structlimine__file.html#ab067ccacc13594ccbbb0d2284223b35c":[0,0,37,4],
 "structlimine__file.html#ab12af7e4d780036c111ba07311ee8cf5":[0,0,37,13],
-"structlimine__file.html#ab8461c3420baf7aee6965de6f67761f6":[0,0,37,0],
-"structlimine__file.html#abcddd7497e755ae1fcb7ee6d7a5f0ca4":[0,0,37,1],
-"structlimine__file.html#abde6f4e1977437a0d7091442b46161dc":[0,0,37,10],
-"structlimine__framebuffer.html":[0,0,38],
-"structlimine__framebuffer.html#a03ef8b92b0f4ccc5d9f6e5b7fc9086ea":[0,0,38,2],
-"structlimine__framebuffer.html#a36b1a1a603b64941306b64aab8cde484":[0,0,38,14]
+"structlimine__file.html#ab8461c3420baf7aee6965de6f67761f6":[0,0,37,0]
 };

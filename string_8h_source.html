@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gaia: Member List</title>
+<title>Gaia: src/lib/libkern/string.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structvm__map__entry.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('string_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,21 +83,29 @@ $(document).ready(function(){initNavTree('structvm__map__entry.html',''); initRe
 
 <div class="header">
   <div class="headertitle">
-<div class="title">vm_map_entry Member List</div>  </div>
+<div class="title">string.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="structvm__map__entry.html">vm_map_entry</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>LIST_ENTRY</b>(vm_map_entry) link (defined in <a class="el" href="structvm__map__entry.html">vm_map_entry</a>)</td><td class="entry"><a class="el" href="structvm__map__entry.html">vm_map_entry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>prot</b> (defined in <a class="el" href="structvm__map__entry.html">vm_map_entry</a>)</td><td class="entry"><a class="el" href="structvm__map__entry.html">vm_map_entry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>size</b> (defined in <a class="el" href="structvm__map__entry.html">vm_map_entry</a>)</td><td class="entry"><a class="el" href="structvm__map__entry.html">vm_map_entry</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>start</b> (defined in <a class="el" href="structvm__map__entry.html">vm_map_entry</a>)</td><td class="entry"><a class="el" href="structvm__map__entry.html">vm_map_entry</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SRC_LIB_LIBKERN_STRING_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define SRC_LIB_LIBKERN_STRING_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">char</span> *strncpy(<span class="keywordtype">char</span> *destination, <span class="keyword">const</span> <span class="keywordtype">char</span> *source, <span class="keywordtype">size_t</span> num);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> *memcpy(<span class="keywordtype">void</span> *dest, <span class="keyword">const</span> <span class="keywordtype">void</span> *src, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> *memset(<span class="keywordtype">void</span> *dest, <span class="keywordtype">int</span> c, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">int</span> memcmp(<span class="keyword">const</span> <span class="keywordtype">void</span> *s1, <span class="keyword">const</span> <span class="keywordtype">void</span> *s2, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">size_t</span> strlen(<span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">char</span> *strrchr(<span class="keyword">const</span> <span class="keywordtype">char</span> *s, <span class="keywordtype">int</span> c);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">int</span> strncmp(<span class="keyword">const</span> <span class="keywordtype">char</span> *s1, <span class="keyword">const</span> <span class="keywordtype">char</span> *s2, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dir_f3fc42be2466e8077f8be3c819d77cdb.html">libkern</a></li><li class="navelem"><b>string.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
