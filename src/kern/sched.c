@@ -1,5 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #include "sched.h"
+#include "asm.h"
+#include "posix/fnctl.h"
 #include <machdep/cpu.h>
 #include <kern/sync.h>
 #include <sys/queue.h>
@@ -9,6 +11,7 @@ static spinlock_t sched_lock;
 static size_t ticks = 0;
 static thread_t *current_thread = NULL, *idle_thread = NULL;
 static bool restore_frame = false;
+static pid_t curr_pid = 1;
 
 static thread_t *get_next_thread(void)
 {
@@ -23,6 +26,11 @@ static thread_t *get_next_thread(void)
     }
 
     return ret;
+}
+
+pid_t sched_alloc_pid(void)
+{
+    return curr_pid++;
 }
 
 thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
@@ -44,13 +52,14 @@ thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
     return new_thread;
 }
 
-task_t *sched_new_task(pid_t pid, bool user)
+task_t *sched_new_task(pid_t pid, pid_t ppid, bool user)
 {
     task_t *new_task = kmalloc(sizeof(task_t));
 
     SLIST_INIT(&new_task->threads);
 
     new_task->pid = pid;
+    new_task->ppid = ppid;
     new_task->current_fd = 0;
 
     if (user) {
@@ -60,6 +69,7 @@ task_t *sched_new_task(pid_t pid, bool user)
     }
 
     LIST_INIT(&new_task->map.entries);
+    SLIST_INIT(&new_task->children);
 
     vmem_init(&new_task->map.vmem, "task vmem", (void *)0x80000000000,
               0x100000000, 0x1000, 0, 0, 0, 0, 0);
@@ -78,7 +88,7 @@ void sched_init(void)
 {
     TAILQ_INIT(&runq);
 
-    task_t *ktask = sched_new_task(-1, false);
+    task_t *ktask = sched_new_task(-1, -1, false);
 
     SLIST_INIT(&ktask->threads);
 
@@ -94,6 +104,11 @@ void sched_init(void)
 void sched_idle(void)
 {
     current_thread = idle_thread;
+}
+
+void sched_no_restore(void)
+{
+    restore_frame = false;
 }
 
 void sched_tick(intr_frame_t *ctx)

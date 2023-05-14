@@ -69,7 +69,7 @@ void simd_init(void)
 
     fninit();
 
-    initial_context = (void *)P2V(phys_allocz());
+    initial_context = (void *)kmalloc(simd_buffer_size);
     simd_save(initial_context);
 }
 

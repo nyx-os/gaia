@@ -60,6 +60,11 @@ void pmap_activate(pmap_t pmap);
  */
 void pmap_invlpg(vaddr_t va);
 
+/*
+* Fork a pmap
+*/
+void pmap_fork(pmap_t *dest, pmap_t src);
+
 void vm_init(charon_t charon);
 
 /**

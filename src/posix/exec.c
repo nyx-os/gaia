@@ -1,3 +1,4 @@
+#include "asm.h"
 #include "kern/sched.h"
 #include "machdep/cpu.h"
 #include <posix/posix.h>
@@ -48,11 +49,13 @@ static uintptr_t load_elf(task_t *task, vnode_t *file, auxval_t *auxval,
                    VM_PROT_READ | VM_PROT_WRITE | VM_PROT_EXECUTE,
                    VM_MAP_NOLAZY, &addr);
 
+            pmap_t prev_pmap = { .pml4 = read_cr3() };
+
             pmap_activate(task->map.pmap);
 
             memcpy((void *)addr, buf, phdr.p_filesz);
 
-            pmap_activate(vm_kmap.pmap);
+            pmap_activate(prev_pmap);
 
             break;
         }
@@ -192,11 +195,12 @@ int sys_execve(task_t *proc, const char *path, char const *argv[],
     vm_map(&proc->map, &addr, ALIGN_UP(required_size, PAGE_SIZE),
            VM_PROT_READ | VM_PROT_WRITE, VM_MAP_NOLAZY, &addr);
 
+    pmap_t prev_pmap = { .pml4 = read_cr3() };
     pmap_activate(proc->map.pmap);
 
     memcpy((void *)(USER_STACK_TOP - required_size), stack, required_size);
 
-    pmap_activate(vm_kmap.pmap);
+    pmap_activate(prev_pmap);
 
     addr = (USER_STACK_TOP - required_size) - USER_STACK_SIZE;
 

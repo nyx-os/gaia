@@ -28,7 +28,7 @@ void posix_init(charon_t charon)
 
     tty_init();
 
-    task_t *task = sched_new_task(1, true);
+    task_t *task = sched_new_task(0, -1, true);
 
     sys_open(task, "/dev/tty", O_RDWR);
     sys_open(task, "/dev/tty", O_RDWR);

@@ -26,6 +26,9 @@ enum syscalls {
     SYS_EXIT,
     SYS_TCB_SET,
     SYS_GETPID,
+    SYS_GETPPID,
+    SYS_FORK,
+    SYS_EXEC,
 };
 
 void syscall_handler(syscall_frame_t frame);

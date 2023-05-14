@@ -232,3 +232,44 @@ void pmap_invlpg(vaddr_t va)
 {
     asm volatile("invlpg %0" : : "m"(va) : "memory");
 }
+
+static void pmap_fork_intern(uint64_t *dest, uint64_t *src, size_t page_count,
+                             int level)
+{
+    for (uint64_t i = 0; i < page_count; i++) {
+        uint64_t orig_entry = src[i];
+
+        if (PTE_IS_PRESENT(orig_entry)) {
+            uintptr_t *entry = &dest[i];
+
+#undef PTE_GET_ADDR
+#define PTE_GET_ADDR(x) (x & 0x0000fffffffff000)
+
+            assert(!PTE_IS_PRESENT(*entry));
+
+            memcpy(entry, &orig_entry, sizeof(uint64_t));
+
+            vaddr_t orig_next = P2V(PTE_GET_ADDR(*entry));
+
+            uintptr_t next_phys_addr = phys_allocz();
+
+            *entry &= 0xffff000000000fff;
+            *entry |= (next_phys_addr & 0x0000fffffffff000);
+
+            void *next = (void *)P2V(next_phys_addr);
+
+            if (level > 0) {
+                pmap_fork_intern((uint64_t *)next, (uint64_t *)orig_next, 512,
+                                 level - 1);
+            } else {
+                memcpy(next, (void *)orig_next, 0x1000);
+            }
+        }
+    }
+}
+
+void pmap_fork(pmap_t *dest, pmap_t src)
+{
+    pmap_fork_intern((uint64_t *)(P2V(dest->pml4)), (uint64_t *)(P2V(src.pml4)),
+                     256, 3);
+}
