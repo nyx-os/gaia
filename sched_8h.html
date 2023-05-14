@@ -125,6 +125,7 @@ Typedefs</h2></td></tr>
 Enumerations</h2></td></tr>
 <tr class="memitem:a4b1b32c1fc744438f665f0f1932dd207"><td class="memItemLeft" align="right" valign="top"><a id="a4b1b32c1fc744438f665f0f1932dd207"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>thread_state</b> { <b>RUNNING</b>
 , <b>BLOCKED</b>
+, <b>WAITING_FOR_CHILD</b>
 , <b>STOPPED</b>
  }</td></tr>
 <tr class="separator:a4b1b32c1fc744438f665f0f1932dd207"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,9 +141,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sched_tick</b> (<a cl
 <tr class="memitem:a2b06898bce96b60186784527e901781b"><td class="memItemLeft" align="right" valign="top"><a id="a2b06898bce96b60186784527e901781b"></a>
 <a class="el" href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>sched_new_thread</b> (const char *name, <a class="el" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a> *parent, <a class="el" href="structcpu__context__t.html">cpu_context_t</a> ctx, bool insert)</td></tr>
 <tr class="separator:a2b06898bce96b60186784527e901781b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11c19a211eaa5230c17e2c0e50ef463a"><td class="memItemLeft" align="right" valign="top"><a id="a11c19a211eaa5230c17e2c0e50ef463a"></a>
-<a class="el" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>sched_new_task</b> (pid_t pid, bool user)</td></tr>
-<tr class="separator:a11c19a211eaa5230c17e2c0e50ef463a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac21c82bffd34b3ca48432a3b25b4d83e"><td class="memItemLeft" align="right" valign="top"><a id="ac21c82bffd34b3ca48432a3b25b4d83e"></a>
+<a class="el" href="sched_8h.html#ade04e552d18bad454515b6a32d31bb7b">task_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>sched_new_task</b> (pid_t pid, pid_t ppid, bool user)</td></tr>
+<tr class="separator:ac21c82bffd34b3ca48432a3b25b4d83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66a2df3819558a2befbaba499d0ecce1"><td class="memItemLeft" align="right" valign="top"><a id="a66a2df3819558a2befbaba499d0ecce1"></a>
 <a class="el" href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>sched_curr</b> (void)</td></tr>
 <tr class="separator:a66a2df3819558a2befbaba499d0ecce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +153,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sched_dump</b> (void)
 <tr class="memitem:a6a7b4fcf5845eade423d1f6808c00b1d"><td class="memItemLeft" align="right" valign="top"><a id="a6a7b4fcf5845eade423d1f6808c00b1d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sched_idle</b> (void)</td></tr>
 <tr class="separator:a6a7b4fcf5845eade423d1f6808c00b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc2ba327b8ba7ffde47adb85151c8f1"><td class="memItemLeft" align="right" valign="top"><a id="a6fc2ba327b8ba7ffde47adb85151c8f1"></a>
+pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>sched_alloc_pid</b> (void)</td></tr>
+<tr class="separator:a6fc2ba327b8ba7ffde47adb85151c8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab869438b64496ed5b8b825f2cafd9f27"><td class="memItemLeft" align="right" valign="top"><a id="ab869438b64496ed5b8b825f2cafd9f27"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sched_no_restore</b> (void)</td></tr>
+<tr class="separator:ab869438b64496ed5b8b825f2cafd9f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Task scheduler. </p>

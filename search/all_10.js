@@ -6,7 +6,7 @@ var searchData=
   ['slab_131',['slab',['../structkmem__bufctl.html#a224754b9c94827b0d955dbcfd276a1c5',1,'kmem_bufctl']]],
   ['slab_5fsize_132',['slab_size',['../structkmem__cache.html#a360e95e261f05cb9281f2e8aed9b496c',1,'kmem_cache']]],
   ['slist_5fentry_133',['SLIST_ENTRY',['../structthread.html#ae953fe7e3848f48927aa0b1e015bdaec',1,'thread']]],
-  ['slist_5fhead_134',['SLIST_HEAD',['../structkmem__slab.html#aae649ca58d0d0945c20e40a49b7fc58c',1,'kmem_slab::SLIST_HEAD()'],['../structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d',1,'task::SLIST_HEAD()'],['../structkmem__cache.html#a782a98ef711c484acdc220758674debd',1,'kmem_cache::SLIST_HEAD()']]],
+  ['slist_5fhead_134',['SLIST_HEAD',['../structkmem__slab.html#aae649ca58d0d0945c20e40a49b7fc58c',1,'kmem_slab::SLIST_HEAD()'],['../structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d',1,'task::SLIST_HEAD(, thread) threads'],['../structtask.html#a762149c83b9020913d4da42b1dac5f66',1,'task::SLIST_HEAD(, task) children'],['../structkmem__cache.html#a782a98ef711c484acdc220758674debd',1,'kmem_cache::SLIST_HEAD()']]],
   ['source_135',['source',['../structvmem.html#a1d7b007327ce04e2d11af6d4ac546fa2',1,'vmem']]],
   ['spanlist_136',['spanlist',['../structvmem.html#a20358b08db1cc703c2cc949e730358f4',1,'vmem']]],
   ['stat_137',['stat',['../structvmem.html#acef8b33501be8c85fc7a80e393d5e927',1,'vmem::stat()'],['../structstat.html',1,'stat']]],

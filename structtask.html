@@ -97,13 +97,21 @@ $(document).ready(function(){initNavTree('structtask.html',''); initResizable();
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1ff6c19f3b31bfdfb8d1c7328873a2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">SLIST_HEAD</a> (, <a class="el" href="structthread.html">thread</a>) threads</td></tr>
 <tr class="separator:aa1ff6c19f3b31bfdfb8d1c7328873a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762149c83b9020913d4da42b1dac5f66"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a762149c83b9020913d4da42b1dac5f66">SLIST_HEAD</a> (, <a class="el" href="structtask.html">task</a>) children</td></tr>
+<tr class="separator:a762149c83b9020913d4da42b1dac5f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505d5119e26bd742225f2ae88091eb55"><td class="memItemLeft" align="right" valign="top"><a id="a505d5119e26bd742225f2ae88091eb55"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SLIST_ENTRY</b> (<a class="el" href="structtask.html">task</a>) link</td></tr>
+<tr class="separator:a505d5119e26bd742225f2ae88091eb55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a252805902db4855ad8a561e2dea95cf4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="kern_2vm_2vm_8h.html#ad72ecf1e3caae510ad568cdd89b0f59b">vm_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a252805902db4855ad8a561e2dea95cf4">map</a></td></tr>
 <tr class="separator:a252805902db4855ad8a561e2dea95cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab56448ae42a75825ea923bd86648f3ae"><td class="memItemLeft" align="right" valign="top">pid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#ab56448ae42a75825ea923bd86648f3ae">pid</a></td></tr>
+<tr class="memitem:ab56448ae42a75825ea923bd86648f3ae"><td class="memItemLeft" align="right" valign="top"><a id="ab56448ae42a75825ea923bd86648f3ae"></a>
+pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid</b></td></tr>
 <tr class="separator:ab56448ae42a75825ea923bd86648f3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f788e6258971fc5714facbd6797aa8"><td class="memItemLeft" align="right" valign="top">pid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a30f788e6258971fc5714facbd6797aa8">ppid</a></td></tr>
+<tr class="separator:a30f788e6258971fc5714facbd6797aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbc24998d2ac1a497870890da48c4af8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfd.html">fd_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#abbc24998d2ac1a497870890da48c4af8">files</a> [64]</td></tr>
 <tr class="separator:abbc24998d2ac1a497870890da48c4af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bfb603b79d74e67e87d88b22ed18ac7"><td class="memItemLeft" align="right" valign="top"><a id="a6bfb603b79d74e67e87d88b22ed18ac7"></a>
@@ -115,8 +123,27 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>current_fd</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A collection of resources, also called a process by other operating systems </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a762149c83b9020913d4da42b1dac5f66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762149c83b9020913d4da42b1dac5f66">&#9670;&nbsp;</a></span>SLIST_HEAD() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">task::SLIST_HEAD </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtask.html">task</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Child processes </p>
+
+</div>
+</div>
 <a id="aa1ff6c19f3b31bfdfb8d1c7328873a2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1ff6c19f3b31bfdfb8d1c7328873a2d">&#9670;&nbsp;</a></span>SLIST_HEAD()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1ff6c19f3b31bfdfb8d1c7328873a2d">&#9670;&nbsp;</a></span>SLIST_HEAD() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,14 +207,14 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>current_fd</b></td
 
 </div>
 </div>
-<a id="ab56448ae42a75825ea923bd86648f3ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab56448ae42a75825ea923bd86648f3ae">&#9670;&nbsp;</a></span>pid</h2>
+<a id="a30f788e6258971fc5714facbd6797aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f788e6258971fc5714facbd6797aa8">&#9670;&nbsp;</a></span>ppid</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pid_t task::pid</td>
+          <td class="memname">pid_t task::ppid</td>
         </tr>
       </table>
 </div><div class="memdoc">

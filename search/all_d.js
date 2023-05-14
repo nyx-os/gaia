@@ -11,7 +11,7 @@ var searchData=
   ['phys_5fregion_118',['phys_region',['../structphys__region.html',1,'']]],
   ['phys_5fusable_5fpages_119',['phys_usable_pages',['../phys_8h.html#ad200b2fd3a89d94533716058a740823c',1,'phys.c']]],
   ['phys_5fused_5fpages_120',['phys_used_pages',['../phys_8h.html#abbfd8f3d2de9306450b4c0e4c5f85c58',1,'phys.c']]],
-  ['pid_121',['pid',['../structtask.html#ab56448ae42a75825ea923bd86648f3ae',1,'task']]],
-  ['pmap_122',['pmap',['../structpmap.html',1,'pmap'],['../structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e',1,'vm_map::pmap()']]],
+  ['pmap_121',['pmap',['../structpmap.html',1,'pmap'],['../structvm__map.html#a90d030e71c896342d5cf52ef3dc91a8e',1,'vm_map::pmap()']]],
+  ['ppid_122',['ppid',['../structtask.html#a30f788e6258971fc5714facbd6797aa8',1,'task']]],
   ['present_123',['present',['../structcharon__framebuffer__t.html#a23b213146e0681579809acdd6e359546',1,'charon_framebuffer_t']]]
 ];

@@ -25,6 +25,7 @@ var kern_2vm_2vm_8h =
     [ "pmap_create", "kern_2vm_2vm_8h.html#ab85667da4b3a10623da3c501caa34863", null ],
     [ "pmap_destroy", "kern_2vm_2vm_8h.html#ac144fe0769398dd6381d299947187b9b", null ],
     [ "pmap_enter", "kern_2vm_2vm_8h.html#aa298cacc16555059c63d05c26fbe92a4", null ],
+    [ "pmap_fork", "kern_2vm_2vm_8h.html#ab1fa3d55c935603e6b10f59917d69e5e", null ],
     [ "pmap_init", "kern_2vm_2vm_8h.html#a5be4dbbccac5e7ae735c41519c78eb0b", null ],
     [ "pmap_invlpg", "kern_2vm_2vm_8h.html#a2c5a1272f61ed84d51e2bb9b5ae6f48b", null ],
     [ "pmap_remove", "kern_2vm_2vm_8h.html#ae059439b02668675506a4ecf17247bc5", null ],

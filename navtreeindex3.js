@@ -1,5 +1,13 @@
 var NAVTREEINDEX3 =
 {
+"structtu__type__descriptor.html#a5623809738c4a2076c346a16593b1d28":[0,0,85,2],
+"structtu__type__descriptor.html#ad509727cabc04a190892edbe4368b0de":[0,0,85,0],
+"structtu__type__mismatch__v1__data.html":[0,0,86],
+"structtu__type__mismatch__v1__data.html#a0fb55f7cea261b37239d0231efae47fb":[0,0,86,3],
+"structtu__type__mismatch__v1__data.html#a2fd837b2c7d647eca74642ca2526061c":[0,0,86,1],
+"structtu__type__mismatch__v1__data.html#a84866f09ddccc0bb66f613ea6b90b68e":[0,0,86,2],
+"structtu__type__mismatch__v1__data.html#aced05910a8d6db9761a1c95f7af4b312":[0,0,86,0],
+"structtu__unreachable__data.html":[0,0,87],
 "structtu__unreachable__data.html#a22939dd827fd08c3d9f55e8710ee05b6":[0,0,87,0],
 "structvattr__t.html":[0,0,88],
 "structvattr__t.html#a04eb879a4e56af3dfd1f27c18c67193b":[0,0,88,3],
@@ -73,7 +81,7 @@ var NAVTREEINDEX3 =
 "tmpfs_8h_source.html":[1,0,0,4,0,4],
 "tty_8h_source.html":[1,0,0,4,6],
 "types_8h_source.html":[1,0,0,4,7],
-"vec_8h_source.html":[1,0,0,3,0,3],
+"vec_8h_source.html":[1,0,0,3,0,4],
 "vfs_8h_source.html":[1,0,0,4,0,5],
 "vm__kernel_8h.html":[1,0,0,2,1,3],
 "vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3":[1,0,0,2,1,3,2],
