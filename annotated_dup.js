@@ -78,6 +78,7 @@ var annotated_dup =
     [ "timespec", "structtimespec.html", "structtimespec" ],
     [ "tmp_dirent", "structtmp__dirent.html", "structtmp__dirent" ],
     [ "tmpnode", "structtmpnode.html", "structtmpnode" ],
+    [ "tty_t", "structtty__t.html", "structtty__t" ],
     [ "tu_array_out_of_bounds_data", "structtu__array__out__of__bounds__data.html", "structtu__array__out__of__bounds__data" ],
     [ "tu_invalid_builtin_data", "structtu__invalid__builtin__data.html", "structtu__invalid__builtin__data" ],
     [ "tu_invalid_value_data", "structtu__invalid__value__data.html", "structtu__invalid__value__data" ],

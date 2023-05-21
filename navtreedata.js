@@ -52,9 +52,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8h_source.html",
-"structauxval__t.html",
-"structlimine__dtb__response.html#a4468c0e68fc704bf5875a52317025b04",
-"structtu__invalid__builtin__data.html#a254715ad10c76489fcc05aed753ffcb9"
+"structPACKED.html#afe912a1c6391e06b3d79364535302363",
+"structlimine__dtb__response.html",
+"structtty__t.html#a6115971214e891a8256c75bf69c3f96e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

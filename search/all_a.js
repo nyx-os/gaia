@@ -1,12 +1,12 @@
 var searchData=
 [
   ['liballoc_20hooks_60',['liballoc hooks',['../group__ALLOCHOOKS.html',1,'']]],
-  ['liballoc_5falloc_61',['liballoc_alloc',['../group__ALLOCHOOKS.html#ga32070b2a98fd86b1a6ee5efecb4edd5b',1,'liballoc.h']]],
-  ['liballoc_5ffree_62',['liballoc_free',['../group__ALLOCHOOKS.html#ga8d5be3c85e157d771a44c48509b43c42',1,'liballoc.h']]],
-  ['liballoc_5flock_63',['liballoc_lock',['../group__ALLOCHOOKS.html#ga496e9cc6908b9529769c4e9dd734581d',1,'liballoc.h']]],
+  ['liballoc_5falloc_61',['liballoc_alloc',['../group__ALLOCHOOKS.html#ga32070b2a98fd86b1a6ee5efecb4edd5b',1,'liballoc_alloc(size_t):&#160;kmem.c'],['../group__ALLOCHOOKS.html#ga32070b2a98fd86b1a6ee5efecb4edd5b',1,'liballoc_alloc(size_t n):&#160;kmem.c']]],
+  ['liballoc_5ffree_62',['liballoc_free',['../group__ALLOCHOOKS.html#ga8d5be3c85e157d771a44c48509b43c42',1,'liballoc_free(void *, size_t):&#160;kmem.c'],['../group__ALLOCHOOKS.html#ga8d5be3c85e157d771a44c48509b43c42',1,'liballoc_free(void *p, size_t n):&#160;kmem.c']]],
+  ['liballoc_5flock_63',['liballoc_lock',['../group__ALLOCHOOKS.html#ga496e9cc6908b9529769c4e9dd734581d',1,'liballoc_lock(void):&#160;kmem.c'],['../group__ALLOCHOOKS.html#ga496e9cc6908b9529769c4e9dd734581d',1,'liballoc_lock(void):&#160;kmem.c']]],
   ['liballoc_5fmajor_64',['liballoc_major',['../structliballoc__major.html',1,'']]],
   ['liballoc_5fminor_65',['liballoc_minor',['../structliballoc__minor.html',1,'']]],
-  ['liballoc_5funlock_66',['liballoc_unlock',['../group__ALLOCHOOKS.html#gac576c846d2953c3c1e5c93be4a965771',1,'liballoc.h']]],
+  ['liballoc_5funlock_66',['liballoc_unlock',['../group__ALLOCHOOKS.html#gac576c846d2953c3c1e5c93be4a965771',1,'liballoc_unlock(void):&#160;kmem.c'],['../group__ALLOCHOOKS.html#gac576c846d2953c3c1e5c93be4a965771',1,'liballoc_unlock(void):&#160;kmem.c']]],
   ['limine_5f5_5flevel_5fpaging_5frequest_67',['limine_5_level_paging_request',['../structlimine__5__level__paging__request.html',1,'']]],
   ['limine_5f5_5flevel_5fpaging_5fresponse_68',['limine_5_level_paging_response',['../structlimine__5__level__paging__response.html',1,'']]],
   ['limine_5fboot_5ftime_5frequest_69',['limine_boot_time_request',['../structlimine__boot__time__request.html',1,'']]],

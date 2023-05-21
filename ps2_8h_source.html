@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gaia: Member List</title>
+<title>Gaia: src/dev/ps2.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structthread.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('ps2_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,23 +83,36 @@ $(document).ready(function(){initNavTree('structthread.html',''); initResizable(
 
 <div class="header">
   <div class="headertitle">
-<div class="title">thread Member List</div>  </div>
+<div class="title">ps2.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="structthread.html">thread</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#a7b733d299f594c4182f0ac3e37fbf112">ctx</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#aa8c414213011ad1c3306a1d25a823a4a">name</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#a032bec8f552d4b8aae9a04c9595fe92f">parent</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#ae953fe7e3848f48927aa0b1e015bdaec">SLIST_ENTRY</a>(thread) task_link</td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#ae0b7c099519a48dd7e798e13abf0d15d">state</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#a487f8328548e3b246ab56243c7f42b14">TAILQ_ENTRY</a>(thread) sched_link</td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* SPDX-License-Identifier: BSD-2-Clause */</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef SRC_DEV_PS2_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define SRC_DEV_PS2_H_</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_MAX 0x57</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_CTRL 0x1d</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_CTRL_REL 0x9d</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_SHIFT_RIGHT 0x36</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_SHIFT_RIGHT_REL 0xb6</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_SHIFT_LEFT 0x2a</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_SHIFT_LEFT_REL 0xaa</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_ALT_LEFT 0x38</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_ALT_LEFT_REL 0xb8</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_CAPSLOCK 0x3a</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define PS2_SCANCODE_NUMLOCK 0x45</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define PS2_LED_CAPS_LOCK (1 &lt;&lt; 2)</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> ps2_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_79aff18505430beab4d731f694f82366.html">dev</a></li><li class="navelem"><b>ps2.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

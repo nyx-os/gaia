@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gaia: Member List</title>
+<title>Gaia: tty_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structthread.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structtty__t.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -82,24 +82,44 @@ $(document).ready(function(){initNavTree('structthread.html',''); initResizable(
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structtty__t-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">thread Member List</div>  </div>
+<div class="title">tty_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="structthread.html">thread</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#a7b733d299f594c4182f0ac3e37fbf112">ctx</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#aa8c414213011ad1c3306a1d25a823a4a">name</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#a032bec8f552d4b8aae9a04c9595fe92f">parent</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#ae953fe7e3848f48927aa0b1e015bdaec">SLIST_ENTRY</a>(thread) task_link</td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structthread.html#ae0b7c099519a48dd7e798e13abf0d15d">state</a></td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structthread.html#a487f8328548e3b246ab56243c7f42b14">TAILQ_ENTRY</a>(thread) sched_link</td><td class="entry"><a class="el" href="structthread.html">thread</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad0497002f1d6dd238d6295fd267d1d87"><td class="memItemLeft" align="right" valign="top"><a id="ad0497002f1d6dd238d6295fd267d1d87"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>buf</b> [4096]</td></tr>
+<tr class="separator:ad0497002f1d6dd238d6295fd267d1d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a012ee9465b6878e8d0e80e0ca6578fb3"><td class="memItemLeft" align="right" valign="top"><a id="a012ee9465b6878e8d0e80e0ca6578fb3"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>read_cursor</b></td></tr>
+<tr class="separator:a012ee9465b6878e8d0e80e0ca6578fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4584095297acc1c55b57a52c53bd7c"><td class="memItemLeft" align="right" valign="top"><a id="a2a4584095297acc1c55b57a52c53bd7c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write_cursor</b></td></tr>
+<tr class="separator:a2a4584095297acc1c55b57a52c53bd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75cd309fe12e7d0a3a708f1d0bed32c0"><td class="memItemLeft" align="right" valign="top"><a id="a75cd309fe12e7d0a3a708f1d0bed32c0"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>buf_length</b></td></tr>
+<tr class="separator:a75cd309fe12e7d0a3a708f1d0bed32c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd75e63bf7e03b26c2a737acf6d76da"><td class="memItemLeft" align="right" valign="top"><a id="a0bd75e63bf7e03b26c2a737acf6d76da"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>line_count</b></td></tr>
+<tr class="separator:a0bd75e63bf7e03b26c2a737acf6d76da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6115971214e891a8256c75bf69c3f96e"><td class="memItemLeft" align="right" valign="top"><a id="a6115971214e891a8256c75bf69c3f96e"></a>
+struct termios&#160;</td><td class="memItemRight" valign="bottom"><b>termios</b></td></tr>
+<tr class="separator:a6115971214e891a8256c75bf69c3f96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/posix/<a class="el" href="tty_8h_source.html">tty.h</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="structtty__t.html">tty_t</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
