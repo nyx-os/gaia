@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['phys_5falloc_315',['phys_alloc',['../phys_8h.html#a93b667acdce7dd260c82f83149cc1b56',1,'phys.c']]],
-  ['phys_5fallocz_316',['phys_allocz',['../phys_8h.html#a95e32841b25934781fc5286f6bf7a6ce',1,'phys.c']]],
-  ['phys_5ffree_317',['phys_free',['../phys_8h.html#a28acba9f0ba4928897971518c57a1fb2',1,'phys.c']]],
-  ['phys_5fhighest_5fpage_318',['phys_highest_page',['../phys_8h.html#ae7068ab98b02db2ff09241e020fb9c0f',1,'phys.c']]],
-  ['phys_5finit_319',['phys_init',['../phys_8h.html#a794cb2e93a89632a97d2402bb483b9ae',1,'phys.c']]],
-  ['phys_5fusable_5fpages_320',['phys_usable_pages',['../phys_8h.html#ad200b2fd3a89d94533716058a740823c',1,'phys.c']]],
-  ['phys_5fused_5fpages_321',['phys_used_pages',['../phys_8h.html#abbfd8f3d2de9306450b4c0e4c5f85c58',1,'phys.c']]]
+  ['kmem_5falloc_326',['kmem_alloc',['../kmem_8h.html#aeca6ce9bdcaf70d2cdff9f9dde1279c3',1,'kmem.c']]],
+  ['kmem_5fbootstrap_327',['kmem_bootstrap',['../kmem_8h.html#afff626e2aa38b01029a323cab22383a2',1,'kmem.c']]],
+  ['kmem_5fcache_5falloc_328',['kmem_cache_alloc',['../kmem_8h.html#ad70622aa1be0a21ea16a7347e2f38e2e',1,'kmem.c']]],
+  ['kmem_5fcache_5fdestroy_329',['kmem_cache_destroy',['../kmem_8h.html#a12c156e0fe032a7ce8d4c59d2bee9354',1,'kmem.c']]],
+  ['kmem_5fcache_5fdump_330',['kmem_cache_dump',['../kmem_8h.html#afc04423c9b4229de74db64d7f53de0ac',1,'kmem.c']]],
+  ['kmem_5fcache_5ffree_331',['kmem_cache_free',['../kmem_8h.html#ad144063ce7388a3c88c43a1f310b8886',1,'kmem.c']]],
+  ['kmem_5fcache_5finit_332',['kmem_cache_init',['../kmem_8h.html#aff9f6f4348075f3e22671d31d9bd311b',1,'kmem.c']]],
+  ['kmem_5ffree_333',['kmem_free',['../kmem_8h.html#a460a335f67ef6e62aa0c7fa954772520',1,'kmem.c']]],
+  ['kmem_5frealloc_334',['kmem_realloc',['../kmem_8h.html#a03488bcb08daf0e65044314c74c9fb8f',1,'kmem.c']]]
 ];

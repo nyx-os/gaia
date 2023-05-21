@@ -25,6 +25,8 @@ var annotated_dup =
     [ "kmem_bufctl", "structkmem__bufctl.html", "structkmem__bufctl" ],
     [ "kmem_cache", "structkmem__cache.html", "structkmem__cache" ],
     [ "kmem_slab", "structkmem__slab.html", "structkmem__slab" ],
+    [ "liballoc_major", "structliballoc__major.html", "structliballoc__major" ],
+    [ "liballoc_minor", "structliballoc__minor.html", "structliballoc__minor" ],
     [ "limine_5_level_paging_request", "structlimine__5__level__paging__request.html", "structlimine__5__level__paging__request" ],
     [ "limine_5_level_paging_response", "structlimine__5__level__paging__response.html", "structlimine__5__level__paging__response" ],
     [ "limine_boot_time_request", "structlimine__boot__time__request.html", "structlimine__boot__time__request" ],

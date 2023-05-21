@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tailq_5fentry_324',['TAILQ_ENTRY',['../structthread.html#a487f8328548e3b246ab56243c7f42b14',1,'thread::TAILQ_ENTRY()'],['../structkmem__slab.html#a356cf4ce038a59e5df38c486f0917e94',1,'kmem_slab::TAILQ_ENTRY()'],['../structvmem__segment.html#a88185c73b1b686cc7412514f7cdc4f85',1,'vmem_segment::TAILQ_ENTRY()']]],
-  ['tailq_5fhead_325',['TAILQ_HEAD',['../structkmem__cache.html#a508d300f61a690352c91623089b7f6ce',1,'kmem_cache']]]
+  ['malloc_341',['malloc',['../group__ALLOCHOOKS.html#ga5223b5fb1255b5179f53b0595fe9251c',1,'malloc(size_t req_size):&#160;liballoc.c'],['../group__ALLOCHOOKS.html#ga5223b5fb1255b5179f53b0595fe9251c',1,'malloc(size_t):&#160;liballoc.c']]]
 ];

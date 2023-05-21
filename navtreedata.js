@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Gaia", "index.html", [
+    [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -51,9 +52,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8h_source.html",
-"structcharon__framebuffer__t.html",
-"structlimine__file.html#aae75086a50847d53d1f0ee264b3dee6b",
-"structtu__type__descriptor.html#a5623809738c4a2076c346a16593b1d28"
+"structauxval__t.html",
+"structlimine__dtb__response.html#a4468c0e68fc704bf5875a52317025b04",
+"structtu__invalid__builtin__data.html#a254715ad10c76489fcc05aed753ffcb9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

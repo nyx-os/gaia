@@ -142,7 +142,7 @@ $(document).ready(function(){initNavTree('vmem_8h_source.html',''); initResizabl
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">size_t</span> <span class="keyword">import</span>; <span class="comment">/* Imported memory */</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">size_t</span> total; <span class="comment">/* Total memory in the area */</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">size_t</span> alloc; <span class="comment">/* Number of allocations */</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">size_t</span> free; <span class="comment">/* Number of frees */</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="group__ALLOCHOOKS.html#ga4835fe140973dbc5e1aafd9c33acf6d4">free</a>; <span class="comment">/* Number of frees */</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;} <a class="code" href="structvmem__stat__t.html">vmem_stat_t</a>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structvmem.html">   87</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structvmem.html">vmem</a> {</div>
@@ -197,6 +197,7 @@ $(document).ready(function(){initNavTree('vmem_8h_source.html',''); initResizabl
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="keywordtype">void</span> <a class="code" href="vmem_8h.html#a2089ef0a58de9d9e2f0a16e142cc7a7d">vmem_bootstrap</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agroup__ALLOCHOOKS_html_ga4835fe140973dbc5e1aafd9c33acf6d4"><div class="ttname"><a href="group__ALLOCHOOKS.html#ga4835fe140973dbc5e1aafd9c33acf6d4">free</a></div><div class="ttdeci">void PREFIX() free(void *ptr)</div><div class="ttdoc">The standard function.</div><div class="ttdef"><b>Definition:</b> liballoc.c:554</div></div>
 <div class="ttc" id="astructvmem__segment_html"><div class="ttname"><a href="structvmem__segment.html">vmem_segment</a></div><div class="ttdef"><b>Definition:</b> vmem.h:59</div></div>
 <div class="ttc" id="astructvmem__segment_html_a1d04b8fc308fce41d85fa7b21cdb5bfa"><div class="ttname"><a href="structvmem__segment.html#a1d04b8fc308fce41d85fa7b21cdb5bfa">vmem_segment::size</a></div><div class="ttdeci">uintptr_t size</div><div class="ttdef"><b>Definition:</b> vmem.h:65</div></div>
 <div class="ttc" id="astructvmem__segment_html_a1d0e9976d4b6adfbb8a3ae687900fb0c"><div class="ttname"><a href="structvmem__segment.html#a1d0e9976d4b6adfbb8a3ae687900fb0c">vmem_segment::imported</a></div><div class="ttdeci">bool imported</div><div class="ttdef"><b>Definition:</b> vmem.h:62</div></div>

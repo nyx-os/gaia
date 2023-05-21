@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['vm_5fkernel_5falloc_326',['vm_kernel_alloc',['../vm__kernel_8h.html#a2c80c466ba58ff3dd228cb542742d1c3',1,'vm_kernel.c']]],
-  ['vm_5fkernel_5ffree_327',['vm_kernel_free',['../vm__kernel_8h.html#a67eb8397e5bf35b55dda6f5b9394832f',1,'vm_kernel.c']]],
-  ['vm_5fkernel_5finit_328',['vm_kernel_init',['../vm__kernel_8h.html#a7c1df511272de44609057f3ea1b122c8',1,'vm_kernel.c']]],
-  ['vm_5fkernel_5fstat_329',['vm_kernel_stat',['../vm__kernel_8h.html#af41adddec5f338b3653db9af54fb9a17',1,'vm_kernel.c']]],
-  ['vmem_5fadd_330',['vmem_add',['../vmem_8h.html#a7575b03802e969b0ba0187ab3e9dd82b',1,'vmem.c']]],
-  ['vmem_5falloc_331',['vmem_alloc',['../vmem_8h.html#a299ab5997f3dc888f01c1b4ac8e5c0b1',1,'vmem.c']]],
-  ['vmem_5fbootstrap_332',['vmem_bootstrap',['../vmem_8h.html#a2089ef0a58de9d9e2f0a16e142cc7a7d',1,'vmem.c']]],
-  ['vmem_5fdestroy_333',['vmem_destroy',['../vmem_8h.html#a8d90b81e234b7fe26e044a09dcd48fb6',1,'vmem.c']]],
-  ['vmem_5fdump_334',['vmem_dump',['../vmem_8h.html#a0566c543192e7ed7f243e7cf82a8e4d8',1,'vmem.c']]],
-  ['vmem_5ffree_335',['vmem_free',['../vmem_8h.html#aca21d3f7cfb9deff355b53ea720c02d9',1,'vmem.c']]],
-  ['vmem_5finit_336',['vmem_init',['../vmem_8h.html#a466c9044cb01bdce8c189d04efb37742',1,'vmem.c']]]
+  ['phys_5falloc_342',['phys_alloc',['../phys_8h.html#a93b667acdce7dd260c82f83149cc1b56',1,'phys.c']]],
+  ['phys_5fallocz_343',['phys_allocz',['../phys_8h.html#a95e32841b25934781fc5286f6bf7a6ce',1,'phys.c']]],
+  ['phys_5ffree_344',['phys_free',['../phys_8h.html#a28acba9f0ba4928897971518c57a1fb2',1,'phys.c']]],
+  ['phys_5fhighest_5fpage_345',['phys_highest_page',['../phys_8h.html#ae7068ab98b02db2ff09241e020fb9c0f',1,'phys.c']]],
+  ['phys_5finit_346',['phys_init',['../phys_8h.html#a794cb2e93a89632a97d2402bb483b9ae',1,'phys.c']]],
+  ['phys_5fusable_5fpages_347',['phys_usable_pages',['../phys_8h.html#ad200b2fd3a89d94533716058a740823c',1,'phys.c']]],
+  ['phys_5fused_5fpages_348',['phys_used_pages',['../phys_8h.html#abbfd8f3d2de9306450b4c0e4c5f85c58',1,'phys.c']]]
 ];

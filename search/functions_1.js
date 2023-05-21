@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['list_5fentry_313',['LIST_ENTRY',['../structvmem__segment.html#a8336c5518d61cee9a9502b16dfb1883e',1,'vmem_segment']]],
-  ['list_5fhead_314',['LIST_HEAD',['../structvm__map.html#a014d3157235648041e190f5405429f26',1,'vm_map']]]
+  ['free_325',['free',['../group__ALLOCHOOKS.html#ga4835fe140973dbc5e1aafd9c33acf6d4',1,'free(void *ptr):&#160;liballoc.c'],['../group__ALLOCHOOKS.html#ga4835fe140973dbc5e1aafd9c33acf6d4',1,'free(void *):&#160;liballoc.c']]]
 ];
