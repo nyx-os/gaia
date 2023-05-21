@@ -70,7 +70,6 @@ var annotated_dup =
     [ "PACKED", "structPACKED.html", "structPACKED" ],
     [ "phys_region", "structphys__region.html", "structphys__region" ],
     [ "pmap", "structpmap.html", "structpmap" ],
-    [ "stat", "structstat.html", "structstat" ],
     [ "syscall_frame_t", "structsyscall__frame__t.html", "structsyscall__frame__t" ],
     [ "tar_header_t", "structtar__header__t.html", "structtar__header__t" ],
     [ "task", "structtask.html", "structtask" ],
