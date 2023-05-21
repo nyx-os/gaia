@@ -1,1 +1,1 @@
-kernel_srcs += files('acpi.c')
+kernel_srcs += files('acpi.c', 'ps2.c')

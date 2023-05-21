@@ -1,5 +1,6 @@
 #include "asm.h"
 #include "kern/sched.h"
+#include "kern/vm/vm_kernel.h"
 #include "machdep/cpu.h"
 #include <posix/posix.h>
 #include <elf.h>
@@ -133,7 +134,11 @@ int sys_execve(task_t *proc, const char *path, char const *argv[],
 
     uintptr_t required_size = (stack_top - (uintptr_t)stack_ptr);
 
-    size_t *stack = kmalloc(required_size);
+    // We don't mess up allocation metadata this way
+    size_t *stack = vm_kernel_alloc(
+            ALIGN_UP(required_size, PAGE_SIZE) / PAGE_SIZE, false);
+
+    log("%p %ld", (void *)stack, required_size);
 
     for (char **elem = (char **)envp; *elem; elem++) {
         stack = (void *)((uint8_t *)stack - (strlen(*elem) + 1));

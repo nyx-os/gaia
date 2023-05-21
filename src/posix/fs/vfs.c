@@ -116,9 +116,10 @@ int vfs_write(vnode_t *vn, void *buf, size_t nbyte, size_t off)
     return VOP_WRITE(vn, buf, nbyte, off);
 }
 
-int vfs_getdents(vnode_t *vn, void *buf, size_t max_size, size_t *bytes_read)
+int vfs_getdents(vnode_t *vn, void *buf, size_t max_size, size_t *bytes_read,
+                 off_t offset)
 {
-    return VOP_READDIR(vn, buf, max_size, bytes_read);
+    return VOP_READDIR(vn, buf, max_size, bytes_read, offset);
 }
 
 int vfs_mkdir(vnode_t *vn, vnode_t **out, const char *name, vattr_t *vattr)

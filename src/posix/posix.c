@@ -1,3 +1,6 @@
+#include "posix/fnctl.h"
+#include "posix/fs/vfs.h"
+#include <posix/dirent.h>
 #include <posix/fs/tar.h>
 #include <posix/fs/tmpfs.h>
 #include <kern/charon.h>

@@ -135,7 +135,7 @@ void pmap_init(void)
 
 pmap_t pmap_create(bool user)
 {
-    pmap_t ret;
+    pmap_t ret = { 0 };
 
     ret.pml4 = phys_allocz();
 

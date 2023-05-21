@@ -12,7 +12,7 @@ int vec_expand_(char **data, int *length, int *capacity, int memsz)
     if (*length + 1 > *capacity) {
         void *ptr;
         int n = (*capacity == 0) ? 1 : *capacity << 1;
-        ptr = krealloc(*data, *length * memsz, n * memsz);
+        ptr = krealloc(*data, *capacity * memsz, n * memsz);
         if (ptr == NULL)
             return -1;
         *data = ptr;
@@ -25,7 +25,7 @@ int vec_reserve_(char **data, int *length, int *capacity, int memsz, int n)
 {
     (void)length;
     if (n > *capacity) {
-        void *ptr = krealloc(*data, *length * memsz, n * memsz);
+        void *ptr = krealloc(*data, *capacity * memsz, n * memsz);
         if (ptr == NULL)
             return -1;
         *data = ptr;
@@ -54,7 +54,7 @@ int vec_compact_(char **data, int *length, int *capacity, int memsz)
     } else {
         void *ptr;
         int n = *length;
-        ptr = krealloc(*data, *length * memsz, n * memsz);
+        ptr = krealloc(*data, n * memsz, n * memsz);
         if (ptr == NULL)
             return -1;
         *capacity = n;

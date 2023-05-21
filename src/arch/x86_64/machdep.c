@@ -2,6 +2,7 @@
 #include <machdep/machdep.h>
 #include <x86_64/asm.h>
 #include <x86_64/apic.h>
+#include <dev/ps2.h>
 
 void machine_dbg_putc(int c, void *ctx)
 {
@@ -25,4 +26,5 @@ void machine_init_devices(void)
     gdt_init_tss();
     apic_init();
     simd_init();
+    ps2_init();
 }

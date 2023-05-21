@@ -5,5 +5,6 @@
 
 void term_init(charon_t charon);
 void term_write(const char *string);
+void term_putchar(char c);
 
 #endif

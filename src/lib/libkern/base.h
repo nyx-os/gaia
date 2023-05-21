@@ -6,19 +6,19 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <libkern/string.h>
-#include <kern/vm/kmem.h>
+#include <kern/vm/liballoc.h>
 #include <libkern/nanoprintf.h>
 #include <libkern/debug.h>
 #include <machdep/machdep.h>
 #include <machdep/vm.h>
 #include <machdep/cpu.h>
 
-#define krealloc kmem_realloc
-#define kmalloc kmem_alloc
-#define kfree kmem_free
+#define krealloc(p, _, n) liballoc_krealloc(p, n)
+#define kmalloc liballoc_kmalloc
+#define kfree(p, n) liballoc_kfree(p)
 #define kprintf(...) npf_pprintf(machine_dbg_putc, NULL, __VA_ARGS__)
 
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0]))
 #define ALIGN_UP(x, align) (((x) + (align)-1) & ~((align)-1))
 #define ALIGN_DOWN(x, align) ((x) & ~((align)-1))
 #define DIV_CEIL(x, align) (((x) + (align)-1) / (align))

@@ -122,8 +122,11 @@ static int tmpfs_lookup(vnode_t *vn, vnode_t **out, const char *name)
 
     if (ent->node->vnode->type == VLNK) {
         if (ent->node->data.link.to == NULL) {
-            vnode_t *link_to;
-            tmpfs_lookup(vn, &link_to, ent->node->data.link.to_name);
+            vnode_t *link_to = NULL;
+
+            int r = vfs_find_and(vn, &link_to, ent->node->data.link.to_name,
+                                 NULL, VFS_FIND_OR_ERROR, NULL);
+            assert(r >= 0);
 
             ent->node->data.link.to = link_to->data;
         }
@@ -190,6 +193,7 @@ static int tmpfs_write(vnode_t *vn, void *buf, size_t nbyte, off_t off)
 
     bool resize = false;
     size_t origsize = tn->attr.size;
+    (void)origsize;
 
     if (tn->attr.type == VLNK) {
         tn = tn->data.link.to;
@@ -263,6 +267,9 @@ static int tmpfs_getattr(vnode_t *vn, vattr_t *attr)
 {
     tmp_node_t *tn = (tmp_node_t *)vn->data;
 
+    if (tn->attr.type == VLNK)
+        tn = tn->data.link.to;
+
     if (!attr)
         return -EINVAL;
 
@@ -271,8 +278,9 @@ static int tmpfs_getattr(vnode_t *vn, vattr_t *attr)
 }
 
 static int tmpfs_readdir(vnode_t *vn, void *buf, size_t max_size,
-                         size_t *bytes_read)
+                         size_t *bytes_read, off_t offset)
 {
+    (void)offset;
     tmp_node_t *tn = (tmp_node_t *)vn->data;
 
     if (tn->attr.type != VDIR) {

@@ -34,7 +34,7 @@ enum thread_state {
 typedef struct thread {
     cpu_context_t ctx; /**< CPU context */
     enum thread_state state; /**< Current state of the thread */
-    const char *name; /**< Name of the thread */
+    char *name; /**< Name of the thread */
 
     struct task *parent; /**< Back pointer to parent process */
 

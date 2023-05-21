@@ -29,6 +29,7 @@ enum syscalls {
     SYS_GETPPID,
     SYS_FORK,
     SYS_EXEC,
+    SYS_READDIR,
 };
 
 void syscall_handler(syscall_frame_t frame);

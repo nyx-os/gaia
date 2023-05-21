@@ -13,8 +13,6 @@ static uintptr_t syscall_debug(syscall_frame_t frame)
 {
     debug("%s", (char *)frame.param1);
 
-    //term_write((char *)frame.param1);
-    //term_write("\n");
     return 0;
 }
 
@@ -83,6 +81,15 @@ static uintptr_t syscall_stat(syscall_frame_t frame)
                     frame.param3, (void *)frame.param4);
 }
 
+static uintptr_t syscall_readdir(syscall_frame_t frame)
+{
+    trace("readdir(%ld, %p, %ld, %p)", frame.param1, (void *)frame.param2,
+          frame.param3, (void *)frame.param4);
+
+    return sys_readdir(sched_curr()->parent, frame.param1, (void *)frame.param2,
+                       frame.param3, (size_t *)frame.param4);
+}
+
 static uintptr_t syscall_tcb_set(syscall_frame_t frame)
 {
     trace("tcb_set()");
@@ -142,14 +149,13 @@ static uintptr_t syscall_exec(syscall_frame_t frame)
     thread_t *thread;
     task_t *prev = sched_curr()->parent;
 
+    sched_curr()->state = STOPPED;
+
     // Remove all threads from the calling process
     SLIST_FOREACH(thread, &sched_curr()->parent->threads, task_link)
     {
         SLIST_REMOVE(&sched_curr()->parent->threads, thread, thread, task_link);
-        kfree(thread, sizeof(*thread));
     }
-
-    sched_curr()->state = STOPPED;
 
     task_t *new_process = sched_new_task(sched_curr()->parent->pid,
                                          sched_curr()->parent->ppid, true);
@@ -160,9 +166,6 @@ static uintptr_t syscall_exec(syscall_frame_t frame)
     memcpy(new_process->files, prev->files, sizeof(prev->files));
     new_process->current_fd = prev->current_fd;
 
-    kfree(prev, sizeof(*prev));
-
-    // sched_no_restore();
     sched_tick(frame.frame);
 
     return frame.frame->rax;
@@ -218,20 +221,17 @@ static uintptr_t syscall_mmap(syscall_frame_t frame)
 }
 
 static sys_handler *handlers[] = {
-    [SYS_DEBUG] = syscall_debug,   [SYS_OPEN] = syscall_open,
-    [SYS_CLOSE] = syscall_close,   [SYS_READ] = syscall_read,
-    [SYS_WRITE] = syscall_write,   [SYS_SEEK] = syscall_seek,
-    [SYS_MMAP] = syscall_mmap,     [SYS_EXIT] = syscall_exit,
-    [SYS_STAT] = syscall_stat,     [SYS_TCB_SET] = syscall_tcb_set,
-    [SYS_GETPID] = syscall_getpid, [SYS_GETPPID] = syscall_getppid,
-    [SYS_FORK] = syscall_fork,     [SYS_EXEC] = syscall_exec,
+    [SYS_DEBUG] = syscall_debug,     [SYS_OPEN] = syscall_open,
+    [SYS_CLOSE] = syscall_close,     [SYS_READ] = syscall_read,
+    [SYS_WRITE] = syscall_write,     [SYS_SEEK] = syscall_seek,
+    [SYS_MMAP] = syscall_mmap,       [SYS_EXIT] = syscall_exit,
+    [SYS_STAT] = syscall_stat,       [SYS_TCB_SET] = syscall_tcb_set,
+    [SYS_GETPID] = syscall_getpid,   [SYS_GETPPID] = syscall_getppid,
+    [SYS_FORK] = syscall_fork,       [SYS_EXEC] = syscall_exec,
+    [SYS_READDIR] = syscall_readdir,
 };
 
 void syscall_handler(syscall_frame_t frame)
 {
-    trace("sys_entry()");
-
     *frame.ret = handlers[frame.num](frame);
-
-    trace("sys_exit()");
 }

@@ -1,0 +1,21 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
+#ifndef SRC_DEV_PS2_H_
+#define SRC_DEV_PS2_H_
+
+#define PS2_SCANCODE_MAX 0x57
+#define PS2_SCANCODE_CTRL 0x1d
+#define PS2_SCANCODE_CTRL_REL 0x9d
+#define PS2_SCANCODE_SHIFT_RIGHT 0x36
+#define PS2_SCANCODE_SHIFT_RIGHT_REL 0xb6
+#define PS2_SCANCODE_SHIFT_LEFT 0x2a
+#define PS2_SCANCODE_SHIFT_LEFT_REL 0xaa
+#define PS2_SCANCODE_ALT_LEFT 0x38
+#define PS2_SCANCODE_ALT_LEFT_REL 0xb8
+#define PS2_SCANCODE_CAPSLOCK 0x3a
+#define PS2_SCANCODE_NUMLOCK 0x45
+
+#define PS2_LED_CAPS_LOCK (1 << 2)
+
+void ps2_init(void);
+
+#endif

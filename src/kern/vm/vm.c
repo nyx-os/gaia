@@ -16,8 +16,6 @@ void vm_init(charon_t charon)
     vmem_bootstrap();
 
     vm_kernel_init();
-
-    kmem_bootstrap();
 }
 
 int vm_map(vm_map_t *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot,
@@ -28,7 +26,6 @@ int vm_map(vm_map_t *map, vaddr_t *vaddrp, size_t size, vm_prot_t prot,
 
     if (vaddrp) {
         vaddr = *vaddrp;
-        log("Fixed mapping at %lx of size %lx", vaddr, size);
     } else {
         vaddr = (vaddr_t)vmem_alloc(&map->vmem, size, VM_INSTANTFIT);
     }

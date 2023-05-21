@@ -1,9 +1,11 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #include "kmem.h"
+#include "kern/sync.h"
 #include <machdep/machdep.h>
 #include <libkern/base.h>
 #include <kern/vm/vm_kernel.h>
 
+#if 0
 #define kmem_printf log
 
 #define KERNEL
@@ -157,6 +159,7 @@ static kmem_slab_t *kmem_large_slab_create(kmem_cache_t *cache)
     TAILQ_INSERT_HEAD(&cache->slabs, new_slab, slablist);
     new_slab->nfree = cap;
     new_slab->cache = cache;
+
     new_slab->data = vm_kernel_alloc((int)size / PAGE_SIZE, false);
 
     for (i = 0; i < cap; i++) {
@@ -397,7 +400,14 @@ void *kmem_alloc(size_t size)
         return vm_kernel_alloc(ALIGN_UP(size, PAGE_SIZE) / PAGE_SIZE, false);
     }
 
-    return kmem_cache_alloc(caches[index], 0);
+    void *ret = kmem_cache_alloc(caches[index], 0);
+
+    if ((uintptr_t)ret >= 0xffff810000035000 &&
+        (uintptr_t)ret <= 0xffff810000035000 + 0x1000) {
+        log("Allocated %p", ret);
+    }
+
+    return ret;
 }
 
 void kmem_free(void *ptr, size_t size)
@@ -422,9 +432,53 @@ void *kmem_realloc(void *ptr, size_t origsize, size_t newsize)
         assert(origsize > 0);
         assert(newsize > origsize);
 
+        log("kmem_realloc");
         memcpy(newptr, ptr, origsize);
         kmem_free(ptr, origsize);
     }
 
     return newptr;
+}
+#endif
+
+int liballoc_lock(void)
+{
+    return 0;
+}
+
+/** This function unlocks what was previously locked by the liballoc_lock
+ * function.  If it disabled interrupts, it enables interrupts. If it
+ * had acquiried a spinlock, it releases the spinlock. etc.
+ *
+ * \return 0 if the lock was successfully released.
+ */
+int liballoc_unlock(void)
+{
+    return 0;
+}
+
+/** This is the hook into the local system which allocates pages. It
+ * accepts an integer parameter which is the number of pages
+ * required.  The page size was set up in the liballoc_init function.
+ *
+ * \return NULL if the pages were not allocated.
+ * \return A pointer to the allocated memory.
+ */
+void *liballoc_alloc(size_t n)
+{
+    return vm_kernel_alloc(n, false);
+}
+
+/** This frees previously allocated memory. The void* parameter passed
+ * to the function is the exact same value returned from a previous
+ * liballoc_alloc call.
+ *
+ * The integer value is the number of pages to free.
+ *
+ * \return 0 if the memory was successfully freed.
+ */
+int liballoc_free(void *p, size_t n)
+{
+    vm_kernel_free(p, n);
+    return 0;
 }

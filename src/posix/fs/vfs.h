@@ -43,7 +43,7 @@ typedef struct {
                  dev_t dev);
 
     int (*readdir)(struct vnode *vn, void *buf, size_t max_size,
-                   size_t *bytes_read);
+                   size_t *bytes_read, off_t offset);
     int (*close)(struct vnode *vn);
 
     int (*symlink)(struct vnode *vn, struct vnode **out, const char *path,
@@ -66,16 +66,16 @@ typedef struct vnode {
 #define VOP_READ(vn, buf, nbytes, off) vn->ops.read(vn, buf, nbytes, off)
 #define VOP_WRITE(vn, buf, nbytes, off) vn->ops.write(vn, buf, nbytes, off)
 #define VOP_MKDIR(vn, out, name, vattr) vn->ops.mkdir(vn, out, name, vattr)
-#define VOP_READDIR(vn, buf, max_size, bytes_read) \
-    vn->ops.readdir(vn, buf, max_size, bytes_read)
+#define VOP_READDIR(vn, buf, max_size, bytes_read, offset) \
+    vn->ops.readdir(vn, buf, max_size, bytes_read, offset)
 #define VOP_CLOSE(vn) vn->ops.close(vn)
 
-vnode_t *vfs_open(vnode_t *parent, char *path, int flags);
 int vfs_read(vnode_t *vn, void *buf, size_t nbyte, size_t off);
 int vfs_write(vnode_t *vn, void *buf, size_t nbyte, size_t off);
 int vfs_find_and(vnode_t *cwd, vnode_t **out, const char *path,
                  const char *link, int flags, vattr_t *attr);
-int vfs_getdents(vnode_t *vn, void *buf, size_t max_size, size_t *bytes_read);
+int vfs_getdents(vnode_t *vn, void *buf, size_t max_size, size_t *bytes_read,
+                 off_t offset);
 
 int vfs_mkdir(vnode_t *vn, vnode_t **out, const char *name, vattr_t *vattr);
 int vfs_create(vnode_t *vn, vnode_t **out, const char *name, vattr_t *vattr);

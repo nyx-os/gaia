@@ -1,4 +1,5 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+#include "posix/stat.h"
 #include <posix/errno.h>
 #include <posix/posix.h>
 #include <posix/fnctl.h>
@@ -45,6 +46,10 @@ int sys_read(task_t *proc, int fd, void *buf, size_t bytes)
 {
     fd_t *file = NULL;
     int r;
+
+    if (fd < 0 || fd > 64) {
+        return -EBADF;
+    }
 
     file = proc->files[fd];
 
@@ -181,6 +186,13 @@ int sys_stat(task_t *proc, int fd, const char *path, int flags,
     case VDIR:
         out->st_mode |= S_IFDIR;
         break;
+    case VLNK:
+        out->st_mode |= S_IFLNK;
+        break;
+    case VCHR:
+        out->st_mode |= S_IFCHR;
+        break;
+
     default:
         panic("Unknown attr");
         break;
@@ -213,7 +225,14 @@ int sys_readdir(task_t *proc, int fd, void *buf, size_t max_size,
     if (attr.type != VDIR)
         return -ENOTDIR;
 
-    r = VOP_READDIR(file->vnode, buf, max_size, bytes_read);
+    r = VOP_READDIR(file->vnode, buf, max_size, bytes_read, file->position);
 
-    return r;
+    if (r < 0) {
+        log("readdir failed");
+        return -1;
+    }
+
+    file->position = r;
+
+    return 0;
 }

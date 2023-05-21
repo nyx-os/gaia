@@ -41,7 +41,10 @@ thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
     new_thread->ctx = ctx;
     new_thread->state = RUNNING;
     new_thread->parent = parent;
-    new_thread->name = name;
+    new_thread->name = kmalloc(strlen(name) + 1);
+
+    memcpy(new_thread->name, name, strlen(name));
+    new_thread->name[strlen(name)] = 0;
 
     SLIST_INSERT_HEAD(&parent->threads, new_thread, task_link);
 

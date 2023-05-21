@@ -926,7 +926,6 @@ flanterm_fb_init(void *(*_malloc)(size_t), uint32_t *framebuffer, size_t width,
     }
 
     if (default_bg != NULL) {
-        log("%lx", (uintptr_t)&ctx->default_bg);
         ctx->default_bg = *default_bg;
     } else {
         ctx->default_bg = 0x00000000; // background (black)
