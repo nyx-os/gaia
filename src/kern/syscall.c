@@ -11,6 +11,7 @@ typedef uintptr_t sys_handler(syscall_frame_t frame);
 
 static uintptr_t syscall_debug(syscall_frame_t frame)
 {
+    (void)frame;
     debug("%s", (char *)frame.param1);
 
     return 0;

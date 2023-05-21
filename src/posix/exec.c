@@ -138,8 +138,6 @@ int sys_execve(task_t *proc, const char *path, char const *argv[],
     size_t *stack = vm_kernel_alloc(
             ALIGN_UP(required_size, PAGE_SIZE) / PAGE_SIZE, false);
 
-    log("%p %ld", (void *)stack, required_size);
-
     for (char **elem = (char **)envp; *elem; elem++) {
         stack = (void *)((uint8_t *)stack - (strlen(*elem) + 1));
         strncpy((char *)stack, *elem, strlen(*elem));

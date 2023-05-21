@@ -289,36 +289,46 @@ static int tmpfs_readdir(vnode_t *vn, void *buf, size_t max_size,
 
     struct dirent *dent = buf;
     size_t bytes_written = 0;
+    off_t i;
 
-    tmp_dirent_t *tdent;
+    tmp_dirent_t *tdent = LIST_FIRST(&tn->data.dir.entries);
 
-    LIST_FOREACH(tdent, &tn->data.dir.entries, link)
-    {
-        if (bytes_written + sizeof(struct dirent) > max_size) {
+    for (i = 0;; i++) {
+        if (!tdent) {
             break;
         }
+        if (i >= offset) {
+            // If we're writing out of bounds, abort
+            if ((uint8_t *)dent + sizeof(struct dirent) >
+                (uint8_t *)buf + max_size) {
+                i--;
+                break;
+            }
 
-        if (tdent->node->attr.type == VDIR)
-            dent->d_type = DT_DIR;
-        else if (tdent->node->attr.type == VREG)
-            dent->d_type = DT_REG;
-        else
-            dent->d_type = DT_UNKNOWN;
-        dent->d_ino = (uintptr_t)tdent->node;
-        dent->d_off++;
-        dent->d_reclen = sizeof(struct dirent);
+            if (tdent->node->attr.type == VDIR)
+                dent->d_type = DT_DIR;
+            else if (tdent->node->attr.type == VREG)
+                dent->d_type = DT_REG;
+            else
+                dent->d_type = DT_UNKNOWN;
+            dent->d_ino = (uintptr_t)tdent->node;
+            dent->d_off = i++;
+            dent->d_reclen = sizeof(struct dirent);
 
-        strncpy(dent->d_name, tdent->name, strlen(tdent->name));
+            strncpy(dent->d_name, tdent->name, strlen(tdent->name));
 
-        dent = (struct dirent *)((uint8_t *)dent + sizeof(struct dirent));
+            dent = (void *)((uint8_t *)dent + sizeof(struct dirent));
 
-        bytes_written += sizeof(struct dirent);
+            bytes_written += sizeof(struct dirent);
+        }
+
+        tdent = LIST_NEXT(tdent, link);
     }
 
     if (bytes_read)
         *bytes_read = bytes_written;
 
-    return 0;
+    return i;
 }
 
 static int tmpfs_mknod(vnode_t *dvn, vnode_t **out, const char *pathname,

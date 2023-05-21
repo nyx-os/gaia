@@ -176,7 +176,8 @@ int sys_stat(task_t *proc, int fd, const char *path, int flags,
     if (r < 0)
         return r;
 
-    memset(out, 0, sizeof(struct stat));
+    *out = (struct stat){ 0 };
+
     out->st_mode = attr.mode;
 
     switch (attr.type) {
@@ -194,7 +195,7 @@ int sys_stat(task_t *proc, int fd, const char *path, int flags,
         break;
 
     default:
-        panic("Unknown attr");
+        panic("Unknown attr: %d", attr.type);
         break;
     }
 

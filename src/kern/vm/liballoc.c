@@ -477,7 +477,6 @@ void *PREFIX(malloc)(size_t req_size)
                                           sizeof(struct liballoc_minor) +
                                           min->size);
 
-                    log("%p", (void *)&min->next);
                     new_min->magic = LIBALLOC_MAGIC;
                     new_min->next = min->next;
                     new_min->prev = min;
