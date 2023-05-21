@@ -1,4 +1,4 @@
-project('gaia', ['c', 'nasm'], default_options: ['c_std=c99', 'werror=true', 'buildtype=debug', 'warning_level=3'])
+project('gaia', ['c', 'nasm'], default_options: ['c_std=c11', 'werror=true', 'buildtype=debug', 'warning_level=3'])
 
 kernel_srcs = []
 kernel_inc_dirs = []

@@ -3,6 +3,7 @@
 #include <libkern/base.h>
 #include <machdep/intr.h>
 #include <x86_64/asm.h>
+#include <posix/tty.h>
 
 #include <kern/sched.h>
 
@@ -26,6 +27,7 @@ typedef struct PACKED {
 
 extern uintptr_t __interrupt_vector[];
 static idt_descriptor_t idt[256] = { 0 };
+static intr_handler_t handlers[256] = { NULL };
 
 static idt_descriptor_t idt_make_entry(uint64_t offset, uint8_t type,
                                        uint8_t ring)
@@ -68,7 +70,7 @@ void idt_init(void)
     install_isrs();
     idt_reload();
 
-    intr_register(0x20, (intr_handler_t)(timer_interrupt));
+    idt[0x20] = idt_make_entry((uintptr_t)timer_interrupt, INTGATE, 0);
 
     outb(PIC1_DATA, 0xff);
     outb(PIC2_DATA, 0xff);
@@ -76,7 +78,7 @@ void idt_init(void)
 
 void intr_register(int vec, intr_handler_t handler)
 {
-    idt[vec] = idt_make_entry((uintptr_t)handler, INTGATE, 0);
+    handlers[vec] = handler;
 }
 
 void lapic_eoi(void);
@@ -117,6 +119,10 @@ uint64_t interrupts_handler(uint64_t rsp)
         if (vm_fault(&sched_curr()->parent->map, read_cr2()) < 0) {
             do_exception(frame);
         }
+    }
+
+    if (handlers[frame->intno]) {
+        handlers[frame->intno](frame);
     }
 
     if (frame->intno == 0x80) {

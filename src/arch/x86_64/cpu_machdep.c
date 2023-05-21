@@ -37,7 +37,8 @@ cpu_context_t cpu_new_context(vaddr_t ip, vaddr_t rsp, bool user)
 
     memset(&ret, 0, sizeof(ret));
 
-    ret.fpu_context = (void *)P2V(phys_allocz());
+    ret.fpu_context = (void *)P2V(phys_alloc());
+
     simd_init_context(ret.fpu_context);
     ret.regs.rsp = rsp;
     ret.regs.rip = ip;

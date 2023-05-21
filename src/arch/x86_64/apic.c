@@ -4,6 +4,7 @@
 #include <x86_64/apic.h>
 #include <x86_64/madt.h>
 #include <x86_64/asm.h>
+#include <sys/queue.h>
 
 void hpet_init(void);
 void hpet_sleep(int ms);
