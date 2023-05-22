@@ -77,24 +77,26 @@ static char tty_pop(tty_t *tty)
     return c;
 }
 
+#define TFLAG_ISSET(field, flag) (tty->termios.field & flag)
+
 void tty_input(char c)
 {
     tty_t *tty = ttys[0];
 
-    bool is_canon = tty->termios.c_lflag & ICANON;
+    bool is_canon = TFLAG_ISSET(c_lflag, ICANON);
 
     // Convert NL to CR
-    if (c == '\n' && tty->termios.c_iflag & INLCR) {
+    if (c == '\n' && TFLAG_ISSET(c_iflag, INLCR)) {
         c = '\r';
-    }
-    // Convert CR to NL
-    else if (c == '\r' && tty->termios.c_iflag & ICRNL) {
-        c = '\n';
-    }
-
-    // Ignore CR
-    else if (c == '\r' && tty->termios.c_iflag & IGNCR) {
-        return;
+    } else if (c == '\r') {
+        // Ignore 'CR
+        if (TFLAG_ISSET(c_iflag, IGNCR)) {
+            return;
+        }
+        // Convert CR to NL
+        else if (TFLAG_ISSET(c_iflag, ICRNL)) {
+            c = '\n';
+        }
     }
 
     if (is_canon) {
