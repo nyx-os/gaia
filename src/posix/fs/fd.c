@@ -5,6 +5,17 @@
 #include <posix/fnctl.h>
 #include <kern/term/term.h>
 
+static int alloc_fd(task_t *proc)
+{
+    for (size_t i = 0; i < ARRAY_LENGTH(proc->files); i++) {
+        if (!proc->files[i]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 int sys_open(task_t *proc, const char *path, int mode)
 {
     fd_t *new_file = kmalloc(sizeof(fd_t));
@@ -33,7 +44,11 @@ int sys_open(task_t *proc, const char *path, int mode)
 
     new_file->vnode = vn;
     new_file->position = 0;
-    new_file->fd = proc->current_fd++;
+    new_file->fd = alloc_fd(proc);
+
+    if (new_file->fd == -1) {
+        panic("Too many files open");
+    }
 
     proc->files[new_file->fd] = new_file;
 
@@ -134,6 +149,8 @@ int sys_close(task_t *proc, int fd)
     if (!file) {
         return -EBADF;
     }
+
+    proc->files[fd] = NULL;
 
     kfree(file, sizeof(fd_t));
 
