@@ -10,7 +10,6 @@ typedef struct {
     uintptr_t param3;
     uintptr_t param4;
     uintptr_t param5;
-    uintptr_t *ret;
     intr_frame_t *frame;
 } syscall_frame_t;
 
@@ -30,8 +29,10 @@ enum syscalls {
     SYS_FORK,
     SYS_EXEC,
     SYS_READDIR,
+    SYS_WAITPID,
+    SYS_IOCTL,
 };
 
-void syscall_handler(syscall_frame_t frame);
+uintptr_t syscall_handler(syscall_frame_t frame);
 
 #endif

@@ -60,6 +60,7 @@ typedef struct {
     charon_framebuffer_t framebuffer; /**< The framebuffer */
     charon_mmap_t memory_map; /**< The memory map */
     charon_modules_t modules; /**< Bootloader modules */
+    uint64_t boot_time; /**< Unix time since boot */
 } charon_t;
 
 #endif

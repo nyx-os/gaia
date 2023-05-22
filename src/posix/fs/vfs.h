@@ -26,6 +26,7 @@ typedef struct {
     mode_t mode;
     uid_t uid;
     gid_t gid;
+    time_t time;
 } vattr_t;
 
 typedef struct {
@@ -45,6 +46,8 @@ typedef struct {
     int (*readdir)(struct vnode *vn, void *buf, size_t max_size,
                    size_t *bytes_read, off_t offset);
     int (*close)(struct vnode *vn);
+
+    int (*ioctl)(struct vnode *vn, int req, void *buf);
 
     int (*symlink)(struct vnode *vn, struct vnode **out, const char *path,
                    const char *link, vattr_t *attr);
@@ -69,6 +72,8 @@ typedef struct vnode {
 #define VOP_READDIR(vn, buf, max_size, bytes_read, offset) \
     vn->ops.readdir(vn, buf, max_size, bytes_read, offset)
 #define VOP_CLOSE(vn) vn->ops.close(vn)
+
+#define VOP_IOCTL(vn, req, buf) vn->ops.ioctl(vn, req, buf)
 
 int vfs_read(vnode_t *vn, void *buf, size_t nbyte, size_t off);
 int vfs_write(vnode_t *vn, void *buf, size_t nbyte, size_t off);

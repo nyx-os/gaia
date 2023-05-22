@@ -4,6 +4,7 @@
 #include <kern/vm/vm.h>
 #include <asm.h>
 #include <posix/fs/cdev.h>
+#include <sys/ioctl.h>
 #include <kern/term/term.h>
 #include <posix/tty.h>
 
@@ -103,12 +104,10 @@ void tty_input(char c)
                 term_write("\b \b");
             return;
         }
-    } else {
-        panic("TODO: noncanonical mode in terminal is not implemented");
     }
 
     if (tty->termios.c_lflag & ECHO ||
-        ((c == '\n' && tty->termios.c_lflag & ECHONL) && is_canon)) {
+        ((c == '\n' && tty->termios.c_lflag & ECHONL))) {
         term_putchar(c);
     }
 
@@ -125,8 +124,17 @@ static int tty_read(dev_t dev, void *buf, size_t nbyte, size_t off)
     tty_t *tty = ttys[0];
     char *cbuf = (char *)buf;
     size_t i;
-    while (!tty->line_count) {
-        cpu_enable_interrupts();
+
+    if (tty->line_count == 0 && tty->termios.c_lflag & ICANON) {
+        while (!tty->line_count) {
+            cpu_enable_interrupts();
+        }
+    }
+
+    if (tty->buf_length == 0) {
+        while (!tty->buf_length) {
+            cpu_enable_interrupts();
+        }
     }
 
     if (nbyte > tty->buf_length) {
@@ -134,6 +142,10 @@ static int tty_read(dev_t dev, void *buf, size_t nbyte, size_t off)
     }
 
     for (i = 0; i < nbyte; i++) {
+        if (tty->buf_length == 0) {
+            break;
+        }
+
         char c = tty_pop(tty);
         cbuf[i] = c;
 
@@ -159,6 +171,30 @@ static int tty_write(dev_t dev, void *buf, size_t nbyte, size_t off)
     return nbyte;
 }
 
+static int tty_ioctl(dev_t dev, int req, void *out)
+{
+    DISCARD(dev);
+
+    tty_t *tty = ttys[0];
+
+    switch (req) {
+    case TCGETS:
+        *(struct termios *)out = tty->termios;
+        break;
+    case TCSETS:
+    case TCSETSF:
+    case TCSETSW:
+        tty->termios = *(struct termios *)out;
+        break;
+    case TIOCGWINSZ: {
+        *(struct winsize *)out = term_getsize();
+        break;
+    }
+    }
+
+    return 0;
+}
+
 void tty_init(void)
 {
     vnode_t *vn = NULL;
@@ -167,6 +203,7 @@ void tty_init(void)
         .is_atty = true,
         .read = tty_read,
         .write = tty_write,
+        .ioctl = tty_ioctl,
     };
 
     tty_t *tty = kmalloc(sizeof(tty_t));

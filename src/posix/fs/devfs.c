@@ -39,3 +39,8 @@ int devfs_write(struct vnode *vn, void *buf, size_t nbyte, off_t off)
     return cdevs[MAJOR(vn->devnode->dev)].write(vn->devnode->dev, buf, nbyte,
                                                 off);
 }
+
+int devfs_ioctl(struct vnode *vn, int req, void *out)
+{
+    return cdevs[MAJOR(vn->devnode->dev)].ioctl(vn->devnode->dev, req, out);
+}

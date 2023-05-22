@@ -38,6 +38,14 @@ typedef struct thread {
 
     struct task *parent; /**< Back pointer to parent process */
 
+    pid_t child_that_exited;
+    bool child_exited;
+    int child_status;
+
+    SLIST_HEAD(, task) children; /**< Child processes */
+
+    size_t children_n;
+
     SLIST_ENTRY(thread) task_link; /**< Linkage into task_t::threads */
     TAILQ_ENTRY(thread) sched_link; /**< Linkage into the scheduler's queue */
 
@@ -50,10 +58,11 @@ typedef struct task {
     vm_map_t map; /**< Virtual address space for the process, shared across all threads */
     pid_t pid, ppid; /**< Process ID */
     SLIST_HEAD(, thread) threads; /**< Threads that are attached to the task */
-    SLIST_HEAD(, task) children; /**< Child processes */
     fd_t *files[64]; /**< FD table */
     uint8_t current_fd; /** Current fd */
     vnode_t *cwd; /**< Current working directory */
+    thread_t *parent;
+    bool stopped;
     SLIST_ENTRY(task) link;
 } task_t;
 

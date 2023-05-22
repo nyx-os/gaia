@@ -1,8 +1,10 @@
 #include "term.h"
 #include "flanterm.h"
 #include "fb.h"
+#include <sys/ioctl.h>
 
-struct flanterm_context *ctx;
+static struct flanterm_context *ctx;
+static charon_framebuffer_t fb;
 
 void term_init(charon_t charon)
 {
@@ -33,10 +35,10 @@ void term_init(charon_t charon)
         0xFFFFFF, // grey
     };
 
-    ctx = flanterm_fb_init(liballoc_kmalloc,
-                           (uint32_t *)charon.framebuffer.address,
-                           charon.framebuffer.width, charon.framebuffer.height,
-                           charon.framebuffer.pitch, NULL, ansi_colors,
+    fb = charon.framebuffer;
+
+    ctx = flanterm_fb_init(liballoc_kmalloc, (uint32_t *)fb.address, fb.width,
+                           fb.height, fb.pitch, NULL, ansi_colors,
                            ansi_bright_colors, &colorscheme.default_bg,
                            &colorscheme.default_fg, NULL, NULL, NULL, 0, 0, 0,
                            1, 1, 0);
@@ -50,4 +52,14 @@ void term_write(const char *str)
 void term_putchar(char c)
 {
     flanterm_write(ctx, &c, 1);
+}
+
+struct winsize term_getsize(void)
+{
+    return (struct winsize){
+        .ws_row = ctx->rows,
+        .ws_col = ctx->cols,
+        .ws_xpixel = fb.width,
+        .ws_ypixel = fb.height,
+    };
 }

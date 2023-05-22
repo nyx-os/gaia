@@ -8,6 +8,11 @@ volatile static struct limine_rsdp_request rsdp_request = {
     .revision = 0
 };
 
+volatile static struct limine_boot_time_request time_request = {
+    .id = LIMINE_BOOT_TIME_REQUEST,
+    .revision = 0,
+};
+
 volatile static struct limine_framebuffer_request fb_request = {
     .id = LIMINE_FRAMEBUFFER_REQUEST,
     .revision = 0
@@ -100,6 +105,10 @@ void _start(void)
                                         .pitch = fb->pitch,
                                         .width = fb->width,
                                         .present = true };
+    }
+
+    if (time_request.response != NULL) {
+        charon.boot_time = time_request.response->boot_time;
     }
 
     gaia_main(charon);

@@ -346,10 +346,11 @@ static int tmpfs_mknod(vnode_t *dvn, vnode_t **out, const char *pathname,
     return tmpfs_make_vnode(out, n);
 }
 
-void tmpfs_init(void)
+void tmpfs_init(charon_t charon)
 {
     tmp_node_t *root_node = kmalloc(sizeof(tmp_node_t));
     root_node->attr.type = VDIR;
+    root_node->attr.time = charon.boot_time;
     root_node->vnode = NULL;
 
     vnode_t *n = NULL;
@@ -382,4 +383,5 @@ vnode_ops_t tmpfs_ops = { .create = tmpfs_create,
 
 vnode_ops_t tmpfs_dev_ops = { .read = devfs_read,
                               .write = devfs_write,
+                              .ioctl = devfs_ioctl,
                               .getattr = tmpfs_getattr };

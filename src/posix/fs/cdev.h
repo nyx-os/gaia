@@ -10,6 +10,7 @@ typedef struct cdev {
 
     int (*read)(dev_t dev, void *buf, size_t nbyte, size_t off);
     int (*write)(dev_t dev, void *buf, size_t nbyte, size_t off);
+    int (*ioctl)(dev_t dev, int req, void *out);
 } cdev_t;
 
 /* Allocates a new character device and returns a major number */

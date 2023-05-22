@@ -16,5 +16,6 @@ void devfs_setup_vnode(struct vnode *vn, dev_t dev);
 
 int devfs_read(struct vnode *vn, void *buf, size_t nbyte, off_t off);
 int devfs_write(struct vnode *vn, void *buf, size_t nbyte, off_t off);
+int devfs_ioctl(struct vnode *vn, int req, void *out);
 
 #endif

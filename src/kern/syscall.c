@@ -1,9 +1,11 @@
 #include "kern/sched.h"
 #include "kern/vm/vm.h"
 #include "machdep/cpu.h"
+#include "machdep/intr.h"
 #include "posix/posix.h"
 #include <kern/term/term.h>
 #include <kern/syscall.h>
+#include <errno.h>
 #include <asm.h>
 #include <sys/queue.h>
 
@@ -19,10 +21,11 @@ static uintptr_t syscall_debug(syscall_frame_t frame)
 
 static uintptr_t syscall_read(syscall_frame_t frame)
 {
-    trace("read(%ld, %p, %ld)", frame.param1, (void *)frame.param2,
-          frame.param3);
-    return sys_read(sched_curr()->parent, frame.param1, (void *)frame.param2,
-                    frame.param3);
+    uintptr_t ret = sys_read(sched_curr()->parent, frame.param1,
+                             (void *)frame.param2, frame.param3);
+    trace("read(%ld, %p, %ld) => %ld", frame.param1, (void *)frame.param2,
+          frame.param3, ret);
+    return ret;
 }
 
 static uintptr_t syscall_open(syscall_frame_t frame)
@@ -99,14 +102,38 @@ static uintptr_t syscall_tcb_set(syscall_frame_t frame)
     return 0;
 }
 
+void sched_add_back(thread_t *thread, intr_frame_t *frame);
+
 static uintptr_t syscall_exit(syscall_frame_t frame)
 {
     sched_curr()->state = STOPPED;
     SLIST_REMOVE(&sched_curr()->parent->threads, sched_curr(), thread,
                  task_link);
 
-    log("thread %s exited with error code %ld", sched_curr()->name,
-        frame.param1);
+    if (sched_curr()->parent->parent) {
+        sched_curr()->parent->parent->children_n--;
+
+        if (sched_curr()->parent->parent->state == WAITING_FOR_CHILD) {
+            sched_curr()->parent->parent->state = RUNNING;
+            sched_curr()->parent->parent->child_exited = true;
+            sched_curr()->parent->parent->ctx.regs.rax =
+                    sched_curr()->parent->pid;
+            sched_curr()->parent->parent->child_status = frame.param1;
+            sched_curr()->parent->parent->child_that_exited =
+                    sched_curr()->parent->pid;
+
+            sched_curr()->parent->stopped = true;
+
+            log("I exited %s, %p", sched_curr()->parent->parent->name,
+                (void *)sched_curr()->parent->parent);
+
+            sched_add_back(sched_curr()->parent->parent, frame.frame);
+            sched_dump();
+        }
+    }
+
+    log("thread %s (in process %d) exited with error code %ld",
+        sched_curr()->name, sched_curr()->parent->pid, frame.param1);
 
     sched_tick(frame.frame);
 
@@ -130,7 +157,10 @@ static uintptr_t syscall_fork(syscall_frame_t frame)
 
     new_task->current_fd = sched_curr()->parent->current_fd;
 
-    SLIST_INSERT_HEAD(&sched_curr()->parent->children, new_task, link);
+    SLIST_INSERT_HEAD(&sched_curr()->children, new_task, link);
+
+    new_task->parent = sched_curr();
+    sched_curr()->children_n++;
 
     cpu_context_t ctx = sched_curr()->ctx;
 
@@ -147,22 +177,28 @@ static uintptr_t syscall_exec(syscall_frame_t frame)
     trace("exec(%s, %p, %p)", (char *)frame.param1, (void *)frame.param2,
           (void *)frame.param3);
 
-    thread_t *thread;
     task_t *prev = sched_curr()->parent;
+
+    task_t *new_process = sched_new_task(prev->pid, prev->ppid, true);
+
+    new_process->parent = prev->parent;
+
+    int r = sys_execve(new_process, (char *)frame.param1,
+                       (const char **)frame.param2,
+                       (const char **)frame.param3);
+
+    if (r < 0)
+        return r;
+
+    thread_t *thread;
 
     sched_curr()->state = STOPPED;
 
     // Remove all threads from the calling process
-    SLIST_FOREACH(thread, &sched_curr()->parent->threads, task_link)
+    SLIST_FOREACH(thread, &prev->threads, task_link)
     {
-        SLIST_REMOVE(&sched_curr()->parent->threads, thread, thread, task_link);
+        SLIST_REMOVE(&prev->threads, thread, thread, task_link);
     }
-
-    task_t *new_process = sched_new_task(sched_curr()->parent->pid,
-                                         sched_curr()->parent->ppid, true);
-
-    sys_execve(new_process, (char *)frame.param1, (const char **)frame.param2,
-               (const char **)frame.param3);
 
     memcpy(new_process->files, prev->files, sizeof(prev->files));
     new_process->current_fd = prev->current_fd;
@@ -170,6 +206,47 @@ static uintptr_t syscall_exec(syscall_frame_t frame)
     sched_tick(frame.frame);
 
     return frame.frame->rax;
+}
+
+#define W_EXITCODE(ret, sig) ((ret) << 8 | (sig))
+
+static uintptr_t syscall_waitpid(syscall_frame_t frame)
+{
+    int pid = frame.param1;
+    int *status = (int *)frame.param2;
+    uint64_t child_pid = 0;
+
+    if (sched_curr()->children_n == 0)
+        return ECHILD;
+
+    task_t *task;
+
+    SLIST_FOREACH(task, &sched_curr()->children, link)
+    {
+        if (task->stopped && (pid == 0 || pid == task->pid)) {
+            child_pid = task->pid;
+            break;
+        }
+    }
+
+    if (child_pid == 0) {
+        sched_curr()->state = WAITING_FOR_CHILD;
+        sched_tick(frame.frame);
+    }
+
+    sched_curr()->state = RUNNING;
+
+    if (status)
+        *status = W_EXITCODE(sched_curr()->child_status, 0);
+
+    sched_curr()->child_exited = false;
+    return sched_curr()->child_that_exited;
+}
+
+static uintptr_t syscall_ioctl(syscall_frame_t frame)
+{
+    return sys_ioctl(sched_curr()->parent, frame.param1, frame.param2,
+                     (void *)frame.param3);
 }
 
 #define PROT_NONE 0x00
@@ -229,10 +306,11 @@ static sys_handler *handlers[] = {
     [SYS_STAT] = syscall_stat,       [SYS_TCB_SET] = syscall_tcb_set,
     [SYS_GETPID] = syscall_getpid,   [SYS_GETPPID] = syscall_getppid,
     [SYS_FORK] = syscall_fork,       [SYS_EXEC] = syscall_exec,
-    [SYS_READDIR] = syscall_readdir,
+    [SYS_READDIR] = syscall_readdir, [SYS_WAITPID] = syscall_waitpid,
+    [SYS_IOCTL] = syscall_ioctl,
 };
 
-void syscall_handler(syscall_frame_t frame)
+uintptr_t syscall_handler(syscall_frame_t frame)
 {
-    *frame.ret = handlers[frame.num](frame);
+    return handlers[frame.num](frame);
 }

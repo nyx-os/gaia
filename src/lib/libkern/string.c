@@ -77,3 +77,11 @@ int strncmp(const char *s1, const char *s2, size_t n)
 {
     return memcmp(s1, s2, n);
 }
+
+int toupper(int c)
+{
+    if (c >= 'a' && c <= 'z') {
+        c -= 0x20;
+    }
+    return c;
+}

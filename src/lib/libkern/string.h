@@ -11,4 +11,6 @@ size_t strlen(const char *s);
 char *strrchr(const char *s, int c);
 int strncmp(const char *s1, const char *s2, size_t n);
 
+int toupper(int c);
+
 #endif

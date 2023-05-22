@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #include "sched.h"
 #include "asm.h"
+#include "machdep/intr.h"
 #include "posix/fnctl.h"
 #include <machdep/cpu.h>
 #include <kern/sync.h>
@@ -42,6 +43,7 @@ thread_t *sched_new_thread(const char *name, task_t *parent, cpu_context_t ctx,
     new_thread->state = RUNNING;
     new_thread->parent = parent;
     new_thread->name = kmalloc(strlen(name) + 1);
+    new_thread->child_exited = false;
 
     memcpy(new_thread->name, name, strlen(name));
     new_thread->name[strlen(name)] = 0;
@@ -72,7 +74,6 @@ task_t *sched_new_task(pid_t pid, pid_t ppid, bool user)
     }
 
     LIST_INIT(&new_task->map.entries);
-    SLIST_INIT(&new_task->children);
 
     vmem_init(&new_task->map.vmem, "task vmem", (void *)0x80000000000,
               0x100000000, 0x1000, 0, 0, 0, 0, 0);
@@ -114,6 +115,12 @@ void sched_no_restore(void)
     restore_frame = false;
 }
 
+void sched_add_back(thread_t *thread, intr_frame_t *frame)
+{
+    TAILQ_INSERT_TAIL(&runq, thread, sched_link);
+    (void)frame;
+}
+
 void sched_tick(intr_frame_t *ctx)
 {
     spinlock_lock(&sched_lock);
@@ -140,6 +147,7 @@ void sched_tick(intr_frame_t *ctx)
 
     spinlock_unlock(&sched_lock);
 
+    // log("running %s", current_thread->name);
     cpu_switch_context(ctx, current_thread->ctx);
     pmap_activate(current_thread->parent->map.pmap);
 }

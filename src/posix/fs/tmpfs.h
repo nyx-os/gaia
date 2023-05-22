@@ -2,6 +2,7 @@
 #ifndef POSIX_FS_TMPFS_H
 #define POSIX_FS_TMPFS_H
 #include <posix/fs/vfs.h>
+#include <kern/charon.h>
 #include <sys/queue.h>
 
 struct tmpnode;
@@ -44,6 +45,6 @@ typedef struct tmpnode {
 
 } tmp_node_t;
 
-void tmpfs_init(void);
+void tmpfs_init(charon_t charon);
 
 #endif

@@ -13,6 +13,7 @@ int sys_readdir(task_t *proc, int fd, void *buf, size_t max_size,
 int sys_close(task_t *proc, int fd);
 int sys_stat(task_t *proc, int fd, const char *path, int flags,
              struct stat *out);
+int sys_ioctl(task_t *proc, int fd, int request, void *out);
 int sys_execve(task_t *proc, const char *path, char const *argv[],
                char const *envp[]);
 

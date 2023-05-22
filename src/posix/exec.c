@@ -5,6 +5,7 @@
 #include <posix/posix.h>
 #include <elf.h>
 #include <kern/vm/vm.h>
+#include <errno.h>
 
 typedef struct {
     uintptr_t at_entry;
@@ -13,8 +14,8 @@ typedef struct {
     uintptr_t at_phnum;
 } auxval_t;
 
-static uintptr_t load_elf(task_t *task, vnode_t *file, auxval_t *auxval,
-                          uintptr_t base, char *ld_path)
+static int load_elf(task_t *task, vnode_t *file, auxval_t *auxval,
+                    uintptr_t base, char *ld_path)
 {
     Elf64_Ehdr header = { 0 };
 
@@ -22,7 +23,7 @@ static uintptr_t load_elf(task_t *task, vnode_t *file, auxval_t *auxval,
 
     if (header.e_ident[0] != ELFMAG0 || header.e_ident[1] != ELFMAG1 ||
         header.e_ident[2] != ELFMAG2 || header.e_ident[3] != ELFMAG3) {
-        return -1;
+        return -ENOEXEC;
     }
 
     auxval->at_phdr = 0;
@@ -100,7 +101,10 @@ int sys_execve(task_t *proc, const char *path, char const *argv[],
         return r;
     }
 
-    load_elf(proc, vn, &auxval, 0, (char *)ld_path);
+    r = load_elf(proc, vn, &auxval, 0, (char *)ld_path);
+
+    if (r < 0)
+        return r;
 
     entry = auxval.at_entry;
 

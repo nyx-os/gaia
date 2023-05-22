@@ -23,6 +23,9 @@ void tar_write_on_tmpfs(void *archive)
         char *name = current_file->name;
         vattr_t attr = { 0 };
 
+        attr.time =
+                oct2int(current_file->mtime, sizeof(current_file->mtime) - 1);
+
         attr.mode =
                 oct2int(current_file->mode, sizeof(current_file->mode) - 1) &
                 ~(S_IFMT);

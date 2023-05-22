@@ -39,6 +39,7 @@ static const char convtab_nomod[] = {
 };
 
 static bool shift = false;
+static bool control = false;
 static bool caps_lock = false;
 
 void ps2_handler(intr_frame_t *frame)
@@ -57,6 +58,13 @@ void ps2_handler(intr_frame_t *frame)
         shift = false;
         break;
 
+    case PS2_SCANCODE_CTRL:
+        control = true;
+        break;
+    case PS2_SCANCODE_CTRL_REL:
+        control = false;
+        break;
+
     case PS2_SCANCODE_CAPSLOCK:
         caps_lock = !caps_lock;
         break;
@@ -72,7 +80,13 @@ void ps2_handler(intr_frame_t *frame)
                 convtab = convtab_capslock;
             }
 
-            tty_input(convtab[code]);
+            char c = convtab[code];
+
+            if (control) {
+                c = toupper(c) - 0x40;
+            }
+
+            tty_input(c);
         }
 
         break;

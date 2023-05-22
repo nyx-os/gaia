@@ -31,8 +31,6 @@ int sys_open(task_t *proc, const char *path, int mode)
             return r;
     }
 
-    log("Opened %s of  type %d", path, vn->type);
-
     new_file->vnode = vn;
     new_file->position = 0;
     new_file->fd = proc->current_fd++;
@@ -71,6 +69,10 @@ int sys_write(task_t *proc, int fd, void *buf, size_t bytes)
 {
     fd_t *file = NULL;
     int r;
+
+    if (fd < 0 || fd > 64) {
+        return -EBADF;
+    }
 
     file = proc->files[fd];
     if (!file) {
@@ -138,6 +140,28 @@ int sys_close(task_t *proc, int fd)
     return 0;
 }
 
+int sys_ioctl(task_t *proc, int fd, int request, void *out)
+{
+    fd_t *file = NULL;
+
+    if (fd < 0 || fd > 64) {
+        return -EBADF;
+    }
+
+    file = proc->files[fd];
+
+    if (!file) {
+        return -EBADF;
+    }
+
+    int r = VOP_IOCTL(file->vnode, request, out);
+
+    if (r < 0)
+        return r;
+
+    return 0;
+}
+
 int sys_stat(task_t *proc, int fd, const char *path, int flags,
              struct stat *out)
 {
@@ -179,6 +203,9 @@ int sys_stat(task_t *proc, int fd, const char *path, int flags,
     *out = (struct stat){ 0 };
 
     out->st_mode = attr.mode;
+
+    out->st_mtime = attr.time;
+    out->st_atime = attr.time;
 
     switch (attr.type) {
     case VREG:

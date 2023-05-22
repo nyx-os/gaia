@@ -23,11 +23,13 @@ void posix_init(charon_t charon)
 
     assert(ramdisk != NULL);
 
-    tmpfs_init();
+    tmpfs_init(charon);
 
     tar_write_on_tmpfs(ramdisk);
 
     VOP_MKDIR(root_vnode, &root_devnode, "dev", NULL);
+
+    ((tmp_node_t *)root_devnode->data)->attr.time = charon.boot_time;
 
     tty_init();
 

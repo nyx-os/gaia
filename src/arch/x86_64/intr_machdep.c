@@ -135,9 +135,8 @@ uint64_t interrupts_handler(uint64_t rsp)
         sys_frame.param4 = frame->r10;
         sys_frame.param5 = frame->r8;
         sys_frame.frame = frame;
-        sys_frame.ret = &frame->rax;
 
-        syscall_handler(sys_frame);
+        frame->rax = syscall_handler(sys_frame);
     } else {
         lapic_eoi();
     }
