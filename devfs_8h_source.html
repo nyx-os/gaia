@@ -104,10 +104,11 @@ $(document).ready(function(){initNavTree('devfs_8h_source.html',''); initResizab
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> devfs_read(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, off_t off);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> devfs_write(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, off_t off);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> devfs_ioctl(<span class="keyword">struct</span> <a class="code" href="structvnode.html">vnode</a> *vn, <span class="keywordtype">int</span> req, <span class="keywordtype">void</span> *out);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructdevnode_html"><div class="ttname"><a href="structdevnode.html">devnode</a></div><div class="ttdef"><b>Definition:</b> devfs.h:10</div></div>
-<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:53</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

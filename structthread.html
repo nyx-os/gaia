@@ -95,6 +95,8 @@ $(document).ready(function(){initNavTree('structthread.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ae2fc53638f844256a558c476cf743642"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structthread.html#ae2fc53638f844256a558c476cf743642">SLIST_HEAD</a> (, <a class="el" href="structtask.html">task</a>) children</td></tr>
+<tr class="separator:ae2fc53638f844256a558c476cf743642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae953fe7e3848f48927aa0b1e015bdaec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structthread.html#ae953fe7e3848f48927aa0b1e015bdaec">SLIST_ENTRY</a> (<a class="el" href="structthread.html">thread</a>) task_link</td></tr>
 <tr class="separator:ae953fe7e3848f48927aa0b1e015bdaec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a487f8328548e3b246ab56243c7f42b14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structthread.html#a487f8328548e3b246ab56243c7f42b14">TAILQ_ENTRY</a> (<a class="el" href="structthread.html">thread</a>) sched_link</td></tr>
@@ -110,6 +112,18 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa8c414213011ad1c3306a1d25a823a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a032bec8f552d4b8aae9a04c9595fe92f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structtask.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structthread.html#a032bec8f552d4b8aae9a04c9595fe92f">parent</a></td></tr>
 <tr class="separator:a032bec8f552d4b8aae9a04c9595fe92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0817fb34947db7256a14de7d45fad2fd"><td class="memItemLeft" align="right" valign="top"><a id="a0817fb34947db7256a14de7d45fad2fd"></a>
+pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>child_that_exited</b></td></tr>
+<tr class="separator:a0817fb34947db7256a14de7d45fad2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a203b046750818bb4e701aef6013fd699"><td class="memItemLeft" align="right" valign="top"><a id="a203b046750818bb4e701aef6013fd699"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>child_exited</b></td></tr>
+<tr class="separator:a203b046750818bb4e701aef6013fd699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0918bfa71637c0561a16bf4720565e54"><td class="memItemLeft" align="right" valign="top"><a id="a0918bfa71637c0561a16bf4720565e54"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>child_status</b></td></tr>
+<tr class="separator:a0918bfa71637c0561a16bf4720565e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeebe9dbcb36dfd17084933a50f14a52a"><td class="memItemLeft" align="right" valign="top"><a id="aeebe9dbcb36dfd17084933a50f14a52a"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>children_n</b></td></tr>
+<tr class="separator:aeebe9dbcb36dfd17084933a50f14a52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A single unit of execution, contains the CPU information like registers </p>
@@ -130,6 +144,25 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Linkage into task_t::threads </p>
+
+</div>
+</div>
+<a id="ae2fc53638f844256a558c476cf743642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2fc53638f844256a558c476cf743642">&#9670;&nbsp;</a></span>SLIST_HEAD()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">thread::SLIST_HEAD </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtask.html">task</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Child processes </p>
 
 </div>
 </div>

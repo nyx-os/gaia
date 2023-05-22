@@ -98,18 +98,19 @@ $(document).ready(function(){initNavTree('cdev_8h_source.html',''); initResizabl
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    int (*read)(dev_t dev, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    int (*write)(dev_t dev, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> nbyte, <span class="keywordtype">size_t</span> off);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} <a class="code" href="structcdev.html">cdev_t</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/* Allocates a new character device and returns a major number */</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> cdev_allocate(<a class="code" href="structcdev.html">cdev_t</a> *dev);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvnode.html">vnode_t</a> *devfs_root;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcdev.html">cdev_t</a> cdevs[64];</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    int (*ioctl)(dev_t dev, <span class="keywordtype">int</span> req, <span class="keywordtype">void</span> *out);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;} <a class="code" href="structcdev.html">cdev_t</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/* Allocates a new character device and returns a major number */</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> cdev_allocate(<a class="code" href="structcdev.html">cdev_t</a> *dev);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">extern</span> <a class="code" href="structvnode.html">vnode_t</a> *devfs_root;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcdev.html">cdev_t</a> cdevs[64];</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructcdev_html"><div class="ttname"><a href="structcdev.html">cdev</a></div><div class="ttdef"><b>Definition:</b> cdev.h:7</div></div>
-<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:53</div></div>
+<div class="ttc" id="astructvnode_html"><div class="ttname"><a href="structvnode.html">vnode</a></div><div class="ttdef"><b>Definition:</b> vfs.h:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

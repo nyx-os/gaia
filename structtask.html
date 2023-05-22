@@ -97,8 +97,6 @@ $(document).ready(function(){initNavTree('structtask.html',''); initResizable();
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1ff6c19f3b31bfdfb8d1c7328873a2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#aa1ff6c19f3b31bfdfb8d1c7328873a2d">SLIST_HEAD</a> (, <a class="el" href="structthread.html">thread</a>) threads</td></tr>
 <tr class="separator:aa1ff6c19f3b31bfdfb8d1c7328873a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a762149c83b9020913d4da42b1dac5f66"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a762149c83b9020913d4da42b1dac5f66">SLIST_HEAD</a> (, <a class="el" href="structtask.html">task</a>) children</td></tr>
-<tr class="separator:a762149c83b9020913d4da42b1dac5f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a505d5119e26bd742225f2ae88091eb55"><td class="memItemLeft" align="right" valign="top"><a id="a505d5119e26bd742225f2ae88091eb55"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SLIST_ENTRY</b> (<a class="el" href="structtask.html">task</a>) link</td></tr>
 <tr class="separator:a505d5119e26bd742225f2ae88091eb55"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,31 +117,18 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>current_fd</b></td
 <tr class="separator:a6bfb603b79d74e67e87d88b22ed18ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19445d73538772d1b8aa3c846cb5ecf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvnode.html">vnode_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask.html#a19445d73538772d1b8aa3c846cb5ecf9">cwd</a></td></tr>
 <tr class="separator:a19445d73538772d1b8aa3c846cb5ecf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d687a20154a8aea20dd2e4df430f8d"><td class="memItemLeft" align="right" valign="top"><a id="ad5d687a20154a8aea20dd2e4df430f8d"></a>
+<a class="el" href="sched_8h.html#a0c1c578c8b75f2c2265804cf505c4b6f">thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>parent</b></td></tr>
+<tr class="separator:ad5d687a20154a8aea20dd2e4df430f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab22565522237adf638816aac9a43c9d6"><td class="memItemLeft" align="right" valign="top"><a id="ab22565522237adf638816aac9a43c9d6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>stopped</b></td></tr>
+<tr class="separator:ab22565522237adf638816aac9a43c9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A collection of resources, also called a process by other operating systems </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a762149c83b9020913d4da42b1dac5f66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a762149c83b9020913d4da42b1dac5f66">&#9670;&nbsp;</a></span>SLIST_HEAD() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">task::SLIST_HEAD </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structtask.html">task</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Child processes </p>
-
-</div>
-</div>
 <a id="aa1ff6c19f3b31bfdfb8d1c7328873a2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1ff6c19f3b31bfdfb8d1c7328873a2d">&#9670;&nbsp;</a></span>SLIST_HEAD() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1ff6c19f3b31bfdfb8d1c7328873a2d">&#9670;&nbsp;</a></span>SLIST_HEAD()</h2>
 
 <div class="memitem">
 <div class="memproto">
