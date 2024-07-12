@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1aad7cc1bec20aa9a6ffc92a761d8747e1:
+
+Define LIMINE_SMP_REQUEST
+=========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_SMP_REQUEST
+   :project: ExhaleCompanion

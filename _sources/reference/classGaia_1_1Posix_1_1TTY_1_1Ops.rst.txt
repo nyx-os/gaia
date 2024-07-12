@@ -1,0 +1,39 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Posix_1_1TTY_1_1Ops:
+
+Class TTY::Ops
+==============
+
+- Defined in :ref:`file_posix_tty.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This class is a nested type of :ref:`exhale_class_classGaia_1_1Posix_1_1TTY`.
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Fs::DevOps`` (:ref:`exhale_class_classGaia_1_1Fs_1_1DevOps`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Posix::TTY::Ops
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

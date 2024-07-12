@@ -1,0 +1,60 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_posix_exec.hpp:
+
+File exec.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_posix>` (``posix``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``posix/exec.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_posix_exec.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/string.hpp``
+
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Posix`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_exec_8hpp_1a9163e3da422bf45987ee20cd6ce47c0c`
+

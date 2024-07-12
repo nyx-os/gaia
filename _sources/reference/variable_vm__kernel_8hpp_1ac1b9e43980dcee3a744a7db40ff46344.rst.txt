@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_vm__kernel_8hpp_1ac1b9e43980dcee3a744a7db40ff46344:
+
+Variable Gaia::Vm::kernel_space
+===============================
+
+- Defined in :ref:`file_vm_vm_kernel.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::Vm::kernel_space
+   :project: ExhaleCompanion

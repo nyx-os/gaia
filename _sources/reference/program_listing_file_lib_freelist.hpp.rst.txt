@@ -1,0 +1,66 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_lib_freelist.hpp:
+
+Program Listing for File freelist.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_lib_freelist.hpp>` (``lib/freelist.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <cstdint>
+   #include <lib/error.hpp>
+   #include <lib/result.hpp>
+   
+   namespace Gaia {
+   
+   class Freelist {
+   public:
+     struct Region {
+       size_t size;  
+       Region *next; 
+     };
+   
+     explicit Freelist(size_t quantum) : quantum(quantum) {}
+     Freelist() : quantum(1) {}
+   
+     void set_quantum(size_t new_quantum) { quantum = new_quantum; }
+   
+     void add_region(Region *region) {
+       region->next = head;
+       head = region;
+     }
+   
+     Result<uintptr_t, Error> alloc() {
+       if (!head) {
+         return Err(Error::OUT_OF_MEMORY);
+       }
+   
+       auto region = head;
+       region->size -= quantum;
+   
+       if (!head->size) {
+         head = head->next;
+       }
+   
+       return Ok((uintptr_t)region + region->size);
+     }
+   
+     void free(uintptr_t mem) {
+       auto region = reinterpret_cast<Region *>(mem);
+       region->size = quantum;
+       add_region(region);
+     }
+   
+   private:
+     Region *head = nullptr;
+     size_t quantum = 0;
+   };
+   
+   } // namespace Gaia

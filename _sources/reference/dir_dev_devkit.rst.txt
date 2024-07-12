@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_dev_devkit:
+
+
+Directory devkit
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_dev>` (``dev``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``dev/devkit``
+
+
+Files
+-----
+
+- :ref:`file_dev_devkit_registry.hpp`
+- :ref:`file_dev_devkit_service.hpp`
+
+

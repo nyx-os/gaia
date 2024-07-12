@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File virtio.hpp &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-virtio-hpp">
+<span id="program-listing-file-dev-virtio-virtio-hpp"></span><h1>Program Listing for File virtio.hpp<a class="headerlink" href="#program-listing-for-file-virtio-hpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_dev_virtio_virtio.hpp.html#file-dev-virtio-virtio-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">dev/virtio/virtio.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;dev/devkit/service.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;dev/pci/device.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/int.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vm/heap.hpp&gt;</span>
+
+<span class="cp">#ifdef __x86_64__</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;x86_64/idt.hpp&gt;</span>
+<span class="cp">#endif</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Dev</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VirtQueueDesc</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* Address (guest-physical). */</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">addr</span><span class="p">;</span>
+<span class="w">  </span><span class="cm">/* Length. */</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">  </span><span class="cm">/* The flags as indicated above. */</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="w">  </span><span class="cm">/* We chain unused descriptors via this, too */</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VirtQueueAvail</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">idx</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">ring</span><span class="p">[];</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VirtQueueUsedElem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* Index of start of used descriptor chain. */</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/* Total length of the descriptor chain which was written to. */</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VirtQueueUsed</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">idx</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VirtQueueUsedElem</span><span class="w"> </span><span class="n">ring</span><span class="p">[];</span>
+<span class="w">  </span><span class="cm">/* Only if VIRTIO_F_EVENT_IDX: le16 avail_event; */</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">VirtQueue</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">num_free</span><span class="p">,</span><span class="w"> </span><span class="n">num_max</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">notify_off</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">last_free_desc</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">VirtQueueDesc</span><span class="w"> </span><span class="o">*</span><span class="n">desc</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VirtQueueAvail</span><span class="w"> </span><span class="o">*</span><span class="n">avail</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VirtQueueUsed</span><span class="w"> </span><span class="o">*</span><span class="n">used</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="nf">allocate_desc</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">free_desc</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">desc</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VirtioDevice</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">VirtioDevice</span><span class="p">();</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Vm</span><span class="o">::</span><span class="n">UniquePtr</span><span class="o">&lt;</span><span class="n">Service</span><span class="o">&gt;</span><span class="w"> </span><span class="n">create</span><span class="p">();</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">int_handler</span><span class="p">(</span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptFrame</span><span class="w"> </span><span class="o">*</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="n">Service</span><span class="w"> </span><span class="o">*</span><span class="n">provider</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">match_properties</span><span class="p">(</span><span class="n">Properties</span><span class="w"> </span><span class="o">&amp;</span><span class="n">props</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">class_name</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;VirtioDevice&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">name</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">name_str</span><span class="p">.</span><span class="n">data</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">enable</span><span class="p">();</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">setup_queue</span><span class="p">(</span><span class="n">VirtQueue</span><span class="w"> </span><span class="o">&amp;</span><span class="n">queue</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">notify_queue</span><span class="p">(</span><span class="n">VirtQueue</span><span class="w"> </span><span class="o">&amp;</span><span class="n">queue</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">device_cfg</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">  </span><span class="n">PciDevice</span><span class="w"> </span><span class="o">*</span><span class="n">device</span><span class="p">;</span>
+<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">string</span><span class="o">&lt;</span><span class="n">Gaia</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">HeapAllocator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">name_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">device_id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptEntry</span><span class="w"> </span><span class="n">int_entry</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="p">[[</span><span class="n">gnu</span><span class="o">::</span><span class="n">packed</span><span class="p">]]</span><span class="w"> </span><span class="n">PciCommonCfg</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* About the whole device. */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">device_feature_select</span><span class="p">;</span><span class="w"> </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">device_feature</span><span class="p">;</span><span class="w">        </span><span class="cm">/* read-only for driver */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">driver_feature_select</span><span class="p">;</span><span class="w"> </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">driver_feature</span><span class="p">;</span><span class="w">        </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">msix_config</span><span class="p">;</span><span class="w">           </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">num_queues</span><span class="p">;</span><span class="w">            </span><span class="cm">/* read-only for driver */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">device_status</span><span class="p">;</span><span class="w">          </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">config_generation</span><span class="p">;</span><span class="w">      </span><span class="cm">/* read-only for driver */</span>
+
+<span class="w">    </span><span class="cm">/* About a specific virtqueue. */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">queue_select</span><span class="p">;</span><span class="w">      </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">queue_size</span><span class="p">;</span><span class="w">        </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">queue_msix_vector</span><span class="p">;</span><span class="w"> </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">queue_enable</span><span class="p">;</span><span class="w">      </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">queue_notify_off</span><span class="p">;</span><span class="w">  </span><span class="cm">/* read-only for driver */</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">queue_desc</span><span class="p">;</span><span class="w">        </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">queue_avail</span><span class="p">;</span><span class="w">       </span><span class="cm">/* read-write */</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">queue_used</span><span class="p">;</span><span class="w">        </span><span class="cm">/* read-write */</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="p">[[</span><span class="n">gnu</span><span class="o">::</span><span class="n">packed</span><span class="p">]]</span><span class="w"> </span><span class="n">PciCap</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">cap_vndr</span><span class="p">;</span><span class="w">   </span><span class="cm">/* Generic PCI field: PCI_CAP_ID_VNDR */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">cap_next</span><span class="p">;</span><span class="w">   </span><span class="cm">/* Generic PCI field: next ptr. */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">cap_len</span><span class="p">;</span><span class="w">    </span><span class="cm">/* Generic PCI field: capability length */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">cfg_type</span><span class="p">;</span><span class="w">   </span><span class="cm">/* Identifies the structure. */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">bar</span><span class="p">;</span><span class="w">        </span><span class="cm">/* Where to find it. */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">padding</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Pad to full dword. */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span><span class="w">    </span><span class="cm">/* Offset within bar. */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w">    </span><span class="cm">/* Length of the structure, in bytes. */</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">PciCapType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">COMMON_CFG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NOTIFY_CFG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ISR_CFG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DEVICE_CFG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PCI_CFG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">handle_capability</span><span class="p">(</span><span class="n">PciCap</span><span class="w"> </span><span class="n">cap</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">cap_off</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">PciCommonCfg</span><span class="w"> </span><span class="o">*</span><span class="n">common_cfg</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">notify_base</span><span class="p">,</span><span class="w"> </span><span class="n">notify_off_multiplier</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Vm</span><span class="o">::</span><span class="n">UniquePtr</span><span class="o">&lt;</span><span class="n">Service</span><span class="o">&gt;</span><span class="w"> </span><span class="n">driver</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">virtiodevice_driver_register</span><span class="p">();</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Dev</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/program_listing_file_dev_virtio_virtio.hpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

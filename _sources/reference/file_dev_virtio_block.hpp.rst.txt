@@ -1,0 +1,65 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_virtio_block.hpp:
+
+File block.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_virtio>` (``dev/virtio``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/virtio/block.hpp``)
+-------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_virtio_block.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/virtio/virtio.hpp`` (:ref:`file_dev_virtio_virtio.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1VirtioBlock`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_block_8hpp_1a0698a4eb1f6eba4b9b63dafbce29a321`
+

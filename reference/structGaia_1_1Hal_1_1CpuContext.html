@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Struct CpuContext &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct InterruptEntry" href="structGaia_1_1Hal_1_1InterruptEntry.html" />
+    <link rel="prev" title="Struct VnodeOps" href="structGaia_1_1Fs_1_1VnodeOps.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="struct-cpucontext">
+<span id="exhale-struct-structgaia-1-1hal-1-1cpucontext"></span><h1>Struct CpuContext<a class="headerlink" href="#struct-cpucontext" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_arch_x86_64_idt.hpp.html#file-arch-x86-64-idt-hpp"><span class="std std-ref">File idt.hpp</span></a></p></li>
+</ul>
+<nav class="contents local" id="page-contents">
+<p class="topic-title">Page Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#struct-documentation" id="id1">Struct Documentation</a></p></li>
+</ul>
+</nav>
+<section id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContextE">
+<span id="_CPPv3N4Gaia3Hal10CpuContextE"></span><span id="_CPPv2N4Gaia3Hal10CpuContextE"></span><span id="Gaia::Hal::CpuContext"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CpuContext</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContextE" title="Link to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext4loadEP14InterruptFrame">
+<span id="_CPPv3N4Gaia3Hal10CpuContext4loadEP14InterruptFrame"></span><span id="_CPPv2N4Gaia3Hal10CpuContext4loadEP14InterruptFrame"></span><span id="Gaia::Hal::CpuContext::load__InterruptFrameP"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a35048d129f3c54a8a12862e723fa5abb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">load</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structGaia_1_1Hal_1_1InterruptFrame.html#_CPPv4N4Gaia3Hal14InterruptFrameE" title="Gaia::Hal::InterruptFrame"><span class="n"><span class="pre">InterruptFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">regs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext4loadEP14InterruptFrame" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext4saveEP14InterruptFrame">
+<span id="_CPPv3N4Gaia3Hal10CpuContext4saveEP14InterruptFrame"></span><span id="_CPPv2N4Gaia3Hal10CpuContext4saveEP14InterruptFrame"></span><span id="Gaia::Hal::CpuContext::save__InterruptFrameP"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a0111395bf1f56f82c7df690c18d388ac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">save</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="structGaia_1_1Hal_1_1InterruptFrame.html#_CPPv4N4Gaia3Hal14InterruptFrameE" title="Gaia::Hal::InterruptFrame"><span class="n"><span class="pre">InterruptFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">regs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext4saveEP14InterruptFrame" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext10CpuContextEv">
+<span id="_CPPv3N4Gaia3Hal10CpuContext10CpuContextEv"></span><span id="_CPPv2N4Gaia3Hal10CpuContext10CpuContextEv"></span><span id="Gaia::Hal::CpuContext::CpuContext"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1af74213f15d2da21ebc55f6c5a3dbdefb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CpuContext</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext10CpuContextEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext10CpuContextE9uintptr_t9uintptr_t9uintptr_tb">
+<span id="_CPPv3N4Gaia3Hal10CpuContext10CpuContextE9uintptr_t9uintptr_t9uintptr_tb"></span><span id="_CPPv2N4Gaia3Hal10CpuContext10CpuContextE9uintptr_t9uintptr_t9uintptr_tb"></span><span id="Gaia::Hal::CpuContext::CpuContext__uintptr_t.uintptr_t.uintptr_t.b"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a767265f8a30b4df1638b86af9ef1da87"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CpuContext</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rip</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">kstack</span></span>, <span class="n"><span class="pre">uintptr_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ustack</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">user</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext10CpuContextE9uintptr_t9uintptr_t9uintptr_tb" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext4infoE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext4infoE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext4infoE"></span><span id="Gaia::Hal::CpuContext::info__GsCpuInfo"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a2257c91e303445fb8fda96d8b966cf33"></span><a class="reference internal" href="structGsCpuInfo.html#_CPPv49GsCpuInfo" title="GsCpuInfo"><span class="n"><span class="pre">GsCpuInfo</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">info</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext4infoE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext7gs_baseE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext7gs_baseE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext7gs_baseE"></span><span id="Gaia::Hal::CpuContext::gs_base__voidP"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a0377af4e17c31c5547921f87adf6117c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">gs_base</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext7gs_baseE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext7fs_baseE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext7fs_baseE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext7fs_baseE"></span><span id="Gaia::Hal::CpuContext::fs_base__voidP"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a5a8d6ba215e3b1080f1bfa40d89f4943"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fs_base</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext7fs_baseE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext4regsE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext4regsE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext4regsE"></span><span id="Gaia::Hal::CpuContext::regs__InterruptFrame"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a742670053173aee963c328972aefb847"></span><a class="reference internal" href="structGaia_1_1Hal_1_1InterruptFrame.html#_CPPv4N4Gaia3Hal14InterruptFrameE" title="Gaia::Hal::InterruptFrame"><span class="n"><span class="pre">InterruptFrame</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">regs</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext4regsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext8fpu_regsE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext8fpu_regsE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext8fpu_regsE"></span><span id="Gaia::Hal::CpuContext::fpu_regs__voidP"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1abc84c69aeb48452c447e7d84ab1cf3c8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fpu_regs</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext8fpu_regsE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia3Hal10CpuContext4userE">
+<span id="_CPPv3N4Gaia3Hal10CpuContext4userE"></span><span id="_CPPv2N4Gaia3Hal10CpuContext4userE"></span><span id="Gaia::Hal::CpuContext::user__b"></span><span class="target" id="structGaia_1_1Hal_1_1CpuContext_1a294f3f38fcd2e2edd3c97b40d0d28a70"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">user</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N4Gaia3Hal10CpuContext4userE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="code_reference.html">Code Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="code_reference.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="code_reference.html#full-api">Full API</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="code_reference.html">Code Reference</a><ul>
+      <li>Previous: <a href="structGaia_1_1Fs_1_1VnodeOps.html" title="previous chapter">Struct VnodeOps</a></li>
+      <li>Next: <a href="structGaia_1_1Hal_1_1InterruptEntry.html" title="next chapter">Struct InterruptEntry</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/structGaia_1_1Hal_1_1CpuContext.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

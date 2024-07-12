@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_limine_8h_1ab6fa49376e88c66aa2fee0b90902036d:
+
+Typedef limine_terminal_write
+=============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: limine_terminal_write
+   :project: ExhaleCompanion

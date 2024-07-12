@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_cpuid_8hpp_1a0073fe708dbe266ad99fe7bb5f35b237:
+
+Define CPUID_LEAF_EXTENDED_FEATURES
+===================================
+
+- Defined in :ref:`file_arch_x86_64_cpuid.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CPUID_LEAF_EXTENDED_FEATURES
+   :project: ExhaleCompanion

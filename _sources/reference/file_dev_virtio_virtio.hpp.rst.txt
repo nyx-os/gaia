@@ -1,0 +1,89 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_virtio_virtio.hpp:
+
+File virtio.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_virtio>` (``dev/virtio``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/virtio/virtio.hpp``)
+--------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_virtio_virtio.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``dev/pci/device.hpp`` (:ref:`file_dev_pci_device.hpp`)
+
+- ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_virtio_block.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtioDevice_1_1PciCap`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtioDevice_1_1PciCommonCfg`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueue`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueAvail`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueDesc`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueUsed`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueUsedElem`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1VirtioDevice`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_virtio_8hpp_1a6c4e3cdbc08f654b24a11d305538529f`
+

@@ -1,0 +1,25 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_dev_console:
+
+
+Directory console
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_dev>` (``dev``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``dev/console``
+
+
+Files
+-----
+
+- :ref:`file_dev_console_constants.hpp`
+- :ref:`file_dev_console_fbconsole.hpp`
+- :ref:`file_dev_console_ps2.hpp`
+
+

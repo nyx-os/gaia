@@ -1,0 +1,21 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_arch_x86_64_gdt.hpp:
+
+Program Listing for File gdt.hpp
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_arch_x86_64_gdt.hpp>` (``arch/x86_64/gdt.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   
+   namespace Gaia::x86_64 {
+   void gdt_init();
+   void gdt_init_tss();
+   } // namespace Gaia::x86_64

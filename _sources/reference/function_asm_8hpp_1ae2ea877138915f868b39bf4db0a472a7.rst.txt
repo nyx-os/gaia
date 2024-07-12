@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1ae2ea877138915f868b39bf4db0a472a7:
+
+Function Gaia::x86_64::rdtsc
+============================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::rdtsc(void)
+   :project: ExhaleCompanion

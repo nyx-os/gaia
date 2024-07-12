@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_log_8hpp_1ac19b4f4322a3b6136f68b02e49f1d3f0:
+
+Template Function Gaia::panic
+=============================
+
+- Defined in :ref:`file_lib_log.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::panic(FormatWithLocation, T...)
+   :project: ExhaleCompanion

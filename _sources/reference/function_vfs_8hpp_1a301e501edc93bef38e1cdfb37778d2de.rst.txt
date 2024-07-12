@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vfs_8hpp_1a301e501edc93bef38e1cdfb37778d2de:
+
+Function Gaia::Fs::vfs_mkdir
+============================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::vfs_mkdir(Vnode *, frg::string_view, VnodeAttr)
+   :project: ExhaleCompanion

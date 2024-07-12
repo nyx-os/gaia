@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_ps2_8hpp_1a88783f36e5be69c7a41dbfee319b5b00:
+
+Function Gaia::Dev::ps2_driver_register
+=======================================
+
+- Defined in :ref:`file_dev_console_ps2.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::ps2_driver_register()
+   :project: ExhaleCompanion

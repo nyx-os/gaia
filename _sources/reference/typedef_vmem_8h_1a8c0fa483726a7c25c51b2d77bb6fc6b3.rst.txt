@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_vmem_8h_1a8c0fa483726a7c25c51b2d77bb6fc6b3:
+
+Typedef VmemFree
+================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VmemFree
+   :project: ExhaleCompanion

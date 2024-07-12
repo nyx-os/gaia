@@ -1,0 +1,81 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_pci_device.hpp:
+
+File device.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_pci>` (``dev/pci``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/pci/device.hpp``)
+-----------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_pci_device.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``frg/span.hpp``
+
+- ``lai/host.h``
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_virtio_virtio.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1PciDevice_1_1Info`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1PciDevice`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_pci_2device_8hpp_1ab8cc1ce5dba7ddc8266697310dcb5ce3`
+
+- :ref:`exhale_enum_pci_2device_8hpp_1a9292851adb46c6c7449fa3172e32b91a`
+
+- :ref:`exhale_enum_pci_2device_8hpp_1a35fe8c25e0156663fdcf6f0a8ee4b2b1`
+

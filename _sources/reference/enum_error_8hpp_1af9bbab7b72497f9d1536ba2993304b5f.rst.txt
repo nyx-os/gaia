@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_error_8hpp_1af9bbab7b72497f9d1536ba2993304b5f:
+
+Enum Error
+==========
+
+- Defined in :ref:`file_lib_error.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Error
+   :project: ExhaleCompanion

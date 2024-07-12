@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vfs_8hpp_1a2f3cf9f39a0079e3830d921cf3106227:
+
+Define __USE_MISC
+=================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: __USE_MISC
+   :project: ExhaleCompanion

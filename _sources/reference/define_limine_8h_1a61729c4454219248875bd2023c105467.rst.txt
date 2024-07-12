@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a61729c4454219248875bd2023c105467:
+
+Define LIMINE_MEDIA_TYPE_TFTP
+=============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_MEDIA_TYPE_TFTP
+   :project: ExhaleCompanion

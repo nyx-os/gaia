@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1aea2d5faed6022afec72fa3b896f47711:
+
+Define LIMINE_TERMINAL_REQUEST
+==============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_TERMINAL_REQUEST
+   :project: ExhaleCompanion

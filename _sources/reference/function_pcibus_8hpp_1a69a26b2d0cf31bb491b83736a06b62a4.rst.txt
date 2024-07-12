@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_pcibus_8hpp_1a69a26b2d0cf31bb491b83736a06b62a4:
+
+Function Gaia::Dev::pcibus_driver_register
+==========================================
+
+- Defined in :ref:`file_dev_pci_pcibus.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::pcibus_driver_register()
+   :project: ExhaleCompanion

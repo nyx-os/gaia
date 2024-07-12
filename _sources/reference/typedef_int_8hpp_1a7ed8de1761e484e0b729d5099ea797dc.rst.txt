@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_int_8hpp_1a7ed8de1761e484e0b729d5099ea797dc:
+
+Typedef Gaia::Hal::InterruptHandler
+===================================
+
+- Defined in :ref:`file_arch_hal_int.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Hal::InterruptHandler
+   :project: ExhaleCompanion

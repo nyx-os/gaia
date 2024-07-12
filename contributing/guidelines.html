@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Coding guidelines &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The developer’s handbook" href="../developer/developer.html" />
+    <link rel="prev" title="Building" href="building.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="coding-guidelines">
+<h1>Coding guidelines<a class="headerlink" href="#coding-guidelines" title="Link to this heading">¶</a></h1>
+<section id="naming-convention">
+<h2>Naming convention<a class="headerlink" href="#naming-convention" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Variables and functions are named using the <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> naming convention.</p></li>
+<li><p>Namespaces and classes are named using the <code class="docutils literal notranslate"><span class="pre">PascalCase</span></code> naming convention.</p></li>
+<li><p>Macros and enum values are named using the <code class="docutils literal notranslate"><span class="pre">SCREAMING_SNAKE_CASE</span></code> naming convention.</p></li>
+</ul>
+</section>
+<section id="macros">
+<h2>Macros<a class="headerlink" href="#macros" title="Link to this heading">¶</a></h2>
+<p>When avoidable, try not to use <code class="docutils literal notranslate"><span class="pre">#define</span></code>s to define constants as they are not namespaced. Instead, prefer using enums.</p>
+<p>Do this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">SomeNamespace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">MyEnum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SOME_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Not that:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">SomeNamespace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#define SOME_VALUE 1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="enums">
+<h2>Enums<a class="headerlink" href="#enums" title="Link to this heading">¶</a></h2>
+<p>Prefer using <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code> rather than a standard <code class="docutils literal notranslate"><span class="pre">enum</span></code> if you’re not going to do arithmetic on it.
+This allows for better type safety and forces the <code class="docutils literal notranslate"><span class="pre">EnumName::VALUE</span></code> syntax which is more explicit than the <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> syntax.</p>
+<p>Do this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">SomeNamespace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyEnum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SOME_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Not that:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">SomeNamespace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="nc">MyEnum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MY_ENUM_SOME_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Link to this heading">¶</a></h2>
+<p>Documentation using Doxygen comments is encouraged, paraphrasing is discouraged: comments shall describe the why and the code the how.</p>
+<p>However, if a piece of code is unclear, comments describing the operation are encouraged.</p>
+</section>
+<section id="formatting-the-code">
+<h2>Formatting the code<a class="headerlink" href="#formatting-the-code" title="Link to this heading">¶</a></h2>
+<p>The source code comes with a <code class="docutils literal notranslate"><span class="pre">clang-format</span></code> file can be used along with the tool of the same name to format code properly. It is suggested to make your text editor format the files you modify on save.</p>
+</section>
+<section id="error-handling-in-functions">
+<h2>Error handling in functions<a class="headerlink" href="#error-handling-in-functions" title="Link to this heading">¶</a></h2>
+<p>Error handling in functions is achieved by using the <a class="reference internal" href="../reference/classGaia_1_1Result.html#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Result</span></code></a> class.
+This class is very similar to Rust’s <code class="docutils literal notranslate"><span class="pre">Result&lt;T,</span> <span class="pre">E&gt;</span></code> type.</p>
+<p>The <a class="reference internal" href="../reference/classGaia_1_1Result.html#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Result</span></code></a> class is a templated class taking two arguments: <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">E</span></code>, with the former representing the type of the value that will be returned on success and the latter representing the type of the value that will be returned on failure. One common option for the <code class="docutils literal notranslate"><span class="pre">E</span></code> parameter is the <a class="reference internal" href="../reference/enum_error_8hpp_1af9bbab7b72497f9d1536ba2993304b5f.html#_CPPv4N4Gaia5ErrorE" title="Gaia::Error"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Error</span></code></a> enum. The <a class="reference internal" href="../reference/classGaia_1_1Ok.html#_CPPv4I0EN4Gaia2OkE" title="Gaia::Ok"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Ok</span></code></a> class and the <a class="reference internal" href="../reference/classGaia_1_1Err.html#_CPPv4I0EN4Gaia3ErrE" title="Gaia::Err"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Err</span></code></a> class are used to return <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">E</span></code> respectively.</p>
+<section id="returning-void-on-success">
+<h3>Returning void on success<a class="headerlink" href="#returning-void-on-success" title="Link to this heading">¶</a></h3>
+<p>Since passing <code class="docutils literal notranslate"><span class="pre">void</span></code> as the <code class="docutils literal notranslate"><span class="pre">T</span></code> parameter would produce invalid code, the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Gaia::Null</span></code> class is available for use; it is simply an empty <code class="docutils literal notranslate"><span class="pre">struct</span></code> made for that purpose.</p>
+</section>
+<section id="the-try-macro">
+<h3>The TRY() macro<a class="headerlink" href="#the-try-macro" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">TRY()</span></code> macro can be used in a function that returns a result to call another function returning a result. On failure, the error of the other function will be returned in the caller (the macro inserts a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement), this allows for a pretty powerful error passing hierarchy. In fact, this is exactly how <a class="reference internal" href="../reference/function_main_8hpp_1a9e2d2c86df191dc683e41dc06862fdf4.html#_CPPv4N4Gaia4mainE6Charon" title="Gaia::main"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Gaia::main()</span></code></a> works; the functions it calls that return a result are wrapped in a <code class="docutils literal notranslate"><span class="pre">TRY()</span></code> statement. If the call does succeed, the value is returned by the macro and execution continues.</p>
+</section>
+<section id="example-usage">
+<h3>Example usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/result.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/error.hpp&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="p">;</span>
+
+<span class="n">Result</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">param</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="p">(</span><span class="n">Error</span><span class="o">::</span><span class="n">INVALID_PARAMETERS</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Result</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">other_function</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// On failure, the error will be returned by the function.</span>
+<span class="w">   </span><span class="c1">// On success, the value is returned by the macro and execution is continued</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TRY</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">param</span><span class="p">));</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="contributing.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="building.html">Building</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coding guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="contributing.html">Contributing</a><ul>
+      <li>Previous: <a href="building.html" title="previous chapter">Building</a></li>
+      <li>Next: <a href="../developer/developer.html" title="next chapter">The developer’s handbook</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/contributing/guidelines.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

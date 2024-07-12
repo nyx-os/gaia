@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1FormatWithLocation:
+
+Struct FormatWithLocation
+=========================
+
+- Defined in :ref:`file_lib_log.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::FormatWithLocation
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

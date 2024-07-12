@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a4ec4d141f28342831ab85ea8aa6aa775:
+
+Define XSIMPLEQ_REMOVE_AFTER
+============================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: XSIMPLEQ_REMOVE_AFTER
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vfs_8hpp_1a5292f87754edb36d4706784c65e4c751:
+
+Function Gaia::Fs::vfs_read
+===========================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::vfs_read(Vnode *, frg::span<uint8_t>, off_t)
+   :project: ExhaleCompanion

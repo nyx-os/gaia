@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Template Class Result &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class AnonMap" href="classGaia_1_1Vm_1_1AnonMap.html" />
+    <link rel="prev" title="Class TTY::Ops" href="classGaia_1_1Posix_1_1TTY_1_1Ops.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="template-class-result">
+<span id="exhale-class-classgaia-1-1result"></span><h1>Template Class Result<a class="headerlink" href="#template-class-result" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_lib_result.hpp.html#file-lib-result-hpp"><span class="std std-ref">File result.hpp</span></a></p></li>
+</ul>
+<nav class="contents local" id="page-contents">
+<p class="topic-title">Page Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#template-parameter-order" id="id1">Template Parameter Order</a></p></li>
+<li><p><a class="reference internal" href="#class-documentation" id="id2">Class Documentation</a></p></li>
+</ul>
+</nav>
+<section id="template-parameter-order">
+<h2>Template Parameter Order<a class="headerlink" href="#template-parameter-order" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">typename</span> <span class="pre">T</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typename</span> <span class="pre">E</span></code></p></li>
+</ol>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN4Gaia6ResultE">
+<span id="_CPPv3I00EN4Gaia6ResultE"></span><span id="_CPPv2I00EN4Gaia6ResultE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">E</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classGaia_1_1Result"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Result</span></span></span><a class="headerlink" href="#_CPPv4I00EN4Gaia6ResultE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents either a value or an error. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T</strong> – The type of the value. </p></li>
+<li><p><strong>E</strong> – The type of the error. </p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result6ResultE2OkI1TE">
+<span id="_CPPv3N4Gaia6Result6ResultE2OkI1TE"></span><span id="_CPPv2N4Gaia6Result6ResultE2OkI1TE"></span><span id="Gaia::Result::Result__Ok:T:CE"></span><span class="target" id="classGaia_1_1Result_1a1caef4d5a83945d19fcc626104828a1d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Result</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classGaia_1_1Ok.html#_CPPv4I0EN4Gaia2OkE" title="Gaia::Ok"><span class="n"><span class="pre">Ok</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result6ResultE2OkI1TE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result6ResultE3ErrI1EE">
+<span id="_CPPv3N4Gaia6Result6ResultE3ErrI1EE"></span><span id="_CPPv2N4Gaia6Result6ResultE3ErrI1EE"></span><span id="Gaia::Result::Result__Err:E:CE"></span><span class="target" id="classGaia_1_1Result_1aa4ed6dfba3a2d3601ee7c17f9e773616"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Result</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classGaia_1_1Err.html#_CPPv4I0EN4Gaia3ErrE" title="Gaia::Err"><span class="n"><span class="pre">Err</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::E"><span class="n"><span class="pre">E</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result6ResultE3ErrI1EE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result5is_okEv">
+<span id="_CPPv3N4Gaia6Result5is_okEv"></span><span id="_CPPv2N4Gaia6Result5is_okEv"></span><span id="Gaia::Result::is_okCE"></span><span class="target" id="classGaia_1_1Result_1a79d4df5b0e18e487750ff3fc3e657299"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_ok</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result5is_okEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result6is_errEv">
+<span id="_CPPv3N4Gaia6Result6is_errEv"></span><span id="_CPPv2N4Gaia6Result6is_errEv"></span><span id="Gaia::Result::is_errCE"></span><span class="target" id="classGaia_1_1Result_1a583103a90da3f810e8cab728a141032a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_err</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result6is_errEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result6unwrapERK18FormatWithLocation">
+<span id="_CPPv3N4Gaia6Result6unwrapERK18FormatWithLocation"></span><span id="_CPPv2N4Gaia6Result6unwrapERK18FormatWithLocation"></span><span id="Gaia::Result::unwrap__FormatWithLocationCRCE"></span><span class="target" id="classGaia_1_1Result_1ae93527914f8106f978aedd28b19f6f07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unwrap</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structGaia_1_1FormatWithLocation.html#_CPPv4N4Gaia18FormatWithLocationE" title="Gaia::FormatWithLocation"><span class="n"><span class="pre">FormatWithLocation</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">fmt</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;unwrap</span> <span class="pre">failed:</span> <span class="pre">cannot</span> <span class="pre">unwrap</span> <span class="pre">an</span> <span class="pre">error</span> <span class="pre">type,</span> <span class="pre">err:</span> <span class="pre">{}&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result6unwrapERK18FormatWithLocation" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gets the <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value if present and panics if called on an <a class="reference internal" href="classGaia_1_1Err.html#classGaia_1_1Err"><span class="std std-ref">Err</span></a> value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fmt</strong> – Panic message when called on an <a class="reference internal" href="classGaia_1_1Err.html#classGaia_1_1Err"><span class="std std-ref">Err</span></a> value (optional) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value contained </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result9unwrap_orE1T">
+<span id="_CPPv3N4Gaia6Result9unwrap_orE1T"></span><span id="_CPPv2N4Gaia6Result9unwrap_orE1T"></span><span id="Gaia::Result::unwrap_or__TCE"></span><span class="target" id="classGaia_1_1Result_1a691ff363da59e55312d3b9e31984a08e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unwrap_or</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">_value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result9unwrap_orE1T" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gets the <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value if present or returns a default value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_value</strong> – The value returned on error </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value or _value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result5errorEv">
+<span id="_CPPv3N4Gaia6Result5errorEv"></span><span id="_CPPv2N4Gaia6Result5errorEv"></span><span id="Gaia::Result::errorCE"></span><span class="target" id="classGaia_1_1Result_1a85d0b36e3689547ef927d08739191acd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">frg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::E"><span class="n"><span class="pre">E</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result5errorEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gets the <a class="reference internal" href="classGaia_1_1Err.html#classGaia_1_1Err"><span class="std std-ref">Err</span></a> value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the <a class="reference internal" href="classGaia_1_1Err.html#classGaia_1_1Err"><span class="std std-ref">Err</span></a> value if present or frg::null_opt otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia6Result5valueEv">
+<span id="_CPPv3N4Gaia6Result5valueEv"></span><span id="_CPPv2N4Gaia6Result5valueEv"></span><span id="Gaia::Result::valueCE"></span><span class="target" id="classGaia_1_1Result_1a6a23c49ed20e1ad26597dcf117e3dcde"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">frg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN4Gaia6ResultE" title="Gaia::Result::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4Gaia6Result5valueEv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gets the <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the <a class="reference internal" href="classGaia_1_1Ok.html#classGaia_1_1Ok"><span class="std std-ref">Ok</span></a> value if present or frg::null_opt otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="code_reference.html">Code Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="code_reference.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="code_reference.html#full-api">Full API</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="code_reference.html">Code Reference</a><ul>
+      <li>Previous: <a href="classGaia_1_1Posix_1_1TTY_1_1Ops.html" title="previous chapter">Class TTY::Ops</a></li>
+      <li>Next: <a href="classGaia_1_1Vm_1_1AnonMap.html" title="next chapter">Class AnonMap</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/classGaia_1_1Result.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

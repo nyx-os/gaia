@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_phys_8hpp_1a0dc8080e5acc947963d2ff6cb24853ea:
+
+Function Gaia::Vm::phys_alloc
+=============================
+
+- Defined in :ref:`file_vm_phys.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::phys_alloc(bool)
+   :project: ExhaleCompanion

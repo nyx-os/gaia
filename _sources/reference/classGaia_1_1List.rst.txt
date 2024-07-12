@@ -1,0 +1,43 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1List:
+
+Template Class List
+===================
+
+- Defined in :ref:`file_lib_list.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structGaia_1_1List_1_1Iterator`
+
+
+Template Parameter Order
+------------------------
+
+#. ``typename T``
+#. `ListNode <exhale_struct_structGaia_1_1ListNode_>`_ ``N``
+
+
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::List
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

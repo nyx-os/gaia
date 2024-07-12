@@ -1,0 +1,124 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _namespace_Gaia__Dev:
+
+Namespace Gaia::Dev
+===================
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1AcpiTable`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Catalog_1_1CatalogEntry`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Driver`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1PciDevice_1_1Info`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Personality`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Registry_1_1Node`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Rsdp`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Rsdt`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtioDevice_1_1PciCap`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtioDevice_1_1PciCommonCfg`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueue`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueAvail`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueDesc`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueUsed`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1VirtQueueUsedElem`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Xsdt`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1AcpiDevice`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1AcpiPc`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Catalog`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1FbConsole`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1PciBus`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1PciDevice`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Ps2Controller`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Registry`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Service`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1VirtioBlock`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1VirtioDevice`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_pci_2device_8hpp_1ab8cc1ce5dba7ddc8266697310dcb5ce3`
+
+- :ref:`exhale_enum_pci_2device_8hpp_1a9292851adb46c6c7449fa3172e32b91a`
+
+- :ref:`exhale_enum_pci_2device_8hpp_1a35fe8c25e0156663fdcf6f0a8ee4b2b1`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_registry_8hpp_1a0ef40a5636e9fc34b14a1177105deecb`
+
+- :ref:`exhale_function_registry_8hpp_1af3bed3c5d5cac070b6ca12d119bab874`
+
+- :ref:`exhale_function_registry_8hpp_1a31f1423c670cace307215557dd478818`
+
+- :ref:`exhale_function_builtin_8hpp_1ace92eda07ce19c5ff6c21ab3787eaf7e`
+
+- :ref:`exhale_function_glue_8hpp_1a531085dae90b51011f8c3eaeff0d6245`
+
+- :ref:`exhale_function_pcibus_8hpp_1a69a26b2d0cf31bb491b83736a06b62a4`
+
+- :ref:`exhale_function_ps2_8hpp_1a88783f36e5be69c7a41dbfee319b5b00`
+
+- :ref:`exhale_function_fbconsole_8hpp_1afb4a75dbe5937592a05fdd907858b185`
+
+- :ref:`exhale_function_block_8hpp_1a0698a4eb1f6eba4b9b63dafbce29a321`
+
+- :ref:`exhale_function_virtio_8hpp_1a6c4e3cdbc08f654b24a11d305538529f`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_service_8hpp_1afc4f30de0a05211e8a8c14d8935ae8e9`
+
+
+Unions
+------
+
+
+- :ref:`exhale_union_unionGaia_1_1Dev_1_1Value`

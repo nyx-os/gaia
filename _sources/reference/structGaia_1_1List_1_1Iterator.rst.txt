@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1List_1_1Iterator:
+
+Struct List::Iterator
+=====================
+
+- Defined in :ref:`file_lib_list.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGaia_1_1List`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::List::Iterator
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

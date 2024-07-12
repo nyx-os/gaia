@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d:
+
+Variable Gaia::logger
+=====================
+
+- Defined in :ref:`file_lib_log.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::logger
+   :project: ExhaleCompanion

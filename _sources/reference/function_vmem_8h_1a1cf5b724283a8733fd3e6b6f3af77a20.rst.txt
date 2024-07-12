@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vmem_8h_1a1cf5b724283a8733fd3e6b6f3af77a20:
+
+Function TAILQ_HEAD
+===================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: TAILQ_HEAD(VmemSegQueue, vmem_segment)
+   :project: ExhaleCompanion

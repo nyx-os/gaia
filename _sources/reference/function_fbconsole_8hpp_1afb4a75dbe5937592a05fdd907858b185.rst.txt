@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_fbconsole_8hpp_1afb4a75dbe5937592a05fdd907858b185:
+
+Function Gaia::Dev::system_console
+==================================
+
+- Defined in :ref:`file_dev_console_fbconsole.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::system_console()
+   :project: ExhaleCompanion

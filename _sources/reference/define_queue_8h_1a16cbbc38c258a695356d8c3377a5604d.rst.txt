@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a16cbbc38c258a695356d8c3377a5604d:
+
+Define SLIST_REMOVE_AFTER
+=========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SLIST_REMOVE_AFTER
+   :project: ExhaleCompanion

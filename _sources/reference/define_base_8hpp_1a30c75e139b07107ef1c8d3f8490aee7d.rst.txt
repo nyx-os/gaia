@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_base_8hpp_1a30c75e139b07107ef1c8d3f8490aee7d:
+
+Define memcpy
+=============
+
+- Defined in :ref:`file_lib_base.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: memcpy
+   :project: ExhaleCompanion

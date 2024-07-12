@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a56576e64da699ee469e4ff3366ff2357:
+
+Define LIMINE_BOOT_TIME_REQUEST
+===============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_BOOT_TIME_REQUEST
+   :project: ExhaleCompanion

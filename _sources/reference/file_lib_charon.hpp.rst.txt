@@ -1,0 +1,107 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_charon.hpp:
+
+File charon.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Charon is gaia's generic (i.e bootloader-independent) boot protocol. 
+
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/charon.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_charon.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+A Charon object is built by the architecture-dependent code then it is passed to Gaia::Main() in order to ensure unified kernel entry. 
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+- ``cstdint``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_acpi_acpi.hpp`
+
+- :ref:`file_dev_console_fbconsole.hpp`
+
+- :ref:`file_fs_tmpfs.hpp`
+
+- :ref:`file_kernel_main.hpp`
+
+- :ref:`file_vm_phys.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Charon`
+
+- :ref:`exhale_struct_structGaia_1_1CharonFramebuffer`
+
+- :ref:`exhale_struct_structGaia_1_1CharonMemoryMap`
+
+- :ref:`exhale_struct_structGaia_1_1CharonMmapEntry`
+
+- :ref:`exhale_struct_structGaia_1_1CharonModule`
+
+- :ref:`exhale_struct_structGaia_1_1CharonModules`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_charon_8hpp_1a33907191a12530ee5163985bb46e591a`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_charon_8hpp_1a0ecd60056fdf2aadae99782d467887a2`
+
+- :ref:`exhale_variable_charon_8hpp_1a9583ba7746e0837aa0a44bd31476d040`
+

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_limine_8h_1a4b9a7070926c40c446ca6252c769fdd7:
+
+Typedef limine_entry_point
+==========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: limine_entry_point
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_8hpp_1a03aee06036eb81c8280ae57e8b0e1d31:
+
+Function Gaia::Hal::init_devices
+================================
+
+- Defined in :ref:`file_arch_hal_hal.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::init_devices(Dev::AcpiPc *)
+   :project: ExhaleCompanion

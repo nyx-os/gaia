@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vm__kernel_8hpp_1af654f7f40cf60edfba570a6411640cd4:
+
+Define KERNEL_HEAP_SIZE
+=======================
+
+- Defined in :ref:`file_vm_vm_kernel.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: KERNEL_HEAP_SIZE
+   :project: ExhaleCompanion

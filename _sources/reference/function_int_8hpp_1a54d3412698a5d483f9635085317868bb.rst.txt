@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1a54d3412698a5d483f9635085317868bb:
+
+Function Gaia::Hal::register_interrupt_handler
+==============================================
+
+- Defined in :ref:`file_arch_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::register_interrupt_handler(int, Hal::InterruptHandler *, void *, Hal::InterruptEntry *)
+   :project: ExhaleCompanion

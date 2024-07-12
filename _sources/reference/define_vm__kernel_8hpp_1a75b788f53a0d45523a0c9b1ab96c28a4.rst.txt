@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vm__kernel_8hpp_1a75b788f53a0d45523a0c9b1ab96c28a4:
+
+Define KERNEL_HEAP_BASE
+=======================
+
+- Defined in :ref:`file_vm_vm_kernel.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: KERNEL_HEAP_BASE
+   :project: ExhaleCompanion

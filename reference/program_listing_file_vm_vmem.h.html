@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File vmem.h &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-vmem-h">
+<span id="program-listing-file-vm-vmem-h"></span><h1>Program Listing for File vmem.h<a class="headerlink" href="#program-listing-for-file-vmem-h" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_vm_vmem.h.html#file-vm-vmem-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">vm/vmem.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Implementation of the VMem resource allocator</span>
+<span class="cm">   as described in</span>
+<span class="cm">   https://www.usenix.org/legacy/event/usenix01/full_papers/bonwick/bonwick.pdf</span>
+<span class="cm">*/</span>
+
+<span class="cp">#ifndef _VMEM_H</span>
+<span class="cp">#define _VMEM_H</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/queue.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="cp">#endif</span>
+<span class="cm">/* Directs vmem to use the smallest</span>
+<span class="cm">free segment that can satisfy the allocation. This</span>
+<span class="cm">policy tends to minimize fragmentation of very</span>
+<span class="cm">small, precious resources (cited from paper) */</span>
+<span class="cp">#define VM_BESTFIT (1 &lt;&lt; 0)</span>
+
+<span class="cm">/* Directs vmem to provide a</span>
+<span class="cm">good approximation to best−fit in guaranteed</span>
+<span class="cm">constant time. This is the default allocation policy. (cited from paper) */</span>
+<span class="cp">#define VM_INSTANTFIT (1 &lt;&lt; 1)</span>
+
+<span class="cm">/* Directs vmem to use the next free</span>
+<span class="cm">segment after the one previously allocated. This is</span>
+<span class="cm">useful for things like process IDs, where we want</span>
+<span class="cm">to cycle through all the IDs before reusing them. (cited from paper) */</span>
+<span class="cp">#define VM_NEXTFIT (1 &lt;&lt; 2)</span>
+
+<span class="cp">#define VM_SLEEP (1 &lt;&lt; 3)</span>
+<span class="cp">#define VM_NOSLEEP (1 &lt;&lt; 4)</span>
+
+<span class="cm">/* Used to eliminate cyclic dependencies when refilling the segment freelist:</span>
+<span class="cm">   We need to allocate new segments but to allocate new segments, we need to</span>
+<span class="cm">   refill the list, this flag ensures that no refilling occurs. */</span>
+<span class="cp">#define VM_BOOTSTRAP (1 &lt;&lt; 5)</span>
+
+<span class="cp">#define VMEM_ERR_NO_MEM 1</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">vmem</span><span class="p">;</span>
+
+<span class="cm">/* Vmem allows one arena to import its resources from</span>
+<span class="cm">another. vmem_create() specifies the source arena,</span>
+<span class="cm">and the functions to allocate and free from that source. The arena imports new</span>
+<span class="cm">spans as needed, and gives them back when all their segments have been freed.</span>
+<span class="cm">(cited from paper) These types describe those functions.</span>
+<span class="cm"> */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">VmemAlloc</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmem</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">VmemFree</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmem</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* We can&#39;t use boundary tags because the resource we&#39;re managing is not</span>
+<span class="cm">   necessarily memory. To counter this, we can use *external boundary tags*. For</span>
+<span class="cm">   each segment in the arena we allocate a boundary tag to manage it. */</span>
+
+<span class="cm">/* sizeof(void *) * CHAR_BIT (8) freelists provides us with a freelist for every</span>
+<span class="cm"> * power-of-2 length that can fit within the host&#39;s virtual address space (64</span>
+<span class="cm"> * bit) */</span>
+<span class="cp">#define FREELISTS_N sizeof(void *) * CHAR_BIT</span>
+<span class="cp">#define HASHTABLES_N 16</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vmem_segment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">SEGMENT_ALLOCATED</span><span class="p">,</span><span class="w"> </span><span class="n">SEGMENT_FREE</span><span class="p">,</span><span class="w"> </span><span class="n">SEGMENT_SPAN</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">imported</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Non-zero if imported */</span>
+
+<span class="w">  </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">base</span><span class="p">;</span><span class="w"> </span><span class="cm">/* base address of the segment */</span>
+<span class="w">  </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="cm">/* size of the segment */</span>
+
+<span class="w">  </span><span class="cm">/* clang-format off */</span>
+<span class="w">  </span><span class="n">TAILQ_ENTRY</span><span class="p">(</span><span class="n">vmem_segment</span><span class="p">)</span><span class="w"> </span><span class="n">segqueue</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Points to Vmem::segqueue */</span>
+<span class="w">  </span><span class="n">LIST_ENTRY</span><span class="p">(</span><span class="n">vmem_segment</span><span class="p">)</span><span class="w"> </span><span class="n">seglist</span><span class="p">;</span><span class="w"> </span><span class="cm">/* If free, points to Vmem::freelist, if allocated, points to Vmem::hashtable, else Vmem::spanlist */</span>
+<span class="w">  </span><span class="cm">/* clang-format on */</span>
+<span class="p">}</span><span class="w"> </span><span class="n">VmemSegment</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">LIST_HEAD</span><span class="p">(</span><span class="n">VmemSegList</span><span class="p">,</span><span class="w"> </span><span class="n">vmem_segment</span><span class="p">)</span><span class="w"> </span><span class="n">VmemSegList</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">TAILQ_HEAD</span><span class="p">(</span><span class="n">VmemSegQueue</span><span class="p">,</span><span class="w"> </span><span class="n">vmem_segment</span><span class="p">)</span><span class="w"> </span><span class="n">VmemSegQueue</span><span class="p">;</span>
+
+<span class="cm">/* Statistics about a Vmem arena, NOTE: this isn&#39;t described in the original</span>
+<span class="cm"> * paper and was added by me. Inspired by Illumos and Solaris&#39;vmem_kstat_t */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">in_use</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Memory in use */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="k">import</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Imported memory */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">total</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Total memory in the area */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Number of allocations */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">free</span><span class="p">;</span><span class="w">   </span><span class="cm">/* Number of frees */</span>
+<span class="p">}</span><span class="w"> </span><span class="n">VmemStat</span><span class="p">;</span>
+
+<span class="cm">/* Description of an arena, a collection of resources. An arena is simply a set</span>
+<span class="cm"> * of integers. */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">vmem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span><span class="w">       </span><span class="cm">/* Descriptive name for debugging purposes */</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">base</span><span class="p">;</span><span class="w">          </span><span class="cm">/* Start of initial span */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w">         </span><span class="cm">/* Size of initial span */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">quantum</span><span class="p">;</span><span class="w">      </span><span class="cm">/* Unit of currency */</span>
+<span class="w">  </span><span class="n">VmemAlloc</span><span class="w"> </span><span class="o">*</span><span class="n">alloc</span><span class="p">;</span><span class="w">    </span><span class="cm">/* Import alloc function */</span>
+<span class="w">  </span><span class="n">VmemFree</span><span class="w"> </span><span class="o">*</span><span class="n">free</span><span class="p">;</span><span class="w">      </span><span class="cm">/* Import free function */</span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">vmem</span><span class="w"> </span><span class="o">*</span><span class="n">source</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Import arena */</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">qcache_max</span><span class="p">;</span><span class="w">   </span><span class="cm">/* Maximum size to cache */</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">vmflag</span><span class="p">;</span><span class="w">          </span><span class="cm">/* VM_SLEEP or VM_NOSLEEP */</span>
+
+<span class="w">  </span><span class="n">VmemSegQueue</span><span class="w"> </span><span class="n">segqueue</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VmemSegList</span><span class="w"> </span><span class="n">freelist</span><span class="p">[</span><span class="n">FREELISTS_N</span><span class="p">];</span><span class="w">   </span><span class="cm">/* Power of two freelists. Freelists[n]</span>
+<span class="cm">                                          contains all free segments whose sizes</span>
+<span class="cm">                                          are in the range [2^n, 2^n+1]  */</span>
+<span class="w">  </span><span class="n">VmemSegList</span><span class="w"> </span><span class="n">hashtable</span><span class="p">[</span><span class="n">HASHTABLES_N</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Allocated segments */</span>
+<span class="w">  </span><span class="n">VmemSegList</span><span class="w"> </span><span class="n">spanlist</span><span class="p">;</span><span class="w">                </span><span class="cm">/* Span marker segments */</span>
+
+<span class="w">  </span><span class="n">VmemStat</span><span class="w"> </span><span class="n">stat</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Vmem</span><span class="p">;</span>
+
+<span class="cm">/* Initializes a vmem arena (no malloc) */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">vmem_init</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmem</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">size_t</span><span class="w"> </span><span class="n">quantum</span><span class="p">,</span><span class="w"> </span><span class="n">VmemAlloc</span><span class="w"> </span><span class="o">*</span><span class="n">afunc</span><span class="p">,</span><span class="w"> </span><span class="n">VmemFree</span><span class="w"> </span><span class="o">*</span><span class="n">ffunc</span><span class="p">,</span><span class="w"> </span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">source</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">size_t</span><span class="w"> </span><span class="n">qcache_max</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">vmflag</span><span class="p">);</span>
+
+<span class="cm">/* Destroys arena `vmp` */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">vmem_destroy</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">);</span>
+
+<span class="cm">/* Allocates size bytes from vmp. Returns the allocated address on success, NULL</span>
+<span class="cm">on failure. vmem_alloc() fails only if vmflag specifies VM_NOSLEEP and no</span>
+<span class="cm">resources are currently available. vmflag may also specify an allocation policy</span>
+<span class="cm">(VM_BESTFIT, VM_INSTANTFIT, or VM_NEXTFIT). If no policy is specified the</span>
+<span class="cm">default is VM_INSTANTFIT, which provides a good approximation to best−fit in</span>
+<span class="cm">guaranteed constant time. (cited from paper) */</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">vmem_alloc</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">vmflag</span><span class="p">);</span>
+
+<span class="cm">/* Frees `size` bytes at address `addr` in arena `vmp` */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">vmem_free</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">Allocates size bytes at offset phase from an align boundary such that the</span>
+<span class="cm">resulting segment [addr, addr + size) is a subset of [minaddr, maxaddr) that</span>
+<span class="cm">does not straddle a nocross− aligned boundary. vmflag is as above. One</span>
+<span class="cm">performance caveat: if either minaddr or maxaddr is non−NULL, vmem may not be</span>
+<span class="cm">able to satisfy the allocation in constant time. If allocations within a given</span>
+<span class="cm">[minaddr, maxaddr) range are common it is more efficient to declare that range</span>
+<span class="cm">to be its own arena and use unconstrained allocations on the new arena (cited</span>
+<span class="cm">from paper).</span>
+<span class="cm">*/</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">vmem_xalloc</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">align</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">phase</span><span class="p">,</span>
+<span class="w">                  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nocross</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">minaddr</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">maxaddr</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">vmflag</span><span class="p">);</span>
+
+<span class="cm">/*</span>
+<span class="cm">  Frees size bytes at addr, where addr was a constrained allocation.</span>
+<span class="cm">vmem_xfree() must be used if the original allocation was a vmem_xalloc() because</span>
+<span class="cm">both routines bypass the quantum caches. (Cited from paper)</span>
+<span class="cm">*/</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">vmem_xfree</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* Adds the span [addr, addr + size) to arena vmp. Returns addr on success, NULL</span>
+<span class="cm">   on failure. vmem_add() will fail only if vmflag is VM_NOSLEEP and no</span>
+<span class="cm">   resources are currently available. (cited from paper) */</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">vmem_add</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">vmflag</span><span class="p">);</span>
+
+<span class="cm">/* Dumps the arena `vmp` using the `kprintf` function */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">vmem_dump</span><span class="p">(</span><span class="n">Vmem</span><span class="w"> </span><span class="o">*</span><span class="n">vmp</span><span class="p">);</span>
+
+<span class="cm">/* Initializes Vmem */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">vmem_bootstrap</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/program_listing_file_vm_vmem.h.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

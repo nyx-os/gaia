@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1ac3203dcce73148c142df4586eb55ce55:
+
+Define STAILQ_FOREACH_SAFE
+==========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: STAILQ_FOREACH_SAFE
+   :project: ExhaleCompanion

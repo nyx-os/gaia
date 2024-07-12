@@ -1,0 +1,58 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_acpi_glue.hpp:
+
+File glue.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_acpi>` (``dev/acpi``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/acpi/glue.hpp``)
+----------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_acpi_glue.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/acpi/acpi.hpp`` (:ref:`file_dev_acpi_acpi.hpp`)
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_glue_8hpp_1a531085dae90b51011f8c3eaeff0d6245`
+

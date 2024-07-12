@@ -1,0 +1,21 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_posix:
+
+
+Directory posix
+===============
+
+
+*Directory path:* ``posix``
+
+
+Files
+-----
+
+- :ref:`file_posix_errno.hpp`
+- :ref:`file_posix_exec.hpp`
+- :ref:`file_posix_fd.hpp`
+- :ref:`file_posix_tty.hpp`
+
+

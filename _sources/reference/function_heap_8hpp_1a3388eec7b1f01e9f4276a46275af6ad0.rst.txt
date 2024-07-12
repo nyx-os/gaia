@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1a3388eec7b1f01e9f4276a46275af6ad0:
+
+Function Gaia::Vm::realloc
+==========================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::realloc(void *, size_t)
+   :project: ExhaleCompanion

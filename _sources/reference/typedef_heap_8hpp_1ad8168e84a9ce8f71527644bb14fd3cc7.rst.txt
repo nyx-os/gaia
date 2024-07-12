@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_heap_8hpp_1ad8168e84a9ce8f71527644bb14fd3cc7:
+
+Typedef Gaia::Vm::Vector
+========================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Vm::Vector
+   :project: ExhaleCompanion

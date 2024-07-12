@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1a7d618f82e6d95f6f0ec6d810d1e01fea:
+
+Function Gaia::sched_allocate_pid
+=================================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_allocate_pid()
+   :project: ExhaleCompanion

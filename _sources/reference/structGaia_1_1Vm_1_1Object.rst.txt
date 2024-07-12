@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Vm_1_1Object:
+
+Struct Object
+=============
+
+- Defined in :ref:`file_vm_vm.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Vm::Object
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

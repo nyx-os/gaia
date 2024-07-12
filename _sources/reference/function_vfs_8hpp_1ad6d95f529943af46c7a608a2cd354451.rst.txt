@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vfs_8hpp_1ad6d95f529943af46c7a608a2cd354451:
+
+Function Gaia::Fs::vfs_write
+============================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::vfs_write(Vnode *, frg::span<uint8_t>, off_t)
+   :project: ExhaleCompanion

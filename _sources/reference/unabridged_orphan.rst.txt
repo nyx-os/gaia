@@ -1,0 +1,393 @@
+:orphan:
+
+
+Full API
+========
+
+Directories
+***********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_arch.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_arch_aarch64.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_arch_hal.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_arch_riscv64.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_arch_x86_64.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev_acpi.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev_console.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev_devkit.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev_pci.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_dev_virtio.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_fs.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_kernel.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_lib.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_posix.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_vm.rst
+
+Files
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_acpi_acpi.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_apic.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_asm.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_base.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_virtio_block.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_builtin.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_charon.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_console_constants.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_cpuid.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_fs_devfs.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_acpi_device.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_pci_device.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_dot.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_elf.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_elf.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_posix_errno.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_error.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_event.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_posix_exec.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_console_fbconsole.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_posix_fd.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_freelist.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_gdt.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_acpi_glue.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_hal_hal.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_vm_heap.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_hpet.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_idt.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_hal_int.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_ipl.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_limine.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_list.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_log.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_main.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_aarch64_mmu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_hal_mmu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_riscv64_mmu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_mmu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_path.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_pci_pcibus.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_vm_phys.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_console_ps2.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_queue.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_devkit_registry.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_result.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_sched.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_devkit_service.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_simd.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_stream.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_syscall.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_syscalls.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_time.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_arch_x86_64_timer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_fs_tmpfs.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_posix_tty.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_fs_vfs.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_dev_virtio_virtio.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_vm_vm.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_vm_vm_kernel.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_vm_vmem.h.rst

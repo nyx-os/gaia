@@ -1,0 +1,82 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_vm_vm_kernel.hpp:
+
+File vm_kernel.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_vm>` (``vm``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``vm/vm_kernel.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_vm_vm_kernel.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``vm/phys.hpp`` (:ref:`file_vm_phys.hpp`)
+
+- ``vm/vm.hpp`` (:ref:`file_vm_vm.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Vm`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_vm__kernel_8hpp_1ac00b3a4af319c76c91a6f62feba100be`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1aa48cabdf94fcbaa31b1edc934fb5a743`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1aaa364629d75b7295ded5bf8711e39172`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1ae1cff001e04dfdcfc827065fee95b5aa`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_vm__kernel_8hpp_1a75b788f53a0d45523a0c9b1ab96c28a4`
+
+- :ref:`exhale_define_vm__kernel_8hpp_1af654f7f40cf60edfba570a6411640cd4`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_vm__kernel_8hpp_1ac1b9e43980dcee3a744a7db40ff46344`
+

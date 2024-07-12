@@ -1,0 +1,247 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_queue.h:
+
+File queue.h
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/queue.h``)
+----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_queue.h.rst
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_vm_vmem.h`
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_queue_8h_1a628c2134ca520da4fdb6a53d27930977`
+
+- :ref:`exhale_define_queue_8h_1af59ab30a8f9a88af86422600c38125cf`
+
+- :ref:`exhale_define_queue_8h_1a0687dc033d5b408a3883b5bf2bd9a935`
+
+- :ref:`exhale_define_queue_8h_1aec2ccd0e8c215504508af23f04480be6`
+
+- :ref:`exhale_define_queue_8h_1a8f223070a7fe7c5f24033e9d8fbeb610`
+
+- :ref:`exhale_define_queue_8h_1ac1543beeb6d9224b60feb7a2703b2a87`
+
+- :ref:`exhale_define_queue_8h_1a2dd4b5313ff322ed89827dede22589e8`
+
+- :ref:`exhale_define_queue_8h_1ae72219f63b2fe9bce774a64e11404179`
+
+- :ref:`exhale_define_queue_8h_1a5d7b8e9f9968d3152a8519cd9a45312e`
+
+- :ref:`exhale_define_queue_8h_1a304b5b7f7bdcba2793eaba9c890991c3`
+
+- :ref:`exhale_define_queue_8h_1aab62f53d4c94ab67bf7c4dc5c7670f64`
+
+- :ref:`exhale_define_queue_8h_1a73d12127b84f84215eb03a4fb20feebb`
+
+- :ref:`exhale_define_queue_8h_1ad80d8d658fdb46a9f7cc81cb2ae54885`
+
+- :ref:`exhale_define_queue_8h_1ad150fcc4dc3e0a56600101f1f1065ed5`
+
+- :ref:`exhale_define_queue_8h_1a4f60a3fedbebc5ef6edded99062dd98d`
+
+- :ref:`exhale_define_queue_8h_1af76883409ca9ebd9845a64dc61702250`
+
+- :ref:`exhale_define_queue_8h_1a3efcc2c83cdfb471a2fdddc660c75ff2`
+
+- :ref:`exhale_define_queue_8h_1ac5ae79041999d0acfad3bacf72979b88`
+
+- :ref:`exhale_define_queue_8h_1afb7f731c6fba7aac97b2b446ecd3a2bd`
+
+- :ref:`exhale_define_queue_8h_1af416c4e9e87270cb7b90152a27b8daa4`
+
+- :ref:`exhale_define_queue_8h_1a8aca010fb5702082a231bb2535e5a945`
+
+- :ref:`exhale_define_queue_8h_1a3efcdcb8bdde0bc0d013314ed12426b5`
+
+- :ref:`exhale_define_queue_8h_1a0bda1c13bc680d3c313aab25886be1eb`
+
+- :ref:`exhale_define_queue_8h_1adf0c29c386006b1f32435abe538d4398`
+
+- :ref:`exhale_define_queue_8h_1a89444236a1714f59b8e84608f18f6422`
+
+- :ref:`exhale_define_queue_8h_1a36c4353aafcd6f7d0dbf74473d761b08`
+
+- :ref:`exhale_define_queue_8h_1a601bd9b7c5fffd4bb8c2d71969b53be2`
+
+- :ref:`exhale_define_queue_8h_1a8ea372a36daedcf8f29d805bbb49bb3f`
+
+- :ref:`exhale_define_queue_8h_1a3f31b4857ff4ccb0f970ca9d19e133b4`
+
+- :ref:`exhale_define_queue_8h_1a15537d2c45c0d176a75601d484b75432`
+
+- :ref:`exhale_define_queue_8h_1a17e2762c3f06a6e7ac3ab170ac313168`
+
+- :ref:`exhale_define_queue_8h_1a595ba5db373de6d9e9daba311b1e458d`
+
+- :ref:`exhale_define_queue_8h_1a59bcc4e6f4bf63b897bdc0644566c583`
+
+- :ref:`exhale_define_queue_8h_1a33283f951b262b1ac57d20c0e4e0862c`
+
+- :ref:`exhale_define_queue_8h_1a5dd8bb1cef024ac008680e7e3b660332`
+
+- :ref:`exhale_define_queue_8h_1a91bac7d0d32e3ec56bc579ace45ed8cd`
+
+- :ref:`exhale_define_queue_8h_1a05db87878125c27e3060dd641aa3b0f4`
+
+- :ref:`exhale_define_queue_8h_1afeca7f301bcbd06a17821aa00e9d14d5`
+
+- :ref:`exhale_define_queue_8h_1a8224e40ea764bc857bab6f6d9c357dd9`
+
+- :ref:`exhale_define_queue_8h_1a9ae2aca3d46e62be4cb1408bd946ef15`
+
+- :ref:`exhale_define_queue_8h_1a361ac8e88cf066cc4d46d28b54fd3031`
+
+- :ref:`exhale_define_queue_8h_1af1d994d9652ccbc41a60b747dfc15ea5`
+
+- :ref:`exhale_define_queue_8h_1a48df7439e09a419afabdd1f2f8551e73`
+
+- :ref:`exhale_define_queue_8h_1a7cd1d5ae37224ecee1f0b831eb73e7f4`
+
+- :ref:`exhale_define_queue_8h_1a9c7950d61593ab9198524fca81b17ab0`
+
+- :ref:`exhale_define_queue_8h_1a16cbbc38c258a695356d8c3377a5604d`
+
+- :ref:`exhale_define_queue_8h_1aeb10c664372b3b680455274170f4c897`
+
+- :ref:`exhale_define_queue_8h_1aadfbe79db37e93cf528ae79a9aafb755`
+
+- :ref:`exhale_define_queue_8h_1a8427c8f43d09d73062cf6b37f303aff5`
+
+- :ref:`exhale_define_queue_8h_1a343c3d0ed2c1f9db16791a94f2a7399c`
+
+- :ref:`exhale_define_queue_8h_1a765904f4fab4e7de1e2cd8ff351bc353`
+
+- :ref:`exhale_define_queue_8h_1a3e2eb7535019a2829399b24744dd1a66`
+
+- :ref:`exhale_define_queue_8h_1a77999ebdf5aaf7af8b8ea22bf208c432`
+
+- :ref:`exhale_define_queue_8h_1ac3203dcce73148c142df4586eb55ce55`
+
+- :ref:`exhale_define_queue_8h_1a7b54f0de61925e7cf33184c2ec24da14`
+
+- :ref:`exhale_define_queue_8h_1a3d41ce2c3f1dd21c0d4051d13204c321`
+
+- :ref:`exhale_define_queue_8h_1a3b508a1c06ded6b4ce4b1feea7643c28`
+
+- :ref:`exhale_define_queue_8h_1a275d3b0043218a0d3f312b6d13bbfc0c`
+
+- :ref:`exhale_define_queue_8h_1aad3b1fb87b675bae75334acd958b57dc`
+
+- :ref:`exhale_define_queue_8h_1a7bc9a31418b55c5698be3e54e10bb484`
+
+- :ref:`exhale_define_queue_8h_1ae18d422917aa0b8efb0f58d92a19ae41`
+
+- :ref:`exhale_define_queue_8h_1ad89ac472696d006112dface9c2d75e47`
+
+- :ref:`exhale_define_queue_8h_1a2a0d6665f277f80bf301a16e6ab2403c`
+
+- :ref:`exhale_define_queue_8h_1a657c50417f3caeab52e34fcd454cec71`
+
+- :ref:`exhale_define_queue_8h_1a24c16c7c5c9908022bad7a98ddac9740`
+
+- :ref:`exhale_define_queue_8h_1afe4852d23c85543fafc53ad409461750`
+
+- :ref:`exhale_define_queue_8h_1ac3c9da7ac712eacbbad5cc54d7a3477e`
+
+- :ref:`exhale_define_queue_8h_1a4322b8461a6ab7632435ff4f57bb3a2e`
+
+- :ref:`exhale_define_queue_8h_1af71bfd90dc9d00fb03545fe66c67d673`
+
+- :ref:`exhale_define_queue_8h_1a7d6894360bd1c41e0e6f6d84998c1362`
+
+- :ref:`exhale_define_queue_8h_1a16e5fc168e7f3494d4b1df54447d871e`
+
+- :ref:`exhale_define_queue_8h_1aa7f65c910cd4616fcfa9723c5763b1a5`
+
+- :ref:`exhale_define_queue_8h_1aa7841e4f848e470b9f2bc676473d7a5b`
+
+- :ref:`exhale_define_queue_8h_1a2a85f19896399eecd0ebf91cb8176166`
+
+- :ref:`exhale_define_queue_8h_1a4abce769a262e090c1f601605b9d6c76`
+
+- :ref:`exhale_define_queue_8h_1ac269df7d4126ed9885156cbad2cbf8af`
+
+- :ref:`exhale_define_queue_8h_1a449d224023780e46253b83b61e0a50a9`
+
+- :ref:`exhale_define_queue_8h_1af972e33f5eacef659ee0bf0a13ca518c`
+
+- :ref:`exhale_define_queue_8h_1ac6a41e17dbc7d8df1f8b353a036754ff`
+
+- :ref:`exhale_define_queue_8h_1af0f99e8f322ea4eef2d9deaa505239a6`
+
+- :ref:`exhale_define_queue_8h_1a512bee16b46f601078c96c776d2648c3`
+
+- :ref:`exhale_define_queue_8h_1ac9154a9aebb3c15a3f2356349a1cc14f`
+
+- :ref:`exhale_define_queue_8h_1abd57fe9bdea6007a602f8c7d61bd5265`
+
+- :ref:`exhale_define_queue_8h_1a524f93a0c21c390683fab4c27e840a10`
+
+- :ref:`exhale_define_queue_8h_1aaae87ca18c28066e1a96221e762d1209`
+
+- :ref:`exhale_define_queue_8h_1a6c5948aec8d53d42983d92a23b517579`
+
+- :ref:`exhale_define_queue_8h_1af4a2b77d3bb93db78e88a293fb9d2414`
+
+- :ref:`exhale_define_queue_8h_1a02e78a5fbe937fbd45f7d2806c4ede1c`
+
+- :ref:`exhale_define_queue_8h_1a0bb53980c488001e0f1169efbc76f266`
+
+- :ref:`exhale_define_queue_8h_1af928606623987dc39bff85ca324061db`
+
+- :ref:`exhale_define_queue_8h_1a7c65e69f394967fa9968e426de31a20f`
+
+- :ref:`exhale_define_queue_8h_1a8f31983e272722a80929b0aa3f35c224`
+
+- :ref:`exhale_define_queue_8h_1aaa7bc8f14de416cc837a7e8e019d82ec`
+
+- :ref:`exhale_define_queue_8h_1af626aea9b2fe237ad9eeda41617c18af`
+
+- :ref:`exhale_define_queue_8h_1a2470973a4ee61add63e5981d892c5139`
+
+- :ref:`exhale_define_queue_8h_1a71b79bc83c13b28ddb08c322beb49591`
+
+- :ref:`exhale_define_queue_8h_1aff870f49a148f75658fe0513213b5ac9`
+
+- :ref:`exhale_define_queue_8h_1a079fd86550adef12d33375783cfeda01`
+
+- :ref:`exhale_define_queue_8h_1a4ec4d141f28342831ab85ea8aa6aa775`
+
+- :ref:`exhale_define_queue_8h_1a790361e0ea9159249ed83d3024de7b9a`
+
+- :ref:`exhale_define_queue_8h_1af8b5ea8276a466c99f040faa1c84630e`
+

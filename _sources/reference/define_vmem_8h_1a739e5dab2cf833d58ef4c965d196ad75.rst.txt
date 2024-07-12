@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vmem_8h_1a739e5dab2cf833d58ef4c965d196ad75:
+
+Define HASHTABLES_N
+===================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: HASHTABLES_N
+   :project: ExhaleCompanion

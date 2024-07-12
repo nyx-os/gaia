@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a8f31983e272722a80929b0aa3f35c224:
+
+Define XSIMPLEQ_FOREACH_SAFE
+============================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: XSIMPLEQ_FOREACH_SAFE
+   :project: ExhaleCompanion

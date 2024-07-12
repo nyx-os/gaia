@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_syscalls_8hpp_1a461acaf3d74c0fa26b14da7f00374042:
+
+Function Gaia::syscall
+======================
+
+- Defined in :ref:`file_kernel_syscalls.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::syscall(int, SyscallParams)
+   :project: ExhaleCompanion

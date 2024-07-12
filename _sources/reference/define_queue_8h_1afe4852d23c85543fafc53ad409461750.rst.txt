@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1afe4852d23c85543fafc53ad409461750:
+
+Define TAILQ_CONCAT
+===================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TAILQ_CONCAT
+   :project: ExhaleCompanion

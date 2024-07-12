@@ -1,0 +1,124 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_sched.hpp:
+
+File sched.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/sched.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_sched.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/spinlock.hpp``
+
+- ``fs/vfs.hpp`` (:ref:`file_fs_vfs.hpp`)
+
+- ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)
+
+- ``hal/mmu.hpp`` (:ref:`file_arch_hal_mmu.hpp`)
+
+- ``kernel/event.hpp`` (:ref:`file_kernel_event.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+- ``posix/fd.hpp`` (:ref:`file_posix_fd.hpp`)
+
+- ``sys/types.h``
+
+- ``vm/vm.hpp`` (:ref:`file_vm_vm.hpp`)
+
+- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_kernel_elf.hpp`
+
+- :ref:`file_posix_exec.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Task`
+
+- :ref:`exhale_struct_structGaia_1_1Thread`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_sched_8hpp_1a7d618f82e6d95f6f0ec6d810d1e01fea`
+
+- :ref:`exhale_function_sched_8hpp_1a3575cc3476b91e18af069b020afe2673`
+
+- :ref:`exhale_function_sched_8hpp_1a6d18393a335de2904de51f4b737f9f09`
+
+- :ref:`exhale_function_sched_8hpp_1aa35627bf631e0e232e131a1cff9d4e48`
+
+- :ref:`exhale_function_sched_8hpp_1ac2f683e25520fd11fe9e71aeb107a7c3`
+
+- :ref:`exhale_function_sched_8hpp_1af8cbdc1c13b0fea2939e22815047d60d`
+
+- :ref:`exhale_function_sched_8hpp_1aceaf58a2cfd95c6d247f576552e90064`
+
+- :ref:`exhale_function_sched_8hpp_1a4379872a7aa60a970363d03bde84a696`
+
+- :ref:`exhale_function_sched_8hpp_1ad7338838712c7b47a344b9ce8a135809`
+
+- :ref:`exhale_function_sched_8hpp_1a92c1df8517ed7928662b06ea255d35cf`
+
+- :ref:`exhale_function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303`
+
+- :ref:`exhale_function_sched_8hpp_1aa3d9b68ec8dc6e1dd42e55567faec6f6`
+
+- :ref:`exhale_function_sched_8hpp_1a3c73746a0653b12518340b86fbcb987f`
+
+- :ref:`exhale_function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e`
+
+- :ref:`exhale_function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_sched_8hpp_1abfc9ae79f0345bb3815db0ed2dd42da9`
+

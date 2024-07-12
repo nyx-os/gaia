@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_kernel_2elf_8hpp_1a88f9d9e3c69463df79bd8a898f05e591:
+
+Variable Gaia::KERNEL_STACK_SIZE
+================================
+
+- Defined in :ref:`file_kernel_elf.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::KERNEL_STACK_SIZE
+   :project: ExhaleCompanion

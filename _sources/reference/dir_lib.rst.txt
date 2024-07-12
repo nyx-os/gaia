@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_lib:
+
+
+Directory lib
+=============
+
+
+*Directory path:* ``lib``
+
+
+Files
+-----
+
+- :ref:`file_lib_base.hpp`
+- :ref:`file_lib_charon.hpp`
+- :ref:`file_lib_dot.hpp`
+- :ref:`file_lib_elf.hpp`
+- :ref:`file_lib_error.hpp`
+- :ref:`file_lib_freelist.hpp`
+- :ref:`file_lib_list.hpp`
+- :ref:`file_lib_log.hpp`
+- :ref:`file_lib_path.hpp`
+- :ref:`file_lib_queue.h`
+- :ref:`file_lib_result.hpp`
+- :ref:`file_lib_stream.hpp`
+- :ref:`file_lib_time.hpp`
+
+

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a628c2134ca520da4fdb6a53d27930977:
+
+Define _Q_INVALIDATE
+====================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: _Q_INVALIDATE
+   :project: ExhaleCompanion

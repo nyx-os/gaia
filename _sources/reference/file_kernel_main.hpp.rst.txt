@@ -1,0 +1,58 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_main.hpp:
+
+File main.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/main.hpp``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_main.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``lib/charon.hpp`` (:ref:`file_lib_charon.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_main_8hpp_1a9e2d2c86df191dc683e41dc06862fdf4`
+

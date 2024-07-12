@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_fs_tmpfs.hpp:
+
+File tmpfs.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_fs>` (``fs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``fs/tmpfs.hpp``)
+-----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_fs_tmpfs.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/array.hpp``
+
+- ``fs/vfs.hpp`` (:ref:`file_fs_vfs.hpp`)
+
+- ``lib/charon.hpp`` (:ref:`file_lib_charon.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Fs`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Fs_1_1TmpDirent`
+
+- :ref:`exhale_struct_structGaia_1_1Fs_1_1TmpNode`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_tmpfs_8hpp_1a80ed7f40eaa9b5163282bd3878943c13`
+

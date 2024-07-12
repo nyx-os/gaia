@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Dev_1_1VirtQueueDesc:
+
+Struct VirtQueueDesc
+====================
+
+- Defined in :ref:`file_dev_virtio_virtio.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Dev::VirtQueueDesc
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

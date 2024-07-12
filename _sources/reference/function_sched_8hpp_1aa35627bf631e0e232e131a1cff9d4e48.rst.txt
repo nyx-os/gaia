@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1aa35627bf631e0e232e131a1cff9d4e48:
+
+Function Gaia::sched_dequeue_thread
+===================================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_dequeue_thread(Thread *)
+   :project: ExhaleCompanion

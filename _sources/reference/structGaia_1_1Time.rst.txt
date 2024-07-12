@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Time:
+
+Struct Time
+===========
+
+- Defined in :ref:`file_lib_time.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Time
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

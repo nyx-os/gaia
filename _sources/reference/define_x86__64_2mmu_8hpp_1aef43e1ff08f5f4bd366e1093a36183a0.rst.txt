@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_x86__64_2mmu_8hpp_1aef43e1ff08f5f4bd366e1093a36183a0:
+
+Define PTE_HUGE
+===============
+
+- Defined in :ref:`file_arch_x86_64_mmu.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: PTE_HUGE
+   :project: ExhaleCompanion

@@ -1,0 +1,34 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Freelist:
+
+Class Freelist
+==============
+
+- Defined in :ref:`file_lib_freelist.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structGaia_1_1Freelist_1_1Region`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Freelist
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

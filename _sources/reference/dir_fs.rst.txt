@@ -1,0 +1,20 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_fs:
+
+
+Directory fs
+============
+
+
+*Directory path:* ``fs``
+
+
+Files
+-----
+
+- :ref:`file_fs_devfs.hpp`
+- :ref:`file_fs_tmpfs.hpp`
+- :ref:`file_fs_vfs.hpp`
+
+

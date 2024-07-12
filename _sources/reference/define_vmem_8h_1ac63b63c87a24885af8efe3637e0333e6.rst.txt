@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vmem_8h_1ac63b63c87a24885af8efe3637e0333e6:
+
+Define FREELISTS_N
+==================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: FREELISTS_N
+   :project: ExhaleCompanion

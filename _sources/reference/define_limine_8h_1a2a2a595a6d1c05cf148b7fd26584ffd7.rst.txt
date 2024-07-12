@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a2a2a595a6d1c05cf148b7fd26584ffd7:
+
+Define LIMINE_TERMINAL_CB_KBD_LEDS
+==================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_TERMINAL_CB_KBD_LEDS
+   :project: ExhaleCompanion

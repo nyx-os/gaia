@@ -1,0 +1,97 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_devkit_registry.hpp:
+
+File registry.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_devkit>` (``dev/devkit``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/devkit/registry.hpp``)
+----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_devkit_registry.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``frg/list.hpp``
+
+- ``frg/unique.hpp``
+
+- ``frg/vector.hpp``
+
+- ``lib/dot.hpp`` (:ref:`file_lib_dot.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_console_ps2.hpp`
+
+- :ref:`file_dev_pci_pcibus.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Catalog_1_1CatalogEntry`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Driver`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Registry_1_1Node`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Catalog`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Registry`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_registry_8hpp_1a0ef40a5636e9fc34b14a1177105deecb`
+
+- :ref:`exhale_function_registry_8hpp_1af3bed3c5d5cac070b6ca12d119bab874`
+
+- :ref:`exhale_function_registry_8hpp_1a31f1423c670cace307215557dd478818`
+

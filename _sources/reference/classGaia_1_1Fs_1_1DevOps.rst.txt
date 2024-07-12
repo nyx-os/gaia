@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Fs_1_1DevOps:
+
+Class DevOps
+============
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public Gaia::Posix::TTY::Ops`` (:ref:`exhale_class_classGaia_1_1Posix_1_1TTY_1_1Ops`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Fs::DevOps
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

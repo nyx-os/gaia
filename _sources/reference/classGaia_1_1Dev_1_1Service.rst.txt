@@ -1,0 +1,40 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Dev_1_1Service:
+
+Class Service
+=============
+
+- Defined in :ref:`file_dev_devkit_service.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public Gaia::Dev::AcpiDevice`` (:ref:`exhale_class_classGaia_1_1Dev_1_1AcpiDevice`)
+- ``public Gaia::Dev::AcpiPc`` (:ref:`exhale_class_classGaia_1_1Dev_1_1AcpiPc`)
+- ``public Gaia::Dev::FbConsole`` (:ref:`exhale_class_classGaia_1_1Dev_1_1FbConsole`)
+- ``public Gaia::Dev::PciBus`` (:ref:`exhale_class_classGaia_1_1Dev_1_1PciBus`)
+- ``public Gaia::Dev::PciDevice`` (:ref:`exhale_class_classGaia_1_1Dev_1_1PciDevice`)
+- ``public Gaia::Dev::Ps2Controller`` (:ref:`exhale_class_classGaia_1_1Dev_1_1Ps2Controller`)
+- ``public Gaia::Dev::VirtioBlock`` (:ref:`exhale_class_classGaia_1_1Dev_1_1VirtioBlock`)
+- ``public Gaia::Dev::VirtioDevice`` (:ref:`exhale_class_classGaia_1_1Dev_1_1VirtioDevice`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Dev::Service
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

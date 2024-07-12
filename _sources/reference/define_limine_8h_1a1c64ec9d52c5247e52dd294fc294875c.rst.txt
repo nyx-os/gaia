@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a1c64ec9d52c5247e52dd294fc294875c:
+
+Define LIMINE_KERNEL_ADDRESS_REQUEST
+====================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_KERNEL_ADDRESS_REQUEST
+   :project: ExhaleCompanion

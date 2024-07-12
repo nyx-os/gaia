@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_devfs_8hpp_1a5f68c6cfbf86deb284d3b76decd9247f:
+
+Function Gaia::Fs::dev_alloc_major
+==================================
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::dev_alloc_major(DevOps *)
+   :project: ExhaleCompanion

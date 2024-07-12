@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_constants_8hpp_1a787fa2d265ae3cc1978d088c067a6544:
+
+Variable ansi_bright_colors
+===========================
+
+- Defined in :ref:`file_dev_console_constants.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ansi_bright_colors
+   :project: ExhaleCompanion

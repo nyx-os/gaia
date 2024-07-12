@@ -1,0 +1,22 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_dev_acpi_glue.hpp:
+
+Program Listing for File glue.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_dev_acpi_glue.hpp>` (``dev/acpi/glue.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <dev/acpi/acpi.hpp>
+   #include <lib/base.hpp>
+   
+   namespace Gaia::Dev {
+   void lai_glue_init(uintptr_t rsdp, AcpiTable *_sdt, bool xsdt);
+   } // namespace Gaia::Dev

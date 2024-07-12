@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_devfs_8hpp_1a781665e7a72a043758df527b9cae6962:
+
+Function Gaia::Fs::get_devfs
+============================
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::get_devfs()
+   :project: ExhaleCompanion

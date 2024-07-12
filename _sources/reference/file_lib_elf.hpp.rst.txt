@@ -1,0 +1,60 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_elf.hpp:
+
+File elf.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/elf.hpp``)
+----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_elf.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``elf.h`` (:ref:`file_kernel_elf.hpp`)
+
+- ``lib/stream.hpp`` (:ref:`file_lib_stream.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs`
+
+- :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs_1_1PhdrIterator`
+
+- :ref:`exhale_class_classGaia_1_1Elf`
+

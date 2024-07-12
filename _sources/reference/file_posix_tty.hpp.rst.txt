@@ -1,0 +1,70 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_posix_tty.hpp:
+
+File tty.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_posix>` (``posix``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``posix/tty.hpp``)
+------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_posix_tty.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``asm-generic/termbits.h``
+
+- ``frg/spinlock.hpp``
+
+- ``fs/devfs.hpp`` (:ref:`file_fs_devfs.hpp`)
+
+- ``kernel/event.hpp`` (:ref:`file_kernel_event.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_console_fbconsole.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Posix`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1TTY`
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1TTY_1_1Ops`
+

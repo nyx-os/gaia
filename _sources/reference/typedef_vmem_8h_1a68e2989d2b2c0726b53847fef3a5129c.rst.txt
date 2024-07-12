@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_vmem_8h_1a68e2989d2b2c0726b53847fef3a5129c:
+
+Typedef VmemSegment
+===================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VmemSegment
+   :project: ExhaleCompanion

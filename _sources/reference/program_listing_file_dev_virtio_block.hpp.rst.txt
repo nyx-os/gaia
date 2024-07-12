@@ -1,0 +1,38 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_dev_virtio_block.hpp:
+
+Program Listing for File block.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_dev_virtio_block.hpp>` (``dev/virtio/block.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <dev/virtio/virtio.hpp>
+   #include <vm/heap.hpp>
+   
+   namespace Gaia::Dev {
+   
+   class VirtioBlock : public Service {
+   public:
+     static Vm::UniquePtr<Service> create();
+     void start(Service *provider) override;
+   
+     const char *class_name() override { return "VirtioBlock"; }
+     const char *name() override { return name_str.data(); }
+   
+   private:
+     frg::string<Gaia::Vm::HeapAllocator> name_str = "";
+     VirtioDevice *device;
+     VirtQueue queue;
+   };
+   
+   void virtioblock_driver_register();
+   
+   } // namespace Gaia::Dev

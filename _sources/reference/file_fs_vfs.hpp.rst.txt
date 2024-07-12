@@ -1,0 +1,133 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_fs_vfs.hpp:
+
+File vfs.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_fs>` (``fs``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``fs/vfs.hpp``)
+---------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_fs_vfs.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/span.hpp``
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/path.hpp`` (:ref:`file_lib_path.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+- ``lib/stream.hpp`` (:ref:`file_lib_stream.hpp`)
+
+- ``sys/stat.h``
+
+- ``sys/types.h``
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_fs_devfs.hpp`
+
+- :ref:`file_fs_tmpfs.hpp`
+
+- :ref:`file_kernel_sched.hpp`
+
+- :ref:`file_posix_fd.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Fs`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Fs_1_1Vnode`
+
+- :ref:`exhale_struct_structGaia_1_1Fs_1_1VnodeAttr`
+
+- :ref:`exhale_struct_structGaia_1_1Fs_1_1VnodeOps`
+
+- :ref:`exhale_class_classGaia_1_1Fs_1_1VnodeStream`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_vfs_8hpp_1a38a843bad949b7a403bfb93fd2527226`
+
+- :ref:`exhale_function_vfs_8hpp_1ac6a179687340ecf6433ef40faf00280d`
+
+- :ref:`exhale_function_vfs_8hpp_1aefbca055019d59ce0eb9d0ae4c005ee7`
+
+- :ref:`exhale_function_vfs_8hpp_1a067244fcbd7f7e169b4cc4436e8cf754`
+
+- :ref:`exhale_function_vfs_8hpp_1a0b2d460e0bb3cbf3dc974924b68bfe3a`
+
+- :ref:`exhale_function_vfs_8hpp_1a1eace7e150f7e4edde083a04584103fd`
+
+- :ref:`exhale_function_vfs_8hpp_1a991c1013a338ccf7f24d46610852154b`
+
+- :ref:`exhale_function_vfs_8hpp_1a301e501edc93bef38e1cdfb37778d2de`
+
+- :ref:`exhale_function_vfs_8hpp_1a5292f87754edb36d4706784c65e4c751`
+
+- :ref:`exhale_function_vfs_8hpp_1afebf793284f2614d0d2e55dce63d2e6f`
+
+- :ref:`exhale_function_vfs_8hpp_1ad6d95f529943af46c7a608a2cd354451`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_vfs_8hpp_1a2f3cf9f39a0079e3830d921cf3106227`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_vfs_8hpp_1a27fef01991a3b59724b06f07cde42ad7`
+
+- :ref:`exhale_variable_vfs_8hpp_1aee002bb8b3f5686c42694edc240528f8`
+

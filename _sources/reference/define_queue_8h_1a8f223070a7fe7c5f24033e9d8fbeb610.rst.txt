@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a8f223070a7fe7c5f24033e9d8fbeb610:
+
+Define LIST_FIRST
+=================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIST_FIRST
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_errno_8hpp_1a4c9aa1b8d9d0e0ae84b84efbf34da8e2:
+
+Function Gaia::error_to_string(Gaia::Posix::Errno)
+==================================================
+
+- Defined in :ref:`file_posix_errno.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::error_to_string(Gaia::Posix::Errno)
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a790361e0ea9159249ed83d3024de7b9a:
+
+Define XSIMPLEQ_REMOVE_HEAD
+===========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: XSIMPLEQ_REMOVE_HEAD
+   :project: ExhaleCompanion

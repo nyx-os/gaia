@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_constants_8hpp_1a5654ea0bf212a95e205813c7b4e6b09d:
+
+Variable default_fg
+===================
+
+- Defined in :ref:`file_dev_console_constants.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: default_fg
+   :project: ExhaleCompanion

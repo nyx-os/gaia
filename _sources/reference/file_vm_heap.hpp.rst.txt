@@ -1,0 +1,120 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_vm_heap.hpp:
+
+File heap.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_vm>` (``vm``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``vm/heap.hpp``)
+----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_vm_heap.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/slab.hpp``
+
+- ``frg/spinlock.hpp``
+
+- ``frg/string.hpp``
+
+- ``frg/unique.hpp``
+
+- ``frg/vector.hpp``
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_acpi_device.hpp`
+
+- :ref:`file_dev_console_ps2.hpp`
+
+- :ref:`file_dev_devkit_registry.hpp`
+
+- :ref:`file_dev_devkit_service.hpp`
+
+- :ref:`file_dev_pci_device.hpp`
+
+- :ref:`file_dev_pci_pcibus.hpp`
+
+- :ref:`file_dev_virtio_block.hpp`
+
+- :ref:`file_dev_virtio_virtio.hpp`
+
+- :ref:`file_fs_vfs.hpp`
+
+- :ref:`file_kernel_event.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Vm`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1HeapAllocator`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1VirtualAllocator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0`
+
+- :ref:`exhale_function_heap_8hpp_1a2c2eab2954282c01f2ef95b3dce62adc`
+
+- :ref:`exhale_function_heap_8hpp_1a85e438f6f38533f82332bbc7fe2e3624`
+
+- :ref:`exhale_function_heap_8hpp_1a3388eec7b1f01e9f4276a46275af6ad0`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_heap_8hpp_1a7b5a52c7786f36bb9fb56b236d56981b`
+
+- :ref:`exhale_typedef_heap_8hpp_1a2feccb3a44339ac388c80e39c46c3f1d`
+
+- :ref:`exhale_typedef_heap_8hpp_1a89a4192b57b34b5832295a85cf93e857`
+
+- :ref:`exhale_typedef_heap_8hpp_1ae34d53b72692270989a0e88795f50b25`
+
+- :ref:`exhale_typedef_heap_8hpp_1ad8168e84a9ce8f71527644bb14fd3cc7`
+

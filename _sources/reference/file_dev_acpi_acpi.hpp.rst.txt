@@ -1,0 +1,82 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_acpi_acpi.hpp:
+
+File acpi.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_acpi>` (``dev/acpi``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/acpi/acpi.hpp``)
+----------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_acpi_acpi.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``lai/core.h``
+
+- ``lib/charon.hpp`` (:ref:`file_lib_charon.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_x86_64_apic.hpp`
+
+- :ref:`file_arch_x86_64_hpet.hpp`
+
+- :ref:`file_arch_x86_64_timer.hpp`
+
+- :ref:`file_dev_acpi_device.hpp`
+
+- :ref:`file_dev_acpi_glue.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1AcpiTable`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Rsdp`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Rsdt`
+
+- :ref:`exhale_struct_structGaia_1_1Dev_1_1Xsdt`
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1AcpiPc`
+

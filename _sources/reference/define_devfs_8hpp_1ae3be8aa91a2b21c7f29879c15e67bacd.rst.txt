@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_devfs_8hpp_1ae3be8aa91a2b21c7f29879c15e67bacd:
+
+Define MINORMASK
+================
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MINORMASK
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1abae5a88cabc1dd47c72a5e4b6756956e:
+
+Define LIMINE_TERMINAL_OOB_OUTPUT_OCRNL
+=======================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_TERMINAL_OOB_OUTPUT_OCRNL
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_virtio_8hpp_1a6c4e3cdbc08f654b24a11d305538529f:
+
+Function Gaia::Dev::virtiodevice_driver_register
+================================================
+
+- Defined in :ref:`file_dev_virtio_virtio.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::virtiodevice_driver_register()
+   :project: ExhaleCompanion

@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structlimine__internal__module:
+
+Struct limine_internal_module
+=============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: limine_internal_module
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

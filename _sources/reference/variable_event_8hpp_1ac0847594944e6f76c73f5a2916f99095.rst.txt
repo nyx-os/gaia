@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_event_8hpp_1ac0847594944e6f76c73f5a2916f99095:
+
+Variable Gaia::MAX_LISTENERS
+============================
+
+- Defined in :ref:`file_kernel_event.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::MAX_LISTENERS
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_errno_8hpp_1ac9da09088bedcca3d96015f8d5680721:
+
+Typedef Gaia::Posix::Errno
+==========================
+
+- Defined in :ref:`file_posix_errno.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Posix::Errno
+   :project: ExhaleCompanion

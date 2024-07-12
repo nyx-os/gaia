@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a657c50417f3caeab52e34fcd454cec71:
+
+Define STAILQ_REMOVE_AFTER
+==========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: STAILQ_REMOVE_AFTER
+   :project: ExhaleCompanion

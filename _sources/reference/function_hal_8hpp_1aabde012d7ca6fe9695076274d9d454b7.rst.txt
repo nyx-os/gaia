@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_8hpp_1aabde012d7ca6fe9695076274d9d454b7:
+
+Function Gaia::Hal::phys_to_virt
+================================
+
+- Defined in :ref:`file_arch_hal_hal.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::phys_to_virt(uintptr_t)
+   :project: ExhaleCompanion

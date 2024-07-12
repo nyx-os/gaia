@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_charon_8hpp_1a33907191a12530ee5163985bb46e591a:
+
+Enum CharonMmapEntryType
+========================
+
+- Defined in :ref:`file_lib_charon.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::CharonMmapEntryType
+   :project: ExhaleCompanion

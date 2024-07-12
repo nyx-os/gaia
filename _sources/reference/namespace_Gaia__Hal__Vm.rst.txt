@@ -1,0 +1,42 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _namespace_Gaia__Hal__Vm:
+
+Namespace Gaia::Hal::Vm
+=======================
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1Vm_1_1Pagemap_1_1Mapping`
+
+- :ref:`exhale_class_classGaia_1_1Hal_1_1Vm_1_1Pagemap`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_hal_2mmu_8hpp_1a6411be16dee0c398378fa101e960395a`
+
+- :ref:`exhale_enum_hal_2mmu_8hpp_1a4e6ad7f3dd8038a4e1fde28bfc3cebb9`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_hal_2mmu_8hpp_1a80bda8bd73cdfde679aeb775b6b0ae63`
+
+- :ref:`exhale_function_hal_2mmu_8hpp_1aa9f4d1ec0cd0712fefb774d9f14a15bb`

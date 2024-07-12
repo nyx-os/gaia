@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File tmpfs.hpp &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-tmpfs-hpp">
+<span id="program-listing-file-fs-tmpfs-hpp"></span><h1>Program Listing for File tmpfs.hpp<a class="headerlink" href="#program-listing-for-file-tmpfs-hpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_fs_tmpfs.hpp.html#file-fs-tmpfs-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">fs/tmpfs.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/array.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fs/vfs.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/charon.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/list.hpp&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Fs</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">TmpNode</span><span class="p">;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">TmpDirent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+<span class="w">  </span><span class="n">ListNode</span><span class="o">&lt;</span><span class="n">TmpDirent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">link</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">TmpNode</span><span class="w"> </span><span class="o">*</span><span class="n">tnode</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">TmpDirent</span><span class="p">(){};</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">TmpNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Vnode</span><span class="w"> </span><span class="o">*</span><span class="n">vnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VnodeAttr</span><span class="w"> </span><span class="n">attr</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vnode</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">TmpNode</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">union</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* VDIR */</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TmpDirent</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TmpDirent</span><span class="o">::</span><span class="n">link</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entries</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">dir</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* VREG */</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">reg</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* VLNK */</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">to_name</span><span class="p">;</span>
+<span class="w">      </span><span class="n">TmpNode</span><span class="w"> </span><span class="o">*</span><span class="n">to</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">link</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="n">TmpNode</span><span class="p">(){};</span>
+<span class="w">  </span><span class="n">TmpNode</span><span class="p">(</span><span class="n">TmpNode</span><span class="w"> </span><span class="o">*</span><span class="n">dir</span><span class="p">,</span><span class="w"> </span><span class="n">Vnode</span><span class="o">::</span><span class="n">Type</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">          </span><span class="n">VnodeAttr</span><span class="w"> </span><span class="n">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DefaultVnodeAttr</span><span class="p">,</span>
+<span class="w">          </span><span class="n">frg</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="o">&gt;</span><span class="w"> </span><span class="n">symlink_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">null_opt</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">Vnode</span><span class="w"> </span><span class="o">*</span><span class="nf">make_vnode</span><span class="p">(</span><span class="kt">dev_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">tmpfs_init</span><span class="p">(</span><span class="n">Charon</span><span class="w"> </span><span class="n">charon</span><span class="p">);</span>
+
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Fs</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/program_listing_file_fs_tmpfs.hpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

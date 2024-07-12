@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structlimine__hhdm__request:
+
+Struct limine_hhdm_request
+==========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: limine_hhdm_request
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

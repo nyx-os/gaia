@@ -1,0 +1,36 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Elf_1_1Phdrs:
+
+Struct Elf::Phdrs
+=================
+
+- Defined in :ref:`file_lib_elf.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGaia_1_1Elf`.
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs_1_1PhdrIterator`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Elf::Phdrs
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

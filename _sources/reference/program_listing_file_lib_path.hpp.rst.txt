@@ -1,0 +1,105 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_lib_path.hpp:
+
+Program Listing for File path.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_lib_path.hpp>` (``lib/path.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <frg/string.hpp>
+   #include <frg/vector.hpp>
+   #include <lib/log.hpp>
+   
+   namespace Gaia {
+   
+   template <typename Allocator> class Path {
+   public:
+     using PathList = frg::vector<frg::string<Allocator>, Allocator>;
+   
+     Path(frg::string_view path) : path(path) { vector.clear(); }
+   
+     PathList parse() {
+       if (vector.size() > 0)
+         return vector;
+   
+       if (path.size() == 0)
+         return vector;
+   
+       PathList ret{};
+   
+       frg::string<Allocator> new_path = path.data();
+   
+       // Root is considered a directory
+       if (path[0] == '/') {
+         ret.push_back("/");
+       }
+   
+       size_t new_size = new_path.size();
+       if (new_size > 1 && new_path[new_size - 1] == '/') {
+         while (new_size > 1 && new_path[new_size - 1] == '/') {
+           new_size--;
+         }
+         new_path.resize(new_size);
+       }
+   
+       // Handle edge case where path is root
+       if (new_path == "/") {
+         vector.push("/");
+         return vector;
+       }
+   
+       char *sub = new_path.data();
+       char *next = sub;
+       size_t sublen = 0;
+       bool last = false;
+   
+       // This code is kinda crappy and likely unsafe
+       while (true) {
+         sublen = 0;
+         next = sub;
+   
+         while (*next != '/' && *next) {
+           next++;
+           sublen++;
+         }
+   
+         if (!*next) {
+           last = true;
+         } else {
+           *next = '\0';
+         }
+   
+         if (sublen == 0 && !last) {
+           sub += sublen + 1;
+           continue;
+         }
+   
+         ret.push_back(sub);
+   
+         if (last)
+           break;
+   
+         sub += sublen + 1;
+       }
+   
+       vector = ret;
+   
+       return ret;
+     }
+   
+     size_t length() { return vector.size(); }
+   
+   private:
+     frg::string_view path;
+     PathList vector{};
+   };
+   
+   } // namespace Gaia

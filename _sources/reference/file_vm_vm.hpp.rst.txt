@@ -1,0 +1,111 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_vm_vm.hpp:
+
+File vm.hpp
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir_vm>` (``vm``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``vm/vm.hpp``)
+--------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_vm_vm.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/manual_box.hpp``
+
+- ``frg/spinlock.hpp``
+
+- ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+
+- ``hal/mmu.hpp`` (:ref:`file_arch_hal_mmu.hpp`)
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+- ``vm/vmem.h`` (:ref:`file_vm_vmem.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_kernel_sched.hpp`
+
+- :ref:`file_vm_vm_kernel.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Vm`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Anon`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1AnonMap_1_1Entry`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Object`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Page`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Space_1_1Entry`
+
+- :ref:`exhale_class_classGaia_1_1Vm_1_1AnonMap`
+
+- :ref:`exhale_class_classGaia_1_1Vm_1_1Space`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_vm_8hpp_1a9e1be868a61ea9f25d0baf51d80cee79`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_vm_8hpp_1a13a252a03b1f57b0f35e32f1ffbb4afc`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_vm_8hpp_1a8a813f0d27e960c0dd5848726ab07668`
+
+- :ref:`exhale_variable_vm_8hpp_1a88c20e55dc4d1ea95ccd629a9c71bf50`
+

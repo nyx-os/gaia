@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vfs_8hpp_1aefbca055019d59ce0eb9d0ae4c005ee7:
+
+Template Function Gaia::Fs::vfs_find_and(frg::string_view, F, Vnode \*, VnodeAttr)
+==================================================================================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::vfs_find_and(frg::string_view, F, Vnode *, VnodeAttr)
+   :project: ExhaleCompanion

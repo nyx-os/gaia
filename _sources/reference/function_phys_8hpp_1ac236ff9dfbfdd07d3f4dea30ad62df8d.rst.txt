@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d:
+
+Function Gaia::Vm::phys_free
+============================
+
+- Defined in :ref:`file_vm_phys.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::phys_free(void *)
+   :project: ExhaleCompanion

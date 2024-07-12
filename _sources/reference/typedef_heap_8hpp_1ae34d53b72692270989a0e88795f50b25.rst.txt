@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_heap_8hpp_1ae34d53b72692270989a0e88795f50b25:
+
+Typedef Gaia::Vm::UniquePtr
+===========================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Vm::UniquePtr
+   :project: ExhaleCompanion

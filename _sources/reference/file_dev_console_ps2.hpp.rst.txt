@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_console_ps2.hpp:
+
+File ps2.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_console>` (``dev/console``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/console/ps2.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_console_ps2.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/acpi/device.hpp`` (:ref:`file_dev_acpi_device.hpp`)
+
+- ``dev/devkit/registry.hpp`` (:ref:`file_dev_devkit_registry.hpp`)
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1Ps2Controller`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_ps2_8hpp_1a88783f36e5be69c7a41dbfee319b5b00`
+

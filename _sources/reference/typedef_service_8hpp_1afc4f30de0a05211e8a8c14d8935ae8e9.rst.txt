@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_service_8hpp_1afc4f30de0a05211e8a8c14d8935ae8e9:
+
+Typedef Gaia::Dev::Properties
+=============================
+
+- Defined in :ref:`file_dev_devkit_service.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Dev::Properties
+   :project: ExhaleCompanion

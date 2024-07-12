@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_posix_errno.hpp:
+
+File errno.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_posix>` (``posix``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``posix/errno.hpp``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_posix_errno.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_posix_fd.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Posix`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_errno_8hpp_1a4c9aa1b8d9d0e0ae84b84efbf34da8e2`
+
+- :ref:`exhale_function_errno_8hpp_1a259004aae0fcbb009679d3460f49bf07`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_errno_8hpp_1ac9da09088bedcca3d96015f8d5680721`
+

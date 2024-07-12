@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_log_8hpp_1ab34b1a105b75fb5fb8204a5927a4eda4:
+
+Template Function Gaia::error
+=============================
+
+- Defined in :ref:`file_lib_log.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::error(FormatWithLocation, T...)
+   :project: ExhaleCompanion

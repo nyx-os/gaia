@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a7bc9a31418b55c5698be3e54e10bb484:
+
+Define STAILQ_INSERT_TAIL
+=========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: STAILQ_INSERT_TAIL
+   :project: ExhaleCompanion

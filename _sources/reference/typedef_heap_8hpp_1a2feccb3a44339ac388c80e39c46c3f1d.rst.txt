@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_typedef_heap_8hpp_1a2feccb3a44339ac388c80e39c46c3f1d:
+
+Typedef Gaia::Vm::MemoryPool
+============================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: Gaia::Vm::MemoryPool
+   :project: ExhaleCompanion

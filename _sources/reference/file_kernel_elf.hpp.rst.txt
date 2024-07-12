@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_elf.hpp:
+
+File elf.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/elf.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_elf.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/string.hpp``
+
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_kernel_2elf_8hpp_1ae59bac2a352145d62f1dee1e38afea39`
+
+- :ref:`exhale_function_kernel_2elf_8hpp_1a0dcbcad05fcc8a60669231f39dbf679c`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1a88f9d9e3c69463df79bd8a898f05e591`
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1a66ecb1d1793d9a9fc120caf69bc3d3ec`
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1ae30ba27ab72a58c081ab8605f6c5a780`
+

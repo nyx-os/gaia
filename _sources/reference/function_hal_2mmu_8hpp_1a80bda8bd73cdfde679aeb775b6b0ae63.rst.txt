@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_2mmu_8hpp_1a80bda8bd73cdfde679aeb775b6b0ae63:
+
+Function Gaia::Hal::Vm::get_current_map
+=======================================
+
+- Defined in :ref:`file_arch_hal_mmu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::Vm::get_current_map()
+   :project: ExhaleCompanion

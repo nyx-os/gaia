@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structlimine__dtb__response:
+
+Struct limine_dtb_response
+==========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: limine_dtb_response
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

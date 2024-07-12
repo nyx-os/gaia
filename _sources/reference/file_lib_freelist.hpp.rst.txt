@@ -1,0 +1,65 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_freelist.hpp:
+
+File freelist.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Freelist allocator implementation. 
+
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/freelist.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_freelist.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Freelist_1_1Region`
+
+- :ref:`exhale_class_classGaia_1_1Freelist`
+

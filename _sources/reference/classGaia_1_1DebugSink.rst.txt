@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1DebugSink:
+
+Class DebugSink
+===============
+
+- Defined in :ref:`file_lib_log.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::DebugSink
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

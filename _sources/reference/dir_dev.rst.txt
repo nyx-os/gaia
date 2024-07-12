@@ -1,0 +1,27 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_dev:
+
+
+Directory dev
+=============
+
+
+*Directory path:* ``dev``
+
+Subdirectories
+--------------
+
+- :ref:`dir_dev_acpi`
+- :ref:`dir_dev_console`
+- :ref:`dir_dev_devkit`
+- :ref:`dir_dev_pci`
+- :ref:`dir_dev_virtio`
+
+
+Files
+-----
+
+- :ref:`file_dev_builtin.hpp`
+
+

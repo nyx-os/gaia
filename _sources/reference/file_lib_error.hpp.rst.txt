@@ -1,0 +1,100 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_error.hpp:
+
+File error.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Defines a generic Error type and associated utilities. 
+
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/error.hpp``)
+------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_error.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+This files describes a generic Error type for use in the Result class. 
+
+
+
+
+Includes
+--------
+
+
+- ``frg/string.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_hal_int.hpp`
+
+- :ref:`file_arch_hal_mmu.hpp`
+
+- :ref:`file_arch_x86_64_cpuid.hpp`
+
+- :ref:`file_dev_acpi_device.hpp`
+
+- :ref:`file_dev_devkit_registry.hpp`
+
+- :ref:`file_fs_vfs.hpp`
+
+- :ref:`file_kernel_main.hpp`
+
+- :ref:`file_lib_freelist.hpp`
+
+- :ref:`file_lib_list.hpp`
+
+- :ref:`file_lib_stream.hpp`
+
+- :ref:`file_posix_errno.hpp`
+
+- :ref:`file_vm_phys.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_error_8hpp_1af9bbab7b72497f9d1536ba2993304b5f`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_error_8hpp_1a7c842db1888bd3985fba1622c79894aa`
+

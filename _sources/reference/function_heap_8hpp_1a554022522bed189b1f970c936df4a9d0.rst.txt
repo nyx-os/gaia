@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0:
+
+Function Gaia::Vm::free
+=======================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::free(void *)
+   :project: ExhaleCompanion

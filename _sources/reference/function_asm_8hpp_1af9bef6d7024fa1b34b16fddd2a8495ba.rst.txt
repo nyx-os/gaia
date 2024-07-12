@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1af9bef6d7024fa1b34b16fddd2a8495ba:
+
+Function Gaia::x86_64::wrmsr
+============================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::wrmsr(uint32_t, uint64_t)
+   :project: ExhaleCompanion

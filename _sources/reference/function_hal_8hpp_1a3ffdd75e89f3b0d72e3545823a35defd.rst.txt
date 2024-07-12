@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_8hpp_1a3ffdd75e89f3b0d72e3545823a35defd:
+
+Function Gaia::Hal::enable_interrupts
+=====================================
+
+- Defined in :ref:`file_arch_hal_hal.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::enable_interrupts()
+   :project: ExhaleCompanion

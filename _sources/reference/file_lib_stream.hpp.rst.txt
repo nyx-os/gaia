@@ -1,0 +1,72 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_stream.hpp:
+
+File stream.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/stream.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_stream.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/span.hpp``
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+- ``sys/types.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_fs_vfs.hpp`
+
+- :ref:`file_lib_elf.hpp`
+
+- :ref:`file_posix_fd.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Stream`
+

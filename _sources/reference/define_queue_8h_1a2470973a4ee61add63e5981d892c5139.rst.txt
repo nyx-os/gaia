@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a2470973a4ee61add63e5981d892c5139:
+
+Define XSIMPLEQ_INSERT_AFTER
+============================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: XSIMPLEQ_INSERT_AFTER
+   :project: ExhaleCompanion

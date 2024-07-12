@@ -1,0 +1,32 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1ListNode:
+
+Template Struct ListNode
+========================
+
+- Defined in :ref:`file_lib_list.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Template Parameter Order
+------------------------
+
+#. ``typename T``
+
+
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::ListNode
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

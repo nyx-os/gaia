@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_2mmu_8hpp_1aa9f4d1ec0cd0712fefb774d9f14a15bb:
+
+Function Gaia::Hal::Vm::init
+============================
+
+- Defined in :ref:`file_arch_hal_mmu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::Vm::init()
+   :project: ExhaleCompanion

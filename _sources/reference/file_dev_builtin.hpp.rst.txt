@@ -1,0 +1,50 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_builtin.hpp:
+
+File builtin.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_dev>` (``dev``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/builtin.hpp``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_builtin.hpp.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_builtin_8hpp_1ace92eda07ce19c5ff6c21ab3787eaf7e`
+

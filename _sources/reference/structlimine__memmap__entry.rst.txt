@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structlimine__memmap__entry:
+
+Struct limine_memmap_entry
+==========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: limine_memmap_entry
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

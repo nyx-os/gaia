@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_apic_8hpp_1a972b683f9745834b70198ec0f28ea5ad:
+
+Function Gaia::x86_64::lapic_eoi
+================================
+
+- Defined in :ref:`file_arch_x86_64_apic.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::lapic_eoi()
+   :project: ExhaleCompanion

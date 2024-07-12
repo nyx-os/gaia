@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1af8b5ea8276a466c99f040faa1c84630e:
+
+Define XSIMPLEQ_XOR
+===================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: XSIMPLEQ_XOR
+   :project: ExhaleCompanion

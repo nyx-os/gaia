@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Dev_1_1Ps2Controller:
+
+Class Ps2Controller
+===================
+
+- Defined in :ref:`file_dev_console_ps2.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Dev::Service`` (:ref:`exhale_class_classGaia_1_1Dev_1_1Service`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Dev::Ps2Controller
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

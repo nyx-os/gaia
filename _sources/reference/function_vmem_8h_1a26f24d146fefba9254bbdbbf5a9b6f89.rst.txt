@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vmem_8h_1a26f24d146fefba9254bbdbbf5a9b6f89:
+
+Function LIST_HEAD
+==================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: LIST_HEAD(VmemSegList, vmem_segment)
+   :project: ExhaleCompanion

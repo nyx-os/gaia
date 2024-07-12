@@ -1,0 +1,99 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _namespace_Gaia__Vm:
+
+Namespace Gaia::Vm
+==================
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Anon`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1AnonMap_1_1Entry`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1HeapAllocator`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Object`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Page`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1Space_1_1Entry`
+
+- :ref:`exhale_struct_structGaia_1_1Vm_1_1VirtualAllocator`
+
+- :ref:`exhale_class_classGaia_1_1Vm_1_1AnonMap`
+
+- :ref:`exhale_class_classGaia_1_1Vm_1_1Space`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0`
+
+- :ref:`exhale_function_heap_8hpp_1a2c2eab2954282c01f2ef95b3dce62adc`
+
+- :ref:`exhale_function_vm_8hpp_1a9e1be868a61ea9f25d0baf51d80cee79`
+
+- :ref:`exhale_function_heap_8hpp_1a85e438f6f38533f82332bbc7fe2e3624`
+
+- :ref:`exhale_function_phys_8hpp_1a0dc8080e5acc947963d2ff6cb24853ea`
+
+- :ref:`exhale_function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d`
+
+- :ref:`exhale_function_phys_8hpp_1a147ccd99af32c2d3b07da2153a0bbcb8`
+
+- :ref:`exhale_function_phys_8hpp_1a5c60fa6ba505128c0b7c0a04480dda0a`
+
+- :ref:`exhale_function_phys_8hpp_1affa24c4a460d31deff36b99ae289aa85`
+
+- :ref:`exhale_function_phys_8hpp_1a7ff55da5b07dbb76c4a0ce73bbfa5102`
+
+- :ref:`exhale_function_heap_8hpp_1a3388eec7b1f01e9f4276a46275af6ad0`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1ac00b3a4af319c76c91a6f62feba100be`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1aa48cabdf94fcbaa31b1edc934fb5a743`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1aaa364629d75b7295ded5bf8711e39172`
+
+- :ref:`exhale_function_vm__kernel_8hpp_1ae1cff001e04dfdcfc827065fee95b5aa`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_heap_8hpp_1a7b5a52c7786f36bb9fb56b236d56981b`
+
+- :ref:`exhale_typedef_heap_8hpp_1a2feccb3a44339ac388c80e39c46c3f1d`
+
+- :ref:`exhale_typedef_heap_8hpp_1a89a4192b57b34b5832295a85cf93e857`
+
+- :ref:`exhale_typedef_heap_8hpp_1ae34d53b72692270989a0e88795f50b25`
+
+- :ref:`exhale_typedef_heap_8hpp_1ad8168e84a9ce8f71527644bb14fd3cc7`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_vm_8hpp_1a8a813f0d27e960c0dd5848726ab07668`
+
+- :ref:`exhale_variable_vm__kernel_8hpp_1ac1b9e43980dcee3a744a7db40ff46344`
+
+- :ref:`exhale_variable_vm_8hpp_1a88c20e55dc4d1ea95ccd629a9c71bf50`

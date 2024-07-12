@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File errno.hpp &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-errno-hpp">
+<span id="program-listing-file-posix-errno-hpp"></span><h1>Program Listing for File errno.hpp<a class="headerlink" href="#program-listing-for-file-errno-hpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_posix_errno.hpp.html#file-posix-errno-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">posix/errno.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
+<span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/error.hpp&gt;</span>
+
+<span class="cp">#if __has_include_next(&lt;errno.h&gt;)</span>
+<span class="cp">#include_next &lt;errno.h&gt;</span>
+<span class="cp">#endif</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="w"> </span><span class="p">{</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Posix</span><span class="w"> </span><span class="p">{</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">;</span>
+
+<span class="kr">inline</span><span class="w"> </span><span class="n">Errno</span><span class="w"> </span><span class="nf">error_to_errno</span><span class="p">(</span><span class="n">Error</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">NO_SUCH_FILE_OR_DIRECTORY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ENOENT</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">IS_A_DIRECTORY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EISDIR</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">NOT_A_DIRECTORY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ENOTDIR</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">NOT_IMPLEMENTED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ENOSYS</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">NOT_A_TTY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ENOTTY</span><span class="p">;</span>
+<span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace Posix</span>
+
+<span class="kr">inline</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">error_to_string</span><span class="p">(</span><span class="n">Gaia</span><span class="o">::</span><span class="n">Posix</span><span class="o">::</span><span class="n">Errno</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EAGAIN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation would block (EAGAIN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EACCES</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Access denied (EACCESS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBADF</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Bad file descriptor (EBADF)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EEXIST</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;File exists already (EEXIST)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EFAULT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Access violation (EFAULT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EINTR</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation interrupted (EINTR)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EINVAL</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid argument (EINVAL)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EIO</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;I/O error (EIO)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EISDIR</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Resource is directory (EISDIR)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOENT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No such file or directory (ENOENT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOMEM</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Out of memory (ENOMEM)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTDIR</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Expected directory instead of file (ENOTDIR)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOSYS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation not implemented (ENOSYS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPERM</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation not permitted (EPERM)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPIPE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Broken pipe (EPIPE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESPIPE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Seek not possible (ESPIPE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENXIO</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No such device or address (ENXIO)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOEXEC</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Exec format error (ENOEXEC)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOSPC</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No space left on device (ENOSPC)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTSOCK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Socket operation on non-socket (ENOTSOCK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTCONN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Transport endpoint is not connected (ENOTCONN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EDOM</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Numerical argument out of domain (EDOM)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EILSEQ</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid or incomplete multibyte or wide character (EILSEQ)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ERANGE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Numerical result out of range (ERANGE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">E2BIG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Argument list too long (E2BIG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EADDRINUSE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Address already in use (EADDRINUSE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EADDRNOTAVAIL</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Cannot assign requested address (EADDRNOTAVAIL)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EAFNOSUPPORT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Address family not supported by protocol (EAFNOSUPPORT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EALREADY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation already in progress (EALREADY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBADMSG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Bad message (EBADMSG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBUSY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Device or resource busy (EBUSY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ECANCELED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation canceled (ECANCELED)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ECHILD</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No child processes (ECHILD)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ECONNABORTED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Software caused connection abort (ECONNABORTED)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ECONNREFUSED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Connection refused (ECONNREFUSED)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ECONNRESET</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Connection reset by peer (ECONNRESET)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EDEADLK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Resource deadlock avoided (EDEADLK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EDESTADDRREQ</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Destination address required (EDESTADDRREQ)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EDQUOT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Disk quota exceeded (EDQUOT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EFBIG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;File too large (EFBIG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EHOSTUNREACH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No route to host (EHOSTUNREACH)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EIDRM</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Identifier removed (EIDRM)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EINPROGRESS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation now in progress (EINPROGRESS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EISCONN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Transport endpoint is already connected (EISCONN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ELOOP</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many levels of symbolic links (ELOOP)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EMFILE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many open files (EMFILE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EMLINK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many links (EMLINK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EMSGSIZE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Message too long (EMSGSIZE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EMULTIHOP</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Multihop attempted (EMULTIHOP)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENAMETOOLONG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;File name too long (ENAMETOOLONG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENETDOWN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Network is down (ENETDOWN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENETRESET</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Network dropped connection on reset (ENETRESET)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENETUNREACH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Network is unreachable (ENETUNREACH)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENFILE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many open files in system (ENFILE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOBUFS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No buffer space available (ENOBUFS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENODEV</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No such device (ENODEV)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOLCK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No locks available (ENOLCK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOLINK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Link has been severed (ENOLINK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOMSG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No message of desired type (ENOMSG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOPROTOOPT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol not available (ENOPROTOOPT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTEMPTY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Directory not empty (ENOTEMPTY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTRECOVERABLE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Sate not recoverable (ENOTRECOVERABLE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTSUP</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation not supported (ENOTSUP)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTTY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Inappropriate ioctl for device (ENOTTY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EOVERFLOW</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Value too large for defined datatype (EOVERFLOW)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EOWNERDEAD</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Owner died (EOWNERDEAD)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPROTO</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol error (EPROTO)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPROTONOSUPPORT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol not supported (EPROTONOSUPPORT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPROTOTYPE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol wrong type for socket (EPROTOTYPE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EROFS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Read-only file system (EROFS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESRCH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No such process (ESRCH)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESTALE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Stale file handle (ESTALE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ETIMEDOUT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Connection timed out (ETIMEDOUT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ETXTBSY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Text file busy (ETXTBSY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EXDEV</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid cross-device link (EXDEV)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENODATA</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No data available (ENODATA)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ETIME</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Timer expired (ETIME)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOKEY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Required key not available (ENOKEY)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESHUTDOWN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Cannot send after transport endpoint shutdown (ESHUTDOWN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EHOSTDOWN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Host is down (EHOSTDOWN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBADFD</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;File descriptor in bad state (EBADFD)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOMEDIUM</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No medium found (ENOMEDIUM)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTBLK</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Block device required (ENOTBLK)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENONET</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Machine is not on the network (ENONET)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EPFNOSUPPORT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol family not supported (EPFNOSUPPORT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESOCKTNOSUPPORT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Socket type not supported (ESOCKTNOSUPPORT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ESTRPIPE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Streams pipe error (ESTRPIPE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EREMOTEIO</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Remote I/O error (EREMOTEIO)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ERFKILL</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Operation not possible due to RF-kill (ERFKILL)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBADR</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid request descriptor (EBADR)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EUNATCH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Protocol driver not attached (EUNATCH)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EMEDIUMTYPE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Wrong medium type (EMEDIUMTYPE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EREMOTE</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Object is remote (EREMOTE)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EKEYREJECTED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Key was rejected by service (EKEYREJECTED)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EUCLEAN</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Structure needs cleaning (EUCLEAN)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EBADSLT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid slot (EBADSLT)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOANO</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No anode (ENOANO)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOCSI</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;No CSI structure available (ENOCSI)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOSTR</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Device not a stream (ENOSTR)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ETOOMANYREFS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many references: cannot splice (ETOOMANYREFS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOPKG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Package not installed (ENOPKG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EKEYREVOKED</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Key has been revoked (EKEYREVOKED)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EXFULL</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Exchange full (EXFULL)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ELNRNG</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Link number out of range (ELNRNG)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ENOTUNIQ</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Name not unique on network (ENOTUNIQ)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ERESTART</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Interrupted system call should be restarted (ERESTART)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">EUSERS</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Too many users (EUSERS)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Unknown error code (?)&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/program_listing_file_posix_errno.hpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

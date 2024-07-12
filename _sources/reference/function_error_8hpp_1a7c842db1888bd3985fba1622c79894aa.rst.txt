@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_error_8hpp_1a7c842db1888bd3985fba1622c79894aa:
+
+Function Gaia::error_to_string(Error)
+=====================================
+
+- Defined in :ref:`file_lib_error.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::error_to_string(Error)
+   :project: ExhaleCompanion

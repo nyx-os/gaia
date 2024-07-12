@@ -1,0 +1,27 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_lib_time.hpp:
+
+Program Listing for File time.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_lib_time.hpp>` (``lib/time.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <cstdint>
+   
+   namespace Gaia {
+   struct Time {
+     uint64_t hours;
+     uint64_t minutes;
+     uint64_t seconds;
+     uint64_t milliseconds;
+     uint64_t nanoseconds;
+   };
+   } // namespace Gaia

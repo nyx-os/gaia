@@ -1,0 +1,120 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_base.hpp:
+
+File base.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+General utilities. 
+
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/base.hpp``)
+-----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_base.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/list.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_hal_hal.hpp`
+
+- :ref:`file_arch_hal_mmu.hpp`
+
+- :ref:`file_dev_acpi_glue.hpp`
+
+- :ref:`file_fs_vfs.hpp`
+
+- :ref:`file_kernel_elf.hpp`
+
+- :ref:`file_kernel_event.hpp`
+
+- :ref:`file_kernel_ipl.hpp`
+
+- :ref:`file_kernel_syscalls.hpp`
+
+- :ref:`file_lib_stream.hpp`
+
+- :ref:`file_posix_exec.hpp`
+
+- :ref:`file_posix_fd.hpp`
+
+- :ref:`file_vm_heap.hpp`
+
+- :ref:`file_vm_vm.hpp`
+
+- :ref:`file_vm_vm_kernel.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_base_8hpp_1ad115e443bba6380646677138e654fd6c`
+
+- :ref:`exhale_function_base_8hpp_1a0ca934c7d47d82cdb5e0f8e7fbc78a7d`
+
+- :ref:`exhale_function_base_8hpp_1a6fa7dda53d01b965ef0c4ccdcd983ad1`
+
+- :ref:`exhale_function_base_8hpp_1aa383452fe445bfae989358c9d7d96f4f`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_base_8hpp_1a1de6625fa208285b5f2b043fa9c537e7`
+
+- :ref:`exhale_define_base_8hpp_1afb00b1a27b40fde5065d26e5aa367808`
+
+- :ref:`exhale_define_base_8hpp_1a4a21612c647552b916d9de1f911995ad`
+
+- :ref:`exhale_define_base_8hpp_1a20bc0cef8814b63a78c9c328e2eee334`
+
+- :ref:`exhale_define_base_8hpp_1aa838b1fc82110dbec933be0a323efa4c`
+
+- :ref:`exhale_define_base_8hpp_1ad5b64d3e438360d43aef0e0ddbae1f3e`
+
+- :ref:`exhale_define_base_8hpp_1aff9931d7524c88e07743af6535b20761`
+
+- :ref:`exhale_define_base_8hpp_1a30c75e139b07107ef1c8d3f8490aee7d`
+
+- :ref:`exhale_define_base_8hpp_1a4d5e175de7227cf27035113e83dd9ad8`
+

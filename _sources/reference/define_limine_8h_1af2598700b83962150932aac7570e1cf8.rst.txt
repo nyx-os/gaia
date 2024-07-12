@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1af2598700b83962150932aac7570e1cf8:
+
+Define LIMINE_MEMMAP_BAD_MEMORY
+===============================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_MEMMAP_BAD_MEMORY
+   :project: ExhaleCompanion

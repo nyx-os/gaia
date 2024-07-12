@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a87a9619f1cb8e674a32e7392d4391976:
+
+Define LIMINE_COMMON_MAGIC
+==========================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_COMMON_MAGIC
+   :project: ExhaleCompanion

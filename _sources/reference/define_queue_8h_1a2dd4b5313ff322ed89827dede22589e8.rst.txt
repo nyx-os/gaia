@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a2dd4b5313ff322ed89827dede22589e8:
+
+Define LIST_FOREACH_SAFE
+========================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIST_FOREACH_SAFE
+   :project: ExhaleCompanion

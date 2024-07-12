@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_constants_8hpp_1a2645b879b39897efcc006a1db5d0f33d:
+
+Variable colorscheme
+====================
+
+- Defined in :ref:`file_dev_console_constants.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: colorscheme
+   :project: ExhaleCompanion

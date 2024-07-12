@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Vm_1_1Space_1_1Entry:
+
+Struct Space::Entry
+===================
+
+- Defined in :ref:`file_vm_vm.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGaia_1_1Vm_1_1Space`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Vm::Space::Entry
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

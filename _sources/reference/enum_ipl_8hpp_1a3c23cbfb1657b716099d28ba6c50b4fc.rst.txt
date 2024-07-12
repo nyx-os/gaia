@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc:
+
+Enum Ipl
+========
+
+- Defined in :ref:`file_kernel_ipl.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Ipl
+   :project: ExhaleCompanion

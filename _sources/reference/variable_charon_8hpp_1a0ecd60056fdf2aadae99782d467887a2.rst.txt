@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_charon_8hpp_1a0ecd60056fdf2aadae99782d467887a2:
+
+Variable Gaia::CHARON_MMAP_SIZE_MAX
+===================================
+
+- Defined in :ref:`file_lib_charon.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::CHARON_MMAP_SIZE_MAX
+   :project: ExhaleCompanion

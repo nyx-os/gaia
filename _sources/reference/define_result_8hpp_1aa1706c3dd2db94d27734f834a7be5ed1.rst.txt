@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_result_8hpp_1aa1706c3dd2db94d27734f834a7be5ed1:
+
+Define TRY
+==========
+
+- Defined in :ref:`file_lib_result.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRY
+   :project: ExhaleCompanion

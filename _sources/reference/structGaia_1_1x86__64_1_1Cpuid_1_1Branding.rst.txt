@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1x86__64_1_1Cpuid_1_1Branding:
+
+Struct Cpuid::Branding
+======================
+
+- Defined in :ref:`file_arch_x86_64_cpuid.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_struct_structGaia_1_1x86__64_1_1Cpuid`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::x86_64::Cpuid::Branding
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

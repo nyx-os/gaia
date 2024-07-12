@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a05db87878125c27e3060dd641aa3b0f4:
+
+Define SLIST_FOREACH
+====================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SLIST_FOREACH
+   :project: ExhaleCompanion

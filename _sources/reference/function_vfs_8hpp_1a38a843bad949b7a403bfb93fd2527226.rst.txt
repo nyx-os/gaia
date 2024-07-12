@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vfs_8hpp_1a38a843bad949b7a403bfb93fd2527226:
+
+Function Gaia::Fs::vfs_create_file
+==================================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Fs::vfs_create_file(Vnode *, frg::string_view, VnodeAttr, dev_t)
+   :project: ExhaleCompanion

@@ -1,0 +1,85 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_arch_hal_int.hpp:
+
+File int.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_arch_hal>` (``arch/hal``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``arch/hal/int.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_arch_hal_int.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``kernel/ipl.hpp`` (:ref:`file_kernel_ipl.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_x86_64_apic.hpp`
+
+- :ref:`file_arch_x86_64_idt.hpp`
+
+- :ref:`file_dev_virtio_virtio.hpp`
+
+- :ref:`file_kernel_sched.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Hal`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_int_8hpp_1aaa9fe8bdd461e9c67e4fd0feae93aa95`
+
+- :ref:`exhale_function_int_8hpp_1a16403f820b8570131a6ede6bc43c3964`
+
+- :ref:`exhale_function_int_8hpp_1a54d3412698a5d483f9635085317868bb`
+
+- :ref:`exhale_function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_int_8hpp_1a7ed8de1761e484e0b729d5099ea797dc`
+

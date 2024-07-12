@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1af960bf6eae8e0aef6c12676c0c5bafb4:
+
+Function Gaia::x86_64::fxsave
+=============================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::fxsave(void *)
+   :project: ExhaleCompanion

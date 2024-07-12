@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_fd_8hpp_1acdd5d5063cee8358d0c95aa192be37bf:
+
+Variable Gaia::Posix::FD_MAX
+============================
+
+- Defined in :ref:`file_posix_fd.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::Posix::FD_MAX
+   :project: ExhaleCompanion

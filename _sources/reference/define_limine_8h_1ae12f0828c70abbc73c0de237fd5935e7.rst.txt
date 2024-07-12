@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1ae12f0828c70abbc73c0de237fd5935e7:
+
+Define LIMINE_MEMMAP_BOOTLOADER_RECLAIMABLE
+===========================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_MEMMAP_BOOTLOADER_RECLAIMABLE
+   :project: ExhaleCompanion

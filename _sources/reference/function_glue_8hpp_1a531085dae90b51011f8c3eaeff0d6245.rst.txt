@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_glue_8hpp_1a531085dae90b51011f8c3eaeff0d6245:
+
+Function Gaia::Dev::lai_glue_init
+=================================
+
+- Defined in :ref:`file_dev_acpi_glue.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::lai_glue_init(uintptr_t, AcpiTable *, bool)
+   :project: ExhaleCompanion

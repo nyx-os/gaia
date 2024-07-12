@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1a624fdb1656a291b80ef88eb73c54a45a:
+
+Function Gaia::x86_64::get_kernel_gs_base
+=========================================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::get_kernel_gs_base()
+   :project: ExhaleCompanion

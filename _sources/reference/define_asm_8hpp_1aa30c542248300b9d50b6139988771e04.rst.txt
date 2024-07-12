@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_asm_8hpp_1aa30c542248300b9d50b6139988771e04:
+
+Define ASM_MAKE_CRN
+===================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ASM_MAKE_CRN
+   :project: ExhaleCompanion

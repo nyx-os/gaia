@@ -1,0 +1,89 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_arch_x86_64_idt.hpp:
+
+File idt.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_arch_x86_64>` (``arch/x86_64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``arch/x86_64/idt.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_arch_x86_64_idt.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+
+- ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)
+
+- ``vm/phys.hpp`` (:ref:`file_vm_phys.hpp`)
+
+- ``x86_64/asm.hpp`` (:ref:`file_arch_x86_64_asm.hpp`)
+
+- ``x86_64/simd.hpp`` (:ref:`file_arch_x86_64_simd.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_x86_64_syscall.hpp`
+
+- :ref:`file_dev_console_ps2.hpp`
+
+- :ref:`file_kernel_sched.hpp`
+
+- :ref:`file_kernel_syscalls.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__x86_64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1CpuContext`
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1InterruptEntry`
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1InterruptFrame`
+
+- :ref:`exhale_struct_structGsCpuInfo`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_idt_8hpp_1a8053776a97caa0de903545b589d46071`
+

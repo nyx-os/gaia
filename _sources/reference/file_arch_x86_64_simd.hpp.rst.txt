@@ -1,0 +1,62 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_arch_x86_64_simd.hpp:
+
+File simd.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_arch_x86_64>` (``arch/x86_64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``arch/x86_64/simd.hpp``)
+-------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_arch_x86_64_simd.hpp.rst
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_x86_64_idt.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__x86_64`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_simd_8hpp_1a5c05bc838053290d6991ad63b422c8dc`
+
+- :ref:`exhale_function_simd_8hpp_1a1358bf0a574a6d349ac8eb65fd2a6026`
+
+- :ref:`exhale_function_simd_8hpp_1aaa3a697e1c834233be025d9d3f835bc7`
+
+- :ref:`exhale_function_simd_8hpp_1a3013c97e244834ba3c6a4f7d50431b69`
+

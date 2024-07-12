@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Thread:
+
+Struct Thread
+=============
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Thread
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

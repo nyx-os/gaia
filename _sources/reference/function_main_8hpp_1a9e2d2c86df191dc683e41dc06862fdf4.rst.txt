@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_main_8hpp_1a9e2d2c86df191dc683e41dc06862fdf4:
+
+Function Gaia::main
+===================
+
+- Defined in :ref:`file_kernel_main.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::main(Charon)
+   :project: ExhaleCompanion

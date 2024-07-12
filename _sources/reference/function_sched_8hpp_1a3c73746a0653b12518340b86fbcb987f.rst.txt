@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1a3c73746a0653b12518340b86fbcb987f:
+
+Function Gaia::sched_tick
+=========================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_tick(Hal::InterruptFrame *)
+   :project: ExhaleCompanion

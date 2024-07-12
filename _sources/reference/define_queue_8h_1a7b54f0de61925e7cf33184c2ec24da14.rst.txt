@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1a7b54f0de61925e7cf33184c2ec24da14:
+
+Define STAILQ_HEAD
+==================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: STAILQ_HEAD
+   :project: ExhaleCompanion

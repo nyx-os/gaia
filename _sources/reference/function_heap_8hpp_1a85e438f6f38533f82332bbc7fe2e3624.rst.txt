@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1a85e438f6f38533f82332bbc7fe2e3624:
+
+Function Gaia::Vm::malloc
+=========================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::malloc(size_t)
+   :project: ExhaleCompanion

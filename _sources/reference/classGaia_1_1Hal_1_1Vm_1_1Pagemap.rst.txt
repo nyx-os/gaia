@@ -1,0 +1,34 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Hal_1_1Vm_1_1Pagemap:
+
+Class Pagemap
+=============
+
+- Defined in :ref:`file_arch_hal_mmu.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1Vm_1_1Pagemap_1_1Mapping`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Hal::Vm::Pagemap
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

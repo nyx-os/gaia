@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_timer_8hpp_1a09679e93e3944cd894e269a2d37385cc:
+
+Function Gaia::x86_64::timer_init
+=================================
+
+- Defined in :ref:`file_arch_x86_64_timer.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::timer_init(Dev::AcpiPc *)
+   :project: ExhaleCompanion

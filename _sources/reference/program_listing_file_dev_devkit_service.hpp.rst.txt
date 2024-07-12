@@ -1,0 +1,65 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_dev_devkit_service.hpp:
+
+Program Listing for File service.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_dev_devkit_service.hpp>` (``dev/devkit/service.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <frg/hash.hpp>
+   #include <frg/hash_map.hpp>
+   #include <frg/string.hpp>
+   #include <vm/heap.hpp>
+   
+   namespace Gaia::Dev {
+   
+   struct Personality {
+     frg::string_view provider_name;
+     void *match_data;
+   };
+   
+   union Value {
+     frg::string_view string;
+     int integer;
+   };
+   
+   using Properties =
+       frg::hash_map<frg::string_view, Value, frg::hash<frg::string_view>,
+                     Gaia::Vm::HeapAllocator>;
+   
+   class Service {
+   public:
+     void attach(Service *provider);
+   
+     virtual void start(Service *provider) { attach(provider); };
+   
+     virtual Service *probe(Service *provider) {
+       (void)provider;
+       return this;
+     }
+   
+     virtual bool match_properties(Properties &properties) {
+       (void)properties;
+       return true;
+     };
+   
+     virtual const char *class_name() { return "Service"; }
+     virtual const char *name() { return "Service"; }
+   
+     virtual ~Service() {}
+   
+   protected:
+     void *node;
+   
+     friend class Registry;
+   };
+   
+   } // namespace Gaia::Dev

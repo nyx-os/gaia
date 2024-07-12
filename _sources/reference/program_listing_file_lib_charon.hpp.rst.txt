@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_lib_charon.hpp:
+
+Program Listing for File charon.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_lib_charon.hpp>` (``lib/charon.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <cstddef>
+   #include <cstdint>
+   
+   namespace Gaia {
+   constexpr auto CHARON_MODULE_MAX = 16; 
+   constexpr auto CHARON_MMAP_SIZE_MAX =
+       48; 
+   enum CharonMmapEntryType : uint8_t {
+     FREE,        
+     RESERVED,    
+     MODULE,      
+     RECLAIMABLE, 
+     FRAMEBUFFER  
+   };
+   
+   struct CharonMmapEntry {
+     CharonMmapEntryType type; 
+     uintptr_t base;           
+     size_t size;              
+   };
+   
+   struct CharonMemoryMap {
+     std::size_t count = 0; 
+   
+     CharonMmapEntry *begin() { return entries; }
+     CharonMmapEntry *end() { return entries + count; }
+   
+     CharonMmapEntry entries[CHARON_MMAP_SIZE_MAX]; 
+   };
+   
+   struct CharonFramebuffer {
+     bool present;      
+     uintptr_t address; 
+     uint32_t width, height, pitch, bpp;
+   };
+   
+   struct CharonModule {
+     size_t size = 0;       
+     uintptr_t address = 0; 
+     const char *name;      
+   };
+   
+   struct CharonModules {
+     uint16_t count = 0;                      
+     CharonModule modules[CHARON_MODULE_MAX]; 
+   };
+   
+   struct Charon {
+     uintptr_t rsdp; 
+     CharonFramebuffer framebuffer; 
+     CharonModules modules;         
+     CharonMemoryMap memory_map;    
+   };
+   
+   } // namespace Gaia

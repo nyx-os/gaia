@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Dev_1_1VirtQueueUsedElem:
+
+Struct VirtQueueUsedElem
+========================
+
+- Defined in :ref:`file_dev_virtio_virtio.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Dev::VirtQueueUsedElem
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

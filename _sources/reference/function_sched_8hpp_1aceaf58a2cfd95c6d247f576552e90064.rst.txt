@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1aceaf58a2cfd95c6d247f576552e90064:
+
+Function Gaia::sched_kernel_task
+================================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_kernel_task()
+   :project: ExhaleCompanion

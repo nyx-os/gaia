@@ -1,0 +1,69 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_console_fbconsole.hpp:
+
+File fbconsole.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_console>` (``dev/console``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/console/fbconsole.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_console_fbconsole.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``flanterm.h``
+
+- ``lib/charon.hpp`` (:ref:`file_lib_charon.hpp`)
+
+- ``posix/tty.hpp`` (:ref:`file_posix_tty.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1FbConsole`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_fbconsole_8hpp_1afb4a75dbe5937592a05fdd907858b185`
+

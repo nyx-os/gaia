@@ -1,0 +1,25 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_dev_acpi:
+
+
+Directory acpi
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_dev>` (``dev``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``dev/acpi``
+
+
+Files
+-----
+
+- :ref:`file_dev_acpi_acpi.hpp`
+- :ref:`file_dev_acpi_device.hpp`
+- :ref:`file_dev_acpi_glue.hpp`
+
+

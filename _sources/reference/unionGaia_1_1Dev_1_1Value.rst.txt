@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_union_unionGaia_1_1Dev_1_1Value:
+
+Union Value
+===========
+
+- Defined in :ref:`file_dev_devkit_service.hpp`
+
+
+Union Documentation
+-------------------
+
+
+.. doxygenunion:: Gaia::Dev::Value
+   :project: ExhaleCompanion

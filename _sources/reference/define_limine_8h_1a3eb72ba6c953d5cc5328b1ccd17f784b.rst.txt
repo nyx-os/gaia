@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a3eb72ba6c953d5cc5328b1ccd17f784b:
+
+Define LIMINE_TERMINAL_CB_PRIVATE_ID
+====================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_TERMINAL_CB_PRIVATE_ID
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_kernel_2elf_8hpp_1ae30ba27ab72a58c081ab8605f6c5a780:
+
+Variable Gaia::USER_STACK_TOP
+=============================
+
+- Defined in :ref:`file_kernel_elf.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::USER_STACK_TOP
+   :project: ExhaleCompanion

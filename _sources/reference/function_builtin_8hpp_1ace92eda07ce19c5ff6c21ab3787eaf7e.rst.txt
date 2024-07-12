@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_builtin_8hpp_1ace92eda07ce19c5ff6c21ab3787eaf7e:
+
+Function Gaia::Dev::initialize_kernel_drivers
+=============================================
+
+- Defined in :ref:`file_dev_builtin.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::initialize_kernel_drivers()
+   :project: ExhaleCompanion

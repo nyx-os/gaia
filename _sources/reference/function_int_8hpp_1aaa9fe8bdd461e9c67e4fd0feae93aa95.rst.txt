@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1aaa9fe8bdd461e9c67e4fd0feae93aa95:
+
+Function Gaia::Hal::allocate_interrupt
+======================================
+
+- Defined in :ref:`file_arch_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::allocate_interrupt(Ipl, InterruptHandler *, void *, InterruptEntry *)
+   :project: ExhaleCompanion

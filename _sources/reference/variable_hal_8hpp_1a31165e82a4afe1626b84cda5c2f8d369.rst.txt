@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_hal_8hpp_1a31165e82a4afe1626b84cda5c2f8d369:
+
+Variable Gaia::Hal::PAGE_SIZE
+=============================
+
+- Defined in :ref:`file_arch_hal_hal.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::Hal::PAGE_SIZE
+   :project: ExhaleCompanion

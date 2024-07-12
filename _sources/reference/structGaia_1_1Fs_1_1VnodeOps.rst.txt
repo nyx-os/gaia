@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Fs_1_1VnodeOps:
+
+Struct VnodeOps
+===============
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public Gaia::Fs::Devfs`` (:ref:`exhale_class_classGaia_1_1Fs_1_1Devfs`)
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Fs::VnodeOps
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

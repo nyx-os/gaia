@@ -1,0 +1,26 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_posix_exec.hpp:
+
+Program Listing for File exec.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_posix_exec.hpp>` (``posix/exec.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <frg/string.hpp>
+   #include <kernel/sched.hpp>
+   #include <lib/base.hpp>
+   
+   namespace Gaia::Posix {
+   
+   Result<Void, Error> execve(Task *task, frg::string_view path,
+                              char const *argv[], char const *envp[]);
+   
+   } // namespace Gaia::Posix

@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_arch_x86_64_simd.hpp:
+
+Program Listing for File simd.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_arch_x86_64_simd.hpp>` (``arch/x86_64/simd.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   
+   namespace Gaia::x86_64 {
+   
+   void simd_init();
+   void simd_save_state(void *state);
+   void simd_restore_state(void *state);
+   void simd_init_context(void *state);
+   } // namespace Gaia::x86_64

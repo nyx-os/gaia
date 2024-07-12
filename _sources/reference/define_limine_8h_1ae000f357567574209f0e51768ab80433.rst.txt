@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1ae000f357567574209f0e51768ab80433:
+
+Define LIMINE_FRAMEBUFFER_REQUEST
+=================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_FRAMEBUFFER_REQUEST
+   :project: ExhaleCompanion

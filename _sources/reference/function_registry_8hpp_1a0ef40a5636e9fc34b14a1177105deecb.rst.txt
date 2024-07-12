@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_registry_8hpp_1a0ef40a5636e9fc34b14a1177105deecb:
+
+Function Gaia::Dev::create_registry
+===================================
+
+- Defined in :ref:`file_dev_devkit_registry.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Dev::create_registry()
+   :project: ExhaleCompanion

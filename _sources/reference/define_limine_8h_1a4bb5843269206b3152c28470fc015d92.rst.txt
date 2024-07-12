@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a4bb5843269206b3152c28470fc015d92:
+
+Define LIMINE_DEPRECATED_IGNORE_START
+=====================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_DEPRECATED_IGNORE_START
+   :project: ExhaleCompanion

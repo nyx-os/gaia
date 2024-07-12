@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structVmemStat:
+
+Struct VmemStat
+===============
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VmemStat
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_cpuid_8hpp_1af154fac66ff79bfb47f53de4c84f892d:
+
+Define CPUID_PROC_EXTENDED_STATE_ENUMERATION
+============================================
+
+- Defined in :ref:`file_arch_x86_64_cpuid.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CPUID_PROC_EXTENDED_STATE_ENUMERATION
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vmem_8h_1a2089ef0a58de9d9e2f0a16e142cc7a7d:
+
+Function vmem_bootstrap
+=======================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: vmem_bootstrap(void)
+   :project: ExhaleCompanion

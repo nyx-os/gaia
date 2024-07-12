@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_devfs_8hpp_1a2effd79e7a35b38381c15535321014e5:
+
+Define MAJOR
+============
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MAJOR
+   :project: ExhaleCompanion

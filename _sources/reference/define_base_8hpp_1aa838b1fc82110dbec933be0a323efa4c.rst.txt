@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_base_8hpp_1aa838b1fc82110dbec933be0a323efa4c:
+
+Define GIB
+==========
+
+- Defined in :ref:`file_lib_base.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GIB
+   :project: ExhaleCompanion

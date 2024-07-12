@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_simd_8hpp_1a3013c97e244834ba3c6a4f7d50431b69:
+
+Function Gaia::x86_64::simd_save_state
+======================================
+
+- Defined in :ref:`file_arch_x86_64_simd.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::simd_save_state(void *)
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_vfs_8hpp_1a27fef01991a3b59724b06f07cde42ad7:
+
+Variable Gaia::Fs::DefaultVnodeAttr
+===================================
+
+- Defined in :ref:`file_fs_vfs.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::Fs::DefaultVnodeAttr
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1a2c2eab2954282c01f2ef95b3dce62adc:
+
+Function Gaia::Vm::get_allocator
+================================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::get_allocator()
+   :project: ExhaleCompanion

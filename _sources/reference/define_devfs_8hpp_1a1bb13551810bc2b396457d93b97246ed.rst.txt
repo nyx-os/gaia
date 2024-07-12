@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_devfs_8hpp_1a1bb13551810bc2b396457d93b97246ed:
+
+Define MINORBITS
+================
+
+- Defined in :ref:`file_fs_devfs.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MINORBITS
+   :project: ExhaleCompanion

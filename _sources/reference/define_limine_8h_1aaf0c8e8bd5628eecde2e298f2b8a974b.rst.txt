@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1aaf0c8e8bd5628eecde2e298f2b8a974b:
+
+Define LIMINE_MEMMAP_ACPI_RECLAIMABLE
+=====================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_MEMMAP_ACPI_RECLAIMABLE
+   :project: ExhaleCompanion

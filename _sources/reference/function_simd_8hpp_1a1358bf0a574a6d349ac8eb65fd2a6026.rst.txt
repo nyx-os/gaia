@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_simd_8hpp_1a1358bf0a574a6d349ac8eb65fd2a6026:
+
+Function Gaia::x86_64::simd_init_context
+========================================
+
+- Defined in :ref:`file_arch_x86_64_simd.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::simd_init_context(void *)
+   :project: ExhaleCompanion

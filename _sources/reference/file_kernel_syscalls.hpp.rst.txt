@@ -1,0 +1,65 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_syscalls.hpp:
+
+File syscalls.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/syscalls.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_syscalls.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1SyscallParams`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_syscalls_8hpp_1a461acaf3d74c0fa26b14da7f00374042`
+

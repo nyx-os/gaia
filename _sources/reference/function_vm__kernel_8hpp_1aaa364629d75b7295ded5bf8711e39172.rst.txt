@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vm__kernel_8hpp_1aaa364629d75b7295ded5bf8711e39172:
+
+Function Gaia::Vm::vm_kernel_free
+=================================
+
+- Defined in :ref:`file_vm_vm_kernel.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::vm_kernel_free(void *, int)
+   :project: ExhaleCompanion

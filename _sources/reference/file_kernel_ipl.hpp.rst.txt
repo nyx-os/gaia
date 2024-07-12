@@ -1,0 +1,82 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_ipl.hpp:
+
+File ipl.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/ipl.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_ipl.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_hal_int.hpp`
+
+- :ref:`file_arch_x86_64_apic.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Dpc`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_ipl_8hpp_1a742fdb5a4f7afb3b6576b6921496ab7b`
+
+- :ref:`exhale_function_ipl_8hpp_1a47859ce74f9b1acdac0380ccb07437de`
+
+- :ref:`exhale_function_ipl_8hpp_1af0bb3db627f8d0d50383d73b6091a253`
+

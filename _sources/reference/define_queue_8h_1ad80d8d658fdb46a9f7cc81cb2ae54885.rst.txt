@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1ad80d8d658fdb46a9f7cc81cb2ae54885:
+
+Define LIST_INSERT_HEAD
+=======================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIST_INSERT_HEAD
+   :project: ExhaleCompanion

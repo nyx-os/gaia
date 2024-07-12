@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vm__kernel_8hpp_1ac00b3a4af319c76c91a6f62feba100be:
+
+Function Gaia::Vm::vm_kernel_alloc
+==================================
+
+- Defined in :ref:`file_vm_vm_kernel.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::vm_kernel_alloc(int, bool)
+   :project: ExhaleCompanion

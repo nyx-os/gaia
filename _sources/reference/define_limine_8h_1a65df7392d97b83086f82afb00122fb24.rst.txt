@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a65df7392d97b83086f82afb00122fb24:
+
+Define LIMINE_MEMMAP_KERNEL_AND_MODULES
+=======================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_MEMMAP_KERNEL_AND_MODULES
+   :project: ExhaleCompanion

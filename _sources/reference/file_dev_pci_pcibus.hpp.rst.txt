@@ -1,0 +1,69 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_pci_pcibus.hpp:
+
+File pcibus.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_pci>` (``dev/pci``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/pci/pcibus.hpp``)
+-----------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_pci_pcibus.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/acpi/device.hpp`` (:ref:`file_dev_acpi_device.hpp`)
+
+- ``dev/devkit/registry.hpp`` (:ref:`file_dev_devkit_registry.hpp`)
+
+- ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1PciBus`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_pcibus_8hpp_1a69a26b2d0cf31bb491b83736a06b62a4`
+

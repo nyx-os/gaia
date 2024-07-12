@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vmem_8h_1a6438ada87cf912a8d7b12205a838d132:
+
+Define VM_BOOTSTRAP
+===================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: VM_BOOTSTRAP
+   :project: ExhaleCompanion

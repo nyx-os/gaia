@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_queue_8h_1af416c4e9e87270cb7b90152a27b8daa4:
+
+Define SIMPLEQ_ENTRY
+====================
+
+- Defined in :ref:`file_lib_queue.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SIMPLEQ_ENTRY
+   :project: ExhaleCompanion

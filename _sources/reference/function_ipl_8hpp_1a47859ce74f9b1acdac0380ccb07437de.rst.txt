@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_ipl_8hpp_1a47859ce74f9b1acdac0380ccb07437de:
+
+Function Gaia::ipl
+==================
+
+- Defined in :ref:`file_kernel_ipl.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::ipl()
+   :project: ExhaleCompanion

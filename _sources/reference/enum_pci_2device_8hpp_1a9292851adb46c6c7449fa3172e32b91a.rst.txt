@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_pci_2device_8hpp_1a9292851adb46c6c7449fa3172e32b91a:
+
+Enum PciOffset
+==============
+
+- Defined in :ref:`file_dev_pci_device.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Dev::PciOffset
+   :project: ExhaleCompanion

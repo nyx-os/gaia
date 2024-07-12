@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_pci_2device_8hpp_1a35fe8c25e0156663fdcf6f0a8ee4b2b1:
+
+Enum PciStatusBit
+=================
+
+- Defined in :ref:`file_dev_pci_device.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Dev::PciStatusBit
+   :project: ExhaleCompanion

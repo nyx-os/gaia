@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_vmem_8h_1ac1168ff08549be4226ca10918d352e2a:
+
+Define VMEM_ERR_NO_MEM
+======================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: VMEM_ERR_NO_MEM
+   :project: ExhaleCompanion

@@ -1,0 +1,22 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_vm:
+
+
+Directory vm
+============
+
+
+*Directory path:* ``vm``
+
+
+Files
+-----
+
+- :ref:`file_vm_heap.hpp`
+- :ref:`file_vm_phys.hpp`
+- :ref:`file_vm_vm.hpp`
+- :ref:`file_vm_vm_kernel.hpp`
+- :ref:`file_vm_vmem.h`
+
+

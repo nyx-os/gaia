@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1af114d6e6116452e311b8464229d8267e:
+
+Define LIMINE_TERMINAL_CTX_RESTORE
+==================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_TERMINAL_CTX_RESTORE
+   :project: ExhaleCompanion

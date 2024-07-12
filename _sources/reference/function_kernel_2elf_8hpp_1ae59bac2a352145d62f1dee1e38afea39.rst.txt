@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_kernel_2elf_8hpp_1ae59bac2a352145d62f1dee1e38afea39:
+
+Function Gaia::exec
+===================
+
+- Defined in :ref:`file_kernel_elf.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::exec(Task&, const char *)
+   :project: ExhaleCompanion

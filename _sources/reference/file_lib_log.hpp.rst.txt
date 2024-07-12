@@ -1,0 +1,106 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_log.hpp:
+
+File log.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Logging utilities. 
+
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/log.hpp``)
+----------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_log.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/logging.hpp``
+
+- ``frg/spinlock.hpp``
+
+- ``frg/string.hpp``
+
+- ``frg/string_stub.hpp``
+
+- ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_lib_path.hpp`
+
+- :ref:`file_lib_result.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1FormatWithLocation`
+
+- :ref:`exhale_class_classGaia_1_1DebugSink`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_log_8hpp_1ab34b1a105b75fb5fb8204a5927a4eda4`
+
+- :ref:`exhale_function_log_8hpp_1adf4454bfd9d89ffd6f2dd2cf7046290d`
+
+- :ref:`exhale_function_log_8hpp_1aaacade519be2b28688f0a129fb835486`
+
+- :ref:`exhale_function_log_8hpp_1ac19b4f4322a3b6136f68b02e49f1d3f0`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_log_8hpp_1a2cafe348939f5590eda29d13da17dc8c`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be`
+
+- :ref:`exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d`
+

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303:
+
+Function Gaia::sched_send_to_death
+==================================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_send_to_death(Thread *)
+   :project: ExhaleCompanion

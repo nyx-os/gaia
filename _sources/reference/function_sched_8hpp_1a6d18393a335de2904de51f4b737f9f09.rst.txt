@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1a6d18393a335de2904de51f4b737f9f09:
+
+Function Gaia::sched_dequeue_and_die
+====================================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_dequeue_and_die()
+   :project: ExhaleCompanion

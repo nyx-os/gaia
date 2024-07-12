@@ -1,0 +1,198 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _namespace_Gaia:
+
+Namespace Gaia
+==============
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia__Dev`
+
+- :ref:`namespace_Gaia__Fs`
+
+- :ref:`namespace_Gaia__Hal`
+
+- :ref:`namespace_Gaia__Posix`
+
+- :ref:`namespace_Gaia__Vm`
+
+- :ref:`namespace_Gaia__x86_64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Charon`
+
+- :ref:`exhale_struct_structGaia_1_1CharonFramebuffer`
+
+- :ref:`exhale_struct_structGaia_1_1CharonMemoryMap`
+
+- :ref:`exhale_struct_structGaia_1_1CharonMmapEntry`
+
+- :ref:`exhale_struct_structGaia_1_1CharonModule`
+
+- :ref:`exhale_struct_structGaia_1_1CharonModules`
+
+- :ref:`exhale_struct_structGaia_1_1Dpc`
+
+- :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs`
+
+- :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs_1_1PhdrIterator`
+
+- :ref:`exhale_struct_structGaia_1_1Event`
+
+- :ref:`exhale_struct_structGaia_1_1EventListener`
+
+- :ref:`exhale_struct_structGaia_1_1FormatWithLocation`
+
+- :ref:`exhale_struct_structGaia_1_1Freelist_1_1Region`
+
+- :ref:`exhale_struct_structGaia_1_1List_1_1Iterator`
+
+- :ref:`exhale_struct_structGaia_1_1ListNode`
+
+- :ref:`exhale_struct_structGaia_1_1Stream`
+
+- :ref:`exhale_struct_structGaia_1_1SyscallParams`
+
+- :ref:`exhale_struct_structGaia_1_1Task`
+
+- :ref:`exhale_struct_structGaia_1_1Thread`
+
+- :ref:`exhale_struct_structGaia_1_1Time`
+
+- :ref:`exhale_struct_structGaia_1_1Void`
+
+- :ref:`exhale_class_classGaia_1_1DebugSink`
+
+- :ref:`exhale_class_classGaia_1_1DotGraph`
+
+- :ref:`exhale_class_classGaia_1_1Elf`
+
+- :ref:`exhale_class_classGaia_1_1Err`
+
+- :ref:`exhale_class_classGaia_1_1Freelist`
+
+- :ref:`exhale_class_classGaia_1_1List`
+
+- :ref:`exhale_class_classGaia_1_1Ok`
+
+- :ref:`exhale_class_classGaia_1_1Path`
+
+- :ref:`exhale_class_classGaia_1_1Result`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_charon_8hpp_1a33907191a12530ee5163985bb46e591a`
+
+- :ref:`exhale_enum_error_8hpp_1af9bbab7b72497f9d1536ba2993304b5f`
+
+- :ref:`exhale_enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_event_8hpp_1a8c64336d26cadd27b593608763f25edb`
+
+- :ref:`exhale_function_ipl_8hpp_1a742fdb5a4f7afb3b6576b6921496ab7b`
+
+- :ref:`exhale_function_log_8hpp_1ab34b1a105b75fb5fb8204a5927a4eda4`
+
+- :ref:`exhale_function_error_8hpp_1a7c842db1888bd3985fba1622c79894aa`
+
+- :ref:`exhale_function_errno_8hpp_1a4c9aa1b8d9d0e0ae84b84efbf34da8e2`
+
+- :ref:`exhale_function_kernel_2elf_8hpp_1ae59bac2a352145d62f1dee1e38afea39`
+
+- :ref:`exhale_function_kernel_2elf_8hpp_1a0dcbcad05fcc8a60669231f39dbf679c`
+
+- :ref:`exhale_function_log_8hpp_1adf4454bfd9d89ffd6f2dd2cf7046290d`
+
+- :ref:`exhale_function_ipl_8hpp_1a47859ce74f9b1acdac0380ccb07437de`
+
+- :ref:`exhale_function_ipl_8hpp_1af0bb3db627f8d0d50383d73b6091a253`
+
+- :ref:`exhale_function_log_8hpp_1aaacade519be2b28688f0a129fb835486`
+
+- :ref:`exhale_function_main_8hpp_1a9e2d2c86df191dc683e41dc06862fdf4`
+
+- :ref:`exhale_function_log_8hpp_1ac19b4f4322a3b6136f68b02e49f1d3f0`
+
+- :ref:`exhale_function_sched_8hpp_1a7d618f82e6d95f6f0ec6d810d1e01fea`
+
+- :ref:`exhale_function_sched_8hpp_1a3575cc3476b91e18af069b020afe2673`
+
+- :ref:`exhale_function_sched_8hpp_1a6d18393a335de2904de51f4b737f9f09`
+
+- :ref:`exhale_function_sched_8hpp_1aa35627bf631e0e232e131a1cff9d4e48`
+
+- :ref:`exhale_function_sched_8hpp_1ac2f683e25520fd11fe9e71aeb107a7c3`
+
+- :ref:`exhale_function_sched_8hpp_1af8cbdc1c13b0fea2939e22815047d60d`
+
+- :ref:`exhale_function_sched_8hpp_1aceaf58a2cfd95c6d247f576552e90064`
+
+- :ref:`exhale_function_sched_8hpp_1a4379872a7aa60a970363d03bde84a696`
+
+- :ref:`exhale_function_sched_8hpp_1ad7338838712c7b47a344b9ce8a135809`
+
+- :ref:`exhale_function_sched_8hpp_1a92c1df8517ed7928662b06ea255d35cf`
+
+- :ref:`exhale_function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303`
+
+- :ref:`exhale_function_sched_8hpp_1aa3d9b68ec8dc6e1dd42e55567faec6f6`
+
+- :ref:`exhale_function_sched_8hpp_1a3c73746a0653b12518340b86fbcb987f`
+
+- :ref:`exhale_function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e`
+
+- :ref:`exhale_function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a`
+
+- :ref:`exhale_function_syscalls_8hpp_1a461acaf3d74c0fa26b14da7f00374042`
+
+- :ref:`exhale_function_base_8hpp_1ad115e443bba6380646677138e654fd6c`
+
+- :ref:`exhale_function_base_8hpp_1a0ca934c7d47d82cdb5e0f8e7fbc78a7d`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_charon_8hpp_1a0ecd60056fdf2aadae99782d467887a2`
+
+- :ref:`exhale_variable_charon_8hpp_1a9583ba7746e0837aa0a44bd31476d040`
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1a88f9d9e3c69463df79bd8a898f05e591`
+
+- :ref:`exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be`
+
+- :ref:`exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d`
+
+- :ref:`exhale_variable_event_8hpp_1ac0847594944e6f76c73f5a2916f99095`
+
+- :ref:`exhale_variable_sched_8hpp_1abfc9ae79f0345bb3815db0ed2dd42da9`
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1a66ecb1d1793d9a9fc120caf69bc3d3ec`
+
+- :ref:`exhale_variable_kernel_2elf_8hpp_1ae30ba27ab72a58c081ab8605f6c5a780`

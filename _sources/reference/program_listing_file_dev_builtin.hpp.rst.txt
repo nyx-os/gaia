@@ -1,0 +1,20 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_dev_builtin.hpp:
+
+Program Listing for File builtin.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_dev_builtin.hpp>` (``dev/builtin.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   
+   namespace Gaia::Dev {
+   void initialize_kernel_drivers();
+   }

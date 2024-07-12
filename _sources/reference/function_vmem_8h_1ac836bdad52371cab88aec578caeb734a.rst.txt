@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_vmem_8h_1ac836bdad52371cab88aec578caeb734a:
+
+Function vmem_init
+==================
+
+- Defined in :ref:`file_vm_vmem.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: vmem_init(Vmem *, const char *, void *, size_t, size_t, VmemAlloc *, VmemFree *, Vmem *, size_t, int)
+   :project: ExhaleCompanion

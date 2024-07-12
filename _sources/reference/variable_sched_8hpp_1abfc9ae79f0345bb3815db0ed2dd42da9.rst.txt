@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_sched_8hpp_1abfc9ae79f0345bb3815db0ed2dd42da9:
+
+Variable Gaia::TIME_SLICE
+=========================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::TIME_SLICE
+   :project: ExhaleCompanion

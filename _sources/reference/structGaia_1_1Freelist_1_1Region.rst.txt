@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Freelist_1_1Region:
+
+Struct Freelist::Region
+=======================
+
+- Defined in :ref:`file_lib_freelist.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGaia_1_1Freelist`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Freelist::Region
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

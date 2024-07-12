@@ -1,0 +1,53 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _namespace_Gaia__Posix:
+
+Namespace Gaia::Posix
+=====================
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1Fd`
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1Fds`
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1TTY`
+
+- :ref:`exhale_class_classGaia_1_1Posix_1_1TTY_1_1Ops`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_errno_8hpp_1a259004aae0fcbb009679d3460f49bf07`
+
+- :ref:`exhale_function_exec_8hpp_1a9163e3da422bf45987ee20cd6ce47c0c`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_errno_8hpp_1ac9da09088bedcca3d96015f8d5680721`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_fd_8hpp_1acdd5d5063cee8358d0c95aa192be37bf`
+
+- :ref:`exhale_variable_fd_8hpp_1a89bf38099986d13a1c135a497b6219f2`

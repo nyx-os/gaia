@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_asm_8hpp_1a0efda4b0f26805a39dceb972ec5636b5:
+
+Enum Cr0Bit
+===========
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::x86_64::Cr0Bit
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_hal_2mmu_8hpp_1a4e6ad7f3dd8038a4e1fde28bfc3cebb9:
+
+Enum Prot
+=========
+
+- Defined in :ref:`file_arch_hal_mmu.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Hal::Vm::Prot
+   :project: ExhaleCompanion

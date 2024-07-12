@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Void:
+
+Struct Void
+===========
+
+- Defined in :ref:`file_lib_result.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Void
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

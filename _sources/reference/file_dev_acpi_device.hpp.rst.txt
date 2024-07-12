@@ -1,0 +1,70 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_acpi_device.hpp:
+
+File device.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_acpi>` (``dev/acpi``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/acpi/device.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_acpi_device.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/acpi/acpi.hpp`` (:ref:`file_dev_acpi_acpi.hpp`)
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_dev_console_ps2.hpp`
+
+- :ref:`file_dev_pci_pcibus.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Dev`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGaia_1_1Dev_1_1AcpiDevice`
+

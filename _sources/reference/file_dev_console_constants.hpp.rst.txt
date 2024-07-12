@@ -1,0 +1,49 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_dev_console_constants.hpp:
+
+File constants.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_dev_console>` (``dev/console``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``dev/console/constants.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_dev_console_constants.hpp.rst
+
+
+
+
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_constants_8hpp_1a787fa2d265ae3cc1978d088c067a6544`
+
+- :ref:`exhale_variable_constants_8hpp_1a4d5bcfa9b2fd62b0c07e5ff0a84bcbbe`
+
+- :ref:`exhale_variable_constants_8hpp_1a2645b879b39897efcc006a1db5d0f33d`
+
+- :ref:`exhale_variable_constants_8hpp_1ac33f19c4d709f8535427c4613d621400`
+
+- :ref:`exhale_variable_constants_8hpp_1a5654ea0bf212a95e205813c7b4e6b09d`
+

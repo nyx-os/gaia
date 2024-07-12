@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_charon_8hpp_1a9583ba7746e0837aa0a44bd31476d040:
+
+Variable Gaia::CHARON_MODULE_MAX
+================================
+
+- Defined in :ref:`file_lib_charon.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::CHARON_MODULE_MAX
+   :project: ExhaleCompanion

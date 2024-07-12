@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1a1b8fc1d7832faa8776f7adaab9c8083e:
+
+Function Gaia::x86_64::inl
+==========================
+
+- Defined in :ref:`file_arch_x86_64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::x86_64::inl(uint16_t)
+   :project: ExhaleCompanion

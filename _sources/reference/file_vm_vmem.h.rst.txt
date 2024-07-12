@@ -1,0 +1,128 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_vm_vmem.h:
+
+File vmem.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir_vm>` (``vm``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``vm/vmem.h``)
+--------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_vm_vmem.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``lib/queue.h`` (:ref:`file_lib_queue.h`)
+
+- ``limits.h``
+
+- ``stdbool.h``
+
+- ``stddef.h``
+
+- ``stdint.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_vm_vm.hpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structvmem`
+
+- :ref:`exhale_struct_structvmem__segment`
+
+- :ref:`exhale_struct_structVmemStat`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_vmem_8h_1a26f24d146fefba9254bbdbbf5a9b6f89`
+
+- :ref:`exhale_function_vmem_8h_1a1cf5b724283a8733fd3e6b6f3af77a20`
+
+- :ref:`exhale_function_vmem_8h_1a288cbaed8148966c028a413d8350eea6`
+
+- :ref:`exhale_function_vmem_8h_1a636834e596bdd5f2ba9329152a4ef17d`
+
+- :ref:`exhale_function_vmem_8h_1a2089ef0a58de9d9e2f0a16e142cc7a7d`
+
+- :ref:`exhale_function_vmem_8h_1a25a57cf5f5d07d444844912d01c7aa7e`
+
+- :ref:`exhale_function_vmem_8h_1af53acd02f9af050f32c236b0a05e44da`
+
+- :ref:`exhale_function_vmem_8h_1a73394635a60871314dc2921b1b4fdc49`
+
+- :ref:`exhale_function_vmem_8h_1ac836bdad52371cab88aec578caeb734a`
+
+- :ref:`exhale_function_vmem_8h_1ad971033184d97c3f2c8156006120df8c`
+
+- :ref:`exhale_function_vmem_8h_1ab5700ad7176fd085e1b4a33df609e620`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_vmem_8h_1ac63b63c87a24885af8efe3637e0333e6`
+
+- :ref:`exhale_define_vmem_8h_1a739e5dab2cf833d58ef4c965d196ad75`
+
+- :ref:`exhale_define_vmem_8h_1a9010e2042c4168a1974f9fd07426f169`
+
+- :ref:`exhale_define_vmem_8h_1a6438ada87cf912a8d7b12205a838d132`
+
+- :ref:`exhale_define_vmem_8h_1a5df01c590f12e94a46566a3e448c0002`
+
+- :ref:`exhale_define_vmem_8h_1aec1a65b825818427bc59455786d53972`
+
+- :ref:`exhale_define_vmem_8h_1af1ebe5e49c63af9782d66ce566ea41c1`
+
+- :ref:`exhale_define_vmem_8h_1ad58388307375ca173637c0b4888bfc9a`
+
+- :ref:`exhale_define_vmem_8h_1ac1168ff08549be4226ca10918d352e2a`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_vmem_8h_1a8fdc49a470da619de431b1bc148a8050`
+
+- :ref:`exhale_typedef_vmem_8h_1ad0344fd0872f41f212d7703ec69204a8`
+
+- :ref:`exhale_typedef_vmem_8h_1a8c0fa483726a7c25c51b2d77bb6fc6b3`
+
+- :ref:`exhale_typedef_vmem_8h_1a68e2989d2b2c0726b53847fef3a5129c`
+

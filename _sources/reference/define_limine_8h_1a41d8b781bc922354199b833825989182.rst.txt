@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_limine_8h_1a41d8b781bc922354199b833825989182:
+
+Define LIMINE_INTERNAL_MODULE_REQUIRED
+======================================
+
+- Defined in :ref:`file_arch_x86_64_limine.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIMINE_INTERNAL_MODULE_REQUIRED
+   :project: ExhaleCompanion

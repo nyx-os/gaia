@@ -1,0 +1,30 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Dev_1_1PciDevice_1_1Info:
+
+Struct PciDevice::Info
+======================
+
+- Defined in :ref:`file_dev_pci_device.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classGaia_1_1Dev_1_1PciDevice`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Dev::PciDevice::Info
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:
