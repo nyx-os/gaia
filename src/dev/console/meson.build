@@ -1,0 +1,1 @@
+kernel_srcs += files('fbconsole.cpp', 'ps2.cpp')

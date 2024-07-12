@@ -1,0 +1,13 @@
+diff --git a/meson.build b/meson.build
+new file mode 100644
+index 0000000..ba28b8d
+--- /dev/null
++++ b/meson.build
+@@ -0,0 +1,6 @@
++project('flanterm', 'c')
++
++my_inc = include_directories('.')
++my_lib = static_library('flanterm', ['flanterm.c', 'backends/fb.c'])
++flanterm_dep = declare_dependency(link_with : my_lib,
++  include_directories : my_inc)
+

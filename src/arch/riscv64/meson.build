@@ -1,0 +1,1 @@
+kernel_srcs += files('entry.cpp', 'hal.cpp', 'mmu.cpp')

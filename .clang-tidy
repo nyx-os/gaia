@@ -1,0 +1,2 @@
+HeaderFilterRegex: ''
+Checks: 'clang-analyzer-*'

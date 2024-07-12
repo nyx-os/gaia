@@ -1,0 +1,12 @@
+build/
+subprojects/cxxshim
+subprojects/frigg
+subprojects/lai
+subprojects/flanterm
+.cache
+docs/_static
+docs/_doxygen
+docs/_build
+docs/reference
+docs/api
+env

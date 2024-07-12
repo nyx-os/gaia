@@ -1,0 +1,5 @@
+[wrap-git]
+directory = flanterm
+url = https://github.com/mintsuki/flanterm.git
+revision = trunk 
+diff_files = flanterm.diff

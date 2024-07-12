@@ -1,0 +1,1 @@
+kernel_srcs += files('exec.cpp', 'tty.cpp')

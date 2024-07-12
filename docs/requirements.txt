@@ -1,0 +1,7 @@
+# for testing the master branch
+# git+git://github.com/svenevs/exhale.git#egg=exhale
+# See: https://exhale.readthedocs.io/en/latest/#exhale-version-compatibility-with-python-sphinx-and-breathe
+sphinx>=4.5
+breathe>=4.32.0
+exhale>=0.3.2
+myst-parser

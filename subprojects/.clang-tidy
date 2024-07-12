@@ -1,0 +1,1 @@
+Checks: '-*, clang-analyzer-unix.Vfork' # Dummy value to avoid errors

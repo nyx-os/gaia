@@ -1,0 +1,5 @@
+[wrap-git]
+directory = lai 
+url = https://github.com/managarm/lai.git
+revision = master
+
