@@ -5,4 +5,4 @@ Gaia is an operating system kernel that aims to resemble a remotely modern kerne
 
 ## Documentation
 
-Documentation is available (here)[https://nyx-org.github.io/gaia/]
+Documentation is available (https://nyx-org.github.io/gaia/)[here]
