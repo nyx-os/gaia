@@ -43,9 +43,9 @@ Includes
 --------
 
 
-- ``cstddef``
+- ``stddef.h``
 
-- ``cstdint``
+- ``stdint.h``
 
 
 

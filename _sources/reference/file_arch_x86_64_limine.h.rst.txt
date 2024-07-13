@@ -59,6 +59,10 @@ Classes
 
 - :ref:`exhale_struct_structlimine__dtb__response`
 
+- :ref:`exhale_struct_structlimine__efi__memmap__request`
+
+- :ref:`exhale_struct_structlimine__efi__memmap__response`
+
 - :ref:`exhale_struct_structlimine__efi__system__table__request`
 
 - :ref:`exhale_struct_structlimine__efi__system__table__response`
@@ -134,6 +138,10 @@ Defines
 
 - :ref:`exhale_define_limine_8h_1a493482c4075e2a73894d82e2b627eccf`
 
+- :ref:`exhale_define_limine_8h_1a9bf8f85f610af76a70bc0d5a39342333`
+
+- :ref:`exhale_define_limine_8h_1a269b761a139127fb2644f165931bd76b`
+
 - :ref:`exhale_define_limine_8h_1a56576e64da699ee469e4ff3366ff2357`
 
 - :ref:`exhale_define_limine_8h_1a40a4f27d03994f4df1204e79c13c0ba2`
@@ -148,6 +156,8 @@ Defines
 
 - :ref:`exhale_define_limine_8h_1a708e3dc3a32da80a187ac17308b2f758`
 
+- :ref:`exhale_define_limine_8h_1a5590799508c56c8fa6575aac1cc85b9e`
+
 - :ref:`exhale_define_limine_8h_1a27ed1ad9c13e80946a2b292b95eb458b`
 
 - :ref:`exhale_define_limine_8h_1a31ce5d415baae9ff1a1bb8963695b73e`
@@ -157,6 +167,8 @@ Defines
 - :ref:`exhale_define_limine_8h_1a930b468d5ef7f8915ba69f55ee1eac2c`
 
 - :ref:`exhale_define_limine_8h_1a68118f4871132a203fb40d9e7a29493c`
+
+- :ref:`exhale_define_limine_8h_1a08b40446380a69ae81477f3cde7d8a85`
 
 - :ref:`exhale_define_limine_8h_1a41d8b781bc922354199b833825989182`
 
@@ -193,6 +205,12 @@ Defines
 - :ref:`exhale_define_limine_8h_1afb099ba9d61c38ef9588b5274ddc239b`
 
 - :ref:`exhale_define_limine_8h_1ae207468a74ef8f3e998f6646cb365f8f`
+
+- :ref:`exhale_define_limine_8h_1a9a8370e65d1223196ea43313a6d61a30`
+
+- :ref:`exhale_define_limine_8h_1a89e6640a57982f0edf321bb18b22cb83`
+
+- :ref:`exhale_define_limine_8h_1a676376ea4ec441495631780986e634e1`
 
 - :ref:`exhale_define_limine_8h_1a9292255548cfac30e78b77444b53822b`
 

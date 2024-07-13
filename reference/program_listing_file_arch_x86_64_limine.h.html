@@ -38,7 +38,7 @@
 <p>↰ <a class="reference internal" href="file_arch_x86_64_limine.h.html#file-arch-x86-64-limine-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">arch/x86_64/limine.h</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* BSD Zero Clause License */</span>
 
-<span class="cm">/* Copyright (C) 2022-2023 mintsuki and contributors.</span>
+<span class="cm">/* Copyright (C) 2022-2024 mintsuki and contributors.</span>
 <span class="cm"> *</span>
 <span class="cm"> * Permission to use, copy, modify, and/or distribute this software for any</span>
 <span class="cm"> * purpose with or without fee is hereby granted.</span>
@@ -52,8 +52,8 @@
 <span class="cm"> * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</span>
 <span class="cm"> */</span>
 
-<span class="cp">#ifndef _LIMINE_H</span>
-<span class="cp">#define _LIMINE_H 1</span>
+<span class="cp">#ifndef LIMINE_H</span>
+<span class="cp">#define LIMINE_H 1</span>
 
 <span class="cp">#ifdef __cplusplus</span>
 <span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -80,6 +80,22 @@
 <span class="cp">#define LIMINE_DEPRECATED_IGNORE_START</span>
 <span class="cp">#define LIMINE_DEPRECATED_IGNORE_END</span>
 <span class="cp">#endif</span>
+
+<span class="cp">#define LIMINE_REQUESTS_START_MARKER                                           \</span>
+<span class="cp">  uint64_t limine_requests_start_marker[4] = {                                 \</span>
+<span class="cp">      0xf6b8f4b39de7d1ae, 0xfab91a6940fcb9cf, 0x785c6ed015d3e316,              \</span>
+<span class="cp">      0x181e920a7852b9d9};</span>
+<span class="cp">#define LIMINE_REQUESTS_END_MARKER                                             \</span>
+<span class="cp">  uint64_t limine_requests_end_marker[2] = {0xadc0e0531bb10d03,                \</span>
+<span class="cp">                                            0x9572709f31764c62};</span>
+
+<span class="cp">#define LIMINE_REQUESTS_DELIMITER LIMINE_REQUESTS_END_MARKER</span>
+
+<span class="cp">#define LIMINE_BASE_REVISION(N)                                                \</span>
+<span class="cp">  uint64_t limine_base_revision[3] = {0xf9562b2d5c95a6c8, 0x6a7b384944536bdc,  \</span>
+<span class="cp">                                      (N)};</span>
+
+<span class="cp">#define LIMINE_BASE_REVISION_SUPPORTED (limine_base_revision[2] == 0)</span>
 
 <span class="cp">#define LIMINE_COMMON_MAGIC 0xc7b1dd30df4c8b88, 0x0a82e883a194f07b</span>
 
@@ -368,7 +384,7 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_info</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">processor_id</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">gic_iface_no</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">reserved1</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">mpidr</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">reserved</span><span class="p">;</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="n">limine_goto_address</span><span class="p">)</span><span class="w"> </span><span class="n">goto_address</span><span class="p">;</span>
@@ -377,7 +393,7 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">bsp_mpidr</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">cpu_count</span><span class="p">;</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_info</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">cpus</span><span class="p">;</span>
@@ -386,7 +402,7 @@
 <span class="cp">#elif defined(__riscv) &amp;&amp; (__riscv_xlen == 64)</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_info</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">processor_id</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">processor_id</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">hartid</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">reserved</span><span class="p">;</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="n">limine_goto_address</span><span class="p">)</span><span class="w"> </span><span class="n">goto_address</span><span class="p">;</span>
@@ -395,7 +411,7 @@
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">bsp_hartid</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">cpu_count</span><span class="p">;</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_info</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="w"> </span><span class="n">cpus</span><span class="p">;</span>
@@ -484,6 +500,7 @@
 <span class="cp">  { LIMINE_COMMON_MAGIC, 0x3e7e279702be32af, 0xca1c4f3bd1280cee }</span>
 
 <span class="cp">#define LIMINE_INTERNAL_MODULE_REQUIRED (1 &lt;&lt; 0)</span>
+<span class="cp">#define LIMINE_INTERNAL_MODULE_COMPRESSED (1 &lt;&lt; 1)</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_internal_module</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">path</span><span class="p">;</span>
@@ -554,6 +571,25 @@
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">id</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
 <span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_system_table_response</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">response</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cm">/* EFI memory map */</span>
+
+<span class="cp">#define LIMINE_EFI_MEMMAP_REQUEST                                              \</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x7df62a431d6872d5, 0xa4fcdfb3e57306c8 }</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_memmap_response</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">memmap</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">memmap_size</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">desc_size</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">desc_version</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_memmap_request</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">id</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LIMINE_PTR</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_memmap_response</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">response</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="cm">/* Boot time */</span>

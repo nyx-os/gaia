@@ -14,8 +14,8 @@ Program Listing for File charon.hpp
 
    /* SPDX-License-Identifier: BSD-2-Clause */
    #pragma once
-   #include <cstddef>
-   #include <cstdint>
+   #include <stddef.h>
+   #include <stdint.h>
    
    namespace Gaia {
    constexpr auto CHARON_MODULE_MAX = 16; 
@@ -36,7 +36,7 @@ Program Listing for File charon.hpp
    };
    
    struct CharonMemoryMap {
-     std::size_t count = 0; 
+     size_t count = 0; 
    
      CharonMmapEntry *begin() { return entries; }
      CharonMmapEntry *end() { return entries + count; }
@@ -48,6 +48,12 @@ Program Listing for File charon.hpp
      bool present;      
      uintptr_t address; 
      uint32_t width, height, pitch, bpp;
+     uint8_t red_mask_size;
+     uint8_t red_mask_shift;
+     uint8_t green_mask_size;
+     uint8_t green_mask_shift;
+     uint8_t blue_mask_size;
+     uint8_t blue_mask_shift;
    };
    
    struct CharonModule {
