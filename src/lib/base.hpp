@@ -7,6 +7,9 @@
  */
 #pragma once
 #include <frg/list.hpp>
+#include <stddef.h>
+#include <stdint.h>
+#include <utility>
 
 #define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0]))
 #define ALIGN_UP(x, align) (((x) + (align)-1) & ~((align)-1))

@@ -4,6 +4,7 @@
 #include <dev/virtio/block.hpp>
 #include <frg/manual_box.hpp>
 #include <lib/dot.hpp>
+#include <utility>
 
 namespace Gaia::Dev {
 static frg::manual_box<Registry> registry{};

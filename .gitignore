@@ -1,5 +1,6 @@
 build/
-subprojects/cxxshim
+subprojects/freestanding-cxx-hdrs
+subprojects/freestanding-headers
 subprojects/frigg
 subprojects/lai
 subprojects/flanterm
@@ -11,3 +12,4 @@ docs/reference
 docs/api
 env
 .vscode
+compile_commands.json

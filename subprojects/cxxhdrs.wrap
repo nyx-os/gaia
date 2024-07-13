@@ -1,0 +1,5 @@
+[wrap-git]
+directory = freestanding-cxx-hdrs
+url = https://github.com/osdev0/freestanding-cxx-hdrs.git
+revision = trunk
+diff_files = cxxhdrs.diff

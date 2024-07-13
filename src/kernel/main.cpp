@@ -34,9 +34,6 @@ Result<Void, Error> Gaia::main(Charon charon) {
 
   pc.load_drivers();
 
-  Path<Gaia::Vm::HeapAllocator> path{".bashrc"};
-  auto segments = path.parse();
-
   Fs::tmpfs_init(charon);
 
   Dev::system_console()->create_dev();

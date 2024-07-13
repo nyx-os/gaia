@@ -1,0 +1,10 @@
+diff --git a/meson.build b/meson.build
+new file mode 100644
+index 0000000..ba28b8d
+--- /dev/null
++++ b/meson.build
+@@ -0,0 +1,3 @@
++project('freestanding-headers')
++incl = include_directories('.')
++chdrs_dep = declare_dependency(include_directories: incl)
+

@@ -1,0 +1,5 @@
+[wrap-git]
+directory = freestanding-headers
+url = https://github.com/osdev0/freestanding-headers.git
+revision = trunk
+diff_files = chdrs.diff

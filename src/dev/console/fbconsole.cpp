@@ -131,12 +131,15 @@ FbConsole *system_console() { return _system_console; }
 FbConsole::FbConsole(Charon charon) {
   fb = charon.framebuffer;
 
-  ctx = flanterm_fb_simple_init(reinterpret_cast<uint32_t *>(fb.address),
-                                fb.width, fb.height, fb.pitch);
-  // Constants defined in constants.hpp
+  ctx = flanterm_fb_init(
+      nullptr, nullptr, reinterpret_cast<uint32_t *>(fb.address), fb.width,
+      fb.height, fb.pitch, fb.red_mask_size, fb.red_mask_shift,
+      fb.green_mask_size, fb.green_mask_shift, fb.blue_mask_size,
+      fb.blue_mask_shift, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
+      nullptr, nullptr, 0, 0, 0, 1, 1, 0);
 
   _system_console = this;
-  this->enable_log = true;
+  this->enable_log = false;
 }
 
 #define SHADOW_COLOR 0x008C8C
@@ -144,7 +147,7 @@ FbConsole::FbConsole(Charon charon) {
 void FbConsole::start(Service *provider) {
   attach(provider);
 
-  if (_system_console) {
+  if (_system_console && _system_console->ctx) {
     _system_console->ctx->deinit(_system_console->ctx, nullptr);
   }
 
@@ -234,8 +237,15 @@ void FbConsole::start(Service *provider) {
               SHADOW_COLOR);
 
   ctx = flanterm_fb_init(
-      nullptr, nullptr, reinterpret_cast<uint32_t *>(fb.address), fb.width,
-      fb.height, fb.pitch, (uint32_t *)canvas, ansi_colors, ansi_bright_colors,
+      Vm::malloc,
+      [](void *ptr, size_t size) {
+        (void)size;
+        return Vm::free(ptr);
+      },
+      reinterpret_cast<uint32_t *>(fb.address), fb.width, fb.height, fb.pitch,
+      fb.red_mask_size, fb.red_mask_shift, fb.green_mask_size,
+      fb.green_mask_shift, fb.blue_mask_size, fb.blue_mask_shift,
+      (uint32_t *)canvas, ansi_colors, ansi_bright_colors,
       &colorscheme.default_bg, &colorscheme.default_fg, nullptr, nullptr,
       nullptr, 0, 0, 0, 1, 1, margin + 10);
 }
