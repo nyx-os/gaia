@@ -97,11 +97,11 @@ Functions
 
 - :ref:`exhale_function_vfs_8hpp_1ac6a179687340ecf6433ef40faf00280d`
 
+- :ref:`exhale_function_vfs_8hpp_1a0b2d460e0bb3cbf3dc974924b68bfe3a`
+
 - :ref:`exhale_function_vfs_8hpp_1aefbca055019d59ce0eb9d0ae4c005ee7`
 
 - :ref:`exhale_function_vfs_8hpp_1a067244fcbd7f7e169b4cc4436e8cf754`
-
-- :ref:`exhale_function_vfs_8hpp_1a0b2d460e0bb3cbf3dc974924b68bfe3a`
 
 - :ref:`exhale_function_vfs_8hpp_1a1eace7e150f7e4edde083a04584103fd`
 
