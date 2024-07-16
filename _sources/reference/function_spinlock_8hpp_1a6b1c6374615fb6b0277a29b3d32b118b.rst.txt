@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_spinlock_8hpp_1a6b1c6374615fb6b0277a29b3d32b118b:
+
+Function Gaia::CAPABILITY
+=========================
+
+- Defined in :ref:`file_lib_spinlock.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::CAPABILITY("spinlock")
+   :project: ExhaleCompanion

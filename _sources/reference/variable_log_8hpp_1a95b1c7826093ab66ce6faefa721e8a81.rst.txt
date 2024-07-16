@@ -1,6 +1,6 @@
 :github_url: https://github.com/nyx-org/gaia
 
-.. _exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be:
+.. _exhale_variable_log_8hpp_1a95b1c7826093ab66ce6faefa721e8a81:
 
 Variable Gaia::log_lock
 =======================

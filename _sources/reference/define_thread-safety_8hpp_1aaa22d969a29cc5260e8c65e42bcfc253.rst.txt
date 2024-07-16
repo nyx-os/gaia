@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_thread-safety_8hpp_1aaa22d969a29cc5260e8c65e42bcfc253:
+
+Define SCOPED_CAPABILITY
+========================
+
+- Defined in :ref:`file_lib_thread-safety.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SCOPED_CAPABILITY
+   :project: ExhaleCompanion

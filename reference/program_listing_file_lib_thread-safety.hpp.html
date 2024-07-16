@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Program Listing for File thread-safety.hpp &#8212; Gaia 0.3.7 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+    <script src="../_static/documentation_options.js?v=29d04658"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-thread-safety-hpp">
+<span id="program-listing-file-lib-thread-safety-hpp"></span><h1>Program Listing for File thread-safety.hpp<a class="headerlink" href="#program-listing-for-file-thread-safety-hpp" title="Link to this heading">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_lib_thread-safety.hpp.html#file-lib-thread-safety-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">lib/thread-safety.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* @license:ignore */</span>
+<span class="c1">// Defines macros to leverage Clang&#39;s thread safety feature</span>
+<span class="cp">#pragma once</span>
+
+<span class="cp">#if defined(__clang__) &amp;&amp; (!defined(SWIG))</span>
+<span class="cp">#define THREAD_ANNOTATION_ATTRIBUTE__(x) __attribute__((x))</span>
+<span class="cp">#else</span>
+<span class="cp">#define THREAD_ANNOTATION_ATTRIBUTE__(x)</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#define CAPABILITY(x) THREAD_ANNOTATION_ATTRIBUTE__(capability(x))</span>
+
+<span class="cp">#define SCOPED_CAPABILITY THREAD_ANNOTATION_ATTRIBUTE__(scoped_lockable)</span>
+
+<span class="cp">#define GUARDED_BY(x) THREAD_ANNOTATION_ATTRIBUTE__(guarded_by(x))</span>
+
+<span class="cp">#define PT_GUARDED_BY(x) THREAD_ANNOTATION_ATTRIBUTE__(pt_guarded_by(x))</span>
+
+<span class="cp">#define ACQUIRED_BEFORE(...)                                                   \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(acquired_before(__VA_ARGS__))</span>
+
+<span class="cp">#define ACQUIRED_AFTER(...)                                                    \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(acquired_after(__VA_ARGS__))</span>
+
+<span class="cp">#define REQUIRES(...)                                                          \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(requires_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define REQUIRES_SHARED(...)                                                   \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(requires_shared_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define ACQUIRE(...)                                                           \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(acquire_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define ACQUIRE_SHARED(...)                                                    \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(acquire_shared_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define RELEASE(...)                                                           \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(release_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define RELEASE_SHARED(...)                                                    \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(release_shared_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define RELEASE_GENERIC(...)                                                   \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(release_generic_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define TRY_ACQUIRE(...)                                                       \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(try_acquire_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define TRY_ACQUIRE_SHARED(...)                                                \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(try_acquire_shared_capability(__VA_ARGS__))</span>
+
+<span class="cp">#define EXCLUDES(...) THREAD_ANNOTATION_ATTRIBUTE__(locks_excluded(__VA_ARGS__))</span>
+
+<span class="cp">#define ASSERT_CAPABILITY(x) THREAD_ANNOTATION_ATTRIBUTE__(assert_capability(x))</span>
+
+<span class="cp">#define ASSERT_SHARED_CAPABILITY(x)                                            \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(assert_shared_capability(x))</span>
+
+<span class="cp">#define RETURN_CAPABILITY(x) THREAD_ANNOTATION_ATTRIBUTE__(lock_returned(x))</span>
+
+<span class="cp">#define NO_THREAD_SAFETY_ANALYSIS                                              \</span>
+<span class="cp">  THREAD_ANNOTATION_ATTRIBUTE__(no_thread_safety_analysis)</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Gaia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/developer.html">The developer’s handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_reference.html">Code Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2023, Gaia contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.4</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/reference/program_listing_file_lib_thread-safety.hpp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

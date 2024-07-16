@@ -38,7 +38,6 @@
 <p>↰ <a class="reference internal" href="file_kernel_sched.hpp.html#file-kernel-sched-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">kernel/sched.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// @license:bsd2</span>
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/spinlock.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fs/vfs.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/int.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/mmu.hpp&gt;</span>
@@ -77,8 +76,6 @@
 <span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">which_event</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">blocked</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">in_fault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
 
 <span class="w">  </span><span class="o">~</span><span class="n">Thread</span><span class="p">();</span>
 <span class="p">};</span>
@@ -145,7 +142,7 @@
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Gaia</a></h1>
 
@@ -196,7 +193,7 @@
       &#169;2023, Gaia contributors.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.4</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |

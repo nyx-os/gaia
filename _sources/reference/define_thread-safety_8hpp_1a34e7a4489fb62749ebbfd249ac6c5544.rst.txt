@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_thread-safety_8hpp_1a34e7a4489fb62749ebbfd249ac6c5544:
+
+Define ACQUIRED_AFTER
+=====================
+
+- Defined in :ref:`file_lib_thread-safety.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ACQUIRED_AFTER
+   :project: ExhaleCompanion

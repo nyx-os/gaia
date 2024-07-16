@@ -48,6 +48,8 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1CharonModules`
 
+- :ref:`exhale_struct_structGaia_1_1Cpu`
+
 - :ref:`exhale_struct_structGaia_1_1Dpc`
 
 - :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs`
@@ -114,6 +116,10 @@ Functions
 
 - :ref:`exhale_function_event_8hpp_1a8c64336d26cadd27b593608763f25edb`
 
+- :ref:`exhale_function_spinlock_8hpp_1a6b1c6374615fb6b0277a29b3d32b118b`
+
+- :ref:`exhale_function_kernel_2cpu_8hpp_1abcb8220644b07edca7a06bde47566420`
+
 - :ref:`exhale_function_ipl_8hpp_1a742fdb5a4f7afb3b6576b6921496ab7b`
 
 - :ref:`exhale_function_log_8hpp_1ab34b1a105b75fb5fb8204a5927a4eda4`
@@ -133,6 +139,8 @@ Functions
 - :ref:`exhale_function_ipl_8hpp_1af0bb3db627f8d0d50383d73b6091a253`
 
 - :ref:`exhale_function_log_8hpp_1aaacade519be2b28688f0a129fb835486`
+
+- :ref:`exhale_function_log_8hpp_1a5393f718ac08ae5c6b971b05c2073a88`
 
 - :ref:`exhale_function_main_8hpp_1a9e2d2c86df191dc683e41dc06862fdf4`
 
@@ -185,7 +193,7 @@ Variables
 
 - :ref:`exhale_variable_kernel_2elf_8hpp_1a88f9d9e3c69463df79bd8a898f05e591`
 
-- :ref:`exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be`
+- :ref:`exhale_variable_log_8hpp_1a95b1c7826093ab66ce6faefa721e8a81`
 
 - :ref:`exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d`
 

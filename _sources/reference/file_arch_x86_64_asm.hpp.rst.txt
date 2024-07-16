@@ -32,7 +32,7 @@ Includes
 --------
 
 
-- ``cstdint``
+- ``stdint.h``
 
 
 

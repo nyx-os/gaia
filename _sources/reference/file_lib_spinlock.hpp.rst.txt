@@ -1,0 +1,66 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_lib_spinlock.hpp:
+
+File spinlock.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_lib>` (``lib``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``lib/spinlock.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_lib_spinlock.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/spinlock.hpp``
+
+- ``lib/thread-safety.hpp`` (:ref:`file_lib_thread-safety.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_arch_hal_mmu.hpp`
+
+- :ref:`file_dev_devkit_registry.hpp`
+
+- :ref:`file_lib_log.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_spinlock_8hpp_1a6b1c6374615fb6b0277a29b3d32b118b`
+

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_thread-safety_8hpp_1a4bc26ad7e8bc853ad3f58a8a343c952e:
+
+Define GUARDED_BY
+=================
+
+- Defined in :ref:`file_lib_thread-safety.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: GUARDED_BY
+   :project: ExhaleCompanion

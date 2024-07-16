@@ -32,8 +32,6 @@ Includes
 --------
 
 
-- ``frg/spinlock.hpp``
-
 - ``fs/vfs.hpp`` (:ref:`file_fs_vfs.hpp`)
 
 - ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)

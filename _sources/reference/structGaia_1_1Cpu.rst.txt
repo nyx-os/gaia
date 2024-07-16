@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Cpu:
+
+Struct Cpu
+==========
+
+- Defined in :ref:`file_kernel_cpu.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Cpu
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

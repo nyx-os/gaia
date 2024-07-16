@@ -1,0 +1,65 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_arch_x86_64_smp.hpp:
+
+File smp.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_arch_x86_64>` (``arch/x86_64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``arch/x86_64/smp.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_arch_x86_64_smp.hpp.rst
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_kernel_cpu.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Hal`
+
+- :ref:`namespace_Gaia__x86_64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Hal_1_1CpuData`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_smp_8hpp_1a83e845d454109c482c54373946b94920`
+

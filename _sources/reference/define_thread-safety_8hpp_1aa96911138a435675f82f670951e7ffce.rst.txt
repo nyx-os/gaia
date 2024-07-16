@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_thread-safety_8hpp_1aa96911138a435675f82f670951e7ffce:
+
+Define RETURN_CAPABILITY
+========================
+
+- Defined in :ref:`file_lib_thread-safety.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: RETURN_CAPABILITY
+   :project: ExhaleCompanion

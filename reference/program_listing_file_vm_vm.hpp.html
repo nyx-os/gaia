@@ -39,7 +39,6 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/manual_box.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/spinlock.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lib/list.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/hal.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/mmu.hpp&gt;</span>
@@ -151,10 +150,10 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">physpage</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span><span class="w"> </span><span class="c1">// offset within the amap</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">lazy</span><span class="p">;</span>
-<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">release</span><span class="p">();</span>
-<span class="w">  </span><span class="n">Anon</span><span class="w"> </span><span class="o">*</span><span class="nf">copy</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Anon</span><span class="w"> </span><span class="o">*</span><span class="nf">copy</span><span class="p">()</span><span class="w"> </span><span class="n">REQUIRES</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Anon</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">physpage</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span>
 <span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">refcnt</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">physpage</span><span class="p">(</span><span class="n">physpage</span><span class="p">),</span><span class="w"> </span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">){};</span>
 <span class="p">};</span>
@@ -196,7 +195,7 @@
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Gaia</a></h1>
 
@@ -247,7 +246,7 @@
       &#169;2023, Gaia contributors.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.4</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |

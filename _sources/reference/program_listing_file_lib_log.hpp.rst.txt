@@ -14,6 +14,8 @@ Program Listing for File log.hpp
 
    /* SPDX-License-Identifier: BSD-2-Clause */
    #pragma once
+   #include "frg/manual_box.hpp"
+   #include "lib/spinlock.hpp"
    #include <frg/logging.hpp>
    #include <frg/spinlock.hpp>
    #include <frg/string.hpp>
@@ -58,7 +60,7 @@ Program Listing for File log.hpp
    };
    
    extern frg::stack_buffer_logger<DebugSink> logger;
-   extern frg::simple_spinlock log_lock;
+   extern frg::manual_box<Spinlock> log_lock;
    
    template <bool locked = true, typename... T>
    void log(FormatWithLocation fmt, T... args) {
@@ -66,10 +68,6 @@ Program Listing for File log.hpp
    #ifndef __KERNEL__
      return;
    #endif
-   
-     if (locked) {
-       log_lock.lock();
-     }
    
      char file_path[256];
    
@@ -79,6 +77,9 @@ Program Listing for File log.hpp
      // remove .cpp
      file_path[strlen(fmt.file) - 4] = 0;
    
+     if (locked) {
+       log_lock->lock();
+     }
      logger() << frg::fmt("\x1b[32m[{:5}.{:06d}]\x1b[0m ",
                           Hal::get_time_since_boot().seconds,
                           Hal::get_time_since_boot().milliseconds)
@@ -86,7 +87,7 @@ Program Listing for File log.hpp
               << frg::fmt(fmt.format, args...) << "\n"
               << frg::endlog;
      if (locked) {
-       log_lock.unlock();
+       log_lock->unlock();
      }
    }
    
@@ -94,7 +95,7 @@ Program Listing for File log.hpp
    void error(FormatWithLocation fmt, T... args) {
    
      if (locked) {
-       log_lock.lock();
+       log_lock->lock();
      }
    
      char file_path[256];
@@ -112,7 +113,7 @@ Program Listing for File log.hpp
               << frg::fmt(fmt.format, args...) << "\n"
               << frg::endlog;
      if (locked) {
-       log_lock.unlock();
+       log_lock->unlock();
      }
    }
    
@@ -132,4 +133,7 @@ Program Listing for File log.hpp
    #endif
      Hal::halt();
    }
+   
+   void log_init();
+   
    } // namespace Gaia

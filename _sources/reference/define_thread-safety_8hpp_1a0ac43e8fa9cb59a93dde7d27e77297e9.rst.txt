@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_thread-safety_8hpp_1a0ac43e8fa9cb59a93dde7d27e77297e9:
+
+Define ASSERT_CAPABILITY
+========================
+
+- Defined in :ref:`file_lib_thread-safety.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ASSERT_CAPABILITY
+   :project: ExhaleCompanion

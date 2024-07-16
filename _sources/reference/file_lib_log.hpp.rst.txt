@@ -39,6 +39,8 @@ Includes
 
 - ``frg/logging.hpp``
 
+- ``frg/manual_box.hpp``
+
 - ``frg/spinlock.hpp``
 
 - ``frg/string.hpp``
@@ -46,6 +48,8 @@ Includes
 - ``frg/string_stub.hpp``
 
 - ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+
+- ``lib/spinlock.hpp`` (:ref:`file_lib_spinlock.hpp`)
 
 
 
@@ -86,6 +90,8 @@ Functions
 
 - :ref:`exhale_function_log_8hpp_1aaacade519be2b28688f0a129fb835486`
 
+- :ref:`exhale_function_log_8hpp_1a5393f718ac08ae5c6b971b05c2073a88`
+
 - :ref:`exhale_function_log_8hpp_1ac19b4f4322a3b6136f68b02e49f1d3f0`
 
 
@@ -100,7 +106,7 @@ Variables
 ---------
 
 
-- :ref:`exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be`
+- :ref:`exhale_variable_log_8hpp_1a95b1c7826093ab66ce6faefa721e8a81`
 
 - :ref:`exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d`
 

@@ -18,6 +18,7 @@ Directory hal
 Files
 -----
 
+- :ref:`file_arch_hal_cpu.hpp`
 - :ref:`file_arch_hal_hal.hpp`
 - :ref:`file_arch_hal_int.hpp`
 - :ref:`file_arch_hal_mmu.hpp`

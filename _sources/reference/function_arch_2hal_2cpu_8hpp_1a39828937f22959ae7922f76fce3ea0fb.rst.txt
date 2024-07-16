@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_arch_2hal_2cpu_8hpp_1a39828937f22959ae7922f76fce3ea0fb:
+
+Function Gaia::Hal::set_curr_cpu
+================================
+
+- Defined in :ref:`file_arch_hal_cpu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::set_curr_cpu()
+   :project: ExhaleCompanion
