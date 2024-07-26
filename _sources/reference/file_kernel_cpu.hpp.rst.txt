@@ -34,6 +34,8 @@ Includes
 
 - ``hal/cpu.hpp`` (:ref:`file_arch_hal_cpu.hpp`)
 
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
 - ``x86_64/smp.hpp`` (:ref:`file_arch_x86_64_smp.hpp`)
 
 

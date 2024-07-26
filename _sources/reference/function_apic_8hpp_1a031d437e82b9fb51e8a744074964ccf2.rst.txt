@@ -1,6 +1,6 @@
 :github_url: https://github.com/nyx-org/gaia
 
-.. _exhale_function_apic_8hpp_1a6bf2c31057011dbd2e14817e2b93a3ad:
+.. _exhale_function_apic_8hpp_1a031d437e82b9fb51e8a744074964ccf2:
 
 Function Gaia::x86_64::lapic_send_ipi
 =====================================
@@ -12,5 +12,5 @@ Function Documentation
 ----------------------
 
 
-.. doxygenfunction:: Gaia::x86_64::lapic_send_ipi(uint8_t)
+.. doxygenfunction:: Gaia::x86_64::lapic_send_ipi(uint8_t, uint8_t)
    :project: ExhaleCompanion

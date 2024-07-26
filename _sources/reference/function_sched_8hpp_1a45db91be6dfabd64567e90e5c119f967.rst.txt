@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1a45db91be6dfabd64567e90e5c119f967:
+
+Function Gaia::sched_add_cpu
+============================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_add_cpu(Cpu *)
+   :project: ExhaleCompanion

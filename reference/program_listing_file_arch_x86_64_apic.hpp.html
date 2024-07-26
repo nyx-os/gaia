@@ -50,7 +50,7 @@
 <span class="kt">void</span><span class="w"> </span><span class="nf">lapic_init</span><span class="p">();</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">lapic_eoi</span><span class="p">();</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">lapic_send_ipi</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">vector</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">lapic_send_ipi</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">vector</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">ioapic_handle_gsi</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">gsi</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptHandler</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span>
 <span class="w">                       </span><span class="kt">bool</span><span class="w"> </span><span class="n">lopol</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">edge</span><span class="p">,</span><span class="w"> </span><span class="n">Ipl</span><span class="w"> </span><span class="n">ipl</span><span class="p">,</span>
@@ -168,7 +168,7 @@
       &#169;2023, Gaia contributors.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.4</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |

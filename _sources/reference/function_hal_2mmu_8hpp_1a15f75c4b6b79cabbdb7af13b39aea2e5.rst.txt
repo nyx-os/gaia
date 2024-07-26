@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_hal_2mmu_8hpp_1a15f75c4b6b79cabbdb7af13b39aea2e5:
+
+Function Gaia::Hal::Vm::tlb_shootdown
+=====================================
+
+- Defined in :ref:`file_arch_hal_mmu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::Vm::tlb_shootdown(uintptr_t)
+   :project: ExhaleCompanion

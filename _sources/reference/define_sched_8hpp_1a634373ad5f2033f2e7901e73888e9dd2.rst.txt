@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_sched_8hpp_1a634373ad5f2033f2e7901e73888e9dd2:
+
+Define current_thread
+=====================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: current_thread
+   :project: ExhaleCompanion

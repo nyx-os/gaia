@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_idt_8hpp_1a763ba18e5ef1d3bc8748dce5f2282139:
+
+Define TLB_SHOOTDOWN_IPI
+========================
+
+- Defined in :ref:`file_arch_x86_64_idt.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TLB_SHOOTDOWN_IPI
+   :project: ExhaleCompanion

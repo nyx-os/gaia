@@ -32,6 +32,8 @@ Includes
 --------
 
 
+- ``frg/manual_box.hpp``
+
 - ``frg/spinlock.hpp``
 
 - ``lib/thread-safety.hpp`` (:ref:`file_lib_thread-safety.hpp`)

@@ -45,6 +45,8 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;x86_64/asm.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;x86_64/simd.hpp&gt;</span>
 
+<span class="cp">#define TLB_SHOOTDOWN_IPI 240</span>
+
 <span class="k">struct</span><span class="w"> </span><span class="p">[[</span><span class="n">gnu</span><span class="o">::</span><span class="n">packed</span><span class="p">]]</span><span class="w"> </span><span class="n">Gaia</span><span class="o">::</span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptFrame</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">r15</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">r14</span><span class="p">;</span>
@@ -98,12 +100,8 @@
 <span class="w">      </span><span class="n">x86_64</span><span class="o">::</span><span class="n">simd_restore_state</span><span class="p">(</span><span class="n">fpu_regs</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">x86_64</span><span class="o">::</span><span class="n">set_gs_base</span><span class="p">(</span><span class="o">&amp;</span><span class="n">info</span><span class="p">);</span>
-
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">gs_base</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span>
 <span class="w">      </span><span class="n">x86_64</span><span class="o">::</span><span class="n">set_kernel_gs_base</span><span class="p">(</span><span class="n">gs_base</span><span class="p">);</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">      </span><span class="n">x86_64</span><span class="o">::</span><span class="n">set_kernel_gs_base</span><span class="p">(</span><span class="o">&amp;</span><span class="n">info</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">x86_64</span><span class="o">::</span><span class="n">set_fs_base</span><span class="p">(</span><span class="n">fs_base</span><span class="p">);</span>
 
@@ -147,7 +145,7 @@
 <span class="w">    </span><span class="n">regs</span><span class="p">.</span><span class="n">ss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mh">0x3b</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mh">0x30</span><span class="p">;</span>
 <span class="w">    </span><span class="n">regs</span><span class="p">.</span><span class="n">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mh">0x43</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mh">0x28</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">gs_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">info</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gs_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">    </span><span class="n">fs_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
@@ -216,7 +214,7 @@
       &#169;2023, Gaia contributors.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.4</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |

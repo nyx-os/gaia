@@ -56,6 +56,8 @@ Included By
 -----------
 
 
+- :ref:`file_kernel_cpu.hpp`
+
 - :ref:`file_kernel_elf.hpp`
 
 - :ref:`file_posix_exec.hpp`
@@ -82,6 +84,8 @@ Classes
 Functions
 ---------
 
+
+- :ref:`exhale_function_sched_8hpp_1a45db91be6dfabd64567e90e5c119f967`
 
 - :ref:`exhale_function_sched_8hpp_1a7d618f82e6d95f6f0ec6d810d1e01fea`
 
@@ -112,6 +116,13 @@ Functions
 - :ref:`exhale_function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e`
 
 - :ref:`exhale_function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_sched_8hpp_1a634373ad5f2033f2e7901e73888e9dd2`
 
 
 Variables
