@@ -124,9 +124,9 @@ Functions
 
 - :ref:`exhale_function_log_8hpp_1ab34b1a105b75fb5fb8204a5927a4eda4`
 
-- :ref:`exhale_function_error_8hpp_1a7c842db1888bd3985fba1622c79894aa`
-
 - :ref:`exhale_function_errno_8hpp_1a4c9aa1b8d9d0e0ae84b84efbf34da8e2`
+
+- :ref:`exhale_function_error_8hpp_1a7c842db1888bd3985fba1622c79894aa`
 
 - :ref:`exhale_function_kernel_2elf_8hpp_1ae59bac2a352145d62f1dee1e38afea39`
 

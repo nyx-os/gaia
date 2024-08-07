@@ -41,8 +41,6 @@ Includes
 
 - ``frg/manual_box.hpp``
 
-- ``frg/spinlock.hpp``
-
 - ``frg/string.hpp``
 
 - ``frg/string_stub.hpp``
