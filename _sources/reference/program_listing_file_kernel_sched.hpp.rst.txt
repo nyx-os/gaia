@@ -14,6 +14,7 @@ Program Listing for File sched.hpp
 
    // @license:bsd2
    #pragma once
+   #include "frg/spinlock.hpp"
    #include <fs/vfs.hpp>
    #include <hal/int.hpp>
    #include <hal/mmu.hpp>
@@ -26,15 +27,11 @@ Program Listing for File sched.hpp
    // FIXME: Find an architecture-independent way of doing this
    #include <x86_64/idt.hpp>
    
-   #define current_thread (curr_cpu()->curr_thread)
-   
    namespace Gaia {
    
    constexpr auto TIME_SLICE = 5;
    
    struct Task;
-   
-   struct Cpu;
    
    struct Thread {
      enum {
@@ -51,13 +48,13 @@ Program Listing for File sched.hpp
    
      Vm::Vector<Task> children;
    
-     Cpu *cpu;
-   
      ListNode<Thread> link; // Scheduler queue
    
      size_t which_event;
      bool blocked;
      bool in_fault = false;
+   
+     frg::simple_spinlock lock;
    
      ~Thread();
    };
@@ -100,8 +97,6 @@ Program Listing for File sched.hpp
    
    void sched_enqueue_thread(Thread *thread);
    void sched_dequeue_thread(Thread *thread);
-   
-   void sched_add_cpu(Cpu *cpu);
    
    [[noreturn]] void sched_dequeue_and_die();
    

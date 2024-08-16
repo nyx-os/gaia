@@ -14,7 +14,7 @@ Program Listing for File asm.hpp
 
    /* SPDX-License-Identifier: BSD-2-Clause */
    #pragma once
-   #include <stdint.h>
+   #include <cstdint>
    
    namespace Gaia::x86_64 {
    static inline void outb(uint16_t port, uint8_t data) {

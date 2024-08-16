@@ -87,10 +87,3 @@ Functions
 
 - :ref:`exhale_function_idt_8hpp_1a8053776a97caa0de903545b589d46071`
 
-
-Defines
--------
-
-
-- :ref:`exhale_define_idt_8hpp_1a763ba18e5ef1d3bc8748dce5f2282139`
-

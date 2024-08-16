@@ -34,6 +34,8 @@ Includes
 
 - ``asm-generic/termbits.h``
 
+- ``frg/spinlock.hpp``
+
 - ``fs/devfs.hpp`` (:ref:`file_fs_devfs.hpp`)
 
 - ``kernel/event.hpp`` (:ref:`file_kernel_event.hpp`)

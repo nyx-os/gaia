@@ -34,6 +34,8 @@ Includes
 
 - ``frg/manual_box.hpp``
 
+- ``frg/spinlock.hpp``
+
 - ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
 
 - ``hal/mmu.hpp`` (:ref:`file_arch_hal_mmu.hpp`)

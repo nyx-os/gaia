@@ -39,7 +39,6 @@
 <p>↰ <a class="reference internal" href="file_dev_devkit_registry.hpp.html#file-dev-devkit-registry-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">dev/devkit/registry.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lib/spinlock.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;dev/devkit/service.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/list.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/unique.hpp&gt;</span>
@@ -71,7 +70,7 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">add_to_graph</span><span class="p">(</span><span class="n">DotGraph</span><span class="o">&lt;</span><span class="n">Gaia</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">HeapAllocator</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">,</span>
 <span class="w">                    </span><span class="n">Service</span><span class="w"> </span><span class="o">*</span><span class="n">child</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Spinlock</span><span class="w"> </span><span class="n">spinlock</span><span class="p">;</span>
+<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">spinlock</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">Driver</span><span class="w"> </span><span class="p">{</span>
@@ -90,7 +89,7 @@
 <span class="w">  </span><span class="p">};</span>
 
 <span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CatalogEntry</span><span class="p">,</span><span class="w"> </span><span class="n">Gaia</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">HeapAllocator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">drivers</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Spinlock</span><span class="w"> </span><span class="n">spinlock</span><span class="p">;</span>
+<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">spinlock</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="n">Registry</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">get_registry</span><span class="p">();</span>

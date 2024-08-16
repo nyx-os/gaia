@@ -27,7 +27,6 @@ Files
 - :ref:`file_arch_x86_64_limine.h`
 - :ref:`file_arch_x86_64_mmu.hpp`
 - :ref:`file_arch_x86_64_simd.hpp`
-- :ref:`file_arch_x86_64_smp.hpp`
 - :ref:`file_arch_x86_64_syscall.hpp`
 - :ref:`file_arch_x86_64_timer.hpp`
 

@@ -39,12 +39,8 @@
 <p>↰ <a class="reference internal" href="file_lib_log.hpp.html#file-lib-log-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">lib/log.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/manual_box.hpp&quot;</span>
-
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lib/spinlock.hpp&quot;</span>
-<span class="cp">#endif</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/logging.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/spinlock.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/string.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/string_stub.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/hal.hpp&gt;</span>
@@ -87,10 +83,7 @@
 <span class="p">};</span>
 
 <span class="k">extern</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">stack_buffer_logger</span><span class="o">&lt;</span><span class="n">DebugSink</span><span class="o">&gt;</span><span class="w"> </span><span class="n">logger</span><span class="p">;</span>
-
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
-<span class="k">extern</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">manual_box</span><span class="o">&lt;</span><span class="n">Spinlock</span><span class="o">&gt;</span><span class="w"> </span><span class="n">log_lock</span><span class="p">;</span>
-<span class="cp">#endif</span>
+<span class="k">extern</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">log_lock</span><span class="p">;</span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">bool</span><span class="w"> </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">log</span><span class="p">(</span><span class="n">FormatWithLocation</span><span class="w"> </span><span class="n">fmt</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -98,6 +91,10 @@
 <span class="cp">#ifndef __KERNEL__</span>
 <span class="w">  </span><span class="k">return</span><span class="p">;</span>
 <span class="cp">#endif</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">log_lock</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">file_path</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 
@@ -107,34 +104,23 @@
 <span class="w">  </span><span class="c1">// remove .cpp</span>
 <span class="w">  </span><span class="n">file_path</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">file</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">log_lock</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="cp">#endif</span>
-
 <span class="w">  </span><span class="n">logger</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">fmt</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[32m[{:5}.{:06d}]</span><span class="se">\x1b</span><span class="s">[0m &quot;</span><span class="p">,</span>
 <span class="w">                       </span><span class="n">Hal</span><span class="o">::</span><span class="n">get_time_since_boot</span><span class="p">().</span><span class="n">seconds</span><span class="p">,</span>
 <span class="w">                       </span><span class="n">Hal</span><span class="o">::</span><span class="n">get_time_since_boot</span><span class="p">().</span><span class="n">milliseconds</span><span class="p">)</span>
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">fmt</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[33m{}:</span><span class="se">\x1b</span><span class="s">[0m &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">fmt</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">...)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">endlog</span><span class="p">;</span>
-
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">log_lock</span><span class="o">-&gt;</span><span class="n">unlock</span><span class="p">();</span>
+<span class="w">    </span><span class="n">log_lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="cp">#endif</span>
 <span class="p">}</span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">bool</span><span class="w"> </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">error</span><span class="p">(</span><span class="n">FormatWithLocation</span><span class="w"> </span><span class="n">fmt</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">log_lock</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">();</span>
+<span class="w">    </span><span class="n">log_lock</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="cp">#endif</span>
 
 <span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">file_path</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 
@@ -150,12 +136,9 @@
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">fmt</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[33m{}:</span><span class="se">\x1b</span><span class="s">[0m &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">fmt</span><span class="p">(</span><span class="n">fmt</span><span class="p">.</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">...)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
 <span class="w">           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">endlog</span><span class="p">;</span>
-
-<span class="cp">#ifndef LOG_EXCLUDE_LOCK</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">log_lock</span><span class="o">-&gt;</span><span class="n">unlock</span><span class="p">();</span>
+<span class="w">    </span><span class="n">log_lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="cp">#endif</span>
 <span class="p">}</span>
 
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
@@ -174,9 +157,6 @@
 <span class="cp">#endif</span>
 <span class="w">  </span><span class="n">Hal</span><span class="o">::</span><span class="n">halt</span><span class="p">();</span>
 <span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="n">log_init</span><span class="p">();</span>
-
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia</span>
 </pre></div>
 </div>

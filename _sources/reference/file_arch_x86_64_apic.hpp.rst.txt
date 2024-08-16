@@ -87,5 +87,5 @@ Functions
 
 - :ref:`exhale_function_apic_8hpp_1a698465b96935e397039cd87df118aa55`
 
-- :ref:`exhale_function_apic_8hpp_1a031d437e82b9fb51e8a744074964ccf2`
+- :ref:`exhale_function_apic_8hpp_1a6bf2c31057011dbd2e14817e2b93a3ad`
 

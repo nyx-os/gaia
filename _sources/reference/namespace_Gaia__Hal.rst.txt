@@ -28,8 +28,6 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1Hal_1_1CpuContext`
 
-- :ref:`exhale_struct_structGaia_1_1Hal_1_1CpuData`
-
 - :ref:`exhale_struct_structGaia_1_1Hal_1_1InterruptEntry`
 
 - :ref:`exhale_struct_structGaia_1_1Hal_1_1InterruptFrame`
@@ -47,8 +45,6 @@ Functions
 
 - :ref:`exhale_function_hal_8hpp_1a3ffdd75e89f3b0d72e3545823a35defd`
 
-- :ref:`exhale_function_arch_2hal_2cpu_8hpp_1aa8a1c527832e870a74c1e169aaee7362`
-
 - :ref:`exhale_function_int_8hpp_1a16403f820b8570131a6ede6bc43c3964`
 
 - :ref:`exhale_function_hal_8hpp_1acdc924e74fd0fffdacf8a67422c8cead`
@@ -60,8 +56,6 @@ Functions
 - :ref:`exhale_function_hal_8hpp_1aabde012d7ca6fe9695076274d9d454b7`
 
 - :ref:`exhale_function_int_8hpp_1a54d3412698a5d483f9635085317868bb`
-
-- :ref:`exhale_function_arch_2hal_2cpu_8hpp_1a39828937f22959ae7922f76fce3ea0fb`
 
 - :ref:`exhale_function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390`
 

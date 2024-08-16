@@ -39,7 +39,7 @@
 <p>↰ <a class="reference internal" href="file_arch_hal_mmu.hpp.html#file-arch-hal-mmu-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">arch/hal/mmu.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lib/spinlock.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/spinlock.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/base.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/error.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/result.hpp&gt;</span>
@@ -93,13 +93,11 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">context</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="cp">#endif</span>
 
-<span class="w">  </span><span class="n">Spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
+<span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">();</span>
 <span class="n">Pagemap</span><span class="w"> </span><span class="nf">get_current_map</span><span class="p">();</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">tlb_shootdown</span><span class="p">(</span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">vaddr</span><span class="p">);</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Vm</span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Hal</span>

@@ -135,16 +135,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_hal_cpu.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_kernel_cpu.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_arch_x86_64_cpuid.hpp.rst
 
 .. toctree::
@@ -345,16 +335,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_smp.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_lib_spinlock.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_lib_stream.hpp.rst
 
 .. toctree::
@@ -366,11 +346,6 @@ Files
    :maxdepth: 5
 
    file_kernel_syscalls.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_lib_thread-safety.hpp.rst
 
 .. toctree::
    :maxdepth: 5

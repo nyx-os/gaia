@@ -40,5 +40,3 @@ Functions
 - :ref:`exhale_function_hal_2mmu_8hpp_1a80bda8bd73cdfde679aeb775b6b0ae63`
 
 - :ref:`exhale_function_hal_2mmu_8hpp_1aa9f4d1ec0cd0712fefb774d9f14a15bb`
-
-- :ref:`exhale_function_hal_2mmu_8hpp_1a15f75c4b6b79cabbdb7af13b39aea2e5`

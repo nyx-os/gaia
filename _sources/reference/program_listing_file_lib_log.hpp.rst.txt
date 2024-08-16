@@ -14,12 +14,8 @@ Program Listing for File log.hpp
 
    /* SPDX-License-Identifier: BSD-2-Clause */
    #pragma once
-   #include "frg/manual_box.hpp"
-   
-   #ifndef LOG_EXCLUDE_LOCK
-   #include "lib/spinlock.hpp"
-   #endif
    #include <frg/logging.hpp>
+   #include <frg/spinlock.hpp>
    #include <frg/string.hpp>
    #include <frg/string_stub.hpp>
    #include <hal/hal.hpp>
@@ -62,10 +58,7 @@ Program Listing for File log.hpp
    };
    
    extern frg::stack_buffer_logger<DebugSink> logger;
-   
-   #ifndef LOG_EXCLUDE_LOCK
-   extern frg::manual_box<Spinlock> log_lock;
-   #endif
+   extern frg::simple_spinlock log_lock;
    
    template <bool locked = true, typename... T>
    void log(FormatWithLocation fmt, T... args) {
@@ -73,6 +66,10 @@ Program Listing for File log.hpp
    #ifndef __KERNEL__
      return;
    #endif
+   
+     if (locked) {
+       log_lock.lock();
+     }
    
      char file_path[256];
    
@@ -82,34 +79,23 @@ Program Listing for File log.hpp
      // remove .cpp
      file_path[strlen(fmt.file) - 4] = 0;
    
-   #ifndef LOG_EXCLUDE_LOCK
-     if (locked) {
-       log_lock->lock();
-     }
-   #endif
-   
      logger() << frg::fmt("\x1b[32m[{:5}.{:06d}]\x1b[0m ",
                           Hal::get_time_since_boot().seconds,
                           Hal::get_time_since_boot().milliseconds)
               << frg::fmt("\x1b[33m{}:\x1b[0m ", file_name(file_path))
               << frg::fmt(fmt.format, args...) << "\n"
               << frg::endlog;
-   
-   #ifndef LOG_EXCLUDE_LOCK
      if (locked) {
-       log_lock->unlock();
+       log_lock.unlock();
      }
-   #endif
    }
    
    template <bool locked = true, typename... T>
    void error(FormatWithLocation fmt, T... args) {
    
-   #ifndef LOG_EXCLUDE_LOCK
      if (locked) {
-       log_lock->lock();
+       log_lock.lock();
      }
-   #endif
    
      char file_path[256];
    
@@ -125,12 +111,9 @@ Program Listing for File log.hpp
               << frg::fmt("\x1b[33m{}:\x1b[0m ", file_name(file_path))
               << frg::fmt(fmt.format, args...) << "\n"
               << frg::endlog;
-   
-   #ifndef LOG_EXCLUDE_LOCK
      if (locked) {
-       log_lock->unlock();
+       log_lock.unlock();
      }
-   #endif
    }
    
    template <typename... T>
@@ -149,7 +132,4 @@ Program Listing for File log.hpp
    #endif
      Hal::halt();
    }
-   
-   void log_init();
-   
    } // namespace Gaia

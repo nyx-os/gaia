@@ -46,8 +46,6 @@ Includes
 
 - ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
 
-- ``lib/spinlock.hpp`` (:ref:`file_lib_spinlock.hpp`)
-
 - ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
 
 

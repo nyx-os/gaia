@@ -13,7 +13,6 @@ Directory kernel
 Files
 -----
 
-- :ref:`file_kernel_cpu.hpp`
 - :ref:`file_kernel_elf.hpp`
 - :ref:`file_kernel_event.hpp`
 - :ref:`file_kernel_ipl.hpp`

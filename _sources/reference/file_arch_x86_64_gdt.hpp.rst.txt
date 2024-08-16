@@ -48,7 +48,5 @@ Functions
 
 - :ref:`exhale_function_gdt_8hpp_1ad1f5b4604ea9ba8ae0cc98614ce41487`
 
-- :ref:`exhale_function_gdt_8hpp_1a32a01f978d898dbfa9facdfd97223e78`
-
 - :ref:`exhale_function_gdt_8hpp_1a5f021959c104dbec66249550435bbf6c`
 

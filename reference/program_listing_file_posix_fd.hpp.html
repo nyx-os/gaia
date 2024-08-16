@@ -71,8 +71,6 @@
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="p">(</span><span class="n">EEXIST</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">log</span><span class="p">(</span><span class="s">&quot;res: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_ok</span><span class="p">());</span>
-
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">vnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">value</span><span class="p">();</span>
 

@@ -24,9 +24,7 @@ Files
 - :ref:`file_lib_path.hpp`
 - :ref:`file_lib_queue.h`
 - :ref:`file_lib_result.hpp`
-- :ref:`file_lib_spinlock.hpp`
 - :ref:`file_lib_stream.hpp`
-- :ref:`file_lib_thread-safety.hpp`
 - :ref:`file_lib_time.hpp`
 
 
