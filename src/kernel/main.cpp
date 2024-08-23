@@ -9,6 +9,7 @@
 #include <kernel/elf.hpp>
 #include <kernel/main.hpp>
 #include <kernel/sched.hpp>
+#include <kernel/timer.hpp>
 #include <lib/list.hpp>
 #include <posix/errno.hpp>
 #include <posix/exec.hpp>
@@ -30,6 +31,12 @@ Result<Void, Error> Gaia::main(Charon charon) {
 
   pc.dump_tables();
 
+  /*
+   * We want to initialize the scheduler before everything else, so we can use
+   * cpu_self() and other goodies like events
+   */
+  TRY(sched_init());
+
   Hal::init_devices(&pc);
 
   pc.load_drivers();
@@ -38,7 +45,13 @@ Result<Void, Error> Gaia::main(Charon charon) {
 
   Dev::system_console()->create_dev();
 
-  TRY(sched_init());
+  auto timer = new Timer;
+  timer->set(nullptr, 100);
+  timer_enqueue(timer);
+
+  auto timer2 = new Timer;
+  timer2->set(nullptr, 250);
+  timer_enqueue(timer2);
 
   auto task =
       TRY(sched_new_task(sched_allocate_pid(), sched_kernel_task(), true));

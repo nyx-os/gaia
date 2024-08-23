@@ -2,13 +2,14 @@
 #pragma once
 
 #include "frg/spinlock.hpp"
+#include "kernel/wait.hpp"
+#include "lib/ringbuffer.hpp"
 #include <asm-generic/termbits.h>
 #include <fs/devfs.hpp>
-#include <kernel/event.hpp>
 
 namespace Gaia::Posix {
 
-class TTY {
+class TTY : public Waitable {
 public:
   TTY(size_t rows, size_t cols) : rows(rows), cols(cols) {
     termios.c_cc[VEOL] = '\n';
@@ -46,17 +47,15 @@ public:
 
 private:
   // Ringbuffer
-  frg::array<char, 4096> buffer;
-  size_t buf_length, write_cursor, read_cursor;
+  Ringbuffer<char, 4096> buffer;
   size_t rows, cols;
   frg::simple_spinlock lock;
 
   struct termios termios;
-  Event read_event;
 
-  void push(char c);
-  char pop();
-  char erase();
+  Result<Void, Error> push(char c);
+  Result<char, Error> pop();
+  Result<char, Error> erase();
 
   WriteCallback *callback;
   void *callback_context;

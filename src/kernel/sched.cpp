@@ -1,15 +1,20 @@
+#include "amd64/apic.hpp"
+#include "amd64/asm.hpp"
 #include "elf.hpp"
 #include "frg/spinlock.hpp"
 #include "fs/vfs.hpp"
+#include "hal/cpu.hpp"
 #include "hal/hal.hpp"
+#include "hal/int.hpp"
+#include "kernel/cpu.hpp"
 #include "lib/result.hpp"
 #include "posix/fd.hpp"
 #include "vm/phys.hpp"
 #include "vm/vm_kernel.hpp"
-#include "x86_64/apic.hpp"
-#include "x86_64/asm.hpp"
 #include <frg/manual_box.hpp>
 #include <kernel/sched.hpp>
+#include <kernel/task.hpp>
+#include <kernel/wait.hpp>
 #include <vm/heap.hpp>
 #include <vm/vm.hpp>
 
@@ -28,6 +33,8 @@ static Thread *idle_thread = nullptr;
 
 pid_t sched_allocate_pid() { return current_pid++; }
 
+static Cpu cpu{};
+
 Result<Thread *, Error> sched_new_thread(frg::string_view name, Task *task,
                                          Hal::CpuContext ctx, bool insert) {
 
@@ -40,11 +47,12 @@ Result<Thread *, Error> sched_new_thread(frg::string_view name, Task *task,
   if (!task)
     return Err(Error::INVALID_PARAMETERS);
 
-  thread->name = name;
+  thread->name = Vm::String(name);
+
   thread->task = task;
   thread->ctx = ctx;
-  thread->blocked = false;
   thread->state = Thread::RUNNING;
+  thread->cpu = &cpu;
 
   task->threads.push(thread);
 
@@ -63,7 +71,6 @@ Result<Task *, Error> sched_new_task(pid_t pid, Task *parent, bool user) {
 
   task->cwd = Fs::root_vnode;
   task->pid = pid;
-  task->exit_event = new Event();
 
   task->parent = parent;
 
@@ -108,7 +115,6 @@ Task::~Task() {
 
   space->release();
   delete space;
-  delete exit_event;
 }
 
 static Thread *get_next_thread() {
@@ -119,7 +125,11 @@ static Thread *get_next_thread() {
   return runq.remove_head().unwrap();
 }
 
+Cpu *cpu_self() { return Hal::get_current_thread()->cpu; }
+
 void sched_tick(Hal::InterruptFrame *frame) {
+  ASSERT(cpu_self()->magic == 0xCAFEBABE);
+
   sched_lock->lock();
 
   if (restore_frame) {
@@ -138,8 +148,9 @@ void sched_tick(Hal::InterruptFrame *frame) {
 
   sched_lock->unlock();
 
+  Hal::set_current_thread(current_thread);
   current_thread->task->space->activate();
-  current_thread->ctx.load(frame);
+  Hal::do_context_switch();
 }
 
 void sched_dequeue_and_die() {
@@ -148,14 +159,9 @@ void sched_dequeue_and_die() {
   Hal::halt();
 }
 
-void sched_yield(bool save) {
+void sched_yield() {
   Hal::disable_interrupts();
-
-  if (!save) {
-    x86_64::set_gs_base(nullptr);
-    x86_64::set_kernel_gs_base(nullptr);
-  }
-  x86_64::lapic_send_ipi(32);
+  Amd64::lapic_send_ipi(32);
   Hal::enable_interrupts();
 }
 
@@ -199,6 +205,9 @@ Result<Void, Error> sched_init() {
       sched_new_worker_thread("idle thread", (uintptr_t)idle_thread_fn, false));
 
   TRY(sched_new_worker_thread("reaper", (uintptr_t)reaper));
+
+  cpu.magic = 0xCAFEBABE;
+  Hal::set_current_thread(idle_thread);
   return Ok({});
 }
 

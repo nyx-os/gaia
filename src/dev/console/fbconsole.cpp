@@ -14,6 +14,7 @@
 namespace Gaia::Dev {
 
 static FbConsole *_system_console = nullptr;
+static Spinlock lock{};
 
 constexpr static bool logs_enabled_in_main_console = false;
 
@@ -253,9 +254,11 @@ void FbConsole::start(Service *provider) {
 void FbConsole::log_output(char c) {
   ASSERT(ctx != nullptr);
 
+  lock.lock();
   if (this->enable_log) {
     puts(&c, 1);
   }
+  lock.unlock();
 }
 
 void FbConsole::puts(const char *s) {

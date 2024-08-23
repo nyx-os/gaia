@@ -7,14 +7,9 @@ namespace Gaia::Vm {
 
 Hal::Vm::Pagemap kernel_pagemap;
 
-frg::manual_box<List<Page, &Page::link>> pages_list;
-
 Result<uintptr_t, Error> Space::map(Object *obj,
                                     frg::optional<uintptr_t> address,
-                                    size_t size, Hal::Vm::Prot prot,
-                                    bool lazy) {
-  (void)lazy;
-
+                                    size_t size, Hal::Vm::Prot prot) {
   uintptr_t start = 0;
 
   if (address.has_value()) {
@@ -115,12 +110,11 @@ Result<Void, Error> Space::copy(Space *dest) {
 }
 
 Result<uintptr_t, Error> Space::new_anon(frg::optional<uintptr_t> address,
-                                         size_t size, Hal::Vm::Prot prot,
-                                         bool lazy) {
+                                         size_t size, Hal::Vm::Prot prot) {
 
   auto obj = new Object(size);
 
-  auto addr = TRY(map(obj, address, size, prot, lazy));
+  auto addr = TRY(map(obj, address, size, prot));
 
   // Object is retained by map
   obj->release();
@@ -174,7 +168,6 @@ void Space::release() {
 }
 
 void init() {
-  pages_list.initialize();
   Hal::Vm::init();
   kernel_pagemap.init(true);
   kernel_pagemap.activate();

@@ -5,8 +5,8 @@
 #include <hal/int.hpp>
 #include <vm/heap.hpp>
 
-#ifdef __x86_64__
-#include <x86_64/idt.hpp>
+#ifdef __amd64__
+#include <amd64/idt.hpp>
 #endif
 
 namespace Gaia::Dev {

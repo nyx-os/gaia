@@ -102,6 +102,49 @@ public:
     return Ok({});
   }
 
+  Result<Void, Error> insert_before(T *elem, T *before) {
+    ListNode<T> *node = &(elem->*N);
+    ListNode<T> *before_node = &(before->*N);
+
+    if (!before || !elem)
+      return Err(Error::INVALID_PARAMETERS);
+
+    if (!before_node->prev && !before_node->next && _head != before) {
+      return Err(Error::INVALID_PARAMETERS);
+    }
+
+    node->next = before;
+    node->prev = before_node->prev;
+
+    if (node->prev) {
+      ListNode<T> *prev_node = &(node->prev->*N);
+      prev_node->next = elem;
+    }
+
+    before_node->prev = elem;
+
+    return Ok({});
+  }
+
+  Result<Void, Error> insert_after(T *elem, T *after) {
+    ListNode<T> *node = &(elem->*N);
+    ListNode<T> *after_node = &(after->*N);
+
+    if (!after || !elem)
+      return Err(Error::INVALID_PARAMETERS);
+
+    node->prev = after;
+    node->next = after_node->next;
+    after_node->next = node;
+
+    if (node->next) {
+      ListNode<T> *next_node = &(node->next->*N);
+      next_node->prev = elem;
+    }
+
+    return Ok({});
+  }
+
   Result<T *, Error> remove_tail() { return remove(_tail); }
   Result<T *, Error> remove_head() { return remove(_head); }
 

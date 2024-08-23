@@ -27,6 +27,8 @@ enum class Error {
   NOT_A_DIRECTORY,
   NOT_A_TTY,
   INVALID_FILE,
+  FULL,
+  EMPTY,
 };
 
 /**
@@ -61,7 +63,13 @@ inline frg::string_view error_to_string(Error error) {
     return "Not a TTY";
   case Error::INVALID_FILE:
     return "Invalid file";
+  case Error::FULL:
+    return "Full";
+  case Error::EMPTY:
+    return "Empty";
   }
+
+  return "";
 }
 
 } // namespace Gaia

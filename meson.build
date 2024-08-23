@@ -45,9 +45,6 @@ if meson.is_cross_build()
   subdir('tests')
 endif
 
-arch_path = join_paths(meson.current_source_dir(), 'src/arch', target_machine.cpu_family())
-
-ld_file = files(arch_path + '/link.ld')[0]
 
 git = find_program('git', disabler: true, required: false)
 
@@ -72,5 +69,5 @@ executable(
   cpp_args: cpp_args,
   c_args: cpp_args,
   dependencies: kernel_deps,
-  link_args: '-Wl,-T@0@'.format(ld_file),
+  link_args: '-Wl,-T@0@'.format(linker_script),
 )

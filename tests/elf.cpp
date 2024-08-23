@@ -77,11 +77,9 @@ TEST_CASE("Elf", "[elf]") {
   size_t count = 0;
 
   for (auto phdr : phdrs) {
-    std::cout << phdr.p_filesz << std::endl;
+    (void)phdr;
     count++;
   }
 
   REQUIRE(count == 3);
-
-  REQUIRE(false);
 }

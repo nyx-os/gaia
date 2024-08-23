@@ -14,64 +14,29 @@ void TTY::register_tty(TTY *tty, dev_t minor) {
   ttys[minor] = tty;
 }
 
-void TTY::push(char c) {
+Result<Void, Error> TTY::push(char c) {
   lock.lock();
 
-  if (buf_length == buffer.size()) {
-    return;
-  }
-
-  buffer[write_cursor++] = c;
-
-  if (write_cursor == buffer.size())
-    write_cursor = 0;
-
-  buf_length++;
+  TRY(buffer.push(c));
 
   if (c == termios.c_cc[VEOL] && is_lflag_set(ICANON)) {
-    read_event.trigger();
-  }
-
-  else if (!is_lflag_set(ICANON)) {
-    read_event.trigger();
+    trigger_event(1);
+  } else if (!is_lflag_set(ICANON)) {
+    trigger_event(1);
   }
 
   lock.unlock();
+
+  return Ok({});
 }
 
-char TTY::pop() {
-  if (buf_length == 0)
-    return 0;
+Result<char, Error> TTY::pop() { return buffer.pop(); }
 
-  char c = buffer[read_cursor++];
-
-  if (read_cursor == buffer.size())
-    read_cursor = 0;
-
-  buf_length--;
-  return c;
-}
-
-char TTY::erase() {
-  if (buf_length == 0)
-    return -1;
-
-  size_t prev_index = 0;
-
-  if (write_cursor == 0) {
-    prev_index = buffer.size() - 1;
-  } else {
-    prev_index = write_cursor - 1;
-  }
-
-  auto c = buffer[prev_index];
-
+Result<char, Error> TTY::erase() {
+  auto c = TRY(buffer.peek());
   if (c == termios.c_cc[VEOL])
-    return 0;
-
-  buf_length--;
-  write_cursor = prev_index;
-  return c;
+    return Ok((char)0);
+  return buffer.pop();
 }
 
 void TTY::input(char c) {
@@ -92,7 +57,7 @@ void TTY::input(char c) {
   }
 
   if (is_canon && c == termios.c_cc[VERASE]) {
-    if (erase() >= 0) {
+    if (erase().unwrap() >= 0) {
       callback('\b', callback_context);
       callback(' ', callback_context);
       callback('\b', callback_context);
@@ -132,15 +97,12 @@ Result<size_t, Error> TTY::Ops::read(dev_t minor, frg::span<uint8_t> buf,
 
   auto tty = ttys[minor];
 
-  Vm::Vector<Event *> events;
-  events.push(&tty->read_event);
-
-  while (tty->buf_length == 0) {
-    await(events);
+  while (tty->buffer.size() == 0) {
+    tty->await_event(-1);
   }
 
-  if (nbyte > tty->buf_length) {
-    nbyte = tty->buf_length;
+  if (nbyte > tty->buffer.size()) {
+    nbyte = tty->buffer.size();
   }
 
   size_t i;
@@ -148,11 +110,11 @@ Result<size_t, Error> TTY::Ops::read(dev_t minor, frg::span<uint8_t> buf,
   tty->lock.lock();
 
   for (i = 0; i < nbyte; i++) {
-    if (tty->buf_length == 0) {
+    if (tty->buffer.size() == 0) {
       break;
     }
 
-    char c = tty->pop();
+    char c = TRY(tty->pop());
     buf.data()[i] = c;
 
     if (tty->termios.c_lflag & ICANON && c == tty->termios.c_cc[VEOL]) {
@@ -207,6 +169,10 @@ Result<uint64_t, Error> TTY::Ops::ioctl(dev_t minor, uint64_t request,
     *(struct termios *)arg = tty->termios;
     return Ok((uint64_t)0);
   }
+
+  case TIOCSPGRP:
+  case TIOCGPGRP:
+    return Err(Error::NOT_IMPLEMENTED);
 
   default:
     break;

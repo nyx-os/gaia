@@ -20,8 +20,7 @@ struct Object;
 class Space {
 public:
   Result<uintptr_t, Error> map(Object *obj, frg::optional<uintptr_t> address,
-                               size_t size, Hal::Vm::Prot prot,
-                               bool lazy = true);
+                               size_t size, Hal::Vm::Prot prot);
 
   Result<Void, Error> unmap(uintptr_t address, size_t size);
 
@@ -37,8 +36,7 @@ public:
   bool fault(uintptr_t address, FaultFlags flags);
 
   Result<uintptr_t, Error> new_anon(frg::optional<uintptr_t> address,
-                                    size_t size, Hal::Vm::Prot prot,
-                                    bool lazy = true);
+                                    size_t size, Hal::Vm::Prot prot);
 
   Result<Void, Error> copy(Space *dest);
 
@@ -82,7 +80,6 @@ struct Anon;
 struct Object {
   int refcnt;
   size_t size;
-  int id;
 
   union {
     struct {
@@ -94,6 +91,7 @@ struct Object {
   // Create a (CoW-optimized) copy of the object
   Object *copy();
 
+  // Retain a reference to an object
   void retain();
 
   // Release the object
@@ -112,13 +110,12 @@ struct Anon {
   int refcnt;
   void *physpage;
   size_t offset; // offset within the amap
-  bool lazy;
   frg::simple_spinlock lock;
 
   void release();
   Anon *copy();
   Anon(void *physpage, size_t offset)
-      : refcnt(1), physpage(physpage), offset(offset){};
+      : refcnt(1), physpage(physpage), offset(offset) {};
 };
 
 class AnonMap {
@@ -139,13 +136,5 @@ public:
 private:
   List<Entry, &Entry::link> entries;
 };
-
-struct Page {
-  Hal::Vm::Pagemap *map;
-  uintptr_t virt, phys;
-  ListNode<Page> link;
-};
-
-extern frg::manual_box<List<Page, &Page::link>> pages_list;
 
 } // namespace Gaia::Vm

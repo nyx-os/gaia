@@ -44,7 +44,7 @@ Vm::UniquePtr<Service> Ps2Controller::init() {
 void Ps2Controller::int_handler(Hal::InterruptFrame *frame, void *arg) {
   (void)frame;
 
-  uint8_t code = x86_64::inb(0x60);
+  uint8_t code = Amd64::inb(0x60);
 
   auto controller = (Ps2Controller *)arg;
 

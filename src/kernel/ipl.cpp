@@ -41,7 +41,8 @@ Ipl iplx(Ipl _new) {
 
   // If ipl was lowered
   if ((uint64_t)_new < (uint64_t)old) {
-    ipl_lowered(_new);
+    (void)ipl_lowered;
+    //  ipl_lowered(_new);
   }
 
   return old;

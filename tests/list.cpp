@@ -15,9 +15,11 @@ TEST_CASE("List", "[list]") {
   ListElem *elem1 = new ListElem;
   ListElem *elem2 = new ListElem;
   ListElem *elem3 = new ListElem;
+  ListElem *elem4 = new ListElem;
   elem1->num = 1;
   elem2->num = 2;
   elem3->num = 3;
+  elem4->num = 4;
 
   REQUIRE(list.insert_head(elem1).is_ok());
   REQUIRE(list.insert_tail(elem2).is_ok());
@@ -30,6 +32,13 @@ TEST_CASE("List", "[list]") {
     REQUIRE(list.tail() == elem3);
     REQUIRE(list.remove_tail().is_ok());
     REQUIRE(list.tail() == elem2);
+  }
+
+  SECTION("insert_before") {
+    REQUIRE(list.insert_tail(elem3).is_ok());
+    REQUIRE(list.insert_before(elem4, elem3).is_ok());
+    REQUIRE(list.remove_tail().is_ok());
+    REQUIRE(list.tail()->num == 4);
   }
 
   SECTION("remove_head") {
@@ -62,4 +71,5 @@ TEST_CASE("List", "[list]") {
   delete elem1;
   delete elem2;
   delete elem3;
+  delete elem4;
 }

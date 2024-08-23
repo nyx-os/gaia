@@ -7,8 +7,6 @@
 
 namespace Gaia::Vm {
 
-static int curr_id = 0;
-
 Object *Object::copy() {
   auto newobj = new Object(size, anon.amap->copy());
 
@@ -118,13 +116,12 @@ bool Object::fault(Space *map, uintptr_t address, size_t off,
   return true;
 }
 
-Object::Object(size_t size) : refcnt(1), size(size), id(curr_id++) {
+Object::Object(size_t size) : refcnt(1), size(size) {
   anon.amap = new AnonMap;
   anon.parent = nullptr;
 }
 
-Object::Object(size_t size, AnonMap *amap)
-    : refcnt(1), size(size), id(curr_id++) {
+Object::Object(size_t size, AnonMap *amap) : refcnt(1), size(size) {
   anon.amap = amap;
   anon.parent = nullptr;
 }

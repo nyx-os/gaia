@@ -1,10 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #pragma once
+#include <amd64/idt.hpp>
 #include <dev/acpi/device.hpp>
 #include <dev/devkit/registry.hpp>
 #include <dev/devkit/service.hpp>
 #include <vm/heap.hpp>
-#include <x86_64/idt.hpp>
 
 namespace Gaia::Dev {
 

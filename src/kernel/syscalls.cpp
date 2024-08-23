@@ -1,4 +1,5 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+#include "amd64/asm.hpp"
 #include "fs/vfs.hpp"
 #include "hal/hal.hpp"
 #include "kernel/elf.hpp"
@@ -6,12 +7,13 @@
 #include "vm/heap.hpp"
 #include "vm/phys.hpp"
 #include "vm/vm_kernel.hpp"
-#include "x86_64/asm.hpp"
 #include <hal/mmu.hpp>
 #include <kernel/sched.hpp>
 #include <kernel/syscalls.hpp>
+#include <kernel/wait.hpp>
 #include <lib/log.hpp>
 #define HAVE_ARCH_STRUCT_FLOCK
+#include <kernel/task.hpp>
 #include <linux/fcntl.h>
 #include <posix/errno.hpp>
 #include <sys/syscall.h>
@@ -29,7 +31,6 @@ struct StraceDef {
 };
 
 StraceDef get_strace_def(uint64_t num) {
-
   switch (num) {
   case SYS_read:
     return {"read", 3};
@@ -78,45 +79,59 @@ StraceDef get_strace_def(uint64_t num) {
   return {"invalid", 0};
 }
 
+uint8_t get_random_color(pid_t seed) {
+  if (seed & 1) {
+    return (uint8_t)(((seed >> 1) % 7) + 1);
+  } else {
+    return (uint8_t)((((seed >> 1) % 7) + 1) + 60);
+  }
+}
+
+template <typename... T>
+void thread_log(Thread *thread, const char *str, T... args) {
+  logger() << frg::fmt("\033[{}m[{}]({}) \033[0m",
+                       30 + get_random_color(thread->task->pid),
+                       thread->name.size() == 0 ? "" : thread->name,
+                       thread->task->pid)
+           << frg::fmt(str, args...) << "\n"
+           << frg::endlog;
+}
+
+#define LOG_CURR(...) (thread_log(sched_curr(), __VA_ARGS__))
+
 uint64_t trace(uint64_t ret, uint64_t num, SyscallParams params) {
   auto def = get_strace_def(num);
 
-  auto curr_thread = sched_curr();
   switch (def.param_count) {
-
   case 0:
-    log("[{}] {}() -> {:x} ({})", curr_thread->task->pid, def.name, ret,
-        (int64_t)ret);
+    LOG_CURR("{}() -> {:x} ({})", def.name, ret, (int64_t)ret);
     break;
   case 1:
-    log("[{}] {}({:x}) -> {:x} ({})", curr_thread->task->pid, def.name,
-        params.param1, ret, (int64_t)ret);
+    LOG_CURR("{}({:x}) -> {:x} ({})", def.name, params.param1, ret,
+             (int64_t)ret);
     break;
   case 2:
-    log("[{}] {}({:x}, {:x}) -> {:x} ({})", curr_thread->task->pid, def.name,
-        params.param1, params.param2, ret, (int64_t)ret);
+    LOG_CURR("{}({:x}, {:x}) -> {:x} ({})", def.name, params.param1,
+             params.param2, ret, (int64_t)ret);
     break;
   case 3:
-    log("[{}] {}({:x}, {:x}, {:x}) -> {:x} ({})", curr_thread->task->pid,
-        def.name, params.param1, params.param2, params.param3, ret,
-        (int64_t)ret);
+    LOG_CURR("{}({:x}, {:x}, {:x}) -> {:x} ({})", def.name, params.param1,
+             params.param2, params.param3, ret, (int64_t)ret);
     break;
   case 4:
-    log("[{}] {}({:x}, {:x}, {:x}, {:x}) -> {:x} ({})", curr_thread->task->pid,
-        def.name, params.param1, params.param2, params.param3, params.param4,
-        ret, (int64_t)ret);
+    LOG_CURR("{}({:x}, {:x}, {:x}, {:x}) -> {:x} ({})", def.name, params.param1,
+             params.param2, params.param3, params.param4, ret, (int64_t)ret);
     break;
 
   case 5:
-    log("[{}] {}({:x}, {:x}, {:x}, {:x}, {:x}) -> {:x} ({})",
-        curr_thread->task->pid, def.name, params.param1, params.param2,
-        params.param3, params.param4, params.param5, ret, (int64_t)ret);
+    LOG_CURR("{}({:x}, {:x}, {:x}, {:x}, {:x}) -> {:x} ({})", def.name,
+             params.param1, params.param2, params.param3, params.param4,
+             params.param5, ret, (int64_t)ret);
     break;
   case 6:
-    log("[{}] {}({:x}, {:x}, {:x}, {:x}, {:x}, {:x}) -> {:x} ({})",
-        curr_thread->task->pid, def.name, params.param1, params.param2,
-        params.param3, params.param4, params.param5, params.param6, ret,
-        (int64_t)ret);
+    LOG_CURR("{}({:x}, {:x}, {:x}, {:x}, {:x}, {:x}) -> {:x} ({})", def.name,
+             params.param1, params.param2, params.param3, params.param4,
+             params.param5, params.param6, ret, (int64_t)ret);
     break;
   }
   return ret;
@@ -277,28 +292,20 @@ uint64_t sys_getcwd(SyscallParams params) {
 }
 
 uint64_t sys_exit_group(SyscallParams params) {
+
   auto curr_thread = sched_curr();
 
   curr_thread->state = Thread::EXITED;
+  curr_thread->task->has_exited = true;
   curr_thread->task->exit_code = (int)params.param1;
 
-  auto listeners_count = curr_thread->task->exit_event->listeners.size();
+  curr_thread->task->parent->trigger_event().unwrap();
 
-  curr_thread->task->exit_event->trigger();
+  Hal::disable_interrupts();
+  sched_send_to_death(curr_thread);
+  sched_dequeue_and_die();
+  Hal::enable_interrupts();
 
-  sched_dequeue_thread(curr_thread);
-
-  // Process isn't going to get destroyed if no one is waiting on it
-  // FIXME: this doesn't work?
-  if (listeners_count == 0) {
-    // delete curr_thread->task;
-  }
-
-  sched_yield(false);
-
-  ASSERT(sched_curr() != curr_thread);
-
-  Hal::halt();
   return 0;
 }
 
@@ -366,7 +373,7 @@ uint64_t sys_execve(SyscallParams params) {
   prev_space->release();
   delete prev_space;
 
-  sched_yield(false);
+  sched_yield();
 
   Hal::halt();
 
@@ -418,47 +425,24 @@ uint64_t sys_wait4(SyscallParams params) {
 
   auto curr_task = sched_curr()->task;
 
-  Task *child_who_exited = nullptr;
+  while (true) {
+    for (auto child : curr_task->children) {
+      if (child->has_exited) {
+        if (upid != -1 && child->pid != upid)
+          continue;
 
-  Vm::Vector<Event *> events;
-  if (upid == -1) {
-    for (auto child : curr_task->children) {
-      events.push(child->exit_event);
-    }
-  } else if (upid > 0) {
-    for (auto child : curr_task->children) {
-      if (child->pid == upid) {
-        child_who_exited = child;
-        events.push(child->exit_event);
+        curr_task->children.remove(child);
+        *status = child->exit_code;
+        return child->pid;
       }
     }
+
+    curr_task->await_event(-1).unwrap();
   }
 
-  auto which = await(events);
+  ASSERT(false);
 
-  ASSERT(curr_task->children.length() != 0);
-
-  if (upid == -1) {
-    size_t i = 0;
-    for (auto child : curr_task->children) {
-      if (i == which) {
-        child_who_exited = child;
-        break;
-      }
-      i++;
-    }
-  }
-
-  ASSERT(child_who_exited != nullptr);
-
-  curr_task->children.remove(child_who_exited);
-
-  *status = child_who_exited->exit_code;
-  auto pid = child_who_exited->pid;
-
-  delete child_who_exited;
-
-  return pid;
+  return -1;
 }
 
 uint64_t sys_newfstatat(SyscallParams params) {
@@ -734,7 +718,7 @@ uint64_t syscall(int num, SyscallParams params) {
 
   case SYS_arch_prctl:
     if (params.param1 == 0x1002) {
-      x86_64::wrmsr(0xc0000100, (uint64_t)params.param2);
+      Amd64::wrmsr(0xc0000100, (uint64_t)params.param2);
       return 0;
     }
     return -ENOSYS;

@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #pragma once
-#include "x86_64/idt.hpp"
+#include "amd64/idt.hpp"
 #include <cstdint>
 #include <lib/base.hpp>
 

@@ -1,4 +1,5 @@
 #include <elf.h>
+#include <kernel/task.hpp>
 #include <posix/exec.hpp>
 
 namespace Gaia::Posix {

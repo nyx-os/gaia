@@ -1,4 +1,11 @@
-test_srcs += files('elf.cpp', 'freelist.cpp', 'list.cpp', 'main.cpp', 'path.cpp')
+test_srcs += files(
+    'elf.cpp',
+    'freelist.cpp',
+    'list.cpp',
+    'main.cpp',
+    'path.cpp',
+    'ringbuffer.cpp',
+)
 test_deps += dependency('catch2', native: true)
 test(
     'all_tests',

@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-extern "C" void *memset(void *d, int c, size_t n) {
+extern "C" void *memset(void *d, int c, size_t n) noexcept {
   char *p = (char *)d;
   while (n--) {
     *p++ = c;
@@ -11,7 +11,7 @@ extern "C" void *memset(void *d, int c, size_t n) {
   return d;
 }
 
-extern "C" void *memcpy(void *dest, const void *src, size_t n) {
+extern "C" void *memcpy(void *dest, const void *src, size_t n) noexcept {
   char *p1 = (char *)dest;
   char *p2 = (char *)src;
 
@@ -21,7 +21,7 @@ extern "C" void *memcpy(void *dest, const void *src, size_t n) {
   return dest;
 }
 
-extern "C" void *memmove(void *dest, const void *src, size_t n) {
+extern "C" void *memmove(void *dest, const void *src, size_t n) noexcept {
   uint8_t *pdest = (uint8_t *)dest;
   const uint8_t *psrc = (const uint8_t *)src;
 
@@ -38,7 +38,8 @@ extern "C" void *memmove(void *dest, const void *src, size_t n) {
   return dest;
 }
 
-extern "C" int memcmp(const void *str1, const void *str2, size_t count) {
+extern "C" int memcmp(const void *str1, const void *str2,
+                      size_t count) noexcept {
   const unsigned char *c1, *c2;
 
   c1 = (const unsigned char *)str1;

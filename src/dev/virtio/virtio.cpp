@@ -1,6 +1,7 @@
 #include "dev/pci/device.hpp"
 #include "hal/hal.hpp"
 #include "vm/phys.hpp"
+#include <amd64/apic.hpp>
 #include <dev/devkit/registry.hpp>
 #include <dev/virtio/virtio.hpp>
 #include <frg/array.hpp>
@@ -8,7 +9,6 @@
 #include <lib/log.hpp>
 #include <vm/vm.hpp>
 #include <vm/vm_kernel.hpp>
-#include <x86_64/apic.hpp>
 
 namespace Gaia::Dev {
 
@@ -151,9 +151,9 @@ void VirtioDevice::setup_queue(VirtQueue &queue, uint16_t index) {
 
 void VirtioDevice::enable() {
 #if __x86_64__
-  x86_64::ioapic_handle_gsi(device->get_info().gsi, int_handler, this,
-                            device->get_info().lopol, device->get_info().edge,
-                            Ipl::DEVICE, &int_entry);
+  Amd64::ioapic_handle_gsi(device->get_info().gsi, int_handler, this,
+                           device->get_info().lopol, device->get_info().edge,
+                           Ipl::DEVICE, &int_entry);
 #else
   panic("TODO: handle PCI GSI on other architectures");
 #endif

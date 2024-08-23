@@ -7,6 +7,7 @@
 #include <elf.h>
 #include <kernel/elf.hpp>
 #include <kernel/sched.hpp>
+#include <kernel/task.hpp>
 #include <lib/elf.hpp>
 #include <vm/vm_kernel.hpp>
 
@@ -21,9 +22,11 @@ struct Auxval {
   uintptr_t at_base;
 };
 
-Result<uintptr_t, Error> elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval,
-                                  uintptr_t base = 0, char *ld_path = nullptr) {
-
+// We disable UBSan here because this function may write to 0, which is
+// forbidden by sanitizers
+__attribute__((no_sanitize("undefined"))) Result<uintptr_t, Error>
+elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval, uintptr_t base = 0,
+         char *ld_path = nullptr) {
   auto stream = Fs::VnodeStream(&vnode);
 
   auto elf = TRY(Elf::parse(stream));
@@ -110,7 +113,6 @@ Result<uintptr_t, Error> elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval,
 }
 
 Result<Void, Error> exec(Task &task, const char *path) {
-
   auto file = TRY(Fs::vfs_find(path));
   auto auxval = Auxval{};
   auto entry = TRY(elf_load(task, *file, auxval));
@@ -144,7 +146,6 @@ static void *push_array_to_stack(uint8_t *stack, size_t &offset,
 
 Result<Void, Error> execve(Task &task, const char *path, char const *argv[],
                            char const *envp[]) {
-
   auto file = TRY(Fs::vfs_find(path));
   char ld_path[255] = {0};
   auto auxval = Auxval{};

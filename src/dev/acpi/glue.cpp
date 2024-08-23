@@ -1,8 +1,8 @@
+#include <amd64/asm.hpp>
 #include <dev/acpi/acpi.hpp>
 #include <lai/host.h>
 #include <lib/log.hpp>
 #include <vm/heap.hpp>
-#include <x86_64/asm.hpp>
 
 // FIXME: make this file architecture independent somehow
 
@@ -11,7 +11,7 @@ const static AcpiTable *sdt = nullptr;
 const static Rsdp *rsdp = nullptr;
 static bool xsdt = false;
 
-using namespace x86_64;
+using namespace Amd64;
 
 void lai_glue_init(uintptr_t rsdp_p, AcpiTable *_sdt, bool _xsdt) {
   rsdp = reinterpret_cast<Rsdp *>(rsdp_p);
