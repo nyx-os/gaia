@@ -42,8 +42,6 @@ Included By
 -----------
 
 
-- :ref:`file_arch_x86_64_apic.hpp`
-
 - :ref:`file_fs_devfs.hpp`
 
 - :ref:`file_fs_tmpfs.hpp`
@@ -51,6 +49,10 @@ Included By
 - :ref:`file_kernel_ipl.hpp`
 
 - :ref:`file_kernel_sched.hpp`
+
+- :ref:`file_kernel_wait.hpp`
+
+- :ref:`file_platform_amd64_apic.hpp`
 
 - :ref:`file_vm_vm.hpp`
 

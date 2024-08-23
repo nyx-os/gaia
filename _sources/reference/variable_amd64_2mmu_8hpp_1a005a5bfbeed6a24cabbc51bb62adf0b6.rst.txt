@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_variable_amd64_2mmu_8hpp_1a005a5bfbeed6a24cabbc51bb62adf0b6:
+
+Variable Gaia::Hal::PAGE_SIZE
+=============================
+
+- Defined in :ref:`file_platform_amd64_mmu.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: Gaia::Hal::PAGE_SIZE
+   :project: ExhaleCompanion

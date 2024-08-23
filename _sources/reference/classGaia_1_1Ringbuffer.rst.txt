@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Ringbuffer:
+
+Template Class Ringbuffer
+=========================
+
+- Defined in :ref:`file_lib_ringbuffer.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Template Parameter Order
+------------------------
+
+#. ``typename T``
+#. ``size_t N``
+
+
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Ringbuffer
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,95 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_apic.hpp:
+
+File apic.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/apic.hpp``)
+----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_apic.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``dev/acpi/acpi.hpp`` (:ref:`file_dev_acpi_acpi.hpp`)
+
+- ``hal/int.hpp`` (:ref:`file_platform_hal_int.hpp`)
+
+- ``kernel/ipl.hpp`` (:ref:`file_kernel_ipl.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Amd64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1IoApic`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1Iso`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1Madt`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1MadtEntry`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1MadtIoApic`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1MadtIso`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1MadtLapic`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_apic_8hpp_1a6a525dd8914710de99262505b827bf2b`
+
+- :ref:`exhale_function_apic_8hpp_1a88db2f8e710a33973d2878a35f1c22e1`
+
+- :ref:`exhale_function_apic_8hpp_1a23288b08ae1762bd6dd2821bfab974f8`
+
+- :ref:`exhale_function_apic_8hpp_1abde1f65603cd489900b407b9ef6b6b8f`
+
+- :ref:`exhale_function_apic_8hpp_1a1ce149373381d616ccf5c3c4d41e6cd7`
+
+- :ref:`exhale_function_apic_8hpp_1aface048fb386cc819625d629973ef9a5`
+
+- :ref:`exhale_function_apic_8hpp_1acb1f970e68ab8655f463a19006b81cdf`
+
+- :ref:`exhale_function_apic_8hpp_1a2dd1b521afbf80dd1a157f4b1d4a1829`
+

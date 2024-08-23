@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Waitq:
+
+Struct Waitq
+============
+
+- Defined in :ref:`file_kernel_wait.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Waitq
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -32,6 +32,8 @@ Includes
 --------
 
 
+- ``amd64/idt.hpp`` (:ref:`file_platform_amd64_idt.hpp`)
+
 - ``dev/acpi/device.hpp`` (:ref:`file_dev_acpi_device.hpp`)
 
 - ``dev/devkit/registry.hpp`` (:ref:`file_dev_devkit_registry.hpp`)
@@ -39,8 +41,6 @@ Includes
 - ``dev/devkit/service.hpp`` (:ref:`file_dev_devkit_service.hpp`)
 
 - ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
-
-- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
 
 
 

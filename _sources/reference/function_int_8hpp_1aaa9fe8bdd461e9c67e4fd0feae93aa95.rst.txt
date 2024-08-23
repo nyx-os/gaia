@@ -5,7 +5,7 @@
 Function Gaia::Hal::allocate_interrupt
 ======================================
 
-- Defined in :ref:`file_arch_hal_int.hpp`
+- Defined in :ref:`file_platform_hal_int.hpp`
 
 
 Function Documentation

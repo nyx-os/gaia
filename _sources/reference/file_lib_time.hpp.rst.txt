@@ -40,7 +40,7 @@ Included By
 -----------
 
 
-- :ref:`file_arch_hal_hal.hpp`
+- :ref:`file_platform_hal_hal.hpp`
 
 
 

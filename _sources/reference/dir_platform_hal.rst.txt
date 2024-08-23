@@ -1,0 +1,27 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_platform_hal:
+
+
+Directory hal
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_platform>` (``platform``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``platform/hal``
+
+
+Files
+-----
+
+- :ref:`file_platform_hal_cpu.hpp`
+- :ref:`file_platform_hal_hal.hpp`
+- :ref:`file_platform_hal_int.hpp`
+- :ref:`file_platform_hal_mmu.hpp`
+- :ref:`file_platform_hal_platform.hpp`
+
+

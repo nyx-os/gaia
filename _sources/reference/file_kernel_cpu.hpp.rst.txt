@@ -1,0 +1,71 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_cpu.hpp:
+
+File cpu.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/cpu.hpp``)
+-------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_cpu.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``hal/cpu.hpp`` (:ref:`file_platform_hal_cpu.hpp`)
+
+- ``hal/platform.hpp`` (:ref:`file_platform_hal_platform.hpp`)
+
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_kernel_sched.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Cpu`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e`
+

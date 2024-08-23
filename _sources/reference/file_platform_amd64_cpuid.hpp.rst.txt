@@ -1,0 +1,73 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_cpuid.hpp:
+
+File cpuid.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/cpuid.hpp``)
+-----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_cpuid.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``frg/array.hpp``
+
+- ``lib/error.hpp`` (:ref:`file_lib_error.hpp`)
+
+- ``lib/result.hpp`` (:ref:`file_lib_result.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Amd64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1Cpuid`
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1Cpuid_1_1Branding`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_cpuid_8hpp_1a0073fe708dbe266ad99fe7bb5f35b237`
+
+- :ref:`exhale_define_cpuid_8hpp_1af154fac66ff79bfb47f53de4c84f892d`
+

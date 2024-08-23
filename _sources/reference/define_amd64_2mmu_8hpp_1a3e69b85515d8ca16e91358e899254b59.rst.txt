@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_amd64_2mmu_8hpp_1a3e69b85515d8ca16e91358e899254b59:
+
+Define PTE_GET_FLAGS
+====================
+
+- Defined in :ref:`file_platform_amd64_mmu.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: PTE_GET_FLAGS
+   :project: ExhaleCompanion

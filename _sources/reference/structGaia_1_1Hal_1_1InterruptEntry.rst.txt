@@ -5,7 +5,7 @@
 Struct InterruptEntry
 =====================
 
-- Defined in :ref:`file_arch_x86_64_idt.hpp`
+- Defined in :ref:`file_platform_amd64_idt.hpp`
 
 
 .. contents:: Page Contents

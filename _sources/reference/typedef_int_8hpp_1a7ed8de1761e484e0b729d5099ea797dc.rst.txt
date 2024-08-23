@@ -5,7 +5,7 @@
 Typedef Gaia::Hal::InterruptHandler
 ===================================
 
-- Defined in :ref:`file_arch_hal_int.hpp`
+- Defined in :ref:`file_platform_hal_int.hpp`
 
 
 Typedef Documentation

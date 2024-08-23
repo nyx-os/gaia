@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_kernel_2timer_8hpp_1ae93906107c709cf4b66b9cc63408aa99:
+
+Function Gaia::timer_enqueue
+============================
+
+- Defined in :ref:`file_kernel_timer.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::timer_enqueue(Timer *)
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e:
+
+Function Gaia::cpu_self
+=======================
+
+- Defined in :ref:`file_kernel_cpu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::cpu_self()
+   :project: ExhaleCompanion

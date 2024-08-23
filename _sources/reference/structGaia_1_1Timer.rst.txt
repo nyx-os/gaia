@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Timer:
+
+Struct Timer
+============
+
+- Defined in :ref:`file_kernel_timer.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Waitable`` (:ref:`exhale_struct_structGaia_1_1Waitable`)
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Timer
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

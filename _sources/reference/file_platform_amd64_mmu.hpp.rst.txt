@@ -1,0 +1,95 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_mmu.hpp:
+
+File mmu.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/mmu.hpp``)
+---------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_mmu.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``stddef.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_platform_amd64_platform.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Hal`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a146e1f29f427128da0f53f6d45625404`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a85a159e372991b9ebcda1380c877c310`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1ad51143a254fbc24aa0e0cc1e88d616e6`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a3e69b85515d8ca16e91358e899254b59`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1aef43e1ff08f5f4bd366e1093a36183a0`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1ae09129d1e46928e53a1a6adb22595fa8`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1aae612bc192ecfdfe599d904073f2d015`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a7827d87ef4c834ac6b2ccecbb168bdd3`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a9b30538ff952b747f55bfa45f10b7da1`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1af8cb4ed83aeb49fe22ca226766469599`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a891cbe7ff703ea0268677718b8a3be12`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1af9af740187fb7e39f96c435ff17269e4`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a35cf32d035efb2f4b272b6e2959302b9`
+
+- :ref:`exhale_define_amd64_2mmu_8hpp_1a333bdddcf2da08d311953d68861d23a1`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_amd64_2mmu_8hpp_1a005a5bfbeed6a24cabbc51bb62adf0b6`
+

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1aafe622b32b51056cb0fe9acf8bdadd20:
+
+Function Gaia::Hal::do_context_switch
+=====================================
+
+- Defined in :ref:`file_platform_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::do_context_switch()
+   :project: ExhaleCompanion

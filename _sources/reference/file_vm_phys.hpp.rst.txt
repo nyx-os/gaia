@@ -44,7 +44,7 @@ Included By
 -----------
 
 
-- :ref:`file_arch_x86_64_idt.hpp`
+- :ref:`file_platform_amd64_idt.hpp`
 
 - :ref:`file_vm_vm_kernel.hpp`
 

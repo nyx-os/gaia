@@ -19,10 +19,10 @@ Inheritance Relationships
 Derived Types
 *************
 
+- ``public Gaia::Amd64::Hpet`` (:ref:`exhale_struct_structGaia_1_1Amd64_1_1Hpet`)
+- ``public Gaia::Amd64::Madt`` (:ref:`exhale_struct_structGaia_1_1Amd64_1_1Madt`)
 - ``public Gaia::Dev::Rsdt`` (:ref:`exhale_struct_structGaia_1_1Dev_1_1Rsdt`)
 - ``public Gaia::Dev::Xsdt`` (:ref:`exhale_struct_structGaia_1_1Dev_1_1Xsdt`)
-- ``public Gaia::x86_64::Hpet`` (:ref:`exhale_struct_structGaia_1_1x86__64_1_1Hpet`)
-- ``public Gaia::x86_64::Madt`` (:ref:`exhale_struct_structGaia_1_1x86__64_1_1Madt`)
 
 
 Struct Documentation

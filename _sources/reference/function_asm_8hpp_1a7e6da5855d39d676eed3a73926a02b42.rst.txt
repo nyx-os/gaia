@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_asm_8hpp_1a7e6da5855d39d676eed3a73926a02b42:
+
+Function Gaia::Amd64::hlt
+=========================
+
+- Defined in :ref:`file_platform_amd64_asm.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Amd64::hlt(void)
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1a4807506df2189c6f9ca35ad03529ebcf:
+
+Function Gaia::Hal::set_timer
+=============================
+
+- Defined in :ref:`file_platform_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::set_timer(uint64_t)
+   :project: ExhaleCompanion

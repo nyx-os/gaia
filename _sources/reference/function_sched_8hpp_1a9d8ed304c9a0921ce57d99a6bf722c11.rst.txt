@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_sched_8hpp_1a9d8ed304c9a0921ce57d99a6bf722c11:
+
+Function Gaia::sched_yield
+==========================
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::sched_yield()
+   :project: ExhaleCompanion

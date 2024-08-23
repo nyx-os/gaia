@@ -38,7 +38,9 @@ Includes
 
 - ``fs/devfs.hpp`` (:ref:`file_fs_devfs.hpp`)
 
-- ``kernel/event.hpp`` (:ref:`file_kernel_event.hpp`)
+- ``kernel/wait.hpp`` (:ref:`file_kernel_wait.hpp`)
+
+- ``lib/ringbuffer.hpp`` (:ref:`file_lib_ringbuffer.hpp`)
 
 
 

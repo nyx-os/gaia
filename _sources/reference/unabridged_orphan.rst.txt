@@ -11,31 +11,6 @@ Directories
 .. toctree::
    :maxdepth: 5
 
-   dir_arch.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   dir_arch_aarch64.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   dir_arch_hal.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   dir_arch_riscv64.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   dir_arch_x86_64.rst
-
-.. toctree::
-   :maxdepth: 5
-
    dir_dev.rst
 
 .. toctree::
@@ -81,6 +56,31 @@ Directories
 .. toctree::
    :maxdepth: 5
 
+   dir_platform.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_platform_aarch64.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_platform_amd64.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_platform_hal.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_platform_riscv64.rst
+
+.. toctree::
+   :maxdepth: 5
+
    dir_posix.rst
 
 .. toctree::
@@ -100,12 +100,12 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_apic.hpp.rst
+   file_platform_amd64_apic.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_asm.hpp.rst
+   file_platform_amd64_asm.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -135,7 +135,22 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_cpuid.hpp.rst
+   file_kernel_cpu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_amd64_cpu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_hal_cpu.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_amd64_cpuid.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -180,11 +195,6 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_kernel_event.hpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
    file_posix_exec.hpp.rst
 
 .. toctree::
@@ -205,7 +215,7 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_gdt.hpp.rst
+   file_platform_amd64_gdt.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -215,7 +225,7 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_hal_hal.hpp.rst
+   file_platform_hal_hal.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -225,17 +235,17 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_hpet.hpp.rst
+   file_platform_amd64_hpet.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_idt.hpp.rst
+   file_platform_amd64_idt.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_hal_int.hpp.rst
+   file_platform_hal_int.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -245,7 +255,7 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_limine.h.rst
+   file_platform_amd64_limine.h.rst
 
 .. toctree::
    :maxdepth: 5
@@ -265,22 +275,22 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_aarch64_mmu.hpp.rst
+   file_platform_aarch64_mmu.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_hal_mmu.hpp.rst
+   file_platform_amd64_mmu.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_riscv64_mmu.hpp.rst
+   file_platform_hal_mmu.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_mmu.hpp.rst
+   file_platform_riscv64_mmu.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -296,6 +306,16 @@ Files
    :maxdepth: 5
 
    file_vm_phys.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_amd64_platform.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_hal_platform.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -320,6 +340,11 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_lib_ringbuffer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_kernel_sched.hpp.rst
 
 .. toctree::
@@ -330,7 +355,12 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_simd.hpp.rst
+   file_platform_amd64_simd.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_lib_spinlock.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -340,7 +370,7 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_syscall.hpp.rst
+   file_platform_amd64_syscall.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -350,12 +380,22 @@ Files
 .. toctree::
    :maxdepth: 5
 
+   file_kernel_task.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
    file_lib_time.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_arch_x86_64_timer.hpp.rst
+   file_kernel_timer.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_platform_amd64_timer.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -391,3 +431,8 @@ Files
    :maxdepth: 5
 
    file_vm_vmem.h.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_kernel_wait.hpp.rst

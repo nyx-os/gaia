@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_amd64_2mmu_8hpp_1aae612bc192ecfdfe599d904073f2d015:
+
+Define PTE_IS_NOT_EXECUTABLE
+============================
+
+- Defined in :ref:`file_platform_amd64_mmu.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: PTE_IS_NOT_EXECUTABLE
+   :project: ExhaleCompanion

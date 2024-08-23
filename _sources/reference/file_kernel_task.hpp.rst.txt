@@ -1,0 +1,56 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_task.hpp:
+
+File task.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/task.hpp``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_task.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
+- ``kernel/wait.hpp`` (:ref:`file_kernel_wait.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Task`
+

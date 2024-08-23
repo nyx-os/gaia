@@ -1,0 +1,67 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_timer.hpp:
+
+File timer.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/timer.hpp``)
+---------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_timer.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``frg/pairing_heap.hpp``
+
+- ``kernel/wait.hpp`` (:ref:`file_kernel_wait.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Timer`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1a48d1c545c07e6ce89373d4f0338557fc`
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1ae93906107c709cf4b66b9cc63408aa99`
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1a6eac634b989abebfa33c8ab05bf72d63`
+

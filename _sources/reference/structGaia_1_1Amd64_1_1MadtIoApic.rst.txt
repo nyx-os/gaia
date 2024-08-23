@@ -1,0 +1,33 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Amd64_1_1MadtIoApic:
+
+Struct MadtIoApic
+=================
+
+- Defined in :ref:`file_platform_amd64_apic.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Amd64::MadtEntry`` (:ref:`exhale_struct_structGaia_1_1Amd64_1_1MadtEntry`)
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Amd64::MadtIoApic
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

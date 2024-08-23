@@ -1,0 +1,35 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Waitable:
+
+Struct Waitable
+===============
+
+- Defined in :ref:`file_kernel_wait.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public Gaia::Posix::TTY`` (:ref:`exhale_class_classGaia_1_1Posix_1_1TTY`)
+- ``public Gaia::Task`` (:ref:`exhale_struct_structGaia_1_1Task`)
+- ``public Gaia::Timer`` (:ref:`exhale_struct_structGaia_1_1Timer`)
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Waitable
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

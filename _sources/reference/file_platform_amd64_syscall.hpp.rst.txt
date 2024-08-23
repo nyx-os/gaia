@@ -1,0 +1,58 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_syscall.hpp:
+
+File syscall.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/syscall.hpp``)
+-------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_syscall.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``amd64/idt.hpp`` (:ref:`file_platform_amd64_idt.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Amd64`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_syscall_8hpp_1a82ce3e71e7db09b4f1f32deeb551269d`
+
+- :ref:`exhale_function_syscall_8hpp_1a2b198692605fcad862921a4661c41f2a`
+

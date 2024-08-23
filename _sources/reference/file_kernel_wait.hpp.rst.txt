@@ -1,0 +1,70 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_kernel_wait.hpp:
+
+File wait.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_kernel>` (``kernel``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``kernel/wait.hpp``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_kernel_wait.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
+
+- ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+- ``lib/spinlock.hpp`` (:ref:`file_lib_spinlock.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_kernel_task.hpp`
+
+- :ref:`file_kernel_timer.hpp`
+
+- :ref:`file_posix_tty.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Waitable`
+
+- :ref:`exhale_struct_structGaia_1_1Waitq`
+

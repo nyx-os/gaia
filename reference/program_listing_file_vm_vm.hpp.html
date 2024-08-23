@@ -59,8 +59,7 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Space</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uintptr_t</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">uintptr_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">,</span>
-<span class="w">                               </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Prot</span><span class="w"> </span><span class="n">prot</span><span class="p">,</span>
-<span class="w">                               </span><span class="kt">bool</span><span class="w"> </span><span class="n">lazy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">                               </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Prot</span><span class="w"> </span><span class="n">prot</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Void</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">unmap</span><span class="p">(</span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
 
@@ -76,8 +75,7 @@
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">fault</span><span class="p">(</span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">FaultFlags</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uintptr_t</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">new_anon</span><span class="p">(</span><span class="n">frg</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">uintptr_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">,</span>
-<span class="w">                                    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Prot</span><span class="w"> </span><span class="n">prot</span><span class="p">,</span>
-<span class="w">                                    </span><span class="kt">bool</span><span class="w"> </span><span class="n">lazy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">                                    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Prot</span><span class="w"> </span><span class="n">prot</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Void</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">copy</span><span class="p">(</span><span class="n">Space</span><span class="w"> </span><span class="o">*</span><span class="n">dest</span><span class="p">);</span>
 
@@ -121,7 +119,6 @@
 <span class="k">struct</span><span class="w"> </span><span class="nc">Object</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">refcnt</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
 
 <span class="w">  </span><span class="k">union</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
@@ -133,6 +130,7 @@
 <span class="w">  </span><span class="c1">// Create a (CoW-optimized) copy of the object</span>
 <span class="w">  </span><span class="n">Object</span><span class="w"> </span><span class="o">*</span><span class="nf">copy</span><span class="p">();</span>
 
+<span class="w">  </span><span class="c1">// Retain a reference to an object</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">retain</span><span class="p">();</span>
 
 <span class="w">  </span><span class="c1">// Release the object</span>
@@ -151,13 +149,12 @@
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">refcnt</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">physpage</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span><span class="w"> </span><span class="c1">// offset within the amap</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">lazy</span><span class="p">;</span>
 <span class="w">  </span><span class="n">frg</span><span class="o">::</span><span class="n">simple_spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">release</span><span class="p">();</span>
 <span class="w">  </span><span class="n">Anon</span><span class="w"> </span><span class="o">*</span><span class="nf">copy</span><span class="p">();</span>
 <span class="w">  </span><span class="n">Anon</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">physpage</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span>
-<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">refcnt</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">physpage</span><span class="p">(</span><span class="n">physpage</span><span class="p">),</span><span class="w"> </span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">){};</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">refcnt</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">physpage</span><span class="p">(</span><span class="n">physpage</span><span class="p">),</span><span class="w"> </span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
 <span class="p">};</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">AnonMap</span><span class="w"> </span><span class="p">{</span>
@@ -178,14 +175,6 @@
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Entry</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Entry</span><span class="o">::</span><span class="n">link</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entries</span><span class="p">;</span>
 <span class="p">};</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">Page</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Hal</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Pagemap</span><span class="w"> </span><span class="o">*</span><span class="n">map</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">virt</span><span class="p">,</span><span class="w"> </span><span class="n">phys</span><span class="p">;</span>
-<span class="w">  </span><span class="n">ListNode</span><span class="o">&lt;</span><span class="n">Page</span><span class="o">&gt;</span><span class="w"> </span><span class="n">link</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">extern</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">manual_box</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Page</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Page</span><span class="o">::</span><span class="n">link</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pages_list</span><span class="p">;</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Vm</span>
 </pre></div>

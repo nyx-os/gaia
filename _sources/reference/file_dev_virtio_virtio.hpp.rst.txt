@@ -36,7 +36,7 @@ Includes
 
 - ``dev/pci/device.hpp`` (:ref:`file_dev_pci_device.hpp`)
 
-- ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)
+- ``hal/int.hpp`` (:ref:`file_platform_hal_int.hpp`)
 
 - ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
 

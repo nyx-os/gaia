@@ -1,0 +1,69 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_hpet.hpp:
+
+File hpet.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/hpet.hpp``)
+----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_hpet.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``dev/acpi/acpi.hpp`` (:ref:`file_dev_acpi_acpi.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Amd64`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structGaia_1_1Amd64_1_1Hpet`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_hpet_8hpp_1a8816c95d9659f040bd9ec87cb02a451d`
+
+- :ref:`exhale_function_hpet_8hpp_1ab82946a807b3d4c19270b6e98fdb7720`
+
+- :ref:`exhale_function_hpet_8hpp_1a774f4634839ca6abfdc65d5b35d6011a`
+

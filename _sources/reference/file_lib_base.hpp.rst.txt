@@ -51,23 +51,23 @@ Included By
 -----------
 
 
-- :ref:`file_arch_hal_hal.hpp`
-
-- :ref:`file_arch_hal_mmu.hpp`
-
 - :ref:`file_dev_acpi_glue.hpp`
 
 - :ref:`file_fs_vfs.hpp`
 
 - :ref:`file_kernel_elf.hpp`
 
-- :ref:`file_kernel_event.hpp`
-
 - :ref:`file_kernel_ipl.hpp`
 
 - :ref:`file_kernel_syscalls.hpp`
 
+- :ref:`file_lib_ringbuffer.hpp`
+
 - :ref:`file_lib_stream.hpp`
+
+- :ref:`file_platform_hal_hal.hpp`
+
+- :ref:`file_platform_hal_mmu.hpp`
 
 - :ref:`file_posix_exec.hpp`
 

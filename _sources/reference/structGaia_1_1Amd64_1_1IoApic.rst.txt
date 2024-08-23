@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_struct_structGaia_1_1Amd64_1_1IoApic:
+
+Struct IoApic
+=============
+
+- Defined in :ref:`file_platform_amd64_apic.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Gaia::Amd64::IoApic
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

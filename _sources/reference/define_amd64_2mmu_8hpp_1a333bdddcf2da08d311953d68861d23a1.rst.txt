@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_amd64_2mmu_8hpp_1a333bdddcf2da08d311953d68861d23a1:
+
+Define PTE_WRITABLE
+===================
+
+- Defined in :ref:`file_platform_amd64_mmu.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: PTE_WRITABLE
+   :project: ExhaleCompanion

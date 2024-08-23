@@ -1,0 +1,52 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_gdt.hpp:
+
+File gdt.hpp
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/gdt.hpp``)
+---------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_gdt.hpp.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_Gaia`
+
+- :ref:`namespace_Gaia__Amd64`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_gdt_8hpp_1ad10deaecd366e23d75141b3c9e4cbd7f`
+
+- :ref:`exhale_function_gdt_8hpp_1ace530046792e559057bc1eb9f8babfe0`
+

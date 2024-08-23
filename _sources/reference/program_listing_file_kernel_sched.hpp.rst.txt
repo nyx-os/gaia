@@ -15,17 +15,17 @@ Program Listing for File sched.hpp
    // @license:bsd2
    #pragma once
    #include "frg/spinlock.hpp"
+   #include "kernel/cpu.hpp"
    #include <fs/vfs.hpp>
    #include <hal/int.hpp>
    #include <hal/mmu.hpp>
-   #include <kernel/event.hpp>
    #include <lib/list.hpp>
    #include <posix/fd.hpp>
    #include <sys/types.h>
    #include <vm/vm.hpp>
    
    // FIXME: Find an architecture-independent way of doing this
-   #include <x86_64/idt.hpp>
+   #include <amd64/idt.hpp>
    
    namespace Gaia {
    
@@ -33,16 +33,24 @@ Program Listing for File sched.hpp
    
    struct Task;
    
+   struct Waitq;
+   
+   enum class WaitResult {
+     WAITING,
+     SUCCESS,
+     FAILED,
+   };
+   
    struct Thread {
+     Hal::CpuContext ctx;
+     Cpu *cpu;
      enum {
        RUNNING,
        SUSPENDED,
        EXITED,
      } state;
    
-     frg::string_view name;
-   
-     Hal::CpuContext ctx;
+     Vm::String name;
    
      Task *task;
    
@@ -50,34 +58,15 @@ Program Listing for File sched.hpp
    
      ListNode<Thread> link; // Scheduler queue
    
-     size_t which_event;
-     bool blocked;
      bool in_fault = false;
    
      frg::simple_spinlock lock;
    
+     ListNode<Thread> wait_link;
+     Waitq *waitq = nullptr;
+     WaitResult wait_res;
+   
      ~Thread();
-   };
-   
-   struct Task {
-     pid_t pid;
-   
-     ListNode<Task> link;
-   
-     Vm::Vector<Thread *> threads;
-     List<Task, &Task::link> children;
-   
-     Fs::Vnode *cwd;
-   
-     Posix::Fds fds;
-   
-     Task *parent;
-     Vm::Space *space;
-   
-     Event *exit_event;
-     int exit_code;
-   
-     ~Task();
    };
    
    pid_t sched_allocate_pid();
@@ -89,7 +78,7 @@ Program Listing for File sched.hpp
    
    void sched_tick(Hal::InterruptFrame *frame);
    
-   void sched_yield(bool save_ctx = true);
+   void sched_yield();
    
    Result<Void, Error> sched_init();
    

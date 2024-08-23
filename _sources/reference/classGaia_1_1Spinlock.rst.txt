@@ -1,0 +1,24 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_class_classGaia_1_1Spinlock:
+
+Class Spinlock
+==============
+
+- Defined in :ref:`file_lib_spinlock.hpp`
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Gaia::Spinlock
+   :project: ExhaleCompanion
+   :members:
+   :protected-members:
+   :undoc-members:

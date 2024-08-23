@@ -32,11 +32,11 @@ Includes
 --------
 
 
+- ``amd64/idt.hpp`` (:ref:`file_platform_amd64_idt.hpp`)
+
 - ``cstdint``
 
 - ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
-
-- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
 
 
 

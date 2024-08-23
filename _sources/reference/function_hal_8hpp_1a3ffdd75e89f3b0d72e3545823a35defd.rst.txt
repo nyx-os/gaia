@@ -5,7 +5,7 @@
 Function Gaia::Hal::enable_interrupts
 =====================================
 
-- Defined in :ref:`file_arch_hal_hal.hpp`
+- Defined in :ref:`file_platform_hal_hal.hpp`
 
 
 Function Documentation

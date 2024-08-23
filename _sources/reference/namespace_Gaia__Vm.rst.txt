@@ -27,8 +27,6 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1Object`
 
-- :ref:`exhale_struct_structGaia_1_1Vm_1_1Page`
-
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1Space_1_1Entry`
 
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1VirtualAllocator`
@@ -95,5 +93,3 @@ Variables
 - :ref:`exhale_variable_vm_8hpp_1a8a813f0d27e960c0dd5848726ab07668`
 
 - :ref:`exhale_variable_vm__kernel_8hpp_1ac1b9e43980dcee3a744a7db40ff46344`
-
-- :ref:`exhale_variable_vm_8hpp_1a88c20e55dc4d1ea95ccd629a9c71bf50`

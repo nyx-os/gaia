@@ -1,0 +1,39 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_kernel_wait.hpp:
+
+Program Listing for File wait.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_kernel_wait.hpp>` (``kernel/wait.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* @license:bsd2 */
+   #pragma once
+   
+   #include "kernel/sched.hpp"
+   #include <lib/list.hpp>
+   #include <lib/spinlock.hpp>
+   
+   namespace Gaia {
+   
+   struct Waitq {
+     Spinlock lock;
+     List<Thread, &Thread::wait_link> waiters;
+   
+     Result<Void, Error> await(uint64_t timeout);
+   
+     Result<Void, Error> wake(int n);
+   };
+   
+   struct Waitable {
+     Waitq wq;
+     auto trigger_event(int n = -1) { return wq.wake(n); }
+     auto await_event(uint64_t timeout) { return wq.await(timeout); }
+   };
+   
+   } // namespace Gaia

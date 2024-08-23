@@ -5,7 +5,7 @@
 Function Gaia::Hal::Vm::get_current_map
 =======================================
 
-- Defined in :ref:`file_arch_hal_mmu.hpp`
+- Defined in :ref:`file_platform_hal_mmu.hpp`
 
 
 Function Documentation

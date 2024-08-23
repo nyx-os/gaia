@@ -1,0 +1,281 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_limine.h:
+
+File limine.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/limine.h``)
+----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_limine.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``stdint.h``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structlimine__5__level__paging__request`
+
+- :ref:`exhale_struct_structlimine__5__level__paging__response`
+
+- :ref:`exhale_struct_structlimine__boot__time__request`
+
+- :ref:`exhale_struct_structlimine__boot__time__response`
+
+- :ref:`exhale_struct_structlimine__bootloader__info__request`
+
+- :ref:`exhale_struct_structlimine__bootloader__info__response`
+
+- :ref:`exhale_struct_structlimine__dtb__request`
+
+- :ref:`exhale_struct_structlimine__dtb__response`
+
+- :ref:`exhale_struct_structlimine__efi__memmap__request`
+
+- :ref:`exhale_struct_structlimine__efi__memmap__response`
+
+- :ref:`exhale_struct_structlimine__efi__system__table__request`
+
+- :ref:`exhale_struct_structlimine__efi__system__table__response`
+
+- :ref:`exhale_struct_structlimine__entry__point__request`
+
+- :ref:`exhale_struct_structlimine__entry__point__response`
+
+- :ref:`exhale_struct_structlimine__file`
+
+- :ref:`exhale_struct_structlimine__framebuffer`
+
+- :ref:`exhale_struct_structlimine__framebuffer__request`
+
+- :ref:`exhale_struct_structlimine__framebuffer__response`
+
+- :ref:`exhale_struct_structlimine__hhdm__request`
+
+- :ref:`exhale_struct_structlimine__hhdm__response`
+
+- :ref:`exhale_struct_structlimine__internal__module`
+
+- :ref:`exhale_struct_structlimine__kernel__address__request`
+
+- :ref:`exhale_struct_structlimine__kernel__address__response`
+
+- :ref:`exhale_struct_structlimine__kernel__file__request`
+
+- :ref:`exhale_struct_structlimine__kernel__file__response`
+
+- :ref:`exhale_struct_structlimine__memmap__entry`
+
+- :ref:`exhale_struct_structlimine__memmap__request`
+
+- :ref:`exhale_struct_structlimine__memmap__response`
+
+- :ref:`exhale_struct_structlimine__module__request`
+
+- :ref:`exhale_struct_structlimine__module__response`
+
+- :ref:`exhale_struct_structlimine__paging__mode__request`
+
+- :ref:`exhale_struct_structlimine__paging__mode__response`
+
+- :ref:`exhale_struct_structlimine__rsdp__request`
+
+- :ref:`exhale_struct_structlimine__rsdp__response`
+
+- :ref:`exhale_struct_structlimine__smbios__request`
+
+- :ref:`exhale_struct_structlimine__smbios__response`
+
+- :ref:`exhale_struct_structlimine__smp__request`
+
+- :ref:`exhale_struct_structlimine__stack__size__request`
+
+- :ref:`exhale_struct_structlimine__stack__size__response`
+
+- :ref:`exhale_struct_structlimine__terminal`
+
+- :ref:`exhale_struct_structlimine__terminal__request`
+
+- :ref:`exhale_struct_structlimine__terminal__response`
+
+- :ref:`exhale_struct_structlimine__uuid`
+
+- :ref:`exhale_struct_structlimine__video__mode`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_limine_8h_1a493482c4075e2a73894d82e2b627eccf`
+
+- :ref:`exhale_define_limine_8h_1a9bf8f85f610af76a70bc0d5a39342333`
+
+- :ref:`exhale_define_limine_8h_1a269b761a139127fb2644f165931bd76b`
+
+- :ref:`exhale_define_limine_8h_1a56576e64da699ee469e4ff3366ff2357`
+
+- :ref:`exhale_define_limine_8h_1a40a4f27d03994f4df1204e79c13c0ba2`
+
+- :ref:`exhale_define_limine_8h_1a87a9619f1cb8e674a32e7392d4391976`
+
+- :ref:`exhale_define_limine_8h_1afc992e5590df21257602f7ead73223d0`
+
+- :ref:`exhale_define_limine_8h_1a17319df24b1fa085ef4b35e46e59db59`
+
+- :ref:`exhale_define_limine_8h_1a4bb5843269206b3152c28470fc015d92`
+
+- :ref:`exhale_define_limine_8h_1a708e3dc3a32da80a187ac17308b2f758`
+
+- :ref:`exhale_define_limine_8h_1a5590799508c56c8fa6575aac1cc85b9e`
+
+- :ref:`exhale_define_limine_8h_1a27ed1ad9c13e80946a2b292b95eb458b`
+
+- :ref:`exhale_define_limine_8h_1a31ce5d415baae9ff1a1bb8963695b73e`
+
+- :ref:`exhale_define_limine_8h_1ae000f357567574209f0e51768ab80433`
+
+- :ref:`exhale_define_limine_8h_1a930b468d5ef7f8915ba69f55ee1eac2c`
+
+- :ref:`exhale_define_limine_8h_1a68118f4871132a203fb40d9e7a29493c`
+
+- :ref:`exhale_define_limine_8h_1a08b40446380a69ae81477f3cde7d8a85`
+
+- :ref:`exhale_define_limine_8h_1a41d8b781bc922354199b833825989182`
+
+- :ref:`exhale_define_limine_8h_1a1c64ec9d52c5247e52dd294fc294875c`
+
+- :ref:`exhale_define_limine_8h_1ac2c7ffe2c398c2af97f7bdb7017c1ed8`
+
+- :ref:`exhale_define_limine_8h_1a413df26f24a15a002fa00781f6853a71`
+
+- :ref:`exhale_define_limine_8h_1a990d7bbdb53695b5aab63aec27ce9aa7`
+
+- :ref:`exhale_define_limine_8h_1a61729c4454219248875bd2023c105467`
+
+- :ref:`exhale_define_limine_8h_1a301e596e044bf48b428977bccd6b6208`
+
+- :ref:`exhale_define_limine_8h_1aaf0c8e8bd5628eecde2e298f2b8a974b`
+
+- :ref:`exhale_define_limine_8h_1af2598700b83962150932aac7570e1cf8`
+
+- :ref:`exhale_define_limine_8h_1ae12f0828c70abbc73c0de237fd5935e7`
+
+- :ref:`exhale_define_limine_8h_1a9b1043c43bf43d59d1220ed992d1013a`
+
+- :ref:`exhale_define_limine_8h_1a65df7392d97b83086f82afb00122fb24`
+
+- :ref:`exhale_define_limine_8h_1ac7c4a3f14b33deba97e1752662747e70`
+
+- :ref:`exhale_define_limine_8h_1a1b0cb81b148837b25e0f47f402022c8a`
+
+- :ref:`exhale_define_limine_8h_1ad0826c1e61380edf155d5b82c06f3bcf`
+
+- :ref:`exhale_define_limine_8h_1a7cd9ae29570688e9d7bf7e838021752b`
+
+- :ref:`exhale_define_limine_8h_1afb099ba9d61c38ef9588b5274ddc239b`
+
+- :ref:`exhale_define_limine_8h_1ae207468a74ef8f3e998f6646cb365f8f`
+
+- :ref:`exhale_define_limine_8h_1a9a8370e65d1223196ea43313a6d61a30`
+
+- :ref:`exhale_define_limine_8h_1a89e6640a57982f0edf321bb18b22cb83`
+
+- :ref:`exhale_define_limine_8h_1a676376ea4ec441495631780986e634e1`
+
+- :ref:`exhale_define_limine_8h_1a9292255548cfac30e78b77444b53822b`
+
+- :ref:`exhale_define_limine_8h_1a51797e1398c279496630d28854bd688d`
+
+- :ref:`exhale_define_limine_8h_1aad7cc1bec20aa9a6ffc92a761d8747e1`
+
+- :ref:`exhale_define_limine_8h_1a2686c76452b859aba0f77bff0ba6742a`
+
+- :ref:`exhale_define_limine_8h_1a17e61bc1823f6d748506800d404e8a2d`
+
+- :ref:`exhale_define_limine_8h_1a6ef2c8572f902d9b5b99d9bcd3d143b1`
+
+- :ref:`exhale_define_limine_8h_1a2a2a595a6d1c05cf148b7fd26584ffd7`
+
+- :ref:`exhale_define_limine_8h_1a764769497a770238dbd2810daa3490e5`
+
+- :ref:`exhale_define_limine_8h_1a28f79cf340fd288df6138f5c2c3fe9a5`
+
+- :ref:`exhale_define_limine_8h_1a32559a72539157a6838216959954c3cb`
+
+- :ref:`exhale_define_limine_8h_1a3eb72ba6c953d5cc5328b1ccd17f784b`
+
+- :ref:`exhale_define_limine_8h_1aae034fbbeccf92464169ada275e6d285`
+
+- :ref:`exhale_define_limine_8h_1af114d6e6116452e311b8464229d8267e`
+
+- :ref:`exhale_define_limine_8h_1a50eb3080463b13744d5f2ef501bbbc57`
+
+- :ref:`exhale_define_limine_8h_1a9251e28e1f60e76dcc32318dcc64b572`
+
+- :ref:`exhale_define_limine_8h_1a5080f8389434a9969d245e6e5704a548`
+
+- :ref:`exhale_define_limine_8h_1a614ca57ffc26c474891256dca7638583`
+
+- :ref:`exhale_define_limine_8h_1abae5a88cabc1dd47c72a5e4b6756956e`
+
+- :ref:`exhale_define_limine_8h_1acbe70d9f7a8133571920bdb426a9bb83`
+
+- :ref:`exhale_define_limine_8h_1a84dd8e063f6ac05df177909f75b64fed`
+
+- :ref:`exhale_define_limine_8h_1a8c099e4fdd3609f37e30eee6ac7aef2e`
+
+- :ref:`exhale_define_limine_8h_1a850317e58f28cd64b3cf244761996f61`
+
+- :ref:`exhale_define_limine_8h_1aa4bfe1d78bd8137c019a1a3a4f657fbb`
+
+- :ref:`exhale_define_limine_8h_1ac2e676c85932cb2c8bcf1ba9ac2a05e0`
+
+- :ref:`exhale_define_limine_8h_1a1a9ae4c4b270f5d66897aca3ea1bcecb`
+
+- :ref:`exhale_define_limine_8h_1adde486d49b3f2a6ad423f8cfa50cac3c`
+
+- :ref:`exhale_define_limine_8h_1aea2d5faed6022afec72fa3b896f47711`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_limine_8h_1a4b9a7070926c40c446ca6252c769fdd7`
+
+- :ref:`exhale_typedef_limine_8h_1adebde0ad391eec16f6ddcfbf68293412`
+
+- :ref:`exhale_typedef_limine_8h_1a5c93b9d8f76415e192f0058d9db3e8a0`
+
+- :ref:`exhale_typedef_limine_8h_1ab6fa49376e88c66aa2fee0b90902036d`
+

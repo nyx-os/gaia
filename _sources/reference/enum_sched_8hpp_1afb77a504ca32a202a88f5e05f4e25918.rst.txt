@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_sched_8hpp_1afb77a504ca32a202a88f5e05f4e25918:
+
+Enum WaitResult
+===============
+
+- Defined in :ref:`file_kernel_sched.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::WaitResult
+   :project: ExhaleCompanion

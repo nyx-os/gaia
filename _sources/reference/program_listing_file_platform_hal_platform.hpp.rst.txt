@@ -1,0 +1,20 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_platform_hal_platform.hpp:
+
+Program Listing for File platform.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_platform_hal_platform.hpp>` (``platform/hal/platform.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* @license:bsd2 */
+   #pragma once
+   
+   #if __x86_64__
+   #include <amd64/platform.hpp>
+   #endif

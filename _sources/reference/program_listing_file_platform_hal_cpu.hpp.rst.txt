@@ -1,0 +1,29 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_platform_hal_cpu.hpp:
+
+Program Listing for File cpu.hpp
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_platform_hal_cpu.hpp>` (``platform/hal/cpu.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* @license:bsd2 */
+   #pragma once
+   #include <kernel/ipl.hpp>
+   
+   namespace Gaia {
+   struct Cpu;
+   struct Thread;
+   } // namespace Gaia
+   
+   namespace Gaia::Hal {
+   
+   Gaia::Thread *get_current_thread();
+   void set_current_thread(Gaia::Thread *thread);
+   
+   } // namespace Gaia::Hal

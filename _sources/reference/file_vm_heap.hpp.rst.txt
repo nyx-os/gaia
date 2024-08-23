@@ -68,8 +68,6 @@ Included By
 
 - :ref:`file_fs_vfs.hpp`
 
-- :ref:`file_kernel_event.hpp`
-
 
 
 

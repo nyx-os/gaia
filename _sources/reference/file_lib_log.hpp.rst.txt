@@ -45,7 +45,7 @@ Includes
 
 - ``frg/string_stub.hpp``
 
-- ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+- ``hal/hal.hpp`` (:ref:`file_platform_hal_hal.hpp`)
 
 
 

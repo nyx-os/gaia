@@ -23,6 +23,15 @@ Nested Types
 - :ref:`exhale_class_classGaia_1_1Posix_1_1TTY_1_1Ops`
 
 
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Waitable`` (:ref:`exhale_struct_structGaia_1_1Waitable`)
+
+
 Class Documentation
 -------------------
 

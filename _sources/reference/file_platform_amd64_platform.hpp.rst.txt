@@ -1,0 +1,42 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _file_platform_amd64_platform.hpp:
+
+File platform.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_platform_amd64>` (``platform/amd64``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Page Contents
+   :local:
+   :backlinks: none
+
+Definition (``platform/amd64/platform.hpp``)
+--------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_platform_amd64_platform.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``amd64/cpu.hpp`` (:ref:`file_platform_amd64_cpu.hpp`)
+
+- ``amd64/mmu.hpp`` (:ref:`file_platform_amd64_mmu.hpp`)
+
+
+
+
+

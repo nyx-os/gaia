@@ -39,19 +39,33 @@
   <section id="struct-task">
 <span id="exhale-struct-structgaia-1-1task"></span><h1>Struct Task<a class="headerlink" href="#struct-task" title="Link to this heading">¶</a></h1>
 <ul class="simple">
-<li><p>Defined in <a class="reference internal" href="file_kernel_sched.hpp.html#file-kernel-sched-hpp"><span class="std std-ref">File sched.hpp</span></a></p></li>
+<li><p>Defined in <a class="reference internal" href="file_kernel_task.hpp.html#file-kernel-task-hpp"><span class="std std-ref">File task.hpp</span></a></p></li>
 </ul>
 <nav class="contents local" id="page-contents">
 <p class="topic-title">Page Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#struct-documentation" id="id1">Struct Documentation</a></p></li>
+<li><p><a class="reference internal" href="#inheritance-relationships" id="id1">Inheritance Relationships</a></p>
+<ul>
+<li><p><a class="reference internal" href="#base-type" id="id2">Base Type</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#struct-documentation" id="id3">Struct Documentation</a></p></li>
 </ul>
 </nav>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading">¶</a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Gaia::Waitable</span></code> (<a class="reference internal" href="structGaia_1_1Waitable.html#exhale-struct-structgaia-1-1waitable"><span class="std std-ref">Struct Waitable</span></a>)</p></li>
+</ul>
+</section>
+</section>
 <section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Link to this heading">¶</a></h2>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv4N4Gaia4TaskE">
-<span id="_CPPv3N4Gaia4TaskE"></span><span id="_CPPv2N4Gaia4TaskE"></span><span id="Gaia::Task"></span><span class="target" id="structGaia_1_1Task"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Task</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia4TaskE" title="Link to this definition">¶</a><br /></dt>
+<span id="_CPPv3N4Gaia4TaskE"></span><span id="_CPPv2N4Gaia4TaskE"></span><span id="Gaia::Task"></span><span class="target" id="structGaia_1_1Task"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Task</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">Gaia</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structGaia_1_1Waitable.html#_CPPv4N4Gaia8WaitableE" title="Gaia::Waitable"><span class="n"><span class="pre">Waitable</span></span></a><a class="headerlink" href="#_CPPv4N4Gaia4TaskE" title="Link to this definition">¶</a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
@@ -103,13 +117,13 @@
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N4Gaia4Task10exit_eventE">
-<span id="_CPPv3N4Gaia4Task10exit_eventE"></span><span id="_CPPv2N4Gaia4Task10exit_eventE"></span><span id="Gaia::Task::exit_event__EventP"></span><span class="target" id="structGaia_1_1Task_1abe3fc34e1507ac35700d33c777ce2a04"></span><a class="reference internal" href="structGaia_1_1Event.html#_CPPv4N4Gaia5EventE" title="Gaia::Event"><span class="n"><span class="pre">Event</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">exit_event</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia4Task10exit_eventE" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia4Task9exit_codeE">
+<span id="_CPPv3N4Gaia4Task9exit_codeE"></span><span id="_CPPv2N4Gaia4Task9exit_codeE"></span><span id="Gaia::Task::exit_code__i"></span><span class="target" id="structGaia_1_1Task_1a0683b9ff2c6012c14484d2b12040e679"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exit_code</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia4Task9exit_codeE" title="Link to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N4Gaia4Task9exit_codeE">
-<span id="_CPPv3N4Gaia4Task9exit_codeE"></span><span id="_CPPv2N4Gaia4Task9exit_codeE"></span><span id="Gaia::Task::exit_code__i"></span><span class="target" id="structGaia_1_1Task_1a0683b9ff2c6012c14484d2b12040e679"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exit_code</span></span></span><a class="headerlink" href="#_CPPv4N4Gaia4Task9exit_codeE" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4Gaia4Task10has_exitedE">
+<span id="_CPPv3N4Gaia4Task10has_exitedE"></span><span id="_CPPv2N4Gaia4Task10has_exitedE"></span><span id="Gaia::Task::has_exited__b"></span><span class="target" id="structGaia_1_1Task_1a1b1a5c66ef19509f6fe094a875f54bce"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">has_exited</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N4Gaia4Task10has_exitedE" title="Link to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>

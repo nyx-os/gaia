@@ -58,6 +58,8 @@
 <span class="w">  </span><span class="n">NOT_A_DIRECTORY</span><span class="p">,</span>
 <span class="w">  </span><span class="n">NOT_A_TTY</span><span class="p">,</span>
 <span class="w">  </span><span class="n">INVALID_FILE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">FULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">EMPTY</span><span class="p">,</span>
 <span class="p">};</span>
 
 <span class="kr">inline</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="nf">error_to_string</span><span class="p">(</span><span class="n">Error</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -86,7 +88,13 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Not a TTY&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">INVALID_FILE</span><span class="p">:</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Invalid file&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">FULL</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Full&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">Error</span><span class="o">::</span><span class="no">EMPTY</span><span class="p">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Empty&quot;</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia</span>

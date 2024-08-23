@@ -32,15 +32,17 @@ Includes
 --------
 
 
+- ``amd64/idt.hpp`` (:ref:`file_platform_amd64_idt.hpp`)
+
 - ``frg/spinlock.hpp``
 
 - ``fs/vfs.hpp`` (:ref:`file_fs_vfs.hpp`)
 
-- ``hal/int.hpp`` (:ref:`file_arch_hal_int.hpp`)
+- ``hal/int.hpp`` (:ref:`file_platform_hal_int.hpp`)
 
-- ``hal/mmu.hpp`` (:ref:`file_arch_hal_mmu.hpp`)
+- ``hal/mmu.hpp`` (:ref:`file_platform_hal_mmu.hpp`)
 
-- ``kernel/event.hpp`` (:ref:`file_kernel_event.hpp`)
+- ``kernel/cpu.hpp`` (:ref:`file_kernel_cpu.hpp`)
 
 - ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
 
@@ -50,15 +52,19 @@ Includes
 
 - ``vm/vm.hpp`` (:ref:`file_vm_vm.hpp`)
 
-- ``x86_64/idt.hpp`` (:ref:`file_arch_x86_64_idt.hpp`)
-
 
 
 Included By
 -----------
 
 
+- :ref:`file_kernel_cpu.hpp`
+
 - :ref:`file_kernel_elf.hpp`
+
+- :ref:`file_kernel_task.hpp`
+
+- :ref:`file_kernel_wait.hpp`
 
 - :ref:`file_posix_exec.hpp`
 
@@ -76,9 +82,14 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structGaia_1_1Task`
-
 - :ref:`exhale_struct_structGaia_1_1Thread`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_sched_8hpp_1afb77a504ca32a202a88f5e05f4e25918`
 
 
 Functions
@@ -113,7 +124,7 @@ Functions
 
 - :ref:`exhale_function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e`
 
-- :ref:`exhale_function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a`
+- :ref:`exhale_function_sched_8hpp_1a9d8ed304c9a0921ce57d99a6bf722c11`
 
 
 Variables

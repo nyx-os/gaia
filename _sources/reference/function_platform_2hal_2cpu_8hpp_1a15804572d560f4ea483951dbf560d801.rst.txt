@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_platform_2hal_2cpu_8hpp_1a15804572d560f4ea483951dbf560d801:
+
+Function Gaia::Hal::set_current_thread
+======================================
+
+- Defined in :ref:`file_platform_hal_cpu.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::set_current_thread(Gaia::Thread *)
+   :project: ExhaleCompanion

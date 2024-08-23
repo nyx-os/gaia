@@ -13,11 +13,14 @@ Directory kernel
 Files
 -----
 
+- :ref:`file_kernel_cpu.hpp`
 - :ref:`file_kernel_elf.hpp`
-- :ref:`file_kernel_event.hpp`
 - :ref:`file_kernel_ipl.hpp`
 - :ref:`file_kernel_main.hpp`
 - :ref:`file_kernel_sched.hpp`
 - :ref:`file_kernel_syscalls.hpp`
+- :ref:`file_kernel_task.hpp`
+- :ref:`file_kernel_timer.hpp`
+- :ref:`file_kernel_wait.hpp`
 
 

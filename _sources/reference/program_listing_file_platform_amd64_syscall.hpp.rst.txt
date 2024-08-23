@@ -1,0 +1,22 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_platform_amd64_syscall.hpp:
+
+Program Listing for File syscall.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_platform_amd64_syscall.hpp>` (``platform/amd64/syscall.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* SPDX-License-Identifier: BSD-2-Clause */
+   #pragma once
+   #include <amd64/idt.hpp>
+   
+   namespace Gaia::Amd64 {
+   extern "C" void syscall_entry(Hal::InterruptFrame *frame);
+   void syscall_init();
+   } // namespace Gaia::Amd64

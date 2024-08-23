@@ -5,7 +5,7 @@
 Define CPUID_PROC_EXTENDED_STATE_ENUMERATION
 ============================================
 
-- Defined in :ref:`file_arch_x86_64_cpuid.hpp`
+- Defined in :ref:`file_platform_amd64_cpuid.hpp`
 
 
 Define Documentation

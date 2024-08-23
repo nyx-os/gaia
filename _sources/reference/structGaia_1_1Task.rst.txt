@@ -5,12 +5,21 @@
 Struct Task
 ===========
 
-- Defined in :ref:`file_kernel_sched.hpp`
+- Defined in :ref:`file_kernel_task.hpp`
 
 
 .. contents:: Page Contents
    :local:
    :backlinks: none
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Gaia::Waitable`` (:ref:`exhale_struct_structGaia_1_1Waitable`)
 
 
 Struct Documentation

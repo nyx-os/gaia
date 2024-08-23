@@ -1,0 +1,47 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_kernel_timer.hpp:
+
+Program Listing for File timer.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_kernel_timer.hpp>` (``kernel/timer.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /* @license:bsd2 */
+   #pragma once
+   #include <frg/pairing_heap.hpp>
+   #include <kernel/wait.hpp>
+   
+   namespace Gaia {
+   
+   struct Timer : public Waitable {
+     frg::pairing_heap_hook<Timer> hook;
+   
+     void set(void (*callback)(), uint64_t us) {
+       this->callback = callback;
+       timeout = us;
+     }
+   
+     enum {
+       DISABLED,
+       PENDING,
+       CANCELLED,
+       COMPLETED,
+     } state;
+   
+     void (*callback)();
+     uint64_t timeout;
+   };
+   
+   Result<Void, Error> timer_enqueue(Timer *timer);
+   
+   void timer_cancel(Timer *timer);
+   
+   void timer_interrupt();
+   
+   } // namespace Gaia

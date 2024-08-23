@@ -5,7 +5,7 @@
 Struct limine_terminal
 ======================
 
-- Defined in :ref:`file_arch_x86_64_limine.h`
+- Defined in :ref:`file_platform_amd64_limine.h`
 
 
 .. contents:: Page Contents

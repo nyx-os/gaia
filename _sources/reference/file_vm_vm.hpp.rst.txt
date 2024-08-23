@@ -36,9 +36,9 @@ Includes
 
 - ``frg/spinlock.hpp``
 
-- ``hal/hal.hpp`` (:ref:`file_arch_hal_hal.hpp`)
+- ``hal/hal.hpp`` (:ref:`file_platform_hal_hal.hpp`)
 
-- ``hal/mmu.hpp`` (:ref:`file_arch_hal_mmu.hpp`)
+- ``hal/mmu.hpp`` (:ref:`file_platform_hal_mmu.hpp`)
 
 - ``lib/base.hpp`` (:ref:`file_lib_base.hpp`)
 
@@ -78,8 +78,6 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1Object`
 
-- :ref:`exhale_struct_structGaia_1_1Vm_1_1Page`
-
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1Space_1_1Entry`
 
 - :ref:`exhale_class_classGaia_1_1Vm_1_1AnonMap`
@@ -106,6 +104,4 @@ Variables
 
 
 - :ref:`exhale_variable_vm_8hpp_1a8a813f0d27e960c0dd5848726ab07668`
-
-- :ref:`exhale_variable_vm_8hpp_1a88c20e55dc4d1ea95ccd629a9c71bf50`
 

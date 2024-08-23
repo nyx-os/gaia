@@ -1,0 +1,35 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _dir_platform_amd64:
+
+
+Directory amd64
+===============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_platform>` (``platform``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``platform/amd64``
+
+
+Files
+-----
+
+- :ref:`file_platform_amd64_apic.hpp`
+- :ref:`file_platform_amd64_asm.hpp`
+- :ref:`file_platform_amd64_cpu.hpp`
+- :ref:`file_platform_amd64_cpuid.hpp`
+- :ref:`file_platform_amd64_gdt.hpp`
+- :ref:`file_platform_amd64_hpet.hpp`
+- :ref:`file_platform_amd64_idt.hpp`
+- :ref:`file_platform_amd64_limine.h`
+- :ref:`file_platform_amd64_mmu.hpp`
+- :ref:`file_platform_amd64_platform.hpp`
+- :ref:`file_platform_amd64_simd.hpp`
+- :ref:`file_platform_amd64_syscall.hpp`
+- :ref:`file_platform_amd64_timer.hpp`
+
+

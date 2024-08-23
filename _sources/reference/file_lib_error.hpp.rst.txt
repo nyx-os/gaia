@@ -51,12 +51,6 @@ Included By
 -----------
 
 
-- :ref:`file_arch_hal_int.hpp`
-
-- :ref:`file_arch_hal_mmu.hpp`
-
-- :ref:`file_arch_x86_64_cpuid.hpp`
-
 - :ref:`file_dev_acpi_device.hpp`
 
 - :ref:`file_dev_devkit_registry.hpp`
@@ -69,7 +63,15 @@ Included By
 
 - :ref:`file_lib_list.hpp`
 
+- :ref:`file_lib_ringbuffer.hpp`
+
 - :ref:`file_lib_stream.hpp`
+
+- :ref:`file_platform_amd64_cpuid.hpp`
+
+- :ref:`file_platform_hal_int.hpp`
+
+- :ref:`file_platform_hal_mmu.hpp`
 
 - :ref:`file_posix_errno.hpp`
 

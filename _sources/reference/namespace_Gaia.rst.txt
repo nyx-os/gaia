@@ -19,6 +19,8 @@ Namespaces
 ----------
 
 
+- :ref:`namespace_Gaia__Amd64`
+
 - :ref:`namespace_Gaia__Dev`
 
 - :ref:`namespace_Gaia__Fs`
@@ -28,8 +30,6 @@ Namespaces
 - :ref:`namespace_Gaia__Posix`
 
 - :ref:`namespace_Gaia__Vm`
-
-- :ref:`namespace_Gaia__x86_64`
 
 
 Classes
@@ -48,15 +48,13 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1CharonModules`
 
+- :ref:`exhale_struct_structGaia_1_1Cpu`
+
 - :ref:`exhale_struct_structGaia_1_1Dpc`
 
 - :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs`
 
 - :ref:`exhale_struct_structGaia_1_1Elf_1_1Phdrs_1_1PhdrIterator`
-
-- :ref:`exhale_struct_structGaia_1_1Event`
-
-- :ref:`exhale_struct_structGaia_1_1EventListener`
 
 - :ref:`exhale_struct_structGaia_1_1FormatWithLocation`
 
@@ -76,7 +74,13 @@ Classes
 
 - :ref:`exhale_struct_structGaia_1_1Time`
 
+- :ref:`exhale_struct_structGaia_1_1Timer`
+
 - :ref:`exhale_struct_structGaia_1_1Void`
+
+- :ref:`exhale_struct_structGaia_1_1Waitable`
+
+- :ref:`exhale_struct_structGaia_1_1Waitq`
 
 - :ref:`exhale_class_classGaia_1_1DebugSink`
 
@@ -96,6 +100,10 @@ Classes
 
 - :ref:`exhale_class_classGaia_1_1Result`
 
+- :ref:`exhale_class_classGaia_1_1Ringbuffer`
+
+- :ref:`exhale_class_classGaia_1_1Spinlock`
+
 
 Enums
 -----
@@ -107,12 +115,14 @@ Enums
 
 - :ref:`exhale_enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc`
 
+- :ref:`exhale_enum_sched_8hpp_1afb77a504ca32a202a88f5e05f4e25918`
+
 
 Functions
 ---------
 
 
-- :ref:`exhale_function_event_8hpp_1a8c64336d26cadd27b593608763f25edb`
+- :ref:`exhale_function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e`
 
 - :ref:`exhale_function_ipl_8hpp_1a742fdb5a4f7afb3b6576b6921496ab7b`
 
@@ -166,9 +176,15 @@ Functions
 
 - :ref:`exhale_function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e`
 
-- :ref:`exhale_function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a`
+- :ref:`exhale_function_sched_8hpp_1a9d8ed304c9a0921ce57d99a6bf722c11`
 
 - :ref:`exhale_function_syscalls_8hpp_1a461acaf3d74c0fa26b14da7f00374042`
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1a48d1c545c07e6ce89373d4f0338557fc`
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1ae93906107c709cf4b66b9cc63408aa99`
+
+- :ref:`exhale_function_kernel_2timer_8hpp_1a6eac634b989abebfa33c8ab05bf72d63`
 
 - :ref:`exhale_function_base_8hpp_1ad115e443bba6380646677138e654fd6c`
 
@@ -188,8 +204,6 @@ Variables
 - :ref:`exhale_variable_log_8hpp_1a54f8e03f39e446ae80b8f11a58cac3be`
 
 - :ref:`exhale_variable_log_8hpp_1a5c1bbb024e2629dcd4a38f55dbb71f0d`
-
-- :ref:`exhale_variable_event_8hpp_1ac0847594944e6f76c73f5a2916f99095`
 
 - :ref:`exhale_variable_sched_8hpp_1abfc9ae79f0345bb3815db0ed2dd42da9`
 

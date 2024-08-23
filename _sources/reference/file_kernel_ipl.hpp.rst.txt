@@ -42,9 +42,11 @@ Included By
 -----------
 
 
-- :ref:`file_arch_hal_int.hpp`
+- :ref:`file_platform_amd64_apic.hpp`
 
-- :ref:`file_arch_x86_64_apic.hpp`
+- :ref:`file_platform_hal_cpu.hpp`
+
+- :ref:`file_platform_hal_int.hpp`
 
 
 

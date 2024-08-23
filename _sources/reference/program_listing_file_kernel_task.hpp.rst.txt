@@ -1,0 +1,43 @@
+:github_url: https://github.com/nyx-org/gaia
+
+
+.. _program_listing_file_kernel_task.hpp:
+
+Program Listing for File task.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_kernel_task.hpp>` (``kernel/task.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // @license:bsd2
+   #pragma once
+   #include <kernel/sched.hpp>
+   #include <kernel/wait.hpp>
+   
+   namespace Gaia {
+   
+   struct Task : public Waitable {
+     pid_t pid;
+   
+     ListNode<Task> link;
+   
+     Vm::Vector<Thread *> threads;
+     List<Task, &Task::link> children;
+   
+     Fs::Vnode *cwd;
+   
+     Posix::Fds fds;
+   
+     Task *parent;
+     Vm::Space *space;
+   
+     int exit_code;
+     bool has_exited = false;
+   
+     ~Task();
+   };
+   
+   } // namespace Gaia

@@ -45,8 +45,9 @@
 <li><p><a class="reference internal" href="#included-by" id="id3">Included By</a></p></li>
 <li><p><a class="reference internal" href="#namespaces" id="id4">Namespaces</a></p></li>
 <li><p><a class="reference internal" href="#classes" id="id5">Classes</a></p></li>
-<li><p><a class="reference internal" href="#functions" id="id6">Functions</a></p></li>
-<li><p><a class="reference internal" href="#variables" id="id7">Variables</a></p></li>
+<li><p><a class="reference internal" href="#enums" id="id6">Enums</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id7">Functions</a></p></li>
+<li><p><a class="reference internal" href="#variables" id="id8">Variables</a></p></li>
 </ul>
 </nav>
 <section id="definition-kernel-sched-hpp">
@@ -60,22 +61,25 @@
 <section id="includes">
 <h2>Includes<a class="headerlink" href="#includes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">amd64/idt.hpp</span></code> (<a class="reference internal" href="file_platform_amd64_idt.hpp.html#file-platform-amd64-idt-hpp"><span class="std std-ref">File idt.hpp</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frg/spinlock.hpp</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fs/vfs.hpp</span></code> (<a class="reference internal" href="file_fs_vfs.hpp.html#file-fs-vfs-hpp"><span class="std std-ref">File vfs.hpp</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hal/int.hpp</span></code> (<a class="reference internal" href="file_arch_hal_int.hpp.html#file-arch-hal-int-hpp"><span class="std std-ref">File int.hpp</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hal/mmu.hpp</span></code> (<a class="reference internal" href="file_arch_hal_mmu.hpp.html#file-arch-hal-mmu-hpp"><span class="std std-ref">File mmu.hpp</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kernel/event.hpp</span></code> (<a class="reference internal" href="file_kernel_event.hpp.html#file-kernel-event-hpp"><span class="std std-ref">File event.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hal/int.hpp</span></code> (<a class="reference internal" href="file_platform_hal_int.hpp.html#file-platform-hal-int-hpp"><span class="std std-ref">File int.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hal/mmu.hpp</span></code> (<a class="reference internal" href="file_platform_hal_mmu.hpp.html#file-platform-hal-mmu-hpp"><span class="std std-ref">File mmu.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel/cpu.hpp</span></code> (<a class="reference internal" href="file_kernel_cpu.hpp.html#file-kernel-cpu-hpp"><span class="std std-ref">File cpu.hpp</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lib/list.hpp</span></code> (<a class="reference internal" href="file_lib_list.hpp.html#file-lib-list-hpp"><span class="std std-ref">File list.hpp</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">posix/fd.hpp</span></code> (<a class="reference internal" href="file_posix_fd.hpp.html#file-posix-fd-hpp"><span class="std std-ref">File fd.hpp</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sys/types.h</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">vm/vm.hpp</span></code> (<a class="reference internal" href="file_vm_vm.hpp.html#file-vm-vm-hpp"><span class="std std-ref">File vm.hpp</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x86_64/idt.hpp</span></code> (<a class="reference internal" href="file_arch_x86_64_idt.hpp.html#file-arch-x86-64-idt-hpp"><span class="std std-ref">File idt.hpp</span></a>)</p></li>
 </ul>
 </section>
 <section id="included-by">
 <h2>Included By<a class="headerlink" href="#included-by" title="Link to this heading">¶</a></h2>
 <ul class="simple">
+<li><p><a class="reference internal" href="file_kernel_cpu.hpp.html#file-kernel-cpu-hpp"><span class="std std-ref">File cpu.hpp</span></a></p></li>
 <li><p><a class="reference internal" href="file_kernel_elf.hpp.html#file-kernel-elf-hpp"><span class="std std-ref">File elf.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_kernel_task.hpp.html#file-kernel-task-hpp"><span class="std std-ref">File task.hpp</span></a></p></li>
+<li><p><a class="reference internal" href="file_kernel_wait.hpp.html#file-kernel-wait-hpp"><span class="std std-ref">File wait.hpp</span></a></p></li>
 <li><p><a class="reference internal" href="file_posix_exec.hpp.html#file-posix-exec-hpp"><span class="std std-ref">File exec.hpp</span></a></p></li>
 </ul>
 </section>
@@ -88,8 +92,13 @@
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="structGaia_1_1Task.html#exhale-struct-structgaia-1-1task"><span class="std std-ref">Struct Task</span></a></p></li>
 <li><p><a class="reference internal" href="structGaia_1_1Thread.html#exhale-struct-structgaia-1-1thread"><span class="std std-ref">Struct Thread</span></a></p></li>
+</ul>
+</section>
+<section id="enums">
+<h2>Enums<a class="headerlink" href="#enums" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="enum_sched_8hpp_1afb77a504ca32a202a88f5e05f4e25918.html#exhale-enum-sched-8hpp-1afb77a504ca32a202a88f5e05f4e25918"><span class="std std-ref">Enum WaitResult</span></a></p></li>
 </ul>
 </section>
 <section id="functions">
@@ -109,7 +118,7 @@
 <li><p><a class="reference internal" href="function_sched_8hpp_1aa3d9b68ec8dc6e1dd42e55567faec6f6.html#exhale-function-sched-8hpp-1aa3d9b68ec8dc6e1dd42e55567faec6f6"><span class="std std-ref">Function Gaia::sched_suspend_thread</span></a></p></li>
 <li><p><a class="reference internal" href="function_sched_8hpp_1a3c73746a0653b12518340b86fbcb987f.html#exhale-function-sched-8hpp-1a3c73746a0653b12518340b86fbcb987f"><span class="std std-ref">Function Gaia::sched_tick</span></a></p></li>
 <li><p><a class="reference internal" href="function_sched_8hpp_1a3d838f6337e09bca573aded964d5c40e.html#exhale-function-sched-8hpp-1a3d838f6337e09bca573aded964d5c40e"><span class="std std-ref">Function Gaia::sched_wake_thread</span></a></p></li>
-<li><p><a class="reference internal" href="function_sched_8hpp_1aab892b6974cc8135df7e2f73f8015d6a.html#exhale-function-sched-8hpp-1aab892b6974cc8135df7e2f73f8015d6a"><span class="std std-ref">Function Gaia::sched_yield</span></a></p></li>
+<li><p><a class="reference internal" href="function_sched_8hpp_1a9d8ed304c9a0921ce57d99a6bf722c11.html#exhale-function-sched-8hpp-1a9d8ed304c9a0921ce57d99a6bf722c11"><span class="std std-ref">Function Gaia::sched_yield</span></a></p></li>
 </ul>
 </section>
 <section id="variables">
