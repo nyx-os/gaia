@@ -68,6 +68,8 @@ Functions
 
 - :ref:`exhale_function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d`
 
+- :ref:`exhale_function_phys_8hpp_1ab4745996648d4bc78dfa8db2120966bf`
+
 - :ref:`exhale_function_phys_8hpp_1a147ccd99af32c2d3b07da2153a0bbcb8`
 
 - :ref:`exhale_function_phys_8hpp_1a5c60fa6ba505128c0b7c0a04480dda0a`

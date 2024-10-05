@@ -132,6 +132,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="namespace_Gaia__Vm.html">Namespace Gaia::Vm</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="namespace_Gaia__Vm.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_Gaia__Vm.html#enums">Enums</a></li>
 <li class="toctree-l2"><a class="reference internal" href="namespace_Gaia__Vm.html#functions">Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="namespace_Gaia__Vm.html#typedefs">Typedefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="namespace_Gaia__Vm.html#variables">Variables</a></li>
@@ -455,6 +456,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Charon.html#_CPPv4N4Gaia6Charon11framebufferE"><code class="docutils literal notranslate"><span class="pre">Charon::framebuffer</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Charon.html#_CPPv4N4Gaia6Charon7modulesE"><code class="docutils literal notranslate"><span class="pre">Charon::modules</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Charon.html#_CPPv4N4Gaia6Charon10memory_mapE"><code class="docutils literal notranslate"><span class="pre">Charon::memory_map</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Charon.html#_CPPv4N4Gaia6Charon9boot_timeE"><code class="docutils literal notranslate"><span class="pre">Charon::boot_time</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -559,10 +561,11 @@
 <li class="toctree-l3"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3CpuE"><code class="docutils literal notranslate"><span class="pre">Cpu</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu4dataE"><code class="docutils literal notranslate"><span class="pre">Cpu::data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu5magicE"><code class="docutils literal notranslate"><span class="pre">Cpu::magic</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu9curr_timeE"><code class="docutils literal notranslate"><span class="pre">Cpu::curr_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu2msE"><code class="docutils literal notranslate"><span class="pre">Cpu::ms</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu14current_threadE"><code class="docutils literal notranslate"><span class="pre">Cpu::current_thread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu11idle_threadE"><code class="docutils literal notranslate"><span class="pre">Cpu::idle_thread</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu15previous_threadE"><code class="docutils literal notranslate"><span class="pre">Cpu::previous_thread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Cpu.html#_CPPv4N4Gaia3Cpu10timer_lockE"><code class="docutils literal notranslate"><span class="pre">Cpu::timer_lock</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -988,7 +991,6 @@
 <li class="toctree-l3"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpDirent.html#_CPPv4N4Gaia2Fs9TmpDirentE"><code class="docutils literal notranslate"><span class="pre">TmpDirent</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpDirent.html#_CPPv4N4Gaia2Fs9TmpDirent9TmpDirentEv"><code class="docutils literal notranslate"><span class="pre">TmpDirent::TmpDirent()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpDirent.html#_CPPv4N4Gaia2Fs9TmpDirent4nameE"><code class="docutils literal notranslate"><span class="pre">TmpDirent::name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpDirent.html#_CPPv4N4Gaia2Fs9TmpDirent4linkE"><code class="docutils literal notranslate"><span class="pre">TmpDirent::link</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpDirent.html#_CPPv4N4Gaia2Fs9TmpDirent5tnodeE"><code class="docutils literal notranslate"><span class="pre">TmpDirent::tnode</span></code></a></li>
 </ul>
 </li>
@@ -1013,6 +1015,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode7entriesE"><code class="docutils literal notranslate"><span class="pre">TmpNode::entries</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode3dirE"><code class="docutils literal notranslate"><span class="pre">TmpNode::dir</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode6bufferE"><code class="docutils literal notranslate"><span class="pre">TmpNode::buffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode10compressedE"><code class="docutils literal notranslate"><span class="pre">TmpNode::compressed</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode3regE"><code class="docutils literal notranslate"><span class="pre">TmpNode::reg</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode7to_nameE"><code class="docutils literal notranslate"><span class="pre">TmpNode::to_name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Fs_1_1TmpNode.html#_CPPv4N4Gaia2Fs7TmpNode2toE"><code class="docutils literal notranslate"><span class="pre">TmpNode::to</span></code></a></li>
@@ -1379,10 +1382,11 @@
 <li class="toctree-l5"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5TimerUt1_89COMPLETEDE"><code class="docutils literal notranslate"><span class="pre">Timer::&#64;8::COMPLETED</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer3setEPFvvE8uint64_t"><code class="docutils literal notranslate"><span class="pre">Timer::set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer5TimerEPFvvE8uint64_t"><code class="docutils literal notranslate"><span class="pre">Timer::Timer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer4hookE"><code class="docutils literal notranslate"><span class="pre">Timer::hook</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer5stateE"><code class="docutils literal notranslate"><span class="pre">Timer::state</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer8callbackE"><code class="docutils literal notranslate"><span class="pre">Timer::callback</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer8deadlineE"><code class="docutils literal notranslate"><span class="pre">Timer::deadline</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="structGaia_1_1Timer.html#_CPPv4N4Gaia5Timer7timeoutE"><code class="docutils literal notranslate"><span class="pre">Timer::timeout</span></code></a></li>
 </ul>
 </li>
@@ -2469,11 +2473,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole4putsEPKc"><code class="docutils literal notranslate"><span class="pre">FbConsole::puts()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole4putsEPKc6size_t"><code class="docutils literal notranslate"><span class="pre">FbConsole::puts()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole10log_outputEc"><code class="docutils literal notranslate"><span class="pre">FbConsole::log_output()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole5inputEc"><code class="docutils literal notranslate"><span class="pre">FbConsole::input()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole5inputEh"><code class="docutils literal notranslate"><span class="pre">FbConsole::input()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole5clearEv"><code class="docutils literal notranslate"><span class="pre">FbConsole::clear()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole10create_devEv"><code class="docutils literal notranslate"><span class="pre">FbConsole::create_dev()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole10class_nameEv"><code class="docutils literal notranslate"><span class="pre">FbConsole::class_name()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole4nameEv"><code class="docutils literal notranslate"><span class="pre">FbConsole::name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Dev_1_1FbConsole.html#_CPPv4N4Gaia3Dev9FbConsole3ttyE"><code class="docutils literal notranslate"><span class="pre">FbConsole::tty</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -2846,17 +2851,17 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html">Class DevOps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#inheritance-relationships">Inheritance Relationships</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#derived-type">Derived Type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html">Class DeviceOps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#derived-type">Derived Type</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#class-documentation">Class Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#_CPPv4N4Gaia2Fs6DevOpsE"><code class="docutils literal notranslate"><span class="pre">DevOps</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#_CPPv4N4Gaia2Fs6DevOps5writeE5dev_tN3frg4spanI7uint8_tEE5off_t"><code class="docutils literal notranslate"><span class="pre">DevOps::write()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#_CPPv4N4Gaia2Fs6DevOps4readE5dev_tN3frg4spanI7uint8_tEE5off_t"><code class="docutils literal notranslate"><span class="pre">DevOps::read()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#_CPPv4N4Gaia2Fs6DevOps5ioctlE5dev_t8uint64_tPv"><code class="docutils literal notranslate"><span class="pre">DevOps::ioctl()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DevOps.html#_CPPv4N4Gaia2Fs6DevOps7getattrE5dev_t"><code class="docutils literal notranslate"><span class="pre">DevOps::getattr()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#_CPPv4N4Gaia2Fs9DeviceOpsE"><code class="docutils literal notranslate"><span class="pre">DeviceOps</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#_CPPv4N4Gaia2Fs9DeviceOps5writeE5dev_tN3frg4spanI7uint8_tEE5off_t"><code class="docutils literal notranslate"><span class="pre">DeviceOps::write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#_CPPv4N4Gaia2Fs9DeviceOps4readE5dev_tN3frg4spanI7uint8_tEE5off_t"><code class="docutils literal notranslate"><span class="pre">DeviceOps::read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#_CPPv4N4Gaia2Fs9DeviceOps5ioctlE5dev_t8uint64_tPv"><code class="docutils literal notranslate"><span class="pre">DeviceOps::ioctl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Fs_1_1DeviceOps.html#_CPPv4N4Gaia2Fs9DeviceOps7getattrE5dev_t"><code class="docutils literal notranslate"><span class="pre">DeviceOps::getattr()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -3061,9 +3066,10 @@
 <li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTYE"><code class="docutils literal notranslate"><span class="pre">TTY</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY13WriteCallbackE"><code class="docutils literal notranslate"><span class="pre">TTY::WriteCallback</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY3TTYE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">TTY::TTY()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY5inputEc"><code class="docutils literal notranslate"><span class="pre">TTY::input()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY5inputEh"><code class="docutils literal notranslate"><span class="pre">TTY::input()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY18set_write_callbackEP13WriteCallbackPv"><code class="docutils literal notranslate"><span class="pre">TTY::set_write_callback()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY3opsE"><code class="docutils literal notranslate"><span class="pre">TTY::ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY12in_mediumrawE"><code class="docutils literal notranslate"><span class="pre">TTY::in_mediumraw</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY12register_ttyEP3TTY5dev_t"><code class="docutils literal notranslate"><span class="pre">TTY::register_tty()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Posix_1_1TTY.html#_CPPv4N4Gaia5Posix3TTY3OpsE"><code class="docutils literal notranslate"><span class="pre">TTY::Ops</span></code></a></li>
 </ul>
@@ -3120,8 +3126,12 @@
 <li class="toctree-l3"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4I0_6size_tEN4Gaia10RingbufferE"><code class="docutils literal notranslate"><span class="pre">Ringbuffer</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4N4Gaia10Ringbuffer4pushE1T"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::push()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4N4Gaia10Ringbuffer3popEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4N4Gaia10Ringbuffer10erase_lastEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::erase_last()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4NK4Gaia10Ringbuffer4peekEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::peek()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4NK4Gaia10Ringbuffer4peekE6size_t"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::peek()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4NK4Gaia10Ringbuffer4sizeEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4NK4Gaia10Ringbuffer7is_fullEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::is_full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGaia_1_1Ringbuffer.html#_CPPv4NK4Gaia10Ringbuffer8is_emptyEv"><code class="docutils literal notranslate"><span class="pre">Ringbuffer::is_empty()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -3432,6 +3442,24 @@
 <li class="toctree-l4"><a class="reference internal" href="enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc.html#_CPPv4N4Gaia3Ipl8DISPATCHE"><code class="docutils literal notranslate"><span class="pre">Ipl::DISPATCH</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc.html#_CPPv4N4Gaia3Ipl6DEVICEE"><code class="docutils literal notranslate"><span class="pre">Ipl::DEVICE</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="enum_ipl_8hpp_1a3c23cbfb1657b716099d28ba6c50b4fc.html#_CPPv4N4Gaia3Ipl4HIGHE"><code class="docutils literal notranslate"><span class="pre">Ipl::HIGH</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html">Enum Subsystem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#enum-documentation">Enum Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9SubsystemE"><code class="docutils literal notranslate"><span class="pre">Subsystem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9Subsystem7UNKNOWNE"><code class="docutils literal notranslate"><span class="pre">Subsystem::UNKNOWN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9Subsystem5SCHEDE"><code class="docutils literal notranslate"><span class="pre">Subsystem::SCHED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9Subsystem3DEVE"><code class="docutils literal notranslate"><span class="pre">Subsystem::DEV</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9Subsystem2FSE"><code class="docutils literal notranslate"><span class="pre">Subsystem::FS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa.html#_CPPv4N4Gaia2Vm9Subsystem2VME"><code class="docutils literal notranslate"><span class="pre">Subsystem::VM</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -4128,6 +4156,17 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="function_main_8hpp_1a222866e932481a08ed651a054711de6d.html">Function Gaia::charon</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_main_8hpp_1a222866e932481a08ed651a054711de6d.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_main_8hpp_1a222866e932481a08ed651a054711de6d.html#_CPPv4N4Gaia6charonEv"><code class="docutils literal notranslate"><span class="pre">charon()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e.html">Function Gaia::cpu_self</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_kernel_2cpu_8hpp_1a2ecdd541eaa9b1fb429a4cabd660d31e.html#_CPPv4N4Gaia8cpu_selfEv"><code class="docutils literal notranslate"><span class="pre">cpu_self()</span></code></a></li>
@@ -4323,9 +4362,9 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="function_devfs_8hpp_1a5f68c6cfbf86deb284d3b76decd9247f.html">Function Gaia::Fs::dev_alloc_major</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="function_devfs_8hpp_1a5f68c6cfbf86deb284d3b76decd9247f.html#function-documentation">Function Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="function_devfs_8hpp_1a5f68c6cfbf86deb284d3b76decd9247f.html#_CPPv4N4Gaia2Fs15dev_alloc_majorEP6DevOps"><code class="docutils literal notranslate"><span class="pre">dev_alloc_major()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_devfs_8hpp_1a34e43a1d10f4844ba30e3a32dd38f552.html">Function Gaia::Fs::dev_alloc_major</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_devfs_8hpp_1a34e43a1d10f4844ba30e3a32dd38f552.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_devfs_8hpp_1a34e43a1d10f4844ba30e3a32dd38f552.html#_CPPv4N4Gaia2Fs15dev_alloc_majorEP9DeviceOps"><code class="docutils literal notranslate"><span class="pre">dev_alloc_major()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -4565,6 +4604,17 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="function_int_8hpp_1a91712caf3e4bfdc3fc63fa7d5d9b1a78.html">Function Gaia::Hal::get_time_of_day</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_int_8hpp_1a91712caf3e4bfdc3fc63fa7d5d9b1a78.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_int_8hpp_1a91712caf3e4bfdc3fc63fa7d5d9b1a78.html#_CPPv4N4Gaia3Hal15get_time_of_dayEv"><code class="docutils literal notranslate"><span class="pre">get_time_of_day()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="function_hal_8hpp_1acdc924e74fd0fffdacf8a67422c8cead.html">Function Gaia::Hal::get_time_since_boot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_hal_8hpp_1acdc924e74fd0fffdacf8a67422c8cead.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_hal_8hpp_1acdc924e74fd0fffdacf8a67422c8cead.html#_CPPv4N4Gaia3Hal19get_time_since_bootEv"><code class="docutils literal notranslate"><span class="pre">get_time_since_boot()</span></code></a></li>
@@ -4576,9 +4626,9 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="function_int_8hpp_1aeba1d3ce04b656c7536eb9547be1e699.html">Function Gaia::Hal::get_timer_remaining</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="function_int_8hpp_1aeba1d3ce04b656c7536eb9547be1e699.html#function-documentation">Function Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="function_int_8hpp_1aeba1d3ce04b656c7536eb9547be1e699.html#_CPPv4N4Gaia3Hal19get_timer_remainingEv"><code class="docutils literal notranslate"><span class="pre">get_timer_remaining()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_int_8hpp_1a576cba098574a77a819f5318171b85a4.html">Function Gaia::Hal::get_timer_count</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_int_8hpp_1a576cba098574a77a819f5318171b85a4.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_int_8hpp_1a576cba098574a77a819f5318171b85a4.html#_CPPv4N4Gaia3Hal15get_timer_countEv"><code class="docutils literal notranslate"><span class="pre">get_timer_count()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -4645,17 +4695,6 @@
 <li class="toctree-l1"><a class="reference internal" href="function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390.html">Function Gaia::Hal::set_ipl</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390.html#_CPPv4N4Gaia3Hal7set_iplE3Ipl"><code class="docutils literal notranslate"><span class="pre">set_ipl()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="function_int_8hpp_1a4807506df2189c6f9ca35ad03529ebcf.html">Function Gaia::Hal::set_timer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="function_int_8hpp_1a4807506df2189c6f9ca35ad03529ebcf.html#function-documentation">Function Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="function_int_8hpp_1a4807506df2189c6f9ca35ad03529ebcf.html#_CPPv4N4Gaia3Hal9set_timerE8uint64_t"><code class="docutils literal notranslate"><span class="pre">set_timer()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -4881,6 +4920,17 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="function_sched_8hpp_1a75c2d09b4f03e48270a3c6c1506425ba.html">Function Gaia::sched_register_cpu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_sched_8hpp_1a75c2d09b4f03e48270a3c6c1506425ba.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_sched_8hpp_1a75c2d09b4f03e48270a3c6c1506425ba.html#_CPPv4N4Gaia18sched_register_cpuEP3Cpu"><code class="docutils literal notranslate"><span class="pre">sched_register_cpu()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303.html">Function Gaia::sched_send_to_death</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303.html#_CPPv4N4Gaia19sched_send_to_deathEP6Thread"><code class="docutils literal notranslate"><span class="pre">sched_send_to_death()</span></code></a></li>
@@ -4980,6 +5030,17 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="function_heap_8hpp_1a18d6ba8d553fff36872f0b2f5a16f290.html">Function Gaia::Vm::dump_heap_stats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_heap_8hpp_1a18d6ba8d553fff36872f0b2f5a16f290.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_heap_8hpp_1a18d6ba8d553fff36872f0b2f5a16f290.html#_CPPv4N4Gaia2Vm15dump_heap_statsEv"><code class="docutils literal notranslate"><span class="pre">dump_heap_stats()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0.html">Function Gaia::Vm::free</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0.html#_CPPv4N4Gaia2Vm4freeEPv"><code class="docutils literal notranslate"><span class="pre">free()</span></code></a></li>
@@ -5038,6 +5099,17 @@
 <li class="toctree-l1"><a class="reference internal" href="function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d.html">Function Gaia::Vm::phys_free</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_phys_8hpp_1ac236ff9dfbfdd07d3f4dea30ad62df8d.html#_CPPv4N4Gaia2Vm9phys_freeEPv"><code class="docutils literal notranslate"><span class="pre">phys_free()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_phys_8hpp_1ab4745996648d4bc78dfa8db2120966bf.html">Function Gaia::Vm::phys_highest_mappable_page</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_phys_8hpp_1ab4745996648d4bc78dfa8db2120966bf.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_phys_8hpp_1ab4745996648d4bc78dfa8db2120966bf.html#_CPPv4N4Gaia2Vm26phys_highest_mappable_pageEv"><code class="docutils literal notranslate"><span class="pre">phys_highest_mappable_page()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -5178,6 +5250,28 @@
 <li class="toctree-l1"><a class="reference internal" href="function_base_8hpp_1a6fa7dda53d01b965ef0c4ccdcd983ad1.html">Function memset</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="function_base_8hpp_1a6fa7dda53d01b965ef0c4ccdcd983ad1.html#function-documentation">Function Documentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="function_base_8hpp_1a6fa7dda53d01b965ef0c4ccdcd983ad1.html#_CPPv46memsetPvi6size_t"><code class="docutils literal notranslate"><span class="pre">memset()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_heap_8hpp_1ad39fe4bc60151289b7b6cd6e7a24d29e.html">Function operator new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_heap_8hpp_1ad39fe4bc60151289b7b6cd6e7a24d29e.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_heap_8hpp_1ad39fe4bc60151289b7b6cd6e7a24d29e.html#_CPPv4nw6size_tN4Gaia2Vm9SubsystemE"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">new()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_heap_8hpp_1a21720b3124c8f3f1d3ea2f96a21d948f.html">Function operator new[]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_heap_8hpp_1a21720b3124c8f3f1d3ea2f96a21d948f.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_heap_8hpp_1a21720b3124c8f3f1d3ea2f96a21d948f.html#_CPPv4na6size_tN4Gaia2Vm9SubsystemE"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">new[]()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -5607,6 +5701,14 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="define_log_8hpp_1ad616b76a55f585c9f7f75af50575911a.html">Define ENABLE_ASSERTS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_log_8hpp_1ad616b76a55f585c9f7f75af50575911a.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="define_vmem_8h_1ac63b63c87a24885af8efe3637e0333e6.html">Define FREELISTS_N</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="define_vmem_8h_1ac63b63c87a24885af8efe3637e0333e6.html#define-documentation">Define Documentation</a></li>
 </ul>
@@ -5633,6 +5735,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="define_fd_8hpp_1a3e96826be0de3af424f5dc4d463c9686.html">Define HAVE_ARCH_STRUCT_FLOCK</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="define_fd_8hpp_1a3e96826be0de3af424f5dc4d463c9686.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_heap_8hpp_1a8e151f50f81cbca731d0b7357ae04f51.html">Define HEAP_ACCOUNTING_ENABLED</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_heap_8hpp_1a8e151f50f81cbca731d0b7357ae04f51.html#define-documentation">Define Documentation</a></li>
 </ul>
 </li>
 </ul>

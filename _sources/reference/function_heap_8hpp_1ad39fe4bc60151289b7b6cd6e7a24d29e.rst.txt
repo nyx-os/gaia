@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1ad39fe4bc60151289b7b6cd6e7a24d29e:
+
+Function operator new
+=====================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: operator new(size_t, Gaia::Vm::Subsystem)
+   :project: ExhaleCompanion

@@ -47,8 +47,8 @@
 <span class="cp">#define MINORMASK ((1U &lt;&lt; MINORBITS) - 1)</span>
 
 <span class="cp">#define MINOR(dev) ((unsigned int)((dev) &gt;&gt; MINORBITS))</span>
-<span class="cp">#define MAJOR(dev) ((unsigned int)((dev) &amp; MINORMASK))</span>
-<span class="cp">#define MAKEDEV(ma, mi) (((ma) &lt;&lt; MINORBITS) | (mi))</span>
+<span class="cp">#define MAJOR(dev) ((unsigned int)((dev)&amp;MINORMASK))</span>
+<span class="cp">#define MAKEDEV(ma, mi) (((mi) &lt;&lt; MINORBITS) | (ma))</span>
 
 <span class="c1">// Pretty much the same thing as tmpfs, but for devices</span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Fs</span><span class="w"> </span><span class="p">{</span>
@@ -83,7 +83,7 @@
 <span class="w">                                </span><span class="kt">off_t</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">DevOps</span><span class="w"> </span><span class="p">{</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeviceOps</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="kt">dev_t</span><span class="w"> </span><span class="n">minor</span><span class="p">,</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span>
 <span class="w">                                      </span><span class="kt">off_t</span><span class="w"> </span><span class="n">off</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -98,7 +98,7 @@
 <span class="w">  </span><span class="c1">// TODO: mmap</span>
 <span class="p">};</span>
 
-<span class="n">Result</span><span class="o">&lt;</span><span class="kt">dev_t</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dev_alloc_major</span><span class="p">(</span><span class="n">DevOps</span><span class="w"> </span><span class="o">*</span><span class="n">ops</span><span class="p">);</span>
+<span class="n">Result</span><span class="o">&lt;</span><span class="kt">dev_t</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dev_alloc_major</span><span class="p">(</span><span class="n">DeviceOps</span><span class="w"> </span><span class="o">*</span><span class="n">ops</span><span class="p">);</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">devfs_init</span><span class="p">();</span>
 

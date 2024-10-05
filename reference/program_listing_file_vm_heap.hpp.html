@@ -46,6 +46,8 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/vector.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/base.hpp&gt;</span>
 
+<span class="cp">#define HEAP_ACCOUNTING_ENABLED 1</span>
+
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Vm</span><span class="w"> </span><span class="p">{</span>
 <span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">malloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">bytes</span><span class="p">);</span>
 <span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">free</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="p">);</span>
@@ -80,7 +82,20 @@
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">HeapAllocator</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">UniquePtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">MemoryAllocator</span><span class="o">&gt;</span><span class="p">;</span>
 
+<span class="k">enum</span><span class="w"> </span><span class="nc">Subsystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">UNKNOWN</span><span class="p">,</span>
+<span class="w">  </span><span class="n">SCHED</span><span class="p">,</span>
+<span class="w">  </span><span class="n">DEV</span><span class="p">,</span>
+<span class="w">  </span><span class="n">FS</span><span class="p">,</span>
+<span class="w">  </span><span class="n">VM</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">dump_heap_stats</span><span class="p">();</span>
+
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Vm</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Gaia</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Subsystem</span><span class="w"> </span><span class="n">subsystem</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="k">operator</span><span class="w"> </span><span class="k">new</span><span class="p">[](</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Gaia</span><span class="o">::</span><span class="n">Vm</span><span class="o">::</span><span class="n">Subsystem</span><span class="w"> </span><span class="n">subsystem</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>

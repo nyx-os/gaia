@@ -131,7 +131,7 @@
 <span class="cm">/* Boot info */</span>
 
 <span class="cp">#define LIMINE_BOOTLOADER_INFO_REQUEST                                         \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0xf55038d8e2a1202f, 0x279426fcf5f59740}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0xf55038d8e2a1202f, 0x279426fcf5f59740 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_bootloader_info_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -148,7 +148,7 @@
 <span class="cm">/* Stack size */</span>
 
 <span class="cp">#define LIMINE_STACK_SIZE_REQUEST                                              \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x224ef0460a8e8926, 0xe1cb0fc25f46ea3d}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x224ef0460a8e8926, 0xe1cb0fc25f46ea3d }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_stack_size_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -164,7 +164,7 @@
 <span class="cm">/* HHDM */</span>
 
 <span class="cp">#define LIMINE_HHDM_REQUEST                                                    \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x48dcf1cb8ad2b852, 0x63984e959a98244b}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x48dcf1cb8ad2b852, 0x63984e959a98244b }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_hhdm_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -180,7 +180,7 @@
 <span class="cm">/* Framebuffer */</span>
 
 <span class="cp">#define LIMINE_FRAMEBUFFER_REQUEST                                             \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x9d5827dcd881dd75, 0xa3148604f6fab11b}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x9d5827dcd881dd75, 0xa3148604f6fab11b }</span>
 
 <span class="cp">#define LIMINE_FRAMEBUFFER_RGB 1</span>
 
@@ -234,7 +234,7 @@
 <span class="cm">/* Terminal */</span>
 
 <span class="cp">#define LIMINE_TERMINAL_REQUEST                                                \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0xc8ac59310c2b0844, 0xa68d0c7265d38878}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0xc8ac59310c2b0844, 0xa68d0c7265d38878 }</span>
 
 <span class="cp">#define LIMINE_TERMINAL_CB_DEC 10</span>
 <span class="cp">#define LIMINE_TERMINAL_CB_BELL 20</span>
@@ -297,7 +297,7 @@
 <span class="cm">/* Paging mode */</span>
 
 <span class="cp">#define LIMINE_PAGING_MODE_REQUEST                                             \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x95c1a0edab0944cb, 0xa4e5cb3842f7488a}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x95c1a0edab0944cb, 0xa4e5cb3842f7488a }</span>
 
 <span class="cp">#if defined(__x86_64__) || defined(__i386__)</span>
 <span class="cp">#define LIMINE_PAGING_MODE_Amd64_4LVL 0</span>
@@ -336,7 +336,7 @@
 <span class="cm">/* 5-level paging */</span>
 
 <span class="cp">#define LIMINE_5_LEVEL_PAGING_REQUEST                                          \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x94469551da9b3192, 0xebe5e86db7382888}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x94469551da9b3192, 0xebe5e86db7382888 }</span>
 
 <span class="n">LIMINE_DEPRECATED_IGNORE_START</span>
 
@@ -355,7 +355,7 @@
 <span class="cm">/* SMP */</span>
 
 <span class="cp">#define LIMINE_SMP_REQUEST                                                     \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x95a67b819a1b857e, 0xa0b61b723b6a73e0}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x95a67b819a1b857e, 0xa0b61b723b6a73e0 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smp_info</span><span class="p">;</span>
 
@@ -432,7 +432,7 @@
 <span class="cm">/* Memory map */</span>
 
 <span class="cp">#define LIMINE_MEMMAP_REQUEST                                                  \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x67cf3d9d378a806f, 0xe304acdfc50c3c62}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x67cf3d9d378a806f, 0xe304acdfc50c3c62 }</span>
 
 <span class="cp">#define LIMINE_MEMMAP_USABLE 0</span>
 <span class="cp">#define LIMINE_MEMMAP_RESERVED 1</span>
@@ -464,7 +464,7 @@
 <span class="cm">/* Entry point */</span>
 
 <span class="cp">#define LIMINE_ENTRY_POINT_REQUEST                                             \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x13d86c035a1cd3e1, 0x2b0caa89d8f3026a}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x13d86c035a1cd3e1, 0x2b0caa89d8f3026a }</span>
 
 <span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">limine_entry_point</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
 
@@ -482,7 +482,7 @@
 <span class="cm">/* Kernel File */</span>
 
 <span class="cp">#define LIMINE_KERNEL_FILE_REQUEST                                             \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0xad97e90e83f1ed67, 0x31eb5d1c5ff23b69}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0xad97e90e83f1ed67, 0x31eb5d1c5ff23b69 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_kernel_file_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -498,7 +498,7 @@
 <span class="cm">/* Module */</span>
 
 <span class="cp">#define LIMINE_MODULE_REQUEST                                                  \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x3e7e279702be32af, 0xca1c4f3bd1280cee}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x3e7e279702be32af, 0xca1c4f3bd1280cee }</span>
 
 <span class="cp">#define LIMINE_INTERNAL_MODULE_REQUIRED (1 &lt;&lt; 0)</span>
 <span class="cp">#define LIMINE_INTERNAL_MODULE_COMPRESSED (1 &lt;&lt; 1)</span>
@@ -528,7 +528,7 @@
 <span class="cm">/* RSDP */</span>
 
 <span class="cp">#define LIMINE_RSDP_REQUEST                                                    \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0xc5e77b6b397e7b43, 0x27637845accdcf3c}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0xc5e77b6b397e7b43, 0x27637845accdcf3c }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_rsdp_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -544,7 +544,7 @@
 <span class="cm">/* SMBIOS */</span>
 
 <span class="cp">#define LIMINE_SMBIOS_REQUEST                                                  \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x9e9046f11e095391, 0xaa4a520fefbde5ee}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x9e9046f11e095391, 0xaa4a520fefbde5ee }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_smbios_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -561,7 +561,7 @@
 <span class="cm">/* EFI system table */</span>
 
 <span class="cp">#define LIMINE_EFI_SYSTEM_TABLE_REQUEST                                        \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x5ceba5163eaaf6d6, 0x0a6981610cf65fcc}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x5ceba5163eaaf6d6, 0x0a6981610cf65fcc }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_system_table_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -577,7 +577,7 @@
 <span class="cm">/* EFI memory map */</span>
 
 <span class="cp">#define LIMINE_EFI_MEMMAP_REQUEST                                              \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x7df62a431d6872d5, 0xa4fcdfb3e57306c8}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x7df62a431d6872d5, 0xa4fcdfb3e57306c8 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_efi_memmap_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -596,7 +596,7 @@
 <span class="cm">/* Boot time */</span>
 
 <span class="cp">#define LIMINE_BOOT_TIME_REQUEST                                               \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x502746e184c088aa, 0xfbc5ec83e6327893}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x502746e184c088aa, 0xfbc5ec83e6327893 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_boot_time_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -612,7 +612,7 @@
 <span class="cm">/* Kernel address */</span>
 
 <span class="cp">#define LIMINE_KERNEL_ADDRESS_REQUEST                                          \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0x71ba76863cc55f63, 0xb2644a48c516a487}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0x71ba76863cc55f63, 0xb2644a48c516a487 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_kernel_address_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>
@@ -629,7 +629,7 @@
 <span class="cm">/* Device Tree Blob */</span>
 
 <span class="cp">#define LIMINE_DTB_REQUEST                                                     \</span>
-<span class="cp">  {LIMINE_COMMON_MAGIC, 0xb40ddb48fb54bac7, 0x545081493f81ffb7}</span>
+<span class="cp">  { LIMINE_COMMON_MAGIC, 0xb40ddb48fb54bac7, 0x545081493f81ffb7 }</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">limine_dtb_response</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">revision</span><span class="p">;</span>

@@ -12,7 +12,7 @@ Program Listing for File wait.hpp
 
 .. code-block:: cpp
 
-   /* @license:bsd2 */
+   /* SPDX-License-Identifier: BSD-2-Clause */
    #pragma once
    
    #include "kernel/sched.hpp"

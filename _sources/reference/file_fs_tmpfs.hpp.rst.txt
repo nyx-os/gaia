@@ -34,11 +34,15 @@ Includes
 
 - ``frg/array.hpp``
 
+- ``frg/hash_map.hpp``
+
 - ``fs/vfs.hpp`` (:ref:`file_fs_vfs.hpp`)
 
 - ``lib/charon.hpp`` (:ref:`file_lib_charon.hpp`)
 
 - ``lib/list.hpp`` (:ref:`file_lib_list.hpp`)
+
+- ``vm/heap.hpp`` (:ref:`file_vm_heap.hpp`)
 
 
 

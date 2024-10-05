@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_heap_8hpp_1a18d6ba8d553fff36872f0b2f5a16f290:
+
+Function Gaia::Vm::dump_heap_stats
+==================================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::dump_heap_stats()
+   :project: ExhaleCompanion

@@ -53,7 +53,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/stat.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
 
-<span class="cp">#define OFLAG_WRITABLE(flag) (((flag) &amp; O_RDWR) || ((flag) &amp; O_WRONLY))</span>
+<span class="cp">#define OFLAG_WRITABLE(flag) (((flag)&amp;O_RDWR) || ((flag)&amp;O_WRONLY))</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Posix</span><span class="w"> </span><span class="p">{</span>
 
@@ -323,7 +323,12 @@
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="p">(</span><span class="n">EINVAL</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">ASSERT</span><span class="p">(</span><span class="o">!</span><span class="n">bitmap</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="s">&quot;Handle closing FDs in dup2&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bitmap</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="n">number</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">      </span><span class="k">delete</span><span class="w"> </span><span class="n">fds</span><span class="p">[</span><span class="n">number</span><span class="p">];</span>
+<span class="w">      </span><span class="c1">// we might need to delete the allocated FD here</span>
+<span class="w">      </span><span class="n">free</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">bitmap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
 <span class="w">    </span><span class="n">fds</span><span class="p">[</span><span class="n">number</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>

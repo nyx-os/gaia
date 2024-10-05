@@ -95,6 +95,8 @@ Defines
 
 - :ref:`exhale_define_log_8hpp_1a2cafe348939f5590eda29d13da17dc8c`
 
+- :ref:`exhale_define_log_8hpp_1ad616b76a55f585c9f7f75af50575911a`
+
 
 Variables
 ---------

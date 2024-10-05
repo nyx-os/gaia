@@ -22,10 +22,16 @@ Program Listing for File log.hpp
    
    namespace Gaia {
    
+   #define ENABLE_ASSERTS 1
+   
+   #if ENABLE_ASSERTS
    #define ASSERT(CONDITION)                                                      \
      ((CONDITION) ? (void)0                                                       \
                   : panic("assertion '{}' failed at {}:{}", #CONDITION, __FILE__, \
                           __LINE__))
+   #else
+   #define ASSERT(CONDITION) ((void)(0))
+   #endif
    
    class DebugSink {
    public:

@@ -27,6 +27,7 @@ Program Listing for File phys.hpp
    
    size_t phys_usable_pages();
    uintptr_t phys_highest_usable_page();
+   uintptr_t phys_highest_mappable_page();
    size_t phys_total_pages();
    
    } // namespace Gaia::Vm

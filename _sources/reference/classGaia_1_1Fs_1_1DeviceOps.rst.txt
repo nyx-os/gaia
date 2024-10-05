@@ -1,9 +1,9 @@
 :github_url: https://github.com/nyx-org/gaia
 
-.. _exhale_class_classGaia_1_1Fs_1_1DevOps:
+.. _exhale_class_classGaia_1_1Fs_1_1DeviceOps:
 
-Class DevOps
-============
+Class DeviceOps
+===============
 
 - Defined in :ref:`file_fs_devfs.hpp`
 
@@ -26,7 +26,7 @@ Class Documentation
 -------------------
 
 
-.. doxygenclass:: Gaia::Fs::DevOps
+.. doxygenclass:: Gaia::Fs::DeviceOps
    :project: ExhaleCompanion
    :members:
    :protected-members:

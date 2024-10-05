@@ -116,6 +116,8 @@ Functions
 
 - :ref:`exhale_function_sched_8hpp_1a92c1df8517ed7928662b06ea255d35cf`
 
+- :ref:`exhale_function_sched_8hpp_1a75c2d09b4f03e48270a3c6c1506425ba`
+
 - :ref:`exhale_function_sched_8hpp_1ad0bddf41671d0ea562a971748b5cb303`
 
 - :ref:`exhale_function_sched_8hpp_1aa3d9b68ec8dc6e1dd42e55567faec6f6`

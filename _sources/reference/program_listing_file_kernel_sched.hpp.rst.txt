@@ -100,4 +100,6 @@ Program Listing for File sched.hpp
    
    Task *sched_kernel_task();
    
+   void sched_register_cpu(Cpu *cpu);
+   
    } // namespace Gaia

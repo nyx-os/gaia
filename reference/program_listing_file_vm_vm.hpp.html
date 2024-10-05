@@ -39,7 +39,6 @@
 <p>↰ <a class="reference internal" href="file_vm_vm.hpp.html#file-vm-vm-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">vm/vm.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/manual_box.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/spinlock.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lib/list.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/hal.hpp&gt;</span>
@@ -154,7 +153,7 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">release</span><span class="p">();</span>
 <span class="w">  </span><span class="n">Anon</span><span class="w"> </span><span class="o">*</span><span class="nf">copy</span><span class="p">();</span>
 <span class="w">  </span><span class="n">Anon</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">physpage</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span>
-<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">refcnt</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">physpage</span><span class="p">(</span><span class="n">physpage</span><span class="p">),</span><span class="w"> </span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">refcnt</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">physpage</span><span class="p">(</span><span class="n">physpage</span><span class="p">),</span><span class="w"> </span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="p">){};</span>
 <span class="p">};</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">AnonMap</span><span class="w"> </span><span class="p">{</span>
@@ -175,7 +174,6 @@
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Entry</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Entry</span><span class="o">::</span><span class="n">link</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entries</span><span class="p">;</span>
 <span class="p">};</span>
-
 <span class="p">}</span><span class="w"> </span><span class="c1">// namespace Gaia::Vm</span>
 </pre></div>
 </div>

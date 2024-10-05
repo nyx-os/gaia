@@ -55,8 +55,10 @@
 <span class="n">register_interrupt_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptHandler</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">,</span>
 <span class="w">                           </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">Hal</span><span class="o">::</span><span class="n">InterruptEntry</span><span class="w"> </span><span class="o">*</span><span class="n">entry</span><span class="p">);</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">set_timer</span><span class="p">(</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">us</span><span class="p">);</span>
-<span class="kt">uint64_t</span><span class="w"> </span><span class="nf">get_timer_remaining</span><span class="p">();</span>
+<span class="kt">uint64_t</span><span class="w"> </span><span class="nf">get_timer_count</span><span class="p">();</span>
+
+<span class="c1">// Returns seconds since epoch</span>
+<span class="kt">uint64_t</span><span class="w"> </span><span class="nf">get_time_of_day</span><span class="p">();</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">do_context_switch</span><span class="p">();</span>
 

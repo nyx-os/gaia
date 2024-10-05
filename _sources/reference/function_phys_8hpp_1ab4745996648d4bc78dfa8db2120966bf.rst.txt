@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_phys_8hpp_1ab4745996648d4bc78dfa8db2120966bf:
+
+Function Gaia::Vm::phys_highest_mappable_page
+=============================================
+
+- Defined in :ref:`file_vm_phys.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Vm::phys_highest_mappable_page()
+   :project: ExhaleCompanion

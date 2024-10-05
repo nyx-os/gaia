@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1a576cba098574a77a819f5318171b85a4:
+
+Function Gaia::Hal::get_timer_count
+===================================
+
+- Defined in :ref:`file_platform_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::get_timer_count()
+   :project: ExhaleCompanion

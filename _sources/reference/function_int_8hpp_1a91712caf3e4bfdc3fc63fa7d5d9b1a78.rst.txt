@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_function_int_8hpp_1a91712caf3e4bfdc3fc63fa7d5d9b1a78:
+
+Function Gaia::Hal::get_time_of_day
+===================================
+
+- Defined in :ref:`file_platform_hal_int.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: Gaia::Hal::get_time_of_day()
+   :project: ExhaleCompanion

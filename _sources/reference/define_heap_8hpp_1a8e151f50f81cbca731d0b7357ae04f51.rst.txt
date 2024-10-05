@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_define_heap_8hpp_1a8e151f50f81cbca731d0b7357ae04f51:
+
+Define HEAP_ACCOUNTING_ENABLED
+==============================
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: HEAP_ACCOUNTING_ENABLED
+   :project: ExhaleCompanion

@@ -1,0 +1,16 @@
+:github_url: https://github.com/nyx-org/gaia
+
+.. _exhale_enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa:
+
+Enum Subsystem
+==============
+
+- Defined in :ref:`file_vm_heap.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: Gaia::Vm::Subsystem
+   :project: ExhaleCompanion

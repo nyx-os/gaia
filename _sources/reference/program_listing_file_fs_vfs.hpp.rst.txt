@@ -126,7 +126,7 @@ Program Listing for File vfs.hpp
      Vnode *vn = nullptr;
      bool root = false;
    
-     if (segments[0][0] == '/') {
+     if (pathname[0] == '/') {
        vn = root_vnode;
        root = true;
      } else {
@@ -154,7 +154,7 @@ Program Listing for File vfs.hpp
      Vnode *vn;
      bool root = false;
    
-     if (segments[0][0] == '/') {
+     if (pathname[0] == '/') {
        vn = root_vnode;
        root = true;
      } else {
@@ -182,7 +182,7 @@ Program Listing for File vfs.hpp
      Vnode *vn;
      bool root = false;
    
-     if (segments[0][0] == '/') {
+     if (pathname[0] == '/') {
        vn = root_vnode;
        root = true;
      } else {

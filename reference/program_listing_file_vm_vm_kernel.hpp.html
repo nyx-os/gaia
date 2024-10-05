@@ -45,9 +45,7 @@
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="o">::</span><span class="nn">Vm</span><span class="w"> </span><span class="p">{</span>
 
-<span class="cp">#define KERNEL_HEAP_BASE                                                       \</span>
-<span class="cp">  (Gaia::Hal::phys_to_virt(0) +                                                \</span>
-<span class="cp">   MAX(GIB(4), phys_total_pages() * Hal::PAGE_SIZE))</span>
+<span class="cp">#define KERNEL_HEAP_BASE 0xffff810000000000</span>
 <span class="cp">#define KERNEL_HEAP_SIZE GIB(4)</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">vm_kernel_init</span><span class="p">();</span>

@@ -20,7 +20,7 @@ Program Listing for File charon.hpp
    namespace Gaia {
    constexpr auto CHARON_MODULE_MAX = 16; 
    constexpr auto CHARON_MMAP_SIZE_MAX =
-       48; 
+       64; 
    enum CharonMmapEntryType : uint8_t {
      FREE,        
      RESERVED,    
@@ -72,6 +72,7 @@ Program Listing for File charon.hpp
      CharonFramebuffer framebuffer; 
      CharonModules modules;         
      CharonMemoryMap memory_map;    
+     int64_t boot_time;             
    };
    
    } // namespace Gaia

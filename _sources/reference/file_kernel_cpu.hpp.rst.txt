@@ -38,6 +38,8 @@ Includes
 
 - ``kernel/sched.hpp`` (:ref:`file_kernel_sched.hpp`)
 
+- ``lib/spinlock.hpp`` (:ref:`file_lib_spinlock.hpp`)
+
 
 
 Included By

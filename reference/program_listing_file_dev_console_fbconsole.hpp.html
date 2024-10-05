@@ -53,7 +53,7 @@
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">puts</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">puts</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">log_output</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">input</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">input</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">create_dev</span><span class="p">();</span>
@@ -61,13 +61,13 @@
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">class_name</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;FbConsole&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">name</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;FbConsole&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
+<span class="w">  </span><span class="n">Posix</span><span class="o">::</span><span class="n">TTY</span><span class="w"> </span><span class="o">*</span><span class="n">tty</span><span class="p">;</span>
+
 <span class="k">private</span><span class="o">:</span>
 <span class="w">  </span><span class="n">flanterm_context</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">;</span>
 <span class="w">  </span><span class="n">CharonFramebuffer</span><span class="w"> </span><span class="n">fb</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">enable_log</span><span class="p">;</span>
 <span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">FbOps</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">Posix</span><span class="o">::</span><span class="n">TTY</span><span class="w"> </span><span class="o">*</span><span class="n">tty</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="n">FbConsole</span><span class="w"> </span><span class="o">*</span><span class="nf">system_console</span><span class="p">();</span>

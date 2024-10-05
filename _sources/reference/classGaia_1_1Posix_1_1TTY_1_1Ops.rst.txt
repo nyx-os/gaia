@@ -25,7 +25,7 @@ Inheritance Relationships
 Base Type
 *********
 
-- ``public Gaia::Fs::DevOps`` (:ref:`exhale_class_classGaia_1_1Fs_1_1DevOps`)
+- ``public Gaia::Fs::DeviceOps`` (:ref:`exhale_class_classGaia_1_1Fs_1_1DeviceOps`)
 
 
 Class Documentation

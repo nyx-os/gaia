@@ -32,8 +32,6 @@ Includes
 --------
 
 
-- ``frg/manual_box.hpp``
-
 - ``frg/spinlock.hpp``
 
 - ``hal/hal.hpp`` (:ref:`file_platform_hal_hal.hpp`)

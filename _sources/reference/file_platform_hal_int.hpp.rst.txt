@@ -74,13 +74,13 @@ Functions
 
 - :ref:`exhale_function_int_8hpp_1a16403f820b8570131a6ede6bc43c3964`
 
-- :ref:`exhale_function_int_8hpp_1aeba1d3ce04b656c7536eb9547be1e699`
+- :ref:`exhale_function_int_8hpp_1a91712caf3e4bfdc3fc63fa7d5d9b1a78`
+
+- :ref:`exhale_function_int_8hpp_1a576cba098574a77a819f5318171b85a4`
 
 - :ref:`exhale_function_int_8hpp_1a54d3412698a5d483f9635085317868bb`
 
 - :ref:`exhale_function_int_8hpp_1a59fd4aa39e929f43ce228d6c42383390`
-
-- :ref:`exhale_function_int_8hpp_1a4807506df2189c6f9ca35ad03529ebcf`
 
 
 Typedefs

@@ -37,19 +37,21 @@
   <section id="program-listing-for-file-cpu-hpp">
 <span id="program-listing-file-kernel-cpu-hpp"></span><h1>Program Listing for File cpu.hpp<a class="headerlink" href="#program-listing-for-file-cpu-hpp" title="Link to this heading">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_kernel_cpu.hpp.html#file-kernel-cpu-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">kernel/cpu.hpp</span></code>)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* @license:bsd2 */</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/cpu.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;hal/platform.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;kernel/sched.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/spinlock.hpp&gt;</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="w"> </span><span class="p">{</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">Cpu</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Hal</span><span class="o">::</span><span class="n">CpuData</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">magic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xCAFEBABE</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">curr_time</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">ms</span><span class="p">;</span>
 <span class="w">  </span><span class="n">Thread</span><span class="w"> </span><span class="o">*</span><span class="n">current_thread</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">idle_thread</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">previous_thread</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Spinlock</span><span class="w"> </span><span class="n">timer_lock</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="n">Cpu</span><span class="w"> </span><span class="o">*</span><span class="nf">cpu_self</span><span class="p">();</span>

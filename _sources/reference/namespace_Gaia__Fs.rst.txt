@@ -31,7 +31,7 @@ Classes
 
 - :ref:`exhale_class_classGaia_1_1Fs_1_1Devfs`
 
-- :ref:`exhale_class_classGaia_1_1Fs_1_1DevOps`
+- :ref:`exhale_class_classGaia_1_1Fs_1_1DeviceOps`
 
 - :ref:`exhale_class_classGaia_1_1Fs_1_1VnodeStream`
 
@@ -40,7 +40,7 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_devfs_8hpp_1a5f68c6cfbf86deb284d3b76decd9247f`
+- :ref:`exhale_function_devfs_8hpp_1a34e43a1d10f4844ba30e3a32dd38f552`
 
 - :ref:`exhale_function_devfs_8hpp_1af9945f11e41f4b3c7ea3c792b571a2f5`
 

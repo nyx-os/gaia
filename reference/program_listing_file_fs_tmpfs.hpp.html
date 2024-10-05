@@ -39,6 +39,8 @@
 <p>↰ <a class="reference internal" href="file_fs_tmpfs.hpp.html#file-fs-tmpfs-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">fs/tmpfs.hpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* SPDX-License-Identifier: BSD-2-Clause */</span>
 <span class="cp">#pragma once</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;frg/hash_map.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vm/heap.hpp&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;frg/array.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fs/vfs.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lib/charon.hpp&gt;</span>
@@ -51,7 +53,7 @@
 <span class="k">struct</span><span class="w"> </span><span class="nc">TmpDirent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
 
-<span class="w">  </span><span class="n">ListNode</span><span class="o">&lt;</span><span class="n">TmpDirent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">link</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// ListNode&lt;TmpDirent&gt; link;</span>
 
 <span class="w">  </span><span class="n">TmpNode</span><span class="w"> </span><span class="o">*</span><span class="n">tnode</span><span class="p">;</span>
 
@@ -68,12 +70,16 @@
 <span class="w">  </span><span class="k">union</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="cm">/* VDIR */</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TmpDirent</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">TmpDirent</span><span class="o">::</span><span class="n">link</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entries</span><span class="p">;</span>
+<span class="w">      </span><span class="n">frg</span><span class="o">::</span><span class="n">hash_map</span><span class="o">&lt;</span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="p">,</span><span class="w"> </span><span class="n">TmpDirent</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">frg</span><span class="o">::</span><span class="n">hash</span><span class="o">&lt;</span><span class="n">frg</span><span class="o">::</span><span class="n">string_view</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">Vm</span><span class="o">::</span><span class="n">HeapAllocator</span><span class="o">&gt;</span>
+<span class="w">          </span><span class="n">entries</span><span class="p">;</span>
+<span class="w">      </span><span class="c1">// List&lt;TmpDirent, &amp;TmpDirent::link&gt; entries;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">dir</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/* VREG */</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">      </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">      </span><span class="kt">bool</span><span class="w"> </span><span class="n">compressed</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">reg</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/* VLNK */</span>

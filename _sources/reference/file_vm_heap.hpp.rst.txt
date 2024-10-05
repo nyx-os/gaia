@@ -66,6 +66,8 @@ Included By
 
 - :ref:`file_dev_virtio_virtio.hpp`
 
+- :ref:`file_fs_tmpfs.hpp`
+
 - :ref:`file_fs_vfs.hpp`
 
 
@@ -89,9 +91,18 @@ Classes
 - :ref:`exhale_struct_structGaia_1_1Vm_1_1VirtualAllocator`
 
 
+Enums
+-----
+
+
+- :ref:`exhale_enum_heap_8hpp_1afa84e2f39864a09336acec97601047aa`
+
+
 Functions
 ---------
 
+
+- :ref:`exhale_function_heap_8hpp_1a18d6ba8d553fff36872f0b2f5a16f290`
 
 - :ref:`exhale_function_heap_8hpp_1a554022522bed189b1f970c936df4a9d0`
 
@@ -100,6 +111,17 @@ Functions
 - :ref:`exhale_function_heap_8hpp_1a85e438f6f38533f82332bbc7fe2e3624`
 
 - :ref:`exhale_function_heap_8hpp_1a3388eec7b1f01e9f4276a46275af6ad0`
+
+- :ref:`exhale_function_heap_8hpp_1ad39fe4bc60151289b7b6cd6e7a24d29e`
+
+- :ref:`exhale_function_heap_8hpp_1a21720b3124c8f3f1d3ea2f96a21d948f`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_heap_8hpp_1a8e151f50f81cbca731d0b7357ae04f51`
 
 
 Typedefs

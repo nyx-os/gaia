@@ -40,6 +40,8 @@ Included By
 -----------
 
 
+- :ref:`file_kernel_cpu.hpp`
+
 - :ref:`file_kernel_wait.hpp`
 
 

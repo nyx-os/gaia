@@ -47,10 +47,16 @@
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">Gaia</span><span class="w"> </span><span class="p">{</span>
 
+<span class="cp">#define ENABLE_ASSERTS 1</span>
+
+<span class="cp">#if ENABLE_ASSERTS</span>
 <span class="cp">#define ASSERT(CONDITION)                                                      \</span>
 <span class="cp">  ((CONDITION) ? (void)0                                                       \</span>
 <span class="cp">               : panic(&quot;assertion &#39;{}&#39; failed at {}:{}&quot;, #CONDITION, __FILE__, \</span>
 <span class="cp">                       __LINE__))</span>
+<span class="cp">#else</span>
+<span class="cp">#define ASSERT(CONDITION) ((void)(0))</span>
+<span class="cp">#endif</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">DebugSink</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
