@@ -1,11 +1,12 @@
 #include "hal/hal.hpp"
+#include "vm/heap.hpp"
 #include <vm/phys.hpp>
 #include <vm/vm.hpp>
 
 namespace Gaia::Vm {
 
 AnonMap *AnonMap::copy() {
-  auto new_amap = new AnonMap;
+  auto new_amap = new (Vm::Subsystem::VM) AnonMap;
 
   for (auto entry : entries) {
 #if VM_ENABLE_COW
@@ -42,7 +43,7 @@ frg::optional<AnonMap::Entry *> AnonMap::anon_at(uintptr_t off) {
 }
 
 void AnonMap::insert_anon(Anon *anon) {
-  auto entry = new Entry;
+  auto entry = new (Vm::Subsystem::VM) Entry;
   entry->anon = anon;
   entries.insert_tail(entry);
 }
@@ -62,7 +63,8 @@ Anon *Anon::copy() {
   ASSERT(lock.is_locked());
   ASSERT(this->physpage != nullptr);
 
-  auto newanon = new Anon(phys_alloc(true).unwrap(), offset);
+  auto newanon =
+      new (Vm::Subsystem::VM) Anon(phys_alloc(true).unwrap(), offset);
 
   newanon->refcnt = 1;
   newanon->offset = offset;

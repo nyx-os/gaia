@@ -9,11 +9,8 @@ namespace Gaia::Amd64 {
 static void idlefn() { Hal::halt(); }
 
 void cpu_init(Cpu *cpu) {
-  cpu->idle_thread =
-      sched_new_worker_thread("idle thread", (uintptr_t)idlefn, false).unwrap();
-  cpu->idle_thread->cpu = cpu;
-  cpu->current_thread = cpu->idle_thread;
-  Hal::set_current_thread(cpu->idle_thread);
+  (void)cpu;
+  (void)idlefn;
 }
 
 } // namespace Gaia::Amd64

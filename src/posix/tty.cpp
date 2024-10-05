@@ -1,5 +1,7 @@
 #include <asm-generic/ioctls.h>
 #include <fs/vfs.hpp>
+#include <linux/kd.h>
+#include <linux/keyboard.h>
 #include <posix/tty.hpp>
 #include <sys/stat.h>
 
@@ -14,7 +16,7 @@ void TTY::register_tty(TTY *tty, dev_t minor) {
   ttys[minor] = tty;
 }
 
-Result<Void, Error> TTY::push(char c) {
+Result<Void, Error> TTY::push(unsigned char c) {
   lock.lock();
 
   TRY(buffer.push(c));
@@ -30,17 +32,21 @@ Result<Void, Error> TTY::push(char c) {
   return Ok({});
 }
 
-Result<char, Error> TTY::pop() { return buffer.pop(); }
+Result<unsigned char, Error> TTY::pop() { return buffer.pop(); }
 
-Result<char, Error> TTY::erase() {
-  auto c = TRY(buffer.peek());
+Result<unsigned char, Error> TTY::erase() {
+  if (buffer.size() == 0)
+    return Err(Error::EMPTY);
+
+  auto c = TRY(buffer.peek(buffer.size() - 1));
   if (c == termios.c_cc[VEOL])
-    return Ok((char)0);
-  return buffer.pop();
+    return Ok((unsigned char)0);
+  TRY(buffer.erase_last());
+  return Ok(c);
 }
 
-void TTY::input(char c) {
-  auto is_canon = is_lflag_set(ICANON);
+void TTY::input(unsigned char c) {
+  auto is_canon = is_lflag_set(ICANON) && !in_mediumraw;
 
   // Convert NL to CR
   if (c == '\n' && is_iflag_set(INLCR)) {
@@ -57,7 +63,7 @@ void TTY::input(char c) {
   }
 
   if (is_canon && c == termios.c_cc[VERASE]) {
-    if (erase().unwrap() >= 0) {
+    if (erase().is_ok()) {
       callback('\b', callback_context);
       callback(' ', callback_context);
       callback('\b', callback_context);
@@ -97,6 +103,10 @@ Result<size_t, Error> TTY::Ops::read(dev_t minor, frg::span<uint8_t> buf,
 
   auto tty = ttys[minor];
 
+  if (tty->buffer.is_empty() && tty->in_mediumraw) {
+    return Ok(0ul);
+  }
+
   while (tty->buffer.size() == 0) {
     tty->await_event(-1);
   }
@@ -110,13 +120,12 @@ Result<size_t, Error> TTY::Ops::read(dev_t minor, frg::span<uint8_t> buf,
   tty->lock.lock();
 
   for (i = 0; i < nbyte; i++) {
-    if (tty->buffer.size() == 0) {
+    if (tty->buffer.is_empty()) {
       break;
     }
 
-    char c = TRY(tty->pop());
+    unsigned char c = TRY(tty->pop());
     buf.data()[i] = c;
-
     if (tty->termios.c_lflag & ICANON && c == tty->termios.c_cc[VEOL]) {
       break;
     }
@@ -174,6 +183,12 @@ Result<uint64_t, Error> TTY::Ops::ioctl(dev_t minor, uint64_t request,
   case TIOCGPGRP:
     return Err(Error::NOT_IMPLEMENTED);
 
+  case KDSKBMODE: {
+    if ((uint64_t)arg == K_MEDIUMRAW) {
+      tty->in_mediumraw = true;
+    }
+    return Ok(0ul);
+  }
   default:
     break;
   }

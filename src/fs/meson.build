@@ -1,1 +1,5 @@
-kernel_srcs += files('vfs.cpp', 'tmpfs.cpp', 'devfs.cpp')
+kernel_srcs += files(
+    'devfs.cpp',
+    'tmpfs.cpp',
+    'vfs.cpp',
+)

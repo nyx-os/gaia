@@ -2,12 +2,12 @@
 
 namespace Gaia::Fs {
 
-DevOps *devs[64];
+DeviceOps *devs[64];
 size_t current_major = 0;
 
 static Devfs devfs;
 
-Result<dev_t, Error> dev_alloc_major(DevOps *ops) {
+Result<dev_t, Error> dev_alloc_major(DeviceOps *ops) {
 
   auto ret = current_major++;
 

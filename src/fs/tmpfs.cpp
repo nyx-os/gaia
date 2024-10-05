@@ -1,7 +1,9 @@
+#include "frg/hash_map.hpp"
 #include "frg/optional.hpp"
+#include "frg/string.hpp"
 #include "fs/devfs.hpp"
 #include "fs/vfs.hpp"
-#include "lib/list.hpp"
+#include "vm/heap.hpp"
 #include <dirent.h>
 #include <fs/tmpfs.hpp>
 
@@ -44,8 +46,12 @@ TmpNode::TmpNode(TmpNode *cwd, Vnode::Type type, frg::string_view name,
     reg.buffer = nullptr;
     break;
   case Vnode::Type::DIR:
-    dir.entries = List<TmpDirent, &TmpDirent::link>{};
+    new (&dir.entries)
+        frg::hash_map<frg::string_view, TmpDirent *,
+                      frg::hash<frg::string_view>, Vm::HeapAllocator>(
+            frg::hash<frg::string_view>{});
     break;
+
   case Vnode::Type::LNK: {
     if (symlink_path.has_value()) {
       // kinda sucks but it'll do for now
@@ -59,12 +65,9 @@ TmpNode::TmpNode(TmpNode *cwd, Vnode::Type type, frg::string_view name,
     break;
   }
 
-  // FIXME: Not sure why, but the head gets overwritten, probably union write
-  if (cwd->dir.entries.length() == 0) {
-    cwd->dir.entries.reset();
+  if (cwd) {
+    cwd->dir.entries.insert(frg::string_view(dirent->name), dirent);
   }
-
-  cwd->dir.entries.insert_head(dirent);
 }
 
 class Tmpfs : public VnodeOps {
@@ -74,7 +77,7 @@ public:
     auto tn = (TmpNode *)vn->data;
 
     auto nbyte = buf.size();
-    if (tn->type == Vnode::Type::LNK) {
+    while (tn->type == Vnode::Type::LNK) {
       tn = tn->link.to;
     }
 
@@ -83,11 +86,19 @@ public:
                                               : Error::INVALID_PARAMETERS);
     }
 
+    // Copy-on-write files
+    if (tn->reg.compressed) {
+      auto data = tn->reg.buffer;
+      tn->reg.buffer = (uint8_t *)Vm::realloc(tn->reg.buffer, tn->attr.size);
+      memcpy(tn->reg.buffer, data, tn->attr.size);
+      tn->reg.compressed = false;
+    }
+
     if (off + nbyte > tn->attr.size) {
       tn->attr.size = off + nbyte;
     }
 
-    tn->reg.buffer = Vm::realloc(tn->reg.buffer, tn->attr.size);
+    tn->reg.buffer = (uint8_t *)Vm::realloc(tn->reg.buffer, tn->attr.size);
 
     memcpy((uint8_t *)tn->reg.buffer + off, buf.data(), nbyte);
 
@@ -100,7 +111,7 @@ public:
 
     auto nbyte = buf.size();
 
-    if (tn->type == Vnode::Type::LNK) {
+    while (tn->type == Vnode::Type::LNK) {
       tn = tn->link.to;
     }
 
@@ -112,8 +123,6 @@ public:
     if (off + nbyte > tn->attr.size) {
       nbyte = (tn->attr.size <= (size_t)off) ? 0 : tn->attr.size - off;
     }
-
-    tn->reg.buffer = Vm::realloc(tn->reg.buffer, tn->attr.size);
 
     memcpy(buf.data(), (uint8_t *)tn->reg.buffer + off, nbyte);
 
@@ -153,30 +162,25 @@ public:
       return Err(Error::NOT_A_DIRECTORY);
     }
 
-    TmpDirent *ent = nullptr;
+    auto ent = node->dir.entries.find(name);
 
-    for (auto e : node->dir.entries) {
-      if (e->name == name) {
-        ent = e;
-        break;
-      }
-    }
-
-    if (!ent) {
+    if (ent == node->dir.entries.end()) {
       return Err(Error::NO_SUCH_FILE_OR_DIRECTORY);
     }
 
-    if (ent->tnode->type == Vnode::Type::LNK && !ent->tnode->link.to) {
-      auto node = vfs_find(ent->tnode->link.to_name);
+    auto tent = ent->get<1>();
+
+    if (tent->tnode->type == Vnode::Type::LNK && !tent->tnode->link.to) {
+      auto node = vfs_find(tent->tnode->link.to_name);
 
       if (!node.is_ok()) {
         return Err(Error::NOT_FOUND);
       }
 
-      ent->tnode->link.to = (TmpNode *)node.unwrap()->data;
+      tent->tnode->link.to = (TmpNode *)node.unwrap()->data;
     }
 
-    return Ok(ent->tnode->make_vnode());
+    return Ok(tent->tnode->make_vnode());
   }
 
   Result<Vnode *, Error> mkdir(Vnode *dir, frg::string_view name,
@@ -232,7 +236,9 @@ public:
 
     for (auto ent : tn->dir.entries) {
       if (i >= offset) {
-        size_t name_len = strlen(ent->name);
+        auto tent = ent.get<1>();
+
+        size_t name_len = strlen(tent->name);
         size_t dirent_size = offsetof(struct dirent, d_name) + name_len + 1;
 
         // Align dirent size to 8 bytes
@@ -242,18 +248,18 @@ public:
         if (bytes_written + dirent_size > max_size)
           break;
 
-        if (ent->tnode->type == Vnode::Type::DIR)
+        if (tent->tnode->type == Vnode::Type::DIR)
           dent->d_type = DT_DIR;
-        else if (ent->tnode->type == Vnode::Type::REG)
+        else if (tent->tnode->type == Vnode::Type::REG)
           dent->d_type = DT_REG;
         else
           dent->d_type = DT_UNKNOWN;
 
-        dent->d_ino = (ino_t)ent->tnode;
+        dent->d_ino = (ino_t)tent->tnode;
         dent->d_off = i + 1;
         dent->d_reclen = dirent_size;
 
-        strncpy(dent->d_name, ent->name, name_len);
+        strncpy(dent->d_name, tent->name, name_len);
         dent->d_name[name_len] = '\0';
 
         bytes_written += dirent_size;
@@ -276,8 +282,9 @@ public:
     auto get_node_name = [](TmpNode *n) -> char * {
       if (n->parent) {
         for (auto entry : n->parent->dir.entries) {
-          if (entry->tnode == n)
-            return entry->name;
+          auto node = entry.get<1>();
+          if (node->tnode == n)
+            return node->name;
         }
       } else {
         return (char *)"/";
@@ -313,8 +320,7 @@ public:
   }
 
   void init() {
-    auto root_node = new TmpNode;
-    root_node->type = Vnode::Type::DIR;
+    auto root_node = new TmpNode(nullptr, Vnode::Type::DIR, "/");
     root_vnode = root_node->make_vnode();
 
     auto n = make_new_dir(root_vnode, ".").unwrap();
@@ -408,7 +414,11 @@ void tmpfs_init(Charon charon) {
           vfs_find_and(current_file->name, -1, vfs_create_file, nullptr, attr)
               .unwrap();
 
-      vfs_write(vnode, frg::span{(uint8_t *)current_file + 512, size}, 0);
+      auto tn = (TmpNode *)vnode->data;
+
+      tn->reg.compressed = true;
+      tn->reg.buffer = (uint8_t *)current_file + 512;
+
       break;
     }
 

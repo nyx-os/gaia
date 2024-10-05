@@ -112,7 +112,7 @@ Result<Vnode *, Error> vfs_find_and(frg::string_view pathname, F function,
   Vnode *vn = nullptr;
   bool root = false;
 
-  if (segments[0][0] == '/') {
+  if (pathname[0] == '/') {
     vn = root_vnode;
     root = true;
   } else {
@@ -140,7 +140,7 @@ Result<Vnode *, Error> vfs_find_and(frg::string_view pathname, dev_t dev,
   Vnode *vn;
   bool root = false;
 
-  if (segments[0][0] == '/') {
+  if (pathname[0] == '/') {
     vn = root_vnode;
     root = true;
   } else {
@@ -168,7 +168,7 @@ vfs_find_and(frg::string_view pathname, frg::string_view linkpath, F function,
   Vnode *vn;
   bool root = false;
 
-  if (segments[0][0] == '/') {
+  if (pathname[0] == '/') {
     vn = root_vnode;
     root = true;
   } else {

@@ -7,6 +7,8 @@
 #include <frg/vector.hpp>
 #include <lib/base.hpp>
 
+#define HEAP_ACCOUNTING_ENABLED 1
+
 namespace Gaia::Vm {
 extern "C" void *malloc(size_t bytes);
 extern "C" void free(void *ptr);
@@ -41,4 +43,17 @@ using String = frg::string<HeapAllocator>;
 template <typename T> using Vector = frg::vector<T, HeapAllocator>;
 template <typename T> using UniquePtr = frg::unique_ptr<T, MemoryAllocator>;
 
+enum Subsystem {
+  UNKNOWN,
+  SCHED,
+  DEV,
+  FS,
+  VM,
+};
+
+void dump_heap_stats();
+
 } // namespace Gaia::Vm
+
+void *operator new(size_t size, Gaia::Vm::Subsystem subsystem);
+void *operator new[](size_t size, Gaia::Vm::Subsystem subsystem);

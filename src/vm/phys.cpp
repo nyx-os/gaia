@@ -2,6 +2,7 @@
 
 #include "frg/spinlock.hpp"
 #include "hal/hal.hpp"
+#include "lib/charon.hpp"
 #include <frg/manual_box.hpp>
 #include <lib/base.hpp>
 #include <lib/freelist.hpp>
@@ -13,6 +14,7 @@ static frg::manual_box<Freelist> freelist{};
 static size_t usable_pages = 0;
 static size_t total_pages = 0;
 static uintptr_t highest_usable_page = 0;
+static uintptr_t highest_mappable_page = 0;
 static frg::manual_box<frg::simple_spinlock> lock;
 
 static constexpr inline const char *
@@ -36,6 +38,7 @@ mmap_entry_type_to_string(CharonMmapEntryType type) {
 size_t phys_usable_pages() { return usable_pages; }
 size_t phys_total_pages() { return total_pages; }
 uintptr_t phys_highest_usable_page() { return highest_usable_page; }
+uintptr_t phys_highest_mappable_page() { return highest_mappable_page; }
 
 void phys_init(Charon charon) {
   lock.initialize();
@@ -56,8 +59,12 @@ void phys_init(Charon charon) {
 
       freelist->add_region(new_reg);
 
-      highest_usable_page =
-          MAX(highest_usable_page, entry.base + entry.size - Hal::PAGE_SIZE);
+      highest_usable_page = MAX(highest_usable_page, entry.base + entry.size);
+    }
+
+    if (entry.type != RESERVED) {
+      highest_mappable_page =
+          MAX(highest_mappable_page, entry.base + entry.size);
     }
   }
 

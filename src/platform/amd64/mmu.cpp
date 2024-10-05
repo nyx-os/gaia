@@ -75,44 +75,9 @@ static Prot mmu_prot_to_vm(uint64_t prot) {
   return ret;
 }
 
-static void pmap_fork_intern(uint64_t *dest, uint64_t *src, size_t page_count,
-                             int level) {
-  for (uint64_t i = 0; i < page_count; i++) {
-    uint64_t orig_entry = src[i];
-
-    if (PTE_IS_PRESENT(orig_entry)) {
-      uintptr_t *entry = &dest[i];
-
-#undef PTE_GET_ADDR
-#define PTE_GET_ADDR(x) (x & 0x0000fffffffff000)
-
-      ASSERT(!PTE_IS_PRESENT(*entry));
-
-      memcpy(entry, &orig_entry, sizeof(uint64_t));
-
-      auto orig_next = Hal::phys_to_virt(PTE_GET_ADDR(*entry));
-
-      uintptr_t next_phys_addr = (uintptr_t)Gaia::Vm::phys_alloc(true).unwrap();
-
-      *entry &= 0xffff000000000fff;
-      *entry |= (next_phys_addr & 0x0000fffffffff000);
-
-      void *next = (void *)Hal::phys_to_virt(next_phys_addr);
-
-      if (level > 0) {
-        pmap_fork_intern((uint64_t *)next, (uint64_t *)orig_next, 512,
-                         level - 1);
-      } else {
-        memcpy(next, (void *)orig_next, 0x1000);
-      }
-    }
-  }
-}
-
 void Pagemap::copy(Pagemap *dest) {
   (void)dest;
-  pmap_fork_intern((uint64_t *)(Hal::phys_to_virt((uintptr_t)dest->context)),
-                   (uint64_t *)(Hal::phys_to_virt((uintptr_t)context)), 256, 3);
+  ASSERT(false);
 }
 
 void Pagemap::map(uintptr_t va, uintptr_t pa, Prot prot, Flags flags) {
@@ -214,7 +179,8 @@ void Pagemap::init(bool kernel) {
                      true);
     }
 
-    size_t page_size = 4096;
+    // !! This may not work on real hardware
+    size_t page_size = cpu_supports_1gb_pages ? GIB(1) : MIB(2);
 
     uintptr_t text_start = ALIGN_DOWN((uintptr_t)text_start_addr, PAGE_SIZE);
     uintptr_t text_end = ALIGN_UP((uintptr_t)text_end_addr, PAGE_SIZE);
@@ -246,7 +212,7 @@ void Pagemap::init(bool kernel) {
           Vm::Flags::NONE);
     }
 
-    log("highest usable page is {:x}", Gaia::Vm::phys_highest_usable_page());
+    log("Highest usable page is {:x}", Gaia::Vm::phys_highest_usable_page());
 
     Vm::Flags flags = NONE;
 
@@ -261,7 +227,7 @@ void Pagemap::init(bool kernel) {
           flags);
     }
 
-    for (size_t i = GIB(4); i < Gaia::Vm::phys_highest_usable_page();
+    for (size_t i = GIB(4); i < Gaia::Vm::phys_highest_mappable_page();
          i += page_size) {
       map(Hal::phys_to_virt(i), i, (Vm::Prot)(Vm::Prot::READ | Vm::Prot::WRITE),
           flags);
@@ -282,7 +248,25 @@ void Pagemap::init(bool kernel) {
 
 void Pagemap::activate() { write_cr3((uintptr_t)context); }
 
-void Pagemap::destroy() { ::Gaia::Vm::phys_free(context); }
+static void destroy_intern(uint64_t *table, int depth) {
+  for (int i = 0; i < (depth == 3 ? 255 : 512); ++i) {
+    auto addr = PTE_GET_ADDR(table[i]);
+
+    if (!addr)
+      continue;
+
+    if (depth > 1) {
+      destroy_intern((uint64_t *)Hal::phys_to_virt(addr), depth - 1);
+    }
+
+    Gaia::Vm::phys_free((void *)addr);
+  }
+}
+
+void Pagemap::destroy() {
+  destroy_intern((uint64_t *)Hal::phys_to_virt((uintptr_t)context), 3);
+  ::Gaia::Vm::phys_free(context);
+}
 
 Result<Pagemap::Mapping, Error> Pagemap::get_mapping(uintptr_t vaddr) {
   size_t level4 = PML_ENTRY(vaddr, 39);

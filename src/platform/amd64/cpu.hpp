@@ -1,4 +1,4 @@
-/* @license:bsd2 */
+/* SPDX-License-Identifier: BSD-2-Clause */
 #include <stdint.h>
 
 namespace Gaia::Hal {

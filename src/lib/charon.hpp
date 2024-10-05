@@ -14,7 +14,7 @@
 namespace Gaia {
 constexpr auto CHARON_MODULE_MAX = 16; /**< The maximum number of modules */
 constexpr auto CHARON_MMAP_SIZE_MAX =
-    48; /**< The maximum number of memory map entries */
+    64; /**< The maximum number of memory map entries */
 
 enum CharonMmapEntryType : uint8_t {
   FREE,        ///< Denotes a free memory map entry
@@ -72,6 +72,7 @@ struct Charon {
   CharonFramebuffer framebuffer; ///< The framebuffer
   CharonModules modules;         ///< The bootloader modules
   CharonMemoryMap memory_map;    ///< The memory map
+  int64_t boot_time;             ///< Seconds passed since epoch
 };
 
 } // namespace Gaia

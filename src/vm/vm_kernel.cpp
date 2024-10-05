@@ -1,3 +1,4 @@
+#include "lib/log.hpp"
 #include <frg/manual_box.hpp>
 #include <frg/spinlock.hpp>
 #include <hal/hal.hpp>
@@ -38,7 +39,6 @@ void vm_kernel_init() {
 }
 
 extern "C" void *vm_kernel_alloc(int npages, bool bootstrap) {
-
   void *virt = vmem_alloc(vmem_kernel.get(), npages * Hal::PAGE_SIZE,
                           VM_INSTANTFIT | (bootstrap ? VM_BOOTSTRAP : 0));
 

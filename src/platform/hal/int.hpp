@@ -16,8 +16,10 @@ Result<uint8_t, Error>
 register_interrupt_handler(int vector, Hal::InterruptHandler *handler,
                            void *arg, Hal::InterruptEntry *entry);
 
-void set_timer(uint64_t us);
-uint64_t get_timer_remaining();
+uint64_t get_timer_count();
+
+// Returns seconds since epoch
+uint64_t get_time_of_day();
 
 void do_context_switch();
 

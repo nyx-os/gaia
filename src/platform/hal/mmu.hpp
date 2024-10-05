@@ -39,9 +39,9 @@ public:
 
   void init(bool kernel);
 
-  Pagemap() : context(nullptr) {};
+  Pagemap() : context(nullptr){};
 
-  Pagemap(void *context) : context(context) {};
+  Pagemap(void *context) : context(context){};
 
   void destroy();
 

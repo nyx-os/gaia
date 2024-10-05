@@ -7,6 +7,7 @@
 #include <kernel/main.hpp>
 #include <kernel/sched.hpp>
 #include <kernel/task.hpp>
+#include <kernel/timer.hpp>
 
 namespace Gaia::Amd64 {
 
@@ -14,12 +15,11 @@ static List<Hal::InterruptEntry, &Hal::InterruptEntry::link> handlers[256];
 
 /* Faster dispatching this way */
 extern "C" uint64_t intr_timer_handler(uint64_t rsp) {
+  timer_interrupt();
   sched_tick((Hal::InterruptFrame *)rsp);
   lapic_eoi();
   return (uintptr_t)(rsp);
 }
-
-void fault() { asm volatile(""); }
 
 extern "C" uint64_t interrupts_handler(uint64_t rsp) {
 
@@ -45,8 +45,6 @@ extern "C" uint64_t interrupts_handler(uint64_t rsp) {
   if (stack_frame->intno < 32 && should_panic) {
 
     auto frame = stack_frame;
-
-    fault();
 
     error("exception: 0x{:x}, err=0x{:x}", frame->intno, frame->err);
     error("RAX=0x{:x} RBX=0x{:x} RCX=0x{:x} RDX=0x{:x}", frame->rax, frame->rbx,

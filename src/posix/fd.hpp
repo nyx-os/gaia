@@ -14,7 +14,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define OFLAG_WRITABLE(flag) (((flag) & O_RDWR) || ((flag) & O_WRONLY))
+#define OFLAG_WRITABLE(flag) (((flag)&O_RDWR) || ((flag)&O_WRONLY))
 
 namespace Gaia::Posix {
 
@@ -284,7 +284,12 @@ public:
       return Err(EINVAL);
     }
 
-    ASSERT(!bitmap.test(number) && "Handle closing FDs in dup2");
+    if (bitmap.test(number)) {
+
+      delete fds[number];
+      // we might need to delete the allocated FD here
+      free(number);
+    }
 
     bitmap.set(number);
     fds[number] = fd;

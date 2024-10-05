@@ -1,5 +1,7 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #pragma once
+#include "frg/hash_map.hpp"
+#include "vm/heap.hpp"
 #include <frg/array.hpp>
 #include <fs/vfs.hpp>
 #include <lib/charon.hpp>
@@ -12,7 +14,7 @@ struct TmpNode;
 struct TmpDirent {
   char name[256];
 
-  ListNode<TmpDirent> link;
+  // ListNode<TmpDirent> link;
 
   TmpNode *tnode;
 
@@ -29,12 +31,16 @@ struct TmpNode {
   union {
     /* VDIR */
     struct {
-      List<TmpDirent, &TmpDirent::link> entries;
+      frg::hash_map<frg::string_view, TmpDirent *, frg::hash<frg::string_view>,
+                    Vm::HeapAllocator>
+          entries;
+      // List<TmpDirent, &TmpDirent::link> entries;
     } dir;
 
     /* VREG */
     struct {
-      void *buffer;
+      uint8_t *buffer;
+      bool compressed;
     } reg;
 
     /* VLNK */

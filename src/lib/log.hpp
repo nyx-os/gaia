@@ -12,10 +12,16 @@
 
 namespace Gaia {
 
+#define ENABLE_ASSERTS 1
+
+#if ENABLE_ASSERTS
 #define ASSERT(CONDITION)                                                      \
   ((CONDITION) ? (void)0                                                       \
                : panic("assertion '{}' failed at {}:{}", #CONDITION, __FILE__, \
                        __LINE__))
+#else
+#define ASSERT(CONDITION) ((void)(0))
+#endif
 
 /// A generic sink using \ref Gaia::Hal::debug_output
 class DebugSink {

@@ -14,7 +14,7 @@ public:
   void puts(const char *s);
   void puts(const char *s, size_t n);
   void log_output(char c);
-  void input(char c);
+  void input(unsigned char c);
   void clear();
 
   void create_dev();
@@ -22,13 +22,13 @@ public:
   const char *class_name() override { return "FbConsole"; }
   const char *name() override { return "FbConsole"; }
 
+  Posix::TTY *tty;
+
 private:
   flanterm_context *ctx;
   CharonFramebuffer fb;
   bool enable_log;
   friend class FbOps;
-
-  Posix::TTY *tty;
 };
 
 FbConsole *system_console();

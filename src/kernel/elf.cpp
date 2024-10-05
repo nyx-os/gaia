@@ -43,13 +43,9 @@ elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval, uintptr_t base = 0,
   auto phdrs = TRY(elf.phdrs());
 
   for (auto phdr : phdrs) {
-    auto buf = new uint8_t[phdr.p_filesz];
-
     auto prev = TRY(stream.seek(0, Stream::Whence::CURRENT));
 
     TRY(stream.seek(phdr.p_offset, Stream::Whence::SET));
-    TRY(stream.read(buf, phdr.p_filesz));
-    TRY(stream.seek(prev, Stream::Whence::SET));
 
     bool has_pt_phdr = false;
 
@@ -73,7 +69,7 @@ elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval, uintptr_t base = 0,
 
       auto prev_pagemap = Hal::Vm::get_current_map();
       task.space->activate();
-      memcpy((void *)addr, buf, phdr.p_filesz);
+      TRY(stream.read((void *)addr, phdr.p_filesz));
       prev_pagemap.activate();
 
       if (!has_pt_phdr) {
@@ -97,14 +93,13 @@ elf_load(Task &task, Fs::Vnode vnode, Auxval &auxval, uintptr_t base = 0,
       if (!ld_path)
         break;
 
-      memcpy(ld_path, buf, phdr.p_filesz);
-
+      TRY(stream.read((void *)ld_path, phdr.p_filesz));
       (ld_path)[phdr.p_filesz] = 0;
       break;
     }
     }
 
-    Vm::free(buf);
+    TRY(stream.seek(prev, Stream::Whence::SET));
   }
 
   auxval.at_entry = base + header.e_entry;
@@ -189,7 +184,9 @@ Result<Void, Error> execve(Task &task, const char *path, char const *argv[],
       (Hal::Vm::Prot)((int)Hal::Vm::Prot::READ | Hal::Vm::Prot::WRITE));
 
   // hack
-  ASSERT(task.space->fault(mapped_stack, (Vm::Space::WRITE)));
+  if (!task.space->fault(mapped_stack, (Vm::Space::WRITE))) {
+    panic("Couldn't preallocate stack");
+  }
 
   task.space->new_anon(
       stack_base, USER_STACK_SIZE - mapped_stack_length,

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import toml 
 import sys
 import argparse
@@ -5,7 +6,7 @@ import os
 
 parser = argparse.ArgumentParser(
                     prog='alacritty2fb',
-                    description='Converts alacritty YAML colorschemes to C framebuffer values')
+                    description='Converts alacritty TOML colorschemes to C framebuffer values')
 
 parser.add_argument('filename')
 parser.add_argument('-d', '--directory', help="Directory of installed https://github.com/alacritty/alacritty-theme")

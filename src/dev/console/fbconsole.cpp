@@ -132,6 +132,8 @@ FbConsole *system_console() { return _system_console; }
 FbConsole::FbConsole(Charon charon) {
   fb = charon.framebuffer;
 
+  // ctx = nullptr;
+
   ctx = flanterm_fb_init(
       nullptr, nullptr, reinterpret_cast<uint32_t *>(fb.address), fb.width,
       fb.height, fb.pitch, fb.red_mask_size, fb.red_mask_shift,
@@ -140,7 +142,7 @@ FbConsole::FbConsole(Charon charon) {
       nullptr, nullptr, 0, 0, 0, 1, 1, 0);
 
   _system_console = this;
-  this->enable_log = false;
+  this->enable_log = true;
 }
 
 #define SHADOW_COLOR 0x008C8C
@@ -159,8 +161,7 @@ void FbConsole::start(Service *provider) {
   auto acpi_pc = reinterpret_cast<AcpiPc *>(provider);
   fb = acpi_pc->get_charon().framebuffer;
 
-  uint32_t *canvas =
-      (uint32_t *)Vm::malloc(sizeof(uint32_t) * fb.width * fb.height);
+  uint32_t *canvas = new (Vm::Subsystem::DEV) uint32_t[fb.width * fb.height];
 
   int margin = 40;
   int start_x = margin;
@@ -248,14 +249,12 @@ void FbConsole::start(Service *provider) {
       fb.green_mask_shift, fb.blue_mask_size, fb.blue_mask_shift,
       (uint32_t *)canvas, ansi_colors, ansi_bright_colors,
       &colorscheme.default_bg, &colorscheme.default_fg, nullptr, nullptr,
-      nullptr, 0, 0, 0, 1, 1, margin + 10);
+      nullptr, 0, 0, 0, 1, 1, margin + 15);
 }
 
 void FbConsole::log_output(char c) {
-  ASSERT(ctx != nullptr);
-
   lock.lock();
-  if (this->enable_log) {
+  if (this->enable_log && ctx) {
     puts(&c, 1);
   }
   lock.unlock();
@@ -271,7 +270,7 @@ void FbConsole::puts(const char *s, size_t n) {
   flanterm_write((struct flanterm_context *)ctx, s, n);
 }
 
-void FbConsole::input(char c) {
+void FbConsole::input(unsigned char c) {
   ASSERT(tty != nullptr);
   tty->input(c);
 }

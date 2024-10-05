@@ -1,4 +1,4 @@
-/* @license:b sd2 */
+/* SPDX-License-Identifier: BSD-2-Clause */
 #pragma once
 #include <lib/base.hpp>
 #include <lib/error.hpp>
@@ -10,38 +10,64 @@ namespace Gaia {
 template <typename T, size_t N> class Ringbuffer {
 public:
   Result<Void, Error> push(T data) {
-
-    if ((write_index + 1) % N == read_index) {
-      return Err(Error::FULL);
+    if (is_full()) {
+      tail_index = (tail_index + 1) % N;
     }
 
-    buffer[write_index] = data;
+    buffer[head_index] = data;
 
-    write_index = (write_index + 1) % N;
+    head_index = (head_index + 1) % N;
 
     return Ok({});
   }
 
   Result<T, Error> pop() {
-    if (read_index == write_index)
+    if (is_empty())
       return Err(Error::EMPTY);
 
-    auto ret = buffer[read_index];
+    auto ret = buffer[tail_index];
 
-    read_index = (read_index + 1) % N;
+    tail_index = (tail_index + 1) % N;
     return Ok(ret);
   }
 
-  Result<T, Error> peek() const {
-    if (read_index == write_index)
+  // This is useful for e.g the TTY where you need to erase the last character
+  Result<Void, Error> erase_last() {
+    if (is_empty()) {
       return Err(Error::EMPTY);
-    return Ok(buffer[read_index]);
+    }
+
+    head_index = (head_index + N - 1) % N;
+    return Ok({});
   }
 
-  size_t size() const { return (write_index - read_index); }
+  Result<T, Error> peek() const {
+    if (is_empty())
+      return Err(Error::EMPTY);
+    return Ok(buffer[tail_index]);
+  }
+
+  Result<T, Error> peek(size_t index) const {
+    if (is_empty())
+      return Err(Error::EMPTY);
+
+    size_t buffer_size = size();
+    if (index >= buffer_size) {
+      return Err(Error::INVALID_PARAMETERS);
+    }
+
+    size_t actual_index = (tail_index + index) % N;
+    return Ok(buffer[actual_index]);
+  }
+
+  size_t size() const { return (head_index - tail_index) % N; }
+
+  bool is_full() const { return (head_index - tail_index) % N == N; }
+
+  bool is_empty() const { return (head_index == tail_index); }
 
 private:
-  size_t write_index = 0, read_index = 0;
+  size_t tail_index = 0, head_index = 0;
   T buffer[N];
 };
 

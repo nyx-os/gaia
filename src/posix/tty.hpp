@@ -25,14 +25,14 @@ public:
 
   using WriteCallback = void(char c, void *context);
 
-  void input(char c);
+  void input(unsigned char c);
 
   void set_write_callback(WriteCallback *callback, void *context) {
     this->callback = callback;
     callback_context = context;
   }
 
-  class Ops : public Fs::DevOps {
+  class Ops : public Fs::DeviceOps {
     Result<size_t, Error> write(dev_t minor, frg::span<uint8_t> buf,
                                 off_t off) override;
 
@@ -45,17 +45,19 @@ public:
     Result<Fs::VnodeAttr, Error> getattr(dev_t minor) override;
   } ops;
 
+  bool in_mediumraw = false;
+
 private:
   // Ringbuffer
-  Ringbuffer<char, 4096> buffer;
+  Ringbuffer<unsigned char, 4096> buffer;
   size_t rows, cols;
   frg::simple_spinlock lock;
 
   struct termios termios;
 
-  Result<Void, Error> push(char c);
-  Result<char, Error> pop();
-  Result<char, Error> erase();
+  Result<Void, Error> push(unsigned char c);
+  Result<unsigned char, Error> pop();
+  Result<unsigned char, Error> erase();
 
   WriteCallback *callback;
   void *callback_context;

@@ -48,13 +48,13 @@ static inline uintptr_t get_lapic_address() {
   return lapic_address;
 }
 
-static void lapic_write(uint32_t reg, uint32_t value) {
+static inline void lapic_write(uint32_t reg, uint32_t value) {
   auto addr = get_lapic_address();
   volatile_write<uint32_t>(
       reinterpret_cast<uint32_t *>(Hal::phys_to_virt(addr) + reg), value);
 }
 
-static uint32_t lapic_read(uint32_t reg) {
+static inline uint32_t lapic_read(uint32_t reg) {
   auto addr = get_lapic_address();
   return volatile_read<uint32_t>(
       reinterpret_cast<uint32_t *>(Hal::phys_to_virt(addr) + reg));
@@ -65,23 +65,38 @@ void lapic_send_ipi(uint8_t vector) {
   lapic_write(LapicReg::ICR0, vector);
 }
 
+size_t lapic_calibrate() {
+  lapic_write(LapicReg::LVT_TIMER, LAPIC_TIMER_MASKED);
+  lapic_write(LapicReg::TIMER_INIT_COUNT, (uint32_t)-1);
+
+  // We have to double it because for some reason, the timer interrupts are
+  // fired 2x too fast and that fucks up sleeps
+  timer_sleep(20);
+
+  lapic_write(LapicReg::LVT_TIMER, LAPIC_TIMER_MASKED);
+
+  uint32_t ticks_in_10ms = (uint32_t)-1 - lapic_read_count();
+
+  return ticks_in_10ms / 10;
+}
+
 void lapic_init() {
+
+  lapic_write(LapicReg::TIMER_DIVIDE_CONFIG, ApicTimerDivide::BY_16);
+
+  cpu_self()->data.lapic_freq = 0;
+
+  constexpr size_t calibration_runs = 5;
+
+  for (size_t i = 0; i < calibration_runs; i++) {
+    cpu_self()->data.lapic_freq += lapic_calibrate() / calibration_runs;
+  }
+
+  lapic_write(LapicReg::LVT_TIMER, LAPIC_TIMER_IRQ | LAPIC_TIMER_PERIODIC);
+  lapic_write(LapicReg::TIMER_INIT_COUNT, cpu_self()->data.lapic_freq);
   lapic_write(LapicReg::SPURIOUS_VECTOR, lapic_read(LapicReg::SPURIOUS_VECTOR) |
                                              LAPIC_SPURIOUS_ALL |
                                              LAPIC_SPURIOUS_ENABLE);
-  lapic_write(LapicReg::TIMER_DIVIDE_CONFIG, ApicTimerDivide::BY_16);
-  lapic_write(LapicReg::TIMER_INIT_COUNT, -1);
-  timer_sleep(10);
-  lapic_write(LapicReg::LVT_TIMER, LAPIC_TIMER_MASKED);
-  uint32_t ticks_in_10ms = -1 - lapic_read(LapicReg::TIMER_CURRENT_COUNT);
-
-  lapic_write(LapicReg::LVT_TIMER, LAPIC_TIMER_IRQ | LAPIC_TIMER_PERIODIC);
-  lapic_write(LapicReg::TIMER_DIVIDE_CONFIG, ApicTimerDivide::BY_16);
-
-  cpu_self()->data.lapic_freq = ticks_in_10ms / 10;
-
-  /* Tick every milisecond */
-  lapic_write(LapicReg::TIMER_INIT_COUNT, ticks_in_10ms / 10);
 }
 
 uint64_t lapic_read_count() {
@@ -276,3 +291,8 @@ void ioapic_redirect_irq(uint8_t irq, uint8_t vector) {
 void lapic_eoi() { lapic_write(LapicReg::EOI, 0); }
 
 } // namespace Gaia::Amd64
+
+namespace Gaia::Hal {
+
+uint64_t get_timer_count() { return (Amd64::lapic_read_count()); }
+} // namespace Gaia::Hal

@@ -1,4 +1,5 @@
 #include "dev/console/fbconsole.hpp"
+#include <amd64/asm.hpp>
 #include <dev/acpi/acpi.hpp>
 #include <dev/acpi/device.hpp>
 #include <dev/console/ps2.hpp>
@@ -6,6 +7,7 @@
 #include <lai/core.h>
 #include <lai/helpers/resource.h>
 #include <lib/log.hpp>
+#include <linux/input-event-codes.h>
 
 namespace Gaia::Dev {
 
@@ -41,12 +43,22 @@ Vm::UniquePtr<Service> Ps2Controller::init() {
   return {Vm::get_allocator(), new Ps2Controller};
 }
 
+static uint8_t read_ps2() {
+  while (!(Amd64::inb(0x64) & 1)) {
+  }
+  return Amd64::inb(0x60);
+}
+
 void Ps2Controller::int_handler(Hal::InterruptFrame *frame, void *arg) {
   (void)frame;
 
   uint8_t code = Amd64::inb(0x60);
 
   auto controller = (Ps2Controller *)arg;
+
+  if (system_console() && system_console()->tty->in_mediumraw) {
+    system_console()->input(code);
+  }
 
   switch (code) {
   case Scancode::SHIFT_LEFT:
@@ -88,8 +100,9 @@ void Ps2Controller::int_handler(Hal::InterruptFrame *frame, void *arg) {
       }
 
       // This kinda sucks
-      if (system_console())
+      if (system_console() && system_console()->tty->in_mediumraw == false) {
         system_console()->input(c);
+      }
     }
 
     break;
@@ -97,8 +110,17 @@ void Ps2Controller::int_handler(Hal::InterruptFrame *frame, void *arg) {
   }
 }
 
+static void write_ps2(uint16_t port, uint8_t value) {
+  while (Amd64::inb(0x64) & 2) {
+    asm volatile("pause");
+  }
+  Amd64::outb(port, value);
+}
+
 void Ps2Controller::start(Service *provider) {
   attach(provider);
+
+  log("Hi PS/2");
 
   frg::output_to(name_str) << frg::fmt("{}", class_name());
 
@@ -106,12 +128,28 @@ void Ps2Controller::start(Service *provider) {
 
   // TODO: use gsi from acpi instead
   Hal::register_interrupt_handler(33, int_handler, this, &int_entry);
+
+  // stolen from vinix
+  write_ps2(0x64, 0xad);
+  write_ps2(0x64, 0xa7);
+
+  while ((Amd64::inb(0x64) & 1) != 0) {
+    Amd64::inb(0x60);
+  }
+
+  write_ps2(0x64, 0x20);
+  auto conf = read_ps2();
+
+  conf |= (1 << 0) | (1 << 6);
+  write_ps2(0x64, 0x60);
+  write_ps2(0x60, conf);
+  write_ps2(0x64, 0xae);
 }
 
 void ps2_driver_register() {
   auto props = new Properties{frg::hash<frg::string_view>{}};
 
-  props->insert("hid", {.string = "PNP0F03"});
+  props->insert("hid", {.string = "PNP0303"});
   props->insert("altHid", {.string = "PNP0F13"});
   props->insert("provider", {.string = "AcpiDevice"});
   get_catalog().register_driver(Driver{&Ps2Controller::init}, *props);

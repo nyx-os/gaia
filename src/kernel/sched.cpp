@@ -1,5 +1,4 @@
 #include "amd64/apic.hpp"
-#include "amd64/asm.hpp"
 #include "elf.hpp"
 #include "frg/spinlock.hpp"
 #include "fs/vfs.hpp"
@@ -33,13 +32,19 @@ static Thread *idle_thread = nullptr;
 
 pid_t sched_allocate_pid() { return current_pid++; }
 
-static Cpu cpu{};
+// AAA this sucks so much
+static Cpu *cpu = nullptr;
+
+void sched_register_cpu(Cpu *_cpu) {
+  cpu = _cpu;
+  current_thread = cpu->current_thread;
+}
 
 Result<Thread *, Error> sched_new_thread(frg::string_view name, Task *task,
                                          Hal::CpuContext ctx, bool insert) {
 
   // FIXME: maybe use smart pointers?
-  auto thread = new Thread();
+  auto thread = new (Vm::Subsystem::SCHED) Thread();
 
   if (!thread)
     return Err(Error::OUT_OF_MEMORY);
@@ -52,7 +57,7 @@ Result<Thread *, Error> sched_new_thread(frg::string_view name, Task *task,
   thread->task = task;
   thread->ctx = ctx;
   thread->state = Thread::RUNNING;
-  thread->cpu = &cpu;
+  thread->cpu = cpu;
 
   task->threads.push(thread);
 
@@ -67,7 +72,7 @@ Task *sched_kernel_task() { return kernel_task; }
 
 Result<Task *, Error> sched_new_task(pid_t pid, Task *parent, bool user) {
 
-  auto task = new Task();
+  auto task = new (Vm::Subsystem::SCHED) Task();
 
   task->cwd = Fs::root_vnode;
   task->pid = pid;
@@ -78,14 +83,15 @@ Result<Task *, Error> sched_new_task(pid_t pid, Task *parent, bool user) {
     parent->children.insert_tail(task);
 
   if (pid == 0) {
-    auto fd = new Posix::Fd(Posix::Fd::open("/dev/tty", O_RDWR).unwrap());
+    auto fd = new (Vm::Subsystem::FS)
+        Posix::Fd(Posix::Fd::open("/dev/tty", O_RDWR).unwrap());
     task->fds.allocate(fd);
     task->fds.allocate(fd);
     task->fds.allocate(fd);
   }
 
   if (user) {
-    task->space = new Vm::Space("task space", user);
+    task->space = new (Vm::Subsystem::SCHED) Vm::Space("task space", user);
     if (!task->space)
       return Err(Error::OUT_OF_MEMORY);
   } else {
@@ -201,13 +207,16 @@ Result<Void, Error> sched_init() {
   sched_lock.initialize();
   reaper_lock.initialize();
 
-  current_thread = idle_thread = TRY(
-      sched_new_worker_thread("idle thread", (uintptr_t)idle_thread_fn, false));
-
   TRY(sched_new_worker_thread("reaper", (uintptr_t)reaper));
 
-  cpu.magic = 0xCAFEBABE;
-  Hal::set_current_thread(idle_thread);
+  current_thread = cpu->idle_thread =
+      sched_new_worker_thread("idle thread", (uintptr_t)idle_thread_fn, false)
+          .unwrap();
+  cpu->idle_thread->cpu = cpu;
+  cpu->current_thread = cpu->idle_thread;
+  cpu->magic = 0xCAFEBABE;
+  Hal::set_current_thread(cpu->idle_thread);
+
   return Ok({});
 }
 

@@ -86,4 +86,6 @@ Result<Thread *, Error> sched_new_worker_thread(frg::string_view name,
 
 Task *sched_kernel_task();
 
+void sched_register_cpu(Cpu *cpu);
+
 } // namespace Gaia

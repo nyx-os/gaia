@@ -1,6 +1,5 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 #pragma once
-#include "frg/manual_box.hpp"
 #include "frg/spinlock.hpp"
 #include "lib/list.hpp"
 #include <hal/hal.hpp>
@@ -115,7 +114,7 @@ struct Anon {
   void release();
   Anon *copy();
   Anon(void *physpage, size_t offset)
-      : refcnt(1), physpage(physpage), offset(offset) {};
+      : refcnt(1), physpage(physpage), offset(offset){};
 };
 
 class AnonMap {
@@ -136,5 +135,4 @@ public:
 private:
   List<Entry, &Entry::link> entries;
 };
-
 } // namespace Gaia::Vm

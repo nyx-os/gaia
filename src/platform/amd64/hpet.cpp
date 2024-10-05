@@ -12,7 +12,7 @@ namespace Gaia::Amd64 {
 #define HPET_CAP_COUNTER_CLOCK_OFFSET (32)
 
 static uintptr_t base = 0;
-static uintptr_t clock = 0;
+static uint64_t clock = 0;
 
 enum hpet_registers {
   HPET_GENERAL_CAPABILITIES = 0,

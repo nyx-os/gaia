@@ -3,6 +3,8 @@
 #include "fs/vfs.hpp"
 #include "hal/hal.hpp"
 #include "kernel/elf.hpp"
+#include "kernel/main.hpp"
+#include "kernel/timer.hpp"
 #include "posix/fd.hpp"
 #include "vm/heap.hpp"
 #include "vm/phys.hpp"
@@ -12,6 +14,7 @@
 #include <kernel/syscalls.hpp>
 #include <kernel/wait.hpp>
 #include <lib/log.hpp>
+#include <time.h>
 #define HAVE_ARCH_STRUCT_FLOCK
 #include <kernel/task.hpp>
 #include <linux/fcntl.h>
@@ -71,6 +74,8 @@ StraceDef get_strace_def(uint64_t num) {
     return {"fcntl", 3};
   case SYS_dup3:
     return {"dup3", 3};
+  case SYS_clock_gettime:
+    return {"clock_gettime", 2};
   default:
     error("Unimplemented strace for {}", num);
     break;
@@ -302,7 +307,7 @@ uint64_t sys_exit_group(SyscallParams params) {
   curr_thread->task->parent->trigger_event().unwrap();
 
   Hal::disable_interrupts();
-  sched_send_to_death(curr_thread);
+  delete curr_thread->task;
   sched_dequeue_and_die();
   Hal::enable_interrupts();
 
@@ -327,7 +332,7 @@ uint64_t sys_execve(SyscallParams params) {
   auto task = sched_curr()->task;
 
   for (char **arg = argv; *arg; arg++) {
-    auto new_str = (char *)Vm::malloc(strlen(*arg) + 1);
+    auto new_str = new char[strlen(*arg) + 1];
     memcpy(new_str, *arg, strlen(*arg) + 1);
     sanitized_argv.push(new_str);
   }
@@ -335,7 +340,7 @@ uint64_t sys_execve(SyscallParams params) {
   sanitized_argv.push(nullptr);
 
   for (char **env = envp; *env; env++) {
-    auto new_str = (char *)Vm::malloc(strlen(*env) + 1);
+    auto new_str = new char[strlen(*env) + 1];
     memcpy(new_str, *env, strlen(*env) + 1);
     sanitized_envp.push(new_str);
   }
@@ -360,15 +365,18 @@ uint64_t sys_execve(SyscallParams params) {
 
   for (auto arg : sanitized_argv) {
     if (arg) {
-      Vm::free((void *)arg);
+      delete arg;
     }
   }
 
   for (auto env : sanitized_envp) {
     if (env) {
-      Vm::free((void *)env);
+      delete env;
     }
   }
+
+  sanitized_argv.~vector<const char *, Gaia::Vm::HeapAllocator>();
+  sanitized_envp.~vector<const char *, Gaia::Vm::HeapAllocator>();
 
   prev_space->release();
   delete prev_space;
@@ -664,6 +672,37 @@ uint64_t sys_getdents64(SyscallParams params) {
   return ret.value().value();
 }
 
+uint64_t sys_clock_gettime(SyscallParams params) {
+  auto which = params.param1;
+  struct timespec *tp = (struct timespec *)params.param2;
+
+  if (which == 0) {
+    tp->tv_sec = charon().boot_time + Hal::get_time_since_boot().seconds;
+    tp->tv_nsec = Hal::get_time_since_boot().milliseconds * 1000000;
+  }
+
+  return 0;
+}
+
+uint64_t sys_nanosleep(SyscallParams params) {
+  struct timespec *rqtp = (struct timespec *)params.param1;
+  struct timespec *rmtp = (struct timespec *)params.param2;
+
+  auto timer =
+      new Timer(nullptr, rqtp->tv_sec * 1000 + rqtp->tv_nsec / 1000000);
+
+  timer_enqueue(timer);
+
+  timer->await_event(-1).unwrap();
+
+  delete timer;
+
+  rmtp->tv_nsec = 0;
+  rmtp->tv_sec = 0;
+
+  return 0;
+}
+
 #if TRACE
 #define DO_TRACE(x) trace((x), num, params)
 #else
@@ -711,6 +750,10 @@ uint64_t syscall(int num, SyscallParams params) {
     return DO_TRACE(sys_munmap(params));
   case SYS_getdents64:
     return DO_TRACE(sys_getdents64(params));
+  case SYS_clock_gettime:
+    return DO_TRACE(sys_clock_gettime(params));
+  case SYS_nanosleep:
+    return DO_TRACE(sys_nanosleep(params));
   case SYS_faccessat:
     return 0;
   case SYS_fadvise64:

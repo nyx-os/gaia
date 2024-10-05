@@ -6,9 +6,7 @@
 
 namespace Gaia::Vm {
 
-#define KERNEL_HEAP_BASE                                                       \
-  (Gaia::Hal::phys_to_virt(0) +                                                \
-   MAX(GIB(4), phys_total_pages() * Hal::PAGE_SIZE))
+#define KERNEL_HEAP_BASE 0xffff810000000000
 #define KERNEL_HEAP_SIZE GIB(4)
 
 void vm_kernel_init();

@@ -1,6 +1,6 @@
-#include "hal/hal.hpp"
 #include "hal/mmu.hpp"
 #include "lib/log.hpp"
+#include "vm/heap.hpp"
 #include "vm/phys.hpp"
 #include <lib/base.hpp>
 #include <vm/vm.hpp>
@@ -8,7 +8,7 @@
 namespace Gaia::Vm {
 
 Object *Object::copy() {
-  auto newobj = new Object(size, anon.amap->copy());
+  auto newobj = new (Vm::Subsystem::VM) Object(size, anon.amap->copy());
 
   refcnt++;
 
@@ -76,7 +76,7 @@ bool Object::fault(Space *map, uintptr_t address, size_t off,
     auto parent_aent = this->anon.parent->anon.amap->anon_at(off);
 
     if (!parent_aent.has_value()) {
-      anon = new Anon(phys_alloc(true).unwrap(), off);
+      anon = new (Vm::Subsystem::VM) Anon(phys_alloc(true).unwrap(), off);
       this->anon.parent->anon.amap->insert_anon(anon);
     }
     auto new_anon = anon->copy();
@@ -89,7 +89,7 @@ bool Object::fault(Space *map, uintptr_t address, size_t off,
 
     // Allocate anon on-demand
     if (!aent.has_value()) {
-      anon = new Anon(phys_alloc(true).unwrap(), off);
+      anon = new (Vm::Subsystem::VM) Anon(phys_alloc(true).unwrap(), off);
       this->anon.amap->insert_anon(anon);
     }
 

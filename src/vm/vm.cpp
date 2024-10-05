@@ -1,3 +1,4 @@
+#include "vm/heap.hpp"
 #include <hal/hal.hpp>
 #include <vm/vm.hpp>
 #include <vm/vm_kernel.hpp>
@@ -25,7 +26,8 @@ Result<uintptr_t, Error> Space::map(Object *obj,
           ? ALIGN_UP((size) + (start - aligned_addr), Hal::PAGE_SIZE)
           : size;
 
-  auto entry = new Entry(aligned_addr, real_size, obj, prot);
+  auto entry =
+      new (Vm::Subsystem::VM) Entry(aligned_addr, real_size, obj, prot);
 
   // if was not a copy, retain
   if (!obj->anon.parent) {
@@ -112,7 +114,7 @@ Result<Void, Error> Space::copy(Space *dest) {
 Result<uintptr_t, Error> Space::new_anon(frg::optional<uintptr_t> address,
                                          size_t size, Hal::Vm::Prot prot) {
 
-  auto obj = new Object(size);
+  auto obj = new (Vm::Subsystem::VM) Object(size);
 
   auto addr = TRY(map(obj, address, size, prot));
 

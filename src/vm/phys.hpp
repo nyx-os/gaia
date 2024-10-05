@@ -13,6 +13,7 @@ void phys_free(void *page);
 
 size_t phys_usable_pages();
 uintptr_t phys_highest_usable_page();
+uintptr_t phys_highest_mappable_page();
 size_t phys_total_pages();
 
 } // namespace Gaia::Vm

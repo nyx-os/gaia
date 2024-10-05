@@ -8,8 +8,8 @@
 #define MINORMASK ((1U << MINORBITS) - 1)
 
 #define MINOR(dev) ((unsigned int)((dev) >> MINORBITS))
-#define MAJOR(dev) ((unsigned int)((dev) & MINORMASK))
-#define MAKEDEV(ma, mi) (((ma) << MINORBITS) | (mi))
+#define MAJOR(dev) ((unsigned int)((dev)&MINORMASK))
+#define MAKEDEV(ma, mi) (((mi) << MINORBITS) | (ma))
 
 // Pretty much the same thing as tmpfs, but for devices
 namespace Gaia::Fs {
@@ -44,7 +44,7 @@ public:
                                 off_t offset) override;
 };
 
-class DevOps {
+class DeviceOps {
 public:
   virtual Result<size_t, Error> write(dev_t minor, frg::span<uint8_t> buf,
                                       off_t off) = 0;
@@ -59,7 +59,7 @@ public:
   // TODO: mmap
 };
 
-Result<dev_t, Error> dev_alloc_major(DevOps *ops);
+Result<dev_t, Error> dev_alloc_major(DeviceOps *ops);
 
 void devfs_init();
 

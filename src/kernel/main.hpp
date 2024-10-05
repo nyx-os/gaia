@@ -6,4 +6,5 @@
 
 namespace Gaia {
 Result<Void, Error> main(Charon charon);
-}
+Charon &charon();
+} // namespace Gaia

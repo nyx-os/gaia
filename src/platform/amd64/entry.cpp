@@ -3,6 +3,7 @@
 #include <amd64/idt.hpp>
 #include <amd64/limine.h>
 #include <amd64/timer.hpp>
+#include <kernel/cpu.hpp>
 #include <kernel/main.hpp>
 
 using namespace Gaia;
@@ -23,6 +24,12 @@ volatile static struct limine_module_request module_request = {
     .response = nullptr,
     .internal_module_count = 0,
     .internal_modules = {},
+};
+
+volatile static struct limine_boot_time_request boot_time_request = {
+    .id = LIMINE_BOOT_TIME_REQUEST,
+    .revision = 0,
+    .response = nullptr,
 };
 
 static Result<CharonMmapEntryType, Error>
@@ -104,11 +111,17 @@ Charon make_charon() {
     };
   }
 
+  charon.boot_time = boot_time_request.response->boot_time;
+
   return charon;
 }
 
 extern void (*__init_array[])();
 extern void (*__init_array_end[])();
+
+namespace Gaia::Amd64 {
+Cpu _cpu{};
+}
 
 extern "C" void _start() {
   for (std::size_t i = 0; &__init_array[i] != __init_array_end; i++) {
@@ -119,6 +132,8 @@ extern "C" void _start() {
 
   gdt_init();
   idt_init();
+
+  sched_register_cpu(&_cpu);
 
   auto charon = make_charon();
   auto ret = main(charon);
